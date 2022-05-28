@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace leetcode.Problems
+{
+    class _0055
+    {
+        //*******************Solution 1******************
+        public bool CanJump_v1(int[] nums)
+        {
+            return canJumpFromPosition(0, nums);
+        }
+        public bool canJumpFromPosition(int position,int[] nums)
+        {
+            if (position == nums.Length - 1) return true;
+            int furthest = Math.Min(position + nums[position], nums.Length - 1);
+            for(int nextPosition=position+1; nextPosition <= furthest; nextPosition++)
+            {
+                if (canJumpFromPosition(nextPosition, nums))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        //*******************Solution 2******************
+        int[] dp;
+        public bool CanJump_v2(int[] nums)
+        {
+            dp = Enumerable.Repeat(0, nums.Length).ToArray();
+            dp[nums.Length - 1] = 1;
+            return dp[nums.Length - 1] ==1;
+        }
+        public bool canJumpFromPosition_v2(int position,int[] nums)
+        {
+            if(dp[position] != 0)
+            {
+                return dp[position] == 1;
+            }
+            if (position == nums.Length - 1) return true;
+
+            int furthest = Math.Min(position + nums[position], nums.Length - 1);
+            for (int nextPosition = position + 1; nextPosition <= furthest; nextPosition++)
+            {
+                if (canJumpFromPosition_v2(nextPosition, nums))
+                {
+                    dp[position] = 1;
+                    return true;
+                }
+            }
+            dp[position] = -1;
+            return false;
+        }
+        //*******************Solution 3 bottom up******************
+        public bool CanJump_v3(int[] nums)
+        {
+            dp = Enumerable.Repeat(0, nums.Length).ToArray();
+            dp[nums.Length - 1] = 1;
+
+            for(int i = nums.Length -2; i >= 0; i--)
+            {
+                int furthest = Math.Min(i + nums[i], nums.Length - 1);
+                for(int j = i + 1; j <= furthest; i++)
+                {
+                    if (dp[j] == 1)
+                    {
+                        dp[i] = 1;
+                        break;
+                    }
+                }
+            }
+            return dp[0] == 1;
+        }
+        //*******************Solution 4******************
+        public bool CanJump_v4(int[] nums)
+        {
+            int lastGoodIndex = nums.Length - 1;
+            for(int i =nums.Length-1; i >= 0; i--)
+            {
+                if(i+nums[i] >= lastGoodIndex)
+                {
+                    lastGoodIndex = i;
+                }
+            }
+            return nums[0] >= lastGoodIndex;
+            
+        }
+
+    }
+}
