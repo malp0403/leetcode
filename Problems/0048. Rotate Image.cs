@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0048
     {
+        #region answer
         public void Rotate(int[][] matrix)
         {
             int n = matrix.Length;
@@ -28,5 +29,32 @@ namespace leetcode.Problems
                 }
             }
         }
+        #endregion
+
+        #region 08/02/2022
+        public void Rotate_20220802(int[][] matrix) {
+            int N = matrix.Length;
+            for(int i =0; i < N/2; i++)
+            {
+                for(int j = 0; j < N; j++)
+                {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[N - i-1][j];
+                    matrix[N - i - 1][j] = temp;
+                }
+            }
+
+            for(int i = 0; i < N; i++)
+            {
+                for(int j = i + 1; j < N; j++)
+                {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = temp;
+                }
+            }
+        }
+        #endregion
+       
     }
 }

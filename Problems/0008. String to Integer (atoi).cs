@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0008
     {
+        #region answer
         public int MyAtoi(string s)
         {
             int test = Int32.MinValue;
@@ -44,5 +45,60 @@ namespace leetcode.Problems
             }
             return 0;
         }
+        #endregion
+
+        #region 07/11/2022
+
+        public int MyAtoi_R1(string s)
+        {
+            int sum = 0;
+            int indx = 0;
+            while(indx < s.Length)
+            {
+                if (char.IsDigit(s[indx])){
+                    bool isNegative = indx - 1 >= 0 && s[indx - 1] == '-';
+                    while(indx < s.Length && char.IsDigit(s[indx]))
+                    {
+                        int num = isNegative ? '0' - s[indx] : s[indx] - '0';
+                        if(sum > Int32.MaxValue/10 || (sum == Int32.MaxValue/10 && num > Int32.MaxValue % 10))
+                        {
+                            sum = Int32.MaxValue;
+                            break;
+                        }
+                        if(sum < Int32.MinValue/10 || (sum == Int32.MinValue/10 && num < Int32.MinValue % 10))
+                        {
+                            sum = Int32.MinValue;
+                            break;
+                        }
+                        sum = sum * 10 + num;
+                        indx++;
+
+                    }
+                    break;
+                }
+                else if(s[indx] == ' ' )
+                {
+                    indx++;
+                }else if (s[indx] == '-' || s[indx] == '+')
+                {
+                    if(indx +1 <s.Length && char.IsDigit(s[indx+1]))
+                    {
+                        indx++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return sum;
+        }
+
+        #endregion
     }
 }

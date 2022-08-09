@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0055
     {
+        #region answer
         //*******************Solution 1******************
         public bool CanJump_v1(int[] nums)
         {
@@ -87,6 +88,34 @@ namespace leetcode.Problems
             return nums[0] >= lastGoodIndex;
             
         }
+        #endregion
+
+        #region 08/05/2022
+        public bool CanJump_20220805(int[] nums)
+        {
+            int furthest = 0;
+            int cur = 0;
+            for(int i =0; i < nums.Length; i++)
+            {
+
+
+                furthest = Math.Max(furthest,i + nums[i]);
+                if(i == furthest)
+                {
+                    return false;
+                }
+                if (furthest >= nums.Length - 1) return true;
+                if(i == cur)
+                {
+                    if(furthest == cur) {
+                        return furthest >=nums.Length-1?true:false;
+                    }
+                    cur = furthest;
+                }
+            }
+            return true;
+        }
+        #endregion
 
     }
 }

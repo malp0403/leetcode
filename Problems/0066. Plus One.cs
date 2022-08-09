@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0066
     {
+        #region answer
         public int[] PlusOne(int[] digits)
         {
             int increase = 0;
@@ -45,17 +46,18 @@ namespace leetcode.Problems
             }
             return digits;
         }
+        #endregion
 
-        //-----12-30-2021-------------
+        #region 12/30/2021
         public int[] PlusOne_R2(int[] digits)
         {
             int increase = 0;
             int sum;
-            for(int i=digits.Length-1; i >= 0; i--)
+            for (int i = digits.Length - 1; i >= 0; i--)
             {
                 if (i == digits.Length - 1)
                 {
-                    sum = digits[i] + increase+1;
+                    sum = digits[i] + increase + 1;
                 }
                 else
                 {
@@ -69,12 +71,41 @@ namespace leetcode.Problems
             {
                 int[] ans = new int[digits.Length + 1];
                 ans[0] = increase;
-                for(int i=0;i < digits.Length; i++)
+                for (int i = 0; i < digits.Length; i++)
                 {
                     ans[i + 1] = digits[i];
                 }
                 return ans;
             }
         }
+        #endregion
+
+        #region 08/08/2022
+        public int[] PlusOne_20220808(int[] digits)
+        {
+            int incre = 0;
+            int initial = 1;
+            for(int i = digits.Length - 1; i >= 0; i--)
+            {
+                int total = digits[i] + incre+ initial;
+                initial = 0;
+                digits[i] = total % 10;
+                incre = total / 10;
+            }
+            if (incre == 0) return digits;
+            else
+            {
+                int[] answer = new int[digits.Length + 1];
+                answer[0] = incre;
+                for(int i = 0; i < digits.Length; i++)
+                {
+                    answer[i + 1] = digits[i];
+                }
+                return answer;
+            }
+            
+        }
+        #endregion
+
     }
 }

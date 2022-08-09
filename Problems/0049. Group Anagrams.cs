@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0049
     {
+        #region answer
         public IList<IList<string>> GroupAnagrams(string[] strs)
         {
             Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
@@ -37,7 +38,9 @@ namespace leetcode.Problems
 
 
         }
-        //02/05/2022
+        #endregion
+
+        #region 02/05/2022
         public IList<IList<string>> GroupAnagrams_R2(string[] strs) {
             Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
             foreach (var str in strs)
@@ -65,5 +68,45 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
+
+        #region 08/03/2022
+        public IList<IList<string>> GroupAnagrams_20220803(string[] strs)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
+            for (int i = 0; i < strs.Length; i++)
+            {
+                string key = "";
+                if (strs[i] == "")
+                {
+                    key = "0";
+                }
+                else
+                {
+                    int[] arr = Enumerable.Repeat(0, 26).ToArray();
+                    for (int j = 0; j < strs[i].Length; j++)
+                    {
+                        arr[strs[i][j] - 'a']++;
+                    }
+                    key = string.Join("#", arr);
+                }
+                if (dic.ContainsKey(key))
+                {
+                    dic[key].Add(strs[i]);
+                }
+                else
+                {
+                    dic.Add(key, new List<string> { strs[i] });
+                }
+            }
+            IList<IList<string>> answer = new List<IList<string>>() { };
+            foreach (var key in dic.Keys)
+            {
+                answer.Add(dic[key]);
+            }
+            return answer;
+
+        }
+        #endregion
     }
 }

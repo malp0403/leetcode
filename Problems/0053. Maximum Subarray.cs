@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0053
     {
+        #region answer
         public int MaxSubArray(int[] nums)
         {
             int sum = 0;
@@ -52,46 +53,30 @@ namespace leetcode.Problems
 
 
 
-        public IList<int> SpiralOrder(int[][] matrix)
-        {
-            List<int> result = new List<int>() { };
-            int rows = matrix.Length;
-            int columns = matrix[0].Length;
+        #endregion
 
-            int up = 0;
-            int left = 0;
-            int right = columns - 1;
-            int down = rows - 1;
-            while (result.Count < rows * columns)
+        #region 08/05/2022
+        public int MaxSubArray_20220805(int[] nums)
+        {
+            int max = nums[0];
+            int cur =nums[0];
+            for(int i =1; i < nums.Length; i++)
             {
-                for (int col = left; col <= right; col++)
+                //cur = Math.Max(nums[i], cur + nums[i]);
+                //max = Math.Max(cur, max);
+                if(cur <0 || cur + nums[i] < 0)
                 {
-                    result.Add(matrix[up][col]);
+                   
+                    cur = nums[i];
                 }
-                for (int row = up + 1; row <= down; row++)
+                else
                 {
-                    result.Add(matrix[row][right]);
+                    cur += nums[i];
                 }
-                if (up != down)
-                {
-                    for (int col = right - 1; col >= left; col--)
-                    {
-                        result.Add(matrix[down][col]);
-                    }
-                }
-                if (left != right)
-                {
-                    for (int row = down - 1; row > up; row--)
-                    {
-                        result.Add(matrix[row][left]);
-                    }
-                }
-                left++;
-                right--;
-                up++;
-                down--;
+                max = Math.Max(cur, max);
             }
-            return result;
+            return max;
         }
+        #endregion
     }
 }

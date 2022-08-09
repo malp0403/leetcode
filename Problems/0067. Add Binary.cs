@@ -7,55 +7,59 @@ namespace leetcode.Problems
 {
     class _0067
     {
+        #region answer
         public string AddBinary(string a, string b)
         {
             int increase = 0;
             int maxLengh = Math.Max(a.Length, b.Length);
             int curr = 0;
             Stack<int> stack = new Stack<int>() { };
-            while(curr >=0)
+            while (curr >= 0)
             {
-                int c1 = a.Length-curr <a.Length ? Int32.Parse(a[a.Length - curr - 1].ToString()) : 0;
-                int c2 = b.Length - curr < b.Length ? Int32.Parse(b[b.Length-curr-1].ToString()) : 0;
+                int c1 = a.Length - curr < a.Length ? Int32.Parse(a[a.Length - curr - 1].ToString()) : 0;
+                int c2 = b.Length - curr < b.Length ? Int32.Parse(b[b.Length - curr - 1].ToString()) : 0;
                 int sum = c1 + c2;
-                stack.Push((sum + increase )% 2);
+                stack.Push((sum + increase) % 2);
                 increase = (sum + increase) / 2;
                 curr++;
             }
             if (increase != 0) stack.Push(1);
 
             string answer = "";
-            while(stack.Count > 0)
+            while (stack.Count > 0)
             {
                 answer += stack.Pop().ToString();
             }
             return answer;
         }
-        //-----------------12-27-2021--------------
-        public string AddBinary_R1(string a,string b)
+        #endregion
+
+        #region 12/27/2021
+        public string AddBinary_R1(string a, string b)
         {
             string ans = "";
             int increase = 0;
-            int l = a.Length-1; int r = b.Length-1;
-            while(l>=0 || r >= 0)
+            int l = a.Length - 1; int r = b.Length - 1;
+            while (l >= 0 || r >= 0)
             {
                 int c1 = l >= 0 ? a[l] - '0' : 0;
                 int c2 = r >= 0 ? b[r] - '0' : 0;
                 int sum = c1 + c2 + increase;
                 ans = sum % 2 + ans;
                 increase = sum / 2;
-                l--;r--;
+                l--; r--;
             }
-            if(increase == 1)
+            if (increase == 1)
             {
                 ans = increase + ans;
             }
             return ans;
 
         }
+        #endregion
 
-        //02/05/2022------------------
-        public string AddBinary_R2(string a,string b)
+        #region 02/05/2022
+        public string AddBinary_R2(string a, string b)
         {
             int incre = 0;
             StringBuilder sb = new StringBuilder() { };
@@ -69,11 +73,45 @@ namespace leetcode.Problems
                 sb.Append(sum % 2);
                 incre = sum / 2;
             }
-            if (incre > 0) {
+            if (incre > 0)
+            {
                 sb.Append(incre);
             }
             char[] arr = sb.ToString().ToCharArray().Reverse().ToArray();
             return new string(arr);
         }
+        #endregion
+
+        #region 08/08/2022
+        public string AddBinary_20220808(string a, string b)
+        {
+            int i = a.Length - 1;
+            int j = b.Length - 1;
+            int incre = 0;
+            StringBuilder sb = new StringBuilder() { };
+            while(i>=0 || j >= 0)
+            {
+                int s1 = i >= 0 ? a[i] -'0' : 0;
+                int s2 = j >= 0 ? b[i] - '0' : 0;
+                int total = s1 + s2 + incre;
+                sb.Append(total % 2);
+                incre = total / 2;
+                i--;
+                j--;
+            }
+            if(incre == 1)
+            {
+                sb.Append(incre);
+            }
+            //for(int temp = 0; i <= sb.Length / 2; temp++)
+            //{
+            //    char t = sb[temp];
+            //    sb[temp] = sb[sb.Length - temp-1];
+            //    sb[sb.Length - temp - 1] = t;
+            //}
+            return new string(sb.ToString().Reverse().ToArray());
+        }
+        #endregion
+
     }
 }

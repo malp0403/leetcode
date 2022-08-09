@@ -7,7 +7,7 @@ namespace leetcode.Problems
 {
     class _0015
     {
-        //2 pointers***************************
+        #region 2 pointers***************************
         public IList<IList<int>> ThreeSum(int[] nums)
         {
             Array.Sort(nums);
@@ -44,8 +44,8 @@ namespace leetcode.Problems
                 }
             }
         }
-
-        //Hashset***************************
+        #endregion
+        #region Hashset***************************
         public IList<IList<int>> ThreeSum_V2(int[] nums)
         {
             Array.Sort(nums);
@@ -76,5 +76,47 @@ namespace leetcode.Problems
                 set.Add(nums[j]);
             }
         }
+        #endregion
+
+        #region 07/18/2022
+        public IList<IList<int>> ThreeSum_r2(int[] nums)
+            
+        {
+            Array.Sort(nums);
+            IList<IList<int>> result = new List<IList<int>>() { };
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i == 0 || nums[i] != nums[i - 1])
+                {
+                    int left = i + 1;
+                    int right = nums.Length - 1;
+                    while (left < right && left < nums.Length)
+                    {
+                        int sum = nums[left] + nums[right] + nums[i];
+                        if (sum > 0)
+                        {
+                            right--;
+                        }
+                        else if (sum < 0)
+                        {
+                            left++;
+                        }
+                        else
+                        {
+                            result.Add(new List<int>() { nums[i], nums[left], nums[right] });
+                            left++;
+                            while(left<right && nums[left] == nums[left - 1])
+                            {
+                                left++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

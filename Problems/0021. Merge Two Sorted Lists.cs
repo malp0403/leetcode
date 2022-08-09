@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0021
     {
+        #region answer
         public ListNode MergeTwoLists(ListNode list1, ListNode list2)
         {
             ListNode head = new ListNode();
@@ -58,5 +59,42 @@ namespace leetcode.Problems
             head.next = list1 == null ? list2 : list1;
             return head.next;
         }
+        #endregion
+        #region 07/18/2022
+        public ListNode MergeTwoLists_20220719(ListNode list1, ListNode list2)
+        {
+            ListNode dummy = new ListNode();
+            ListNode res = dummy;
+            ListNode p1 = list1;
+            ListNode p2 = list2;
+            while (p1 != null || p2 != null)
+            {
+                if (p1 == null)
+                {
+                    dummy.next = p2;
+                    p2 = null;
+                }
+                else if (p2 == null)
+                {
+                    dummy.next = p1;
+                    p1 = null;
+                }
+                else if (p1.val < p2.val)
+                {
+                    dummy.next = p1;
+                    dummy = dummy.next;
+                    p1 = p1.next;
+
+                }
+                else
+                {
+                    dummy.next = p2;
+                    dummy = dummy.next;
+                    p2 = p2.next;
+                }
+            }
+            return res.next;
+        }
+        #endregion
     }
 }

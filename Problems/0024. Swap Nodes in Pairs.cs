@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0024
     {
-        //*************Recursive***********************
+        #region *************Recursive***********************
+
         public ListNode SwapPairs(ListNode head)
         {
             if (head == null || head.next == null) return head;
@@ -17,7 +18,8 @@ namespace leetcode.Problems
             first.next = SwapPairs(temp);
             return second;
         }
-        //***************Iterative*************************
+        #endregion
+        #region ***************Iterative*************************
         public ListNode SwapPairs_V2(ListNode head)
         {
             if (head == null || head.next == null) return head;
@@ -41,5 +43,25 @@ namespace leetcode.Problems
             return dummy.next;
 
         }
+        #endregion
+        #region 07/19/2022
+        public ListNode SwapPairs_20220719(ListNode head)
+        {
+            ListNode dummy = new ListNode();
+            ListNode res = dummy;
+            while(head != null && head.next != null)
+            {
+                ListNode temp = head.next.next;
+                dummy.next = head.next;
+                dummy = dummy.next;
+                dummy.next = head;
+                dummy = dummy.next;
+                head = temp;
+            }
+            dummy.next = head;
+
+            return res.next;
+        }
+        #endregion
     }
 }

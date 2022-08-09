@@ -37,5 +37,32 @@ namespace leetcode.Problems
             return arr[arr.Length - 1];
         }
 
+        // 06/15/2022------------------
+        Dictionary<int, int> dic_r2 = new Dictionary<int, int>() { };
+        public int tp_R2(int[] cost)
+        {
+            return helper_R2(cost.Length, cost);
+        }
+        public int helper_R2(int n,int[] cost)
+        {
+            if (dic_r2.ContainsKey(n)) return dic_r2[n];
+            if (n == 0) return 0;
+            if (n == 1) return 0;
+            dic_r2.Add(n, Math.Min(helper_R2(n - 1, cost) + cost[n - 1], helper_R2(n - 2, cost) + cost[n - 2]));
+            return dic_r2[n];
+        }
+
+        public int bu_R2(int[] cost)
+        {
+            int[] arr = Enumerable.Repeat(0, cost.Length+1).ToArray();
+            for(int i =2; i <= cost.Length; i++)
+            {
+                arr[i] = Math.Min(arr[i - 1] + cost[i - 1], arr[i - 2] + cost[i - 2]); 
+            }
+            return arr[cost.Length];
+        }
+
+        // 06/15/2022------------------
+
     }
 }

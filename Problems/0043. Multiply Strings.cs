@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0043
     {
+        #region answer
         public string Multiply(string num1, string num2)
         {
             string ans = "0";
@@ -67,5 +68,71 @@ namespace leetcode.Problems
             char[] arr = sb.ToString().ToArray().Reverse().ToArray();
             return new string(arr);
         }
+        #endregion
+        #region 08/02/2022
+        public string Multiply_20200802(string num1, string num2)
+        {
+            int zeroCount = 0;
+            string answer = "";
+            if(num1.Length==1 && num1[0]=='0' )
+            for(int i = num2.Length-1; i >= 0; i--)
+            {
+                string temp = helper_multi_20200802(num1, num2[i] - '0', zeroCount);
+                answer = helper_add_20200802(temp, answer);
+                zeroCount++;
+            }
+            return answer;
+        }
+        public string helper_multi_20200802(string source, int multiply,int zeroCount)
+        {
+            if (multiply == 0) return "0";
+            if (source == "0") return "0";
+            int carry = 0;
+            string res = "";
+            for(int i = source.Length - 1; i >= 0; i--)
+            {
+                int temp = (source[i] - '0') * multiply;
+                int num = (temp + carry) % 10;
+                res += num;
+                carry = (temp + carry) / 10;
+            }
+            if(carry > 0)
+            {
+                res += carry.ToString();
+            }
+            res = new string(res.ToCharArray().Reverse().ToArray());
+            while (zeroCount > 0)
+            {
+                res += "0";
+                zeroCount--;
+            }
+            return res;
+        }
+        public string helper_add_20200802(string s1,string s2)
+        {
+            int i = s1.Length - 1;
+            int j = s2.Length - 1;
+            string result = "";
+            int carry = 0;
+            while(i>=0 || j >= 0)
+            {
+                int first = i>=0?s1[i] - '0':0;
+                int second = j>=0?s2[j] - '0':0;
+                int num = (first + second + carry) % 10;
+                carry = (first + second + carry) / 10;
+                result += num.ToString();
+                i--;
+                j--;
+
+            }
+            if(carry > 0)
+            {
+                result += "1";
+            }
+            return new string(result.ToCharArray().Reverse().ToArray()); ;
+
+        }
+
+        #endregion
     }
 }

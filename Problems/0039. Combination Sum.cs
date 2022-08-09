@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0039
     {
+        #region answer;
         IList<IList<int>> ans;
         public IList<IList<int>> CombinationSum(int[] candidates, int target)
         {
@@ -15,7 +16,7 @@ namespace leetcode.Problems
             return ans;
 
         }
-        public void backTracking(List<int> list,int indx,int sum,int target,int[] candidates)
+        public void backTracking(List<int> list, int indx, int sum, int target, int[] candidates)
         {
             if (sum == target)
             {
@@ -23,12 +24,46 @@ namespace leetcode.Problems
             }
             else if (sum > target) return;
 
-            for(int i =indx; i < candidates.Length; i++)
+            for (int i = indx; i < candidates.Length; i++)
             {
                 list.Add(candidates[i]);
-                backTracking(list, i, sum+ candidates[i], target, candidates);
+                backTracking(list, i, sum + candidates[i], target, candidates);
                 list.RemoveAt(list.Count - 1);
             }
         }
+        #endregion
+
+        #region 08/01/2022
+        IList<IList<int>> result_08012022;
+        int target_08012022;
+        public IList<IList<int>> CombinationSum_20220801(int[] candidates, int target)
+        {
+            target_08012022 = target;
+            result_08012022 = new List<IList<int>>() { };
+            helper(candidates, new List<int>() { }, 0, 0);
+            return result_08012022;
+        }
+        public void helper(int[] candidates, List<int> list, int startInx, int sum)
+        {
+            if(sum == target_08012022)
+            {
+                result_08012022.Add(list.Select(x=>x).ToList());
+                return;
+            }
+            else if(sum > target_08012022)
+            {
+                return;
+            }
+            else
+            {
+                for(int i = startInx; i < candidates.Length; i++)
+                {
+                    list.Add(candidates[i]);
+                    helper(candidates, list, i, sum + candidates[i]);
+                    list.RemoveAt(list.Count - 1);
+                }
+            }
+        }
+        #endregion
     }
 }

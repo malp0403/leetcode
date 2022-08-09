@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0014
     {
+        #region answer
         public string LongestCommonPrefix(string[] strs)
         {
             if (strs.Length == 1) return strs[0];
@@ -30,5 +31,51 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
+
+        #region 07/18/2022
+        public string LongestCommonPrefix_R1_1(string[] strs)
+        {
+            StringBuilder result = new StringBuilder() { };
+            bool stop = false;
+            int i = 0;
+            while (!stop)
+            {
+                for(int j=0; j < strs.Length; j++)
+                {
+                    if (i >= strs[j].Length) { stop = true;break; }
+                    if (j == 0) continue;
+                    if(strs[j][i] != strs[j - 1][i]) { stop = true;break; }
+                }
+                if (!stop)
+                {
+                    result.Append(strs[0][i]);
+                    i++;
+                }
+            }
+            return result.ToString();
+
+        }
+
+        public string LongestCommonPrefix_R1_2(string[] strs)
+        {
+            StringBuilder result = new StringBuilder() { };
+
+            if (strs.Length == 0) return "";
+            string prefix = strs[0];
+
+            for(int j=1; j < strs.Length; j++)
+            {
+                while (strs[j].IndexOf(prefix) != 0)
+                {
+                    prefix = prefix.Substring(0, prefix.Length - 1);
+                    if (prefix.Length == 0) return "";
+                }
+            }
+            return prefix;
+
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0013
     {
+        #region answer
         public int RomanToInt(string s)
         {
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
@@ -94,7 +95,9 @@ namespace leetcode.Problems
 
 
         }
+        #endregion
 
+        #region review 01/31/2022
         //01-31-2022-----------------------
         public int RomanToInt_R2(string s)
         {
@@ -120,5 +123,33 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
+
+        #region 07/18/2022
+        public int RomanToInt_R3(string s)
+        {
+            Dictionary<char, int> dic = new Dictionary<char, int>() { };
+            dic.Add('I', 1);
+            dic.Add('V', 5);
+            dic.Add('X', 10);
+            dic.Add('L', 50);
+            dic.Add('C', 100);
+            dic.Add('D', 500);
+            dic.Add('M', 1000);
+            int answer = 0;
+            for(int i =0; i < s.Length; i++)
+            {
+                if(i+1<s.Length &&  dic[s[i]] < dic[s[i + 1]])
+                {
+                    answer -= dic[s[i]];
+                }
+                else
+                {
+                    answer += dic[s[i]];
+                }
+            }
+            return answer;
+        }
+        #endregion
     }
 }
