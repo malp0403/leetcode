@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Problems 1501-2000\1651-1700\" />
+    <Folder Include="Problems 1501-2000\1801-1850\" />
+  </ItemGroup>
+
 </Project>

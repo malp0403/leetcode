@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using leetcode.Class;
 namespace leetcode.Recursive
 {
     class Q2_SwapNodes

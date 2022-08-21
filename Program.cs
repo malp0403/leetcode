@@ -1,9 +1,11 @@
 ﻿using leetcode.BinarySearch;
 using leetcode.DymanicProgramming;
 using leetcode.Problems;
+using leetcode.Problems._0101_150;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace leetcode
 {
@@ -11,45 +13,38 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            int x = -921;
-            double x1 = 1;
-            double x2 = 1 / 2.0;
+            //var obj1 = new _0138() { };
+            //_0138.Node n7 =new _0138.Node(7);
+            //_0138.Node n13 = new _0138.Node(13);
+            //_0138.Node n11 = new _0138.Node(11);
+            //_0138.Node n10 = new _0138.Node(10);
+            //_0138.Node n1 = new _0138.Node(1);
 
-            var obj = new _0068() { };
-            char[][] test = new char[9][] {
-                new char[] { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
-                new char[] { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
-                new char[] {'.', '9', '8', '.', '.', '.', '.', '6', '.' },
-                new char[] {'8', '.', '.', '.', '6', '.', '.', '.', '3' },
-                new char[] {'4', '.', '.', '8', '.', '3', '.', '.', '1' },
-                new char[] {'7', '.', '.', '.', '2', '.', '.', '.', '6' },
-                new char[] {'.', '6', '.', '.', '.', '.', '2', '8', '.' },
-                new char[] {'.', '.', '.', '4', '1', '9', '.', '.', '5' },
-                new char[] {'.', '.', '.', '.', '8', '.', '.', '7', '9' }
-                    };
+            //n7.next = n13;
+            //n13.next = n11;
+            //n11.next = n10;
+            //n10.next = n1;
+            //n7.random = null;
+            //n13.random = n7;
+            //n11.random = n1;
+            //n10.random = n11;
+            //n1.random = n7;
 
-            ListNode n1 = new ListNode(1);
-            n1.next = new ListNode(2);
-            n1.next.next = new ListNode(3);
-            n1.next.next.next = new ListNode(4);
-            n1.next.next.next.next = new ListNode(5);
+            //var res1 = obj1.CopyRandomList_20220818(n7);
 
-            var test123= obj.FullJustify(new string[] {"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"}, 20);
+            char[][] board = new char[3][];
+            board[0] = new char[3] { 'X', 'X', 'X' };
+            board[1] = new char[3] { 'X', 'O', 'X' };
+            board[2] = new char[3] { 'X', 'X', 'X' };
 
-            ListNode n2 = new ListNode(1);
-            n2.next = new ListNode(3);
-            n2.next.next = new ListNode(4);
-            ListNode n3 = new ListNode(2);
-            n3.next = new ListNode(6);
+            //var rest1 = new _0130() { };
+            //rest1.Solve(board);
 
+            int[] dif = new int[3] { 2, 3, 4 };
+            int[] gas = new int[3] { 3, 4, 3 };
 
-
-
-
-
-
-
-
+            var rest2 = new _0135() { };
+            rest2.Candy_v2(new int[] { 1,2,87,87,87,2,1});
 
 
 

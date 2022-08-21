@@ -1,12 +1,12 @@
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfoInputs.cache
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfo.cs
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.exe
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.deps.json
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.runtimeconfig.json
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.runtimeconfig.dev.json
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.dll
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetcode.pdb
-C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csprojAssemblyReference.cache
-C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfoInputs.cache
-C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfo.cs
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.dll
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.pdb
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.genruntimeconfig.cache
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csprojAssemblyReference.cache
