@@ -45,5 +45,58 @@ namespace leetcode.Problems
             }
             return result.Length;
         }
+
+        #region 12/30/2022
+        public int Compress_20221230(char[] chars)
+        {
+            int count = 0;
+            StringBuilder sb = new StringBuilder() { };
+            for(int i =0; i < chars.Length; i++)
+            {
+                if(i == 0)
+                {
+                    sb.Append(chars[i]);
+                    count = 1;
+                }
+                else
+                {
+                    if(chars[i] == chars[i - 1])
+                    {
+                        count++;
+                        if(i == chars.Length - 1)
+                        {
+                            sb.Append(count);  
+                        }
+                    }
+                    else
+                    {
+                        if(count == 1)
+                        {
+                            sb.Append(chars[i]);
+                        }
+                        else
+                        {
+                            sb.Append(count);
+                            sb.Append(chars[i]);
+                            count = 1;
+                        }
+
+                        if(i == chars.Length-1 && count != 1)
+                        {
+                            sb.Append(count);
+                        }
+                    }
+                }
+            }
+
+            string ans = sb.ToString();
+            for(int i =0;i < ans.Length; i++)
+            {
+                chars[i] = ans[i];
+            }
+            int len = ans.Length;
+            return len;
+        }
+        #endregion
     }
 }

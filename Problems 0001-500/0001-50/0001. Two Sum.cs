@@ -6,6 +6,17 @@ namespace leetcode.Problems
 {
     class _0001
     {
+        #region LeetCode Solution1: Brute Force
+        // O(n^2)
+        #endregion
+        #region LeetCode Solution2: Two-pass Hash Table
+        // time: O(n) space O(n) 
+        #endregion
+        #region LeetCode Solution2: One-pass Hash Table
+        // time: O(n) space O(n) 
+        #endregion
+
+
         #region answer
         public int[] TwoSum(int[] nums, int target)
         {
@@ -59,5 +70,24 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 12/27/2022
+        public int[] TwoSum_20221227(int[] nums,int target)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>() { };
+            for(int i =0; i < nums.Length; i++)
+            {
+                if (dic.ContainsKey(target - nums[i]))
+                {
+                    return new int[] { dic[target - nums[i]], i };
+                }
+                if (!dic.ContainsKey(nums[i]))
+                {
+                    dic.Add(nums[i], i);
+
+                }
+            }
+            return new int[] { };
+        }
+        #endregion
     }
 }

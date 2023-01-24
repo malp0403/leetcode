@@ -6,7 +6,10 @@ namespace leetcode.Problems
 {
     class _0121
     {
-        #region answer
+        #region LeetCode Solution1: Brute Force
+        #endregion
+
+        #region LeetCode Solution2: One Pass
         public int MaxProfit(int[] prices)
         {
             int min = Int32.MaxValue;
@@ -27,6 +30,7 @@ namespace leetcode.Problems
 
         }
         #endregion
+
         #region review2
         public int MaxProfit_R2(int[] prices)
         {
@@ -45,6 +49,7 @@ namespace leetcode.Problems
             return max;
         }
         #endregion
+
         #region
         public int MaxProfit_20220817(int[] prices)
         {
@@ -72,6 +77,24 @@ namespace leetcode.Problems
             return profit;
         }
 
+        #endregion
+
+        #region 12/29/2022
+        public int MaxProfit_20221229(int[] prices)
+        {
+            int lowest = prices[0];
+            int profit = 0;
+
+            for(int i =0; i < prices.Length; i++)
+            {
+                profit = Math.Max(prices[i] - lowest,profit);
+                if(prices[i]< lowest)
+                {
+                    lowest = prices[i];
+                }
+            }
+            return profit;
+        }
         #endregion
     }
 }

@@ -12,16 +12,16 @@ namespace leetcode.Problems
         {
             Array.Sort(nums);
             IList<IList<int>> ans = new List<IList<int>>() { };
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if(i==0 || nums[i-1] != nums[i])
+                if (i == 0 || nums[i - 1] != nums[i])
                 {
                     helper(nums, i, ans);
                 }
             }
             return ans;
         }
-        public void helper(int[] nums,int start, IList<IList<int>> res)
+        public void helper(int[] nums, int start, IList<IList<int>> res)
         {
             int lo = start + 1; int hi = nums.Length - 1;
             while (lo < hi)
@@ -30,14 +30,15 @@ namespace leetcode.Problems
                 if (temp > 0)
                 {
                     hi--;
-                }else if (temp < 0)
+                }
+                else if (temp < 0)
                 {
                     lo++;
                 }
                 else
                 {
                     res.Add(new List<int>() { nums[start], nums[lo++], nums[hi] });
-                    while(lo<hi && nums[lo] == nums[lo - 1])
+                    while (lo < hi && nums[lo] == nums[lo - 1])
                     {
                         lo++;
                     }
@@ -45,6 +46,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region Hashset***************************
         public IList<IList<int>> ThreeSum_V2(int[] nums)
         {
@@ -62,13 +64,13 @@ namespace leetcode.Problems
         public void helper_V2(int[] nums, int start, IList<IList<int>> res)
         {
             HashSet<int> set = new HashSet<int>() { };
-            for(int j = start + 1; j < nums.Length; j++)
+            for (int j = start + 1; j < nums.Length; j++)
             {
                 int temp = -nums[start] - nums[j];
                 if (set.Contains(temp))
                 {
                     res.Add(new List<int>() { nums[start], nums[j], temp });
-                    while(j+1<nums.Length && nums[j + 1] == nums[j])
+                    while (j + 1 < nums.Length && nums[j + 1] == nums[j])
                     {
                         j++;
                     }
@@ -80,7 +82,7 @@ namespace leetcode.Problems
 
         #region 07/18/2022
         public IList<IList<int>> ThreeSum_r2(int[] nums)
-            
+
         {
             Array.Sort(nums);
             IList<IList<int>> result = new List<IList<int>>() { };
@@ -106,7 +108,7 @@ namespace leetcode.Problems
                         {
                             result.Add(new List<int>() { nums[i], nums[left], nums[right] });
                             left++;
-                            while(left<right && nums[left] == nums[left - 1])
+                            while (left < right && nums[left] == nums[left - 1])
                             {
                                 left++;
                             }
@@ -117,6 +119,76 @@ namespace leetcode.Problems
 
             return result;
         }
+        #endregion two pointers
+
+        #region 12/28/2022 two pointers
+        IList<IList<int>> answer_20221228;
+        public IList<IList<int>> ThreeSum_20221228(int[] nums)
+        {
+            Array.Sort(nums);
+            answer_20221228 = new List<IList<int>>() { };
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i == 0 || nums[i] != nums[i - 1])
+                {
+                    helper_20221228(nums, i + 1, nums.Length - 1, -nums[i]);
+
+                }
+            }
+            return answer_20221228;
+        }
+        public void helper_20221228(int[] nums, int start, int end, int target)
+        {
+            int low = start;
+            int hi = end;
+            while (low < hi)
+            {
+                int sum = nums[low] + nums[hi];
+                if (sum == target)
+                {
+                    answer_20221228.Add(new List<int>() { nums[low], nums[hi], -target });
+                    low++;
+                    while (low < hi && nums[low] == nums[low - 1])
+                    {
+                        low++;
+                    }
+                }
+                else if (sum < target)
+                {
+                    low++;
+                }
+                else
+                {
+                    hi--;
+                }
+            }
+                      
+        }
+        #endregion
+
+        #region 12/28/2022 Hashset
+        public void helper_20221228v2(int[] nums, int start, int end, int target)
+        {
+            HashSet<int> set = new HashSet<int>() { };
+            for(int i = start; i <= end; i++)
+            {
+                int result = target - nums[i];
+                if (set.Contains(result))
+                {
+                    answer_20221228.Add(new List<int>() { nums[i], result, -target });
+                    while (i + 1 <= end && nums[i+1] == nums[i])
+                    {
+                        i++;
+                    }
+                }
+                else
+                {
+                    set.Add(nums[i]);
+                }
+            }
+        }
+
+
         #endregion
     }
 }

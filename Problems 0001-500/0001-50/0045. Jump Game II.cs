@@ -91,5 +91,76 @@ namespace leetcode.Problems
             return 0;
         }
         #endregion
+
+        #region 12/28/2022  Buttom Up
+        public int Jump_20221228(int[] nums)
+        {
+            int[] arr = Enumerable.Repeat(int.MaxValue, nums.Length).ToArray();
+            arr[0] = 0;
+            for(int i =0; i < nums.Length; i++)
+            {
+                for(int j = i; j <= nums[i] + i; j++)
+                {
+                    if (j >= nums.Length) break;
+                    arr[j] = Math.Min(arr[j], arr[i] + 1);
+                }
+            }
+            return arr[nums.Length - 1];
+        }
+        #endregion
+        #region  TD
+        public int Jump_20221228TD(int[] nums)
+        {
+            int[] dp = Enumerable.Repeat(int.MaxValue, nums.Length).ToArray();
+            dp[0] = 0;
+            return helper(nums.Length - 1, dp, nums);
+        }
+        public int helper(int i,int[] dp,int[] nums)
+        {
+            if (dp[i] != int.MaxValue) return dp[i];
+            int min = int.MaxValue;
+            for(int j = 0; j < i; j++)
+            {
+                if(j+nums[j] >= i)
+                {
+                    int temp=helper(j, dp, nums);
+                    if (temp +1< min)
+                    {
+                        min = temp+1;
+                    }
+                }
+            }
+            dp[i] = min;
+            return dp[i];
+        }
+        #endregion
+
+        #region 12/28/2022 jump
+        public int Jump_20221228v3(int[] nums)
+        {
+            if (nums.Length <= 1) return 0;
+            int start = 1;
+            int furthest = nums[0];
+            int step = 1;
+            while (true)
+            {
+
+                if (furthest >= nums.Length - 1) break;
+                int temp = furthest;
+                for (int i = start; i <= temp; i++)
+                {
+                    if (nums[i] + i > furthest)
+                    {
+                        furthest = nums[i] + i;
+                    }
+                }
+                start = temp + 1;
+                step++;
+            }
+            return step;
+
+
+        }
+        #endregion
     }
 }

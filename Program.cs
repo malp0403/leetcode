@@ -2,6 +2,7 @@
 using leetcode.DymanicProgramming;
 using leetcode.Problems;
 using leetcode.Problems._0101_150;
+using leetcode.Problems_0001_500._0451_0500;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,27 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+            var obj3= new _0457(){ };
+            obj3.CircularArrayLoop(new int[] { -2,1,-1,-2,-2 });
+
+            obj3.CircularArrayLoop(new int[] { 2, -1, 1, 2, 2});
+
+            var obj2 = new _0443() { };
+            obj2.Compress_20221230(new char[] { 'a', 'a', 'b', 'b', 'c', 'c', 'c' });
+
+            var obj1 = new _0146(2) { };
+            int a = 0;
+            obj1.Put(1, 1);
+            obj1.Put(2, 2);
+            a= obj1.Get(1);
+            obj1.Put(3, 3);
+            a = obj1.Get(2);
+            obj1.Put(4, 4);
+            a = obj1.Get(1);
+            a =obj1.Get(3);
+            a =obj1.Get(4);
+
+
             //var obj1 = new _0138() { };
             //_0138.Node n7 =new _0138.Node(7);
             //_0138.Node n13 = new _0138.Node(13);
@@ -40,11 +62,7 @@ namespace leetcode
             //var rest1 = new _0130() { };
             //rest1.Solve(board);
 
-            int[] dif = new int[3] { 2, 3, 4 };
-            int[] gas = new int[3] { 3, 4, 3 };
 
-            var rest2 = new _0135() { };
-            rest2.Candy_v2(new int[] { 1,2,87,87,87,2,1});
 
 
 

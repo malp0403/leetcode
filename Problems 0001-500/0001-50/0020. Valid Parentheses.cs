@@ -60,5 +60,75 @@ namespace leetcode.Problems
             return true;
         }
         #endregion
+        #region 12/28/2022 wrong attempt use dictionary because "([)]" should return false;
+        public bool IsValid_20221228(string s)
+        {
+            Dictionary<char, int> dic = new Dictionary<char, int>() { };
+            dic.Add('(', 0);
+            dic.Add('[', 0);
+            dic.Add('{', 0);
+
+            for (int i =0; i < s.Length; i++)
+            {
+                if(s[i] == '(' || s[i] == '[' || s[i] == '{')
+                {
+                    dic[s[i]]++;
+                }
+                else
+                {
+                    if (s[i] == ')')
+                    {
+                        if (dic['('] == 0) return false;
+                        dic['(']--;
+                    }
+                    else if (s[i] == ']')
+                    {
+                        if (dic['['] == 0) return false;
+                        dic['[']--;
+                    }
+                    else 
+                    {
+                        if (dic['{'] == 0) return false;
+                        dic['{']--;
+                    }
+
+                }
+            }
+            foreach (var key in dic.Keys)
+            {
+                if (dic[key] > 0) return false;
+            }
+            return true;
+        }
+        #endregion
+        #region 12/28/2022 stack
+        public bool IsValid_20221228_Stack(string s)
+        {
+            Stack<char> stack = new Stack<char>() { };                          
+            for(int i =0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if(c == '(' || c=='[' || c == '{')
+                {
+                    stack.Push(c);
+                }else if (c == ')')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '(') return false;
+                    stack.Pop();
+                }
+                else if (c == ']')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '[') return false;
+                    stack.Pop();
+                }
+                else if (c == '}')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '{') return false;
+                    stack.Pop();
+                }
+            }
+            return stack.Count == 0;
+        }
+        #endregion
     }
 }

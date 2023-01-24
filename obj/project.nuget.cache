@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "YRRmVxXBrnrXhd7+CjWcdzPNzLHoy8FqLW7msuKbFvXoJnoFL+4Cl0At6WMBTz6C2PcXxRFCpUq/4daBPKRjxA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\leetcode.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lipeng.Ma\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\Lipeng.Ma\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
+  ],
+  "logs": []
+}
