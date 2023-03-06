@@ -9,4 +9,6 @@ C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\bin\Debug\netcoreapp3.1\leetco
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.dll
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.pdb
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.genruntimeconfig.cache
-C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csprojAssemblyReference.cache
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.AssemblyReference.cache
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.CoreCompileInputs.cache
