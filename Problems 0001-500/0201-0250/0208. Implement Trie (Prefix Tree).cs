@@ -7,6 +7,51 @@ namespace leetcode.Problems
 {
     class _0208
     {
+        long max = 0;
+        public void test1()
+        {
+            List<int> singer = new List<int>() { 1,2,2};
+            List<int> length = new List<int>() { 2,3,2 };
+            HashSet<int> singerIndxs = new HashSet<int>() { };
+            HashSet<int> singerIds = new HashSet<int>() { };
+            helper(singer, length, singerIndxs, singerIds, 0);
+
+            var test = max;
+            var ts = 123;
+
+        }
+        public void helper(List<int> singer, List<int> length, HashSet<int> singerIndxs, HashSet<int> singerIds, long cur)
+        {
+            if (singerIndxs.Count == singer.Count)
+            {
+                if (cur > max)
+                {
+                    max = cur;
+                }
+                return;
+            }
+
+            for (int i = 0; i < singer.Count; i++)
+            {
+                if (singerIndxs.Contains(i)) continue;
+                singerIndxs.Add(i);
+                if (singerIds.Contains(singer[i]))
+                {
+                    long product = singerIds.Count * length[i];
+                    helper(singer, length, singerIndxs, singerIds, cur + product);
+                }
+                else
+                {
+                    singerIds.Add(singer[i]);
+                    long product = singerIds.Count * length[i];
+                    helper(singer, length, singerIndxs, singerIds, cur + product);
+                    singerIds.Remove(singer[i]);
+                }
+                singerIndxs.Remove(i);
+
+            }
+        }
+
         //private TrieNode root;
         //public _0208()
         //{

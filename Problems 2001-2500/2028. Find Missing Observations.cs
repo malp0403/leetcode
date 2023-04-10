@@ -68,6 +68,45 @@ namespace leetcode.Problems_2001_2500
             }
         }
         #endregion
+
+        #region Attempt 03-05-2023
+        public int[] MissingRolls_20230305(int[] rolls, int mean, int n)
+        {
+            long sum = (n + rolls.Length) * mean;
+
+            for(int i =0; i < rolls.Length; i++)
+            {
+                sum -= rolls[i];
+            }
+            if( sum < 0)
+            {
+                return new int[] { };
+            }
+
+            int average = (int)sum / n;
+            int remain = (int)sum % n;
+            int div = n - remain;
+
+            if(average >6 || (average ==6 && remain !=0) || average <= 0)
+            {
+                return new int[] { };
+            }
+
+            List<int> list = new List<int>() { };
+            while(remain != 0)
+            {
+                list.Add(average + 1);
+                remain--;
+            }
+            while(div != 0)
+            {
+                list.Add(average);
+                div--;
+            }
+            return list.ToArray();
+        }
+
+        #endregion
     }
 }
 
