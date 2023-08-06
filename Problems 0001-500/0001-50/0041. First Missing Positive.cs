@@ -1,7 +1,13 @@
-﻿using System;
+﻿using leetcode.Problems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+#region Test Data
+//var obj = new _0041();
+//var answer = obj.FirstMissingPositive_20230725(new int[] { 3, 4, -1, 1 });
+#endregion
 
 namespace leetcode.Problems
 {
@@ -63,6 +69,39 @@ namespace leetcode.Problems
             }
             if (nums[0] < 0) return nums.Length+1;
             else return nums.Length;
+        }
+        #endregion
+
+        #region 07/25/2023 Attempt
+        public int FirstMissingPositive_20230725(int[] nums)
+        {
+            int len = nums.Length;
+            for(int i =0; i < len; i++)
+            {
+                if (nums[i] <= 0 || nums[i] > len)
+                {
+                    nums[i] = len+1;
+                }
+            }
+
+            for(int i =0; i < len; i++)
+            {
+                int val = Math.Abs(nums[i]);
+                if (val != (len + 1))
+                {
+                    nums[val - 1] = -Math.Abs(nums[val - 1]);
+                }
+            }
+            for(int i =0; i < len; i++)
+            {
+                if (nums[i] >= 0)
+                {
+                    return i +1;
+                   
+                }
+            }
+            return len + 1;
+           
         }
         #endregion
     }

@@ -89,5 +89,32 @@ namespace leetcode.Problems
             return new int[] { };
         }
         #endregion
-    }
+
+        #region 07/14/2023
+
+        public int[] TwoSum_20230714(int[] nums, int target)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>() { };
+
+            for(int i =0;i < nums.Length; i++)
+            {
+                int remain = target - nums[i];
+                if (dic.ContainsKey(remain))
+                {
+                    return new int[] { i, dic[remain] };
+
+                }
+                if (!dic.ContainsKey(nums[i]))
+                {
+                    dic.Add(nums[i], i);
+                }
+            }
+
+
+            return new int[] { 0, 0 };
+            
+
+        }
+            #endregion
+        }
 }

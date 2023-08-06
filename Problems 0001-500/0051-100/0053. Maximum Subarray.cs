@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 
 namespace leetcode.Problems
@@ -27,20 +28,20 @@ namespace leetcode.Problems
             return helper(nums, 0, nums.Length - 1);
         }
 
-        public int helper(int[] nums, int left,int right)
+        public int helper(int[] nums, int left, int right)
         {
             if (left > right) return int.MinValue;
-            int mid = left + (right-left)/ 2;
+            int mid = left + (right - left) / 2;
             int curr = 0;
             int bestLeft = 0;
             int bestRight = 0;
-            for(int i= mid - 1; i >= left; i--)
+            for (int i = mid - 1; i >= left; i--)
             {
                 curr += nums[i];
                 bestLeft = Math.Max(curr, bestLeft);
             }
             curr = 0;
-            for(int i = mid + 1; i <= right; i++)
+            for (int i = mid + 1; i <= right; i++)
             {
                 curr += nums[i];
                 bestRight = Math.Max(curr, bestRight);
@@ -59,14 +60,14 @@ namespace leetcode.Problems
         public int MaxSubArray_20220805(int[] nums)
         {
             int max = nums[0];
-            int cur =nums[0];
-            for(int i =1; i < nums.Length; i++)
+            int cur = nums[0];
+            for (int i = 1; i < nums.Length; i++)
             {
                 //cur = Math.Max(nums[i], cur + nums[i]);
                 //max = Math.Max(cur, max);
-                if(cur <0 || cur + nums[i] < 0)
+                if (cur < 0 || cur + nums[i] < 0)
                 {
-                   
+
                     cur = nums[i];
                 }
                 else
@@ -74,6 +75,30 @@ namespace leetcode.Problems
                     cur += nums[i];
                 }
                 max = Math.Max(cur, max);
+            }
+            return max;
+        }
+        #endregion
+
+        #region 07/26/2023
+        public int MaxSubArray_20230726(int[] nums)
+        {
+            int[] dp = new int[nums.Length + 1];
+            int max = int.MinValue;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if(dp[i] + nums[i] < 0)
+                {
+                    max = Math.Max(nums[i], max);
+                    dp[i] = 0;
+                }
+                else
+                {
+                    dp[i+1] = dp[i] + nums[i];
+                    max = Math.Max(dp[i], max);
+                }
+
+
             }
             return max;
         }

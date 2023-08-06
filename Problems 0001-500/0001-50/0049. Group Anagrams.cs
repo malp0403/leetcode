@@ -147,5 +147,37 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 07/26/2023
+        public IList<IList<string>> GroupAnagrams_20230726(string[] strs)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
+
+            for(int i = 0;i<strs.Length; i++)
+            {
+                string k = formKey_20230726(strs[i]);
+                if (dic.ContainsKey(k)) dic[k].Add(strs[i]);
+                else dic.Add(k,new List<string>() { strs[i]});    
+
+            }
+            IList<IList<string>> answer = new List<IList<string>>() { };
+            foreach (var item in dic.Keys)
+            {
+                answer.Add(dic[item]);
+            }
+            return answer;
+
+        }
+        public string formKey_20230726(string s)
+        {
+            int[] array = Enumerable.Repeat(0,26).ToArray();
+            for(int i =0; i < array.Length; i++)
+            {
+                array[s[i] - 'a']++;
+            }
+            return string.Join('#', array);
+        }
+
+        #endregion
+
     }
 }

@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\leetcode.csproj": {}
+    "C:\\Github3\\leetcode\\leetcode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\leetcode.csproj": {
+    "C:\\Github3\\leetcode\\leetcode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\leetcode.csproj",
+        "projectUniqueName": "C:\\Github3\\leetcode\\leetcode.csproj",
         "projectName": "leetcode",
-        "projectPath": "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\leetcode.csproj",
-        "packagesPath": "C:\\Users\\Lipeng.Ma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lipeng.Ma\\source\\repos\\leetcode\\leetcode\\obj\\",
+        "projectPath": "C:\\Github3\\leetcode\\leetcode.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Github3\\leetcode\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lipeng.Ma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,8 +37,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "imports": [
             "net461",
             "net462",
@@ -50,22 +50,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.10, 3.1.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.32, 3.1.32]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

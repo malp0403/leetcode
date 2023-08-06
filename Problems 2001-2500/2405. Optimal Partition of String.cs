@@ -17,7 +17,7 @@ namespace leetcode.Problems_2001_2500
         {
 
 
-            List<string> students = New
+            List<string> students = new List<string>() { };
 
 
             HashSet<string> prefixes = new HashSet<string>();

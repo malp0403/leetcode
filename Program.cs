@@ -1,4 +1,5 @@
 ﻿using leetcode.BinarySearch;
+using leetcode.Class;
 using leetcode.DymanicProgramming;
 using leetcode.Problems;
 using leetcode.Problems._0101_150;
@@ -20,62 +21,27 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+            //int[] nums = new int[6] { -1, 0, 1, 2, -1, 4 };
+            //var obj = new _0015() { };
+            //var answer = obj.ThreeSum_20230718(nums);
 
-            HashSet<int> seen = new HashSet<int>();
-            seen.Contains(0);
-            int n = 9;
-            int n2 = 1;
-            Console.WriteLine(n2%3);
-         
+            //int[] nums2 = new int[4] { -1, 0,0,1 };
+            //var obj2 = new _0015() { };
+            //var answer2 = obj2.ThreeSum_20230718(nums2);
 
-            int a = 1;
-            long b = 1 * a;
-            List<int> list = new List<int>() { 1 };
-   
-            var list2 = list.Select(x => (long)x).ToList();
-            long c = list[0];
-            int a1 = 1;
-            int b2 = 2;
+            //ListNode n1 = new ListNode(1);
+            //ListNode n2 = new ListNode(2);
+            //ListNode n3 = new ListNode(3);
+            //ListNode n4 = new ListNode(4);
+            //ListNode n5 = new ListNode(5);
+            //n1.next = n2; n2.next = n3; n3.next = n4; n4.next = n5;
 
-            List<RentalTime> unloadingTimes = new List<RentalTime>();
-            unloadingTimes.Add(new RentalTime(new DateTime(2022,1,1), new DateTime(2022,1,3)) );
-            unloadingTimes.Add(new RentalTime(new DateTime(2021,1,2), new DateTime(2021, 1, 3)));
-            unloadingTimes.Add(new RentalTime(new DateTime(2023, 1, 1), new DateTime(2023, 1, 3)));
-            unloadingTimes.Add(new RentalTime(new DateTime(2020, 1, 1), new DateTime(2020, 1, 3)));
+            //var obj = new _0025();
+            //obj.ReverseKGroup_20230724(n1, 2);
 
-            RentalTime t1 = new RentalTime(new DateTime(2022, 1, 1), new DateTime(2022, 1, 3));
-            RentalTime t2 = new RentalTime(new DateTime(2022, 1, 1), new DateTime(2022, 1, 3));
-
-            foreach ( var item in typeof(RentalTime).GetProperties())
-            {
-                var ttt = item.GetValue(t1);
-                Console.WriteLine(ttt);
-
-            }
-            var list3 = unloadingTimes.ToList();
-            list3.Sort((a,b)=>a.Start.CompareTo(b.Start));
-
-            var s = string.Format("ad{0},{1}", "123", "kkkkkk");
-
-            TreeNode t5 = new TreeNode(5);
-            //TreeNode t1 = new TreeNode(1);
-            //TreeNode t2 = new TreeNode(2);
-            //TreeNode t3 = new TreeNode(3);
-            //TreeNode t4 = new TreeNode(4);
-            //TreeNode t6 = new TreeNode(6);
-            //t5.left = t1;
-            //t5.right = t2;
-            //t1.left = t3;
-            //t2.left = t6;
-            //t2.right = t4;
-
-            var obj2 = new _2096() ;
-             var obj3 = obj2.testtest();
-
-            var obj = new _0208() { };
-            obj.test1();
-
-
+            var obj = new _0042();
+            var answer = obj.Trap_20230725(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 });
+            var answer2 = obj.Trap_20230726_stack(new int[] { 4, 2, 0, 3, 2, 5 });
 
 
 

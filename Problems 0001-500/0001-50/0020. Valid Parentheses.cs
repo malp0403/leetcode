@@ -11,9 +11,9 @@ namespace leetcode.Problems
         public bool IsValid(string s)
         {
             Stack<char> stack = new Stack<char>() { };
-            for(int i=0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if(s[i]=='(' || s[i]=='[' || s[i] == '{')
+                if (s[i] == '(' || s[i] == '[' || s[i] == '{')
                 {
                     stack.Push(s[i]);
                 }
@@ -35,12 +35,13 @@ namespace leetcode.Problems
         {
             Stack<char> stack = new Stack<char>() { };
 
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if(s[i] == '(' || s[i] == '[' || s[i] == '{')
+                if (s[i] == '(' || s[i] == '[' || s[i] == '{')
                 {
                     stack.Push(s[i]);
-                }else if (s[i] == ')')
+                }
+                else if (s[i] == ')')
                 {
                     if (stack.Count == 0 || stack.Peek() != '(') return false;
                     stack.Pop();
@@ -68,9 +69,9 @@ namespace leetcode.Problems
             dic.Add('[', 0);
             dic.Add('{', 0);
 
-            for (int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if(s[i] == '(' || s[i] == '[' || s[i] == '{')
+                if (s[i] == '(' || s[i] == '[' || s[i] == '{')
                 {
                     dic[s[i]]++;
                 }
@@ -86,7 +87,7 @@ namespace leetcode.Problems
                         if (dic['['] == 0) return false;
                         dic['[']--;
                     }
-                    else 
+                    else
                     {
                         if (dic['{'] == 0) return false;
                         dic['{']--;
@@ -104,14 +105,15 @@ namespace leetcode.Problems
         #region 12/28/2022 stack
         public bool IsValid_20221228_Stack(string s)
         {
-            Stack<char> stack = new Stack<char>() { };                          
-            for(int i =0; i < s.Length; i++)
+            Stack<char> stack = new Stack<char>() { };
+            for (int i = 0; i < s.Length; i++)
             {
                 char c = s[i];
-                if(c == '(' || c=='[' || c == '{')
+                if (c == '(' || c == '[' || c == '{')
                 {
                     stack.Push(c);
-                }else if (c == ')')
+                }
+                else if (c == ')')
                 {
                     if (stack.Count == 0 || stack.Peek() != '(') return false;
                     stack.Pop();
@@ -128,6 +130,94 @@ namespace leetcode.Problems
                 }
             }
             return stack.Count == 0;
+        }
+        #endregion
+        #region 07/18/2023
+
+        public bool IsValid_20230718(string s)
+        {
+            bool answer = true;
+            List<char> openBrackets = new List<char>() { '(', '[', '{' };
+            Stack<char> stack = new Stack<char>() { };
+
+            int index = 0;
+            while (index < s.Length)
+            {
+                if (openBrackets.Contains(s[index]))
+                {
+                    stack.Push(s[index]);
+                }
+                else if (s[index] == ')')
+                {
+                    if (stack.Peek() != '(')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }
+                else if (s[index] == ']')
+                {
+                    if (stack.Peek() != '[')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }
+                else
+                {
+                    if (stack.Peek() != '{')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }
+                index++;
+            }
+
+
+
+            return answer;
+        }
+
+        #endregion
+        #region 07/23/2023
+        public bool IsValid_20230723(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+
+            int index = 0;
+            while(index < s.Length)
+            {
+                if (s[index] == ')')
+                {
+                    if(stack.Peek() != '(')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }else if (s[index] == '[')
+                {
+                    if(stack.Peek() != ']')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+
+                }else if (s[index] == '{')
+                {
+                    if(stack.Peek() != '}')
+                    {
+                        return false;
+                    }
+                    stack.Pop();
+                }
+                else
+                {
+                    stack.Push(s[index]);
+                }
+                index++;
+            }
+            return true;
         }
         #endregion
     }

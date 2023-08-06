@@ -12,3 +12,17 @@ C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetco
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.AssemblyReference.cache
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Lipeng.Ma\source\repos\leetcode\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.CoreCompileInputs.cache
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.dll
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.pdb
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.AssemblyReference.cache
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfoInputs.cache
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.AssemblyInfo.cs
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.csproj.CoreCompileInputs.cache
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.exe
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.deps.json
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.runtimeconfig.json
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.runtimeconfig.dev.json
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.dll
+C:\Github\leetcode\bin\Debug\netcoreapp3.1\leetcode.pdb
+C:\Github\leetcode\obj\Debug\netcoreapp3.1\leetcode.genruntimeconfig.cache

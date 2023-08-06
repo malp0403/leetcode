@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace leetcode.Problems
 {
-    class _0042
+    class _0042  // 3 SOLUTIONS: left-right array, stack , two pointers
     {
         #region My Attempt: 1. find the highest, loop from 0->highest, then loop from end -> highest
         public int Trap(int[] height)
@@ -151,5 +153,105 @@ namespace leetcode.Problems
 
         }
         #endregion
+
+        #region 07/25/2023 DP
+        public int Trap_20230725(int[] height)
+        {
+            int[] left = Enumerable.Repeat(0, height.Length).ToArray();
+            int[] right = Enumerable.Repeat(0, height.Length).ToArray();
+
+            for(int i =0; i < height.Length;i++)
+            {
+                if (i == 0) { left[i] = height[i]; }
+                else
+                {
+                    left[i] = Math.Max(left[i - 1],height[i]);
+                }
+            }
+
+            for (int i = height.Length-1; i >=0; i--)
+            {
+                if (i == height.Length-1) { right[i] = height[i]; }
+                else
+                {
+                    right[i] = Math.Max(right[i +1], height[i]);
+                }
+            }
+            int max = 0;
+            for(int i =0; i < height.Length;i++)
+            {
+                max += (Math.Min(left[i], right[i])>0?Math.Min(left[i], right[i]) - height[i] : 0);
+            }
+            return max;
+        }
+
+
+
+        #endregion
+
+        #region 07/26/2023
+        public int Trap_20230726_stack(int[] height)
+        {
+            int ans = 0; int current = 0;
+            Stack<int> stack = new Stack<int>();
+            while (current < height.Length)
+            {
+                while (stack.Count > 0 && height[current] > height[stack.Peek()])
+                {
+                    int top = stack.Peek();
+                    stack.Pop();
+                    if (stack.Count == 0) { break; }
+                    int dis = current - stack.Peek() - 1;
+                    int bounded = Math.Min(height[current], height[stack.Peek()]) - height[top];
+                    ans += dis * bounded;
+                }
+                stack.Push(current++);
+            }
+            return ans;
+        }
+        #endregion
+
+        #region 07/26/2023 two pointers
+        public int Trap_20230726_twoPointers(int[] height)
+        {
+            int left = 0;
+            int right = height.Length - 1;
+            int ans = 0;
+
+            int left_max = 0;
+            int right_max = 0;
+
+
+            while (left < right) {
+                if (height[left] <= height[right])
+                {
+                    if (height[left]> left_max)
+                    {
+                        left_max = height[left];
+                    }
+                    else
+                    {
+                        ans += (left_max - height[left]);
+                    }
+                    left++;
+                }
+                else
+                {
+                    if (height[right] >= right_max)
+                    {
+                        right_max = height[right];
+                    }
+                    else
+                    {
+                        ans += right_max - height[right]; 
+                    }
+                    right--;
+                }
+            }
+            return ans;
+        }
+
+        #endregion
+
     }
 }

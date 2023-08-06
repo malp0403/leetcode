@@ -35,6 +35,44 @@ namespace leetcode.Problems
             return result.next;
         }
         #endregion
+
+        #region 07/14/2023
+        public ListNode AddTwoNumbers_20230714(ListNode l1, ListNode l2)
+        {
+            ListNode answer = new ListNode();
+            int incre = 0;
+            ListNode temp = answer;
+
+            while(l1 !=null || l2 != null)
+            {
+                int n1 = l1 == null ? 0 : l1.val;
+                int n2 = l2 == null ? 0 : l2.val;
+
+                int val = (n1 + n2 + incre) % 10;
+                incre = (n1 + n2 + incre)/10;
+
+                if(l1 != null)
+                {
+                    l1 = l1.next;
+                }
+                if(l2 != null)
+                {
+                    l2 = l2.next;
+                }
+                temp.next = new ListNode(val);
+                temp = temp.next;
+
+            }
+            if(incre == 1)
+            {
+                temp.next = new ListNode(incre);
+            }
+
+            return answer.next;
+
+        }
+
+        #endregion
     }
 
 

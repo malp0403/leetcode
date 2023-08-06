@@ -1,8 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
+#region Test Data
+//int[] nums = new int[6] { -1, 0, 1, 2, -1, 4 };
+//var obj = new _0015() { };
+//var answer = obj.ThreeSum_20230718(nums);
+
+//int[] nums2 = new int[4] { -1, 0,0,1 };
+//var obj2 = new _0015() { };
+//var answer2 = obj2.ThreeSum_20230718(nums2);
+#endregion
 namespace leetcode.Problems
 {
     class _0015
@@ -187,6 +198,67 @@ namespace leetcode.Problems
                 }
             }
         }
+
+
+        #endregion
+
+        #region 07/18/2023
+
+        public IList<IList<int>> ThreeSum_20230718(int[] nums)
+        {
+            Array.Sort(nums);
+            IList<IList<int>> answer = new List<IList<int>>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if(i==0 || nums[i] != nums[i - 1])
+                {
+                    helper_20230718(i, nums, answer);
+                }
+            }
+
+
+            return answer;
+        }
+
+        public void helper_20230718(int index, int[] nums, IList<IList<int>> answer)
+        {
+            int l = index + 1;
+            int r = nums.Length - 1;
+            int remain = -nums[index];
+
+            while (l < r && l < nums.Length - 1 && r>0)
+            {
+                if (nums[l] + nums[r] > remain)
+                {
+                    r--;
+                    while(r >0 && nums[r] == nums[r + 1])
+                    {
+                        r--;
+                    }
+                    //skip duplicate
+
+                }else if (nums[l] + nums[r] < remain)
+                {
+                    l++;
+                    while ( l < nums.Length-1 && nums[l] == nums[l - 1])
+                    {
+                        l++;
+                    }
+                }
+                else
+                {
+                    answer.Add(new List<int>() { nums[index], nums[l], nums[r] });
+                    l++;
+                    while (l < nums.Length - 1 && nums[l] == nums[l - 1])
+                    {
+                        l++;
+                    }
+                }
+            }
+        }
+
+
 
 
         #endregion

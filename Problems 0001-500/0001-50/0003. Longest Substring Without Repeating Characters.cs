@@ -148,7 +148,7 @@ namespace leetcode.Problems
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
             int start = 0;
             int max = 0;
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (dic.ContainsKey(s[i]))
                 {
@@ -165,6 +165,32 @@ namespace leetcode.Problems
             return max;
         }
 
+        #endregion
+
+        #region 07/14/2023
+        public int LengthOfLongestSubstring_20230714(string s)
+        {
+            int start = 0;
+            Dictionary<char, int> dic = new Dictionary<char, int>() { };
+            int max = 0;
+
+            for(int i =0; i < s.Length; i++)
+            {
+                if (dic.ContainsKey(s[i]))
+                {
+                    start = Math.Max(start, dic[s[i]] + 1);
+                    dic[s[i]] = i;
+                }
+                else
+                {
+                    dic.Add(s[i],i);
+                }
+                max = Math.Max(max, i - start + 1);
+            }
+
+            return max;
+            
+        }
         #endregion
     }
 }
