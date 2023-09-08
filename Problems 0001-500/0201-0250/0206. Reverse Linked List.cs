@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0206
     {
-        public ListNode ReverseList(ListNode head)
+        #region Soltuion
+        public ListNode ReverseList_(ListNode head)
         {
             Dictionary<ListNode, ListNode> ParentDic = new Dictionary<ListNode, ListNode>() { };
 
@@ -42,14 +43,15 @@ namespace leetcode.Problems
             }
             return pre;
         }
+        #endregion
 
-
+        #region 12/15/2021 iterative
         //**********12/15/2021 iterative***************
         public ListNode ReverseList_R2(ListNode head)
         {
             ListNode pre = null;
             ListNode cur = head;
-            while(cur != null)
+            while (cur != null)
             {
                 var temp = head.next;
 
@@ -61,7 +63,9 @@ namespace leetcode.Problems
             return pre;
 
         }
+        #endregion
 
+        #region 12/15/2021 recursive
         //**********12/15/2021 recursive***************
         public ListNode ReverseList_R2_recursive(ListNode head)
         {
@@ -72,5 +76,49 @@ namespace leetcode.Problems
             return p;
 
         }
+
+        #endregion
+
+        #region 08/14/2023
+        public ListNode ReverseList_20230814_iter(ListNode head)
+        {
+            //find end
+            if (head == null) return null;
+            ListNode cur = head;
+            ListNode prev = null;
+
+            while (cur != null)
+            {
+                ListNode future = cur.next;
+
+                cur.next = prev;
+
+                prev = cur;
+                cur = future;
+
+
+            }
+
+            return prev;
+
+
+        }
+        #endregion
+
+        #region 08/14/2023 recursive  !!!!!head.next.next = head;
+        public ListNode ReverseList(ListNode head)
+        {
+            if (head == null || head.next == null)
+            {
+                return head;
+            }
+            ListNode newStart = ReverseList(head.next);
+            head.next.next = head;
+            head.next = null;
+
+            return newStart;
+
+        }
+        #endregion
     }
 }

@@ -116,5 +116,39 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 08/11/2023 one way No DP
+        public int MaxProfit_20230811(int[] prices)
+        {
+            int max = 0;
+            for(int i =1;i< prices.Length; i++)
+            {
+                int remain = prices[i] - prices[i - 1];
+                if (remain > 0)
+                {
+                    max += (remain);
+                }
+            }
+            return max;
+        }
+        #endregion
+
+        #region 08/11/2023 records the previous lowest
+        public int MaxProfit_20230811_start(int[] prices)
+        {
+            int start = prices[0];
+            int max = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (prices[i] - start>0)
+                {
+                    max +=(prices[i]- start);
+                }
+                start = prices[i];
+
+            }
+            return max;
+        }
+        #endregion
+
     }
 }

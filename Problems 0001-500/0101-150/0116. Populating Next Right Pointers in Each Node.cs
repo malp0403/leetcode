@@ -120,12 +120,18 @@ namespace leetcode.Problems
         public MyNode left;
         public MyNode right;
         public MyNode next;
+        private int v;
 
         public MyNode() { }
 
         public MyNode(int _val)
         {
             val = _val;
+        }
+
+        public MyNode(int _val, int v) : this(_val)
+        {
+            this.v = v;
         }
 
         public MyNode(int _val, MyNode _left, MyNode _right, MyNode _next)

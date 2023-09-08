@@ -6,11 +6,12 @@ namespace leetcode.Problems
 {
     class _0328
     {
-        public ListNode OddEvenList(ListNode head)
+        #region Solution
+        public ListNode OddEvenList_(ListNode head)
         {
             if (head == null) return null;
             ListNode nodeOdd = head;
-          
+
             ListNode nodeEven = head.next;
             if (nodeEven == null) return head;
             ListNode nextNode = nodeEven;
@@ -19,7 +20,7 @@ namespace leetcode.Problems
                 nodeOdd.next = nodeEven.next;
                 nodeOdd = nodeOdd.next;
 
-                if(nodeOdd.next != null)
+                if (nodeOdd.next != null)
                 {
                     nodeEven.next = nodeOdd.next;
                     nodeEven = nodeEven.next;
@@ -27,7 +28,7 @@ namespace leetcode.Problems
                 else
                 {
                     nodeEven.next = null;
-                }                    
+                }
 
             }
             nodeOdd.next = nextNode;
@@ -54,7 +55,9 @@ namespace leetcode.Problems
 
             return head;
         }
+        #endregion
 
+        #region 01/12/2022
         //01-12-2022---------------------------------
         public ListNode OddEvenList_R2(ListNode head)
         {
@@ -62,7 +65,7 @@ namespace leetcode.Problems
             ListNode first = head;
             ListNode second = head.next;
             ListNode second2 = second;
-            while(second !=null &&  second.next != null)
+            while (second != null && second.next != null)
             {
                 first.next = second.next;
                 first = first.next;
@@ -72,5 +75,30 @@ namespace leetcode.Problems
             first.next = second2;
             return head;
         }
+        #endregion
+
+        #region 09/05/2023
+        public ListNode OddEvenList_20230905(ListNode head)
+        {
+            if (head == null || head.next == null || head.next.next == null) return head;
+            ListNode p1 = head;
+            ListNode p2 = head.next;
+            ListNode evenStart = p2;
+
+            while(p2 !=null && p2.next != null){
+                ListNode temp = p2.next;
+
+                p1.next = temp;
+                p1 = p1.next;
+                p2.next = temp.next;
+                p2 = p2.next;
+
+            }
+            p1.next = evenStart;
+            return head;
+        }
+
+        #endregion
+
     }
 }

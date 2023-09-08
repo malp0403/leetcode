@@ -1,6 +1,23 @@
-﻿using System;
+﻿using leetcode.Problems;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+
+#region Test Data
+
+//TreeNode n1 = new TreeNode(1);
+//TreeNode n2 = new TreeNode(2);
+//TreeNode n3 = new TreeNode(2);
+//TreeNode n4 = new TreeNode(2);
+//TreeNode n5 = new TreeNode(2);
+//n1.left = n2; n1.right = n3;
+//n2.left = n4; n3.left = n5;
+
+//var obj = new _0101();
+//var res = obj.IsSymmetric_20230810(n1);
+
+#endregion
 
 namespace leetcode.Problems
 {
@@ -86,7 +103,7 @@ namespace leetcode.Problems
             if (root == null) return true;
             Stack<TreeNode> stack = new Stack<TreeNode>() { };
             if (!helper2(root.right, root.left)) return false;
-            if(root.left != null)
+            if (root.left != null)
             {
                 stack.Push(root.left);
                 stack.Push(root.right);
@@ -95,7 +112,7 @@ namespace leetcode.Problems
                     TreeNode n1 = stack.Pop();
                     TreeNode n2 = stack.Pop();
                     if (!helper2(n1, n2)) return false;
-                    if(n1 != null)
+                    if (n1 != null)
                     {
                         stack.Push(n1.left);
                         stack.Push(n2.right);
@@ -106,7 +123,7 @@ namespace leetcode.Problems
             }
             return true;
         }
-        public bool helper2(TreeNode t1,TreeNode t2)
+        public bool helper2(TreeNode t1, TreeNode t2)
         {
             if (t1 == null && t2 == null) return true;
             if (t1 == null || t2 == null) return false;
@@ -136,12 +153,55 @@ namespace leetcode.Problems
         {
             return helper_20220812(root, root);
         }
-        public bool helper_20220812(TreeNode left,TreeNode right)
+        public bool helper_20220812(TreeNode left, TreeNode right)
         {
             if (left == null && right == null) return true;
             if (left == null || right == null) return false;
             return left.val == right.val && isMirror(left.left, right.right)
                 && isMirror(left.right, right.left);
+        }
+        #endregion
+
+        #region 08/10/2023   recursive:left == right, right == left
+        public bool IsSymmetric_20230810(TreeNode root)
+        {
+            if (root == null) return true;
+
+            return helper_20230810(root.left, root.right);
+        }
+        public bool helper_20230810(TreeNode? n1, TreeNode? n2)
+        {
+            if (n1 == null && n2 == null) return true;
+            if (n1 == null || n2 == null) return false;
+
+            return n1.val == n2.val && helper_20230810(n1.left, n2.right) && helper_20230810(n1.right, n2.left);
+        }
+        #endregion
+
+        #region 08/10/2023 Iterative one queen
+        public bool IsSymmetric_20230810_iterative(TreeNode root)
+        {
+            Queue<TreeNode> q1 = new Queue<TreeNode>();
+            q1.Enqueue(root);
+            q1.Enqueue(root);
+
+            while (q1.Count != 0)
+            {
+
+                TreeNode n1 = q1.Dequeue();
+                TreeNode n2 = q1.Dequeue();
+                if (n1 == null && n2 == null) continue;
+                if (n1 == null || n2 == null) return false;
+                if (n1.val != n2.val) return false;
+
+                q1.Enqueue(n1.left);
+                q1.Enqueue(n2.right);
+                q1.Enqueue(n1.right);
+                q1.Enqueue(n2.left);
+
+
+            }
+            return true;
         }
         #endregion
     }

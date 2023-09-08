@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -253,5 +254,104 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 08/06/2023
+        public int Trap_20230806_leftRightArray(int[] height)
+        {
+            int[] left = Enumerable.Repeat(0, height.Length).ToArray();
+            int[] right = Enumerable.Repeat(0, height.Length).ToArray();
+
+            for(int i =0;i  < height.Length; i++)
+            {
+                if (i == 0) left[i] = height[i];
+                else
+                {
+                    left[i] = Math.Max(left[i - 1], height[i]);
+                }
+            }
+
+            for (int i = height.Length-1; i >=0; i--)
+            {
+                if (i ==height.Length-1) right[i] = height[i];
+                else
+                {
+                    right[i] = Math.Max(right[i + 1], height[i]);
+                }
+            }
+            int sum = 0;
+            for(int i =0; i <  height.Length; i++)
+            {
+                sum += (Math.Min(left[i], right[i]) - height[i]);
+            }
+            return sum;
+        }
+
+        #endregion
+
+        #region 08/06/2023 stack
+        public int Trap_20230806_stack(int[] height)
+        {
+            Stack<int> stack = new Stack<int>() { };
+
+            int index = 0;
+            int sum = 0;
+            while(index < height.Length)
+            {
+                while(stack.Count!=0 && height[index] > height[stack.Peek()])
+                {
+                    int bottom = stack.Peek();
+                    stack.Pop();
+                    if (stack.Count == 0) break;
+                    int d = index - stack.Peek() - 1;
+                    int bounded = Math.Min(height[index], height[stack.Peek()])-bottom;
+                    sum += d * bounded;
+                }
+
+                stack.Push(index++);
+              
+            }
+            return sum;
+        }
+        #endregion
+
+        #region 08/06/2023 two pointers
+
+        public int Trap_20230806_twopointers(int[] height)
+        {
+            int left = 0;
+            int right = height.Length - 1;
+            int leftMax = 0;
+            int rightmax = 0;
+
+            int sum = 0;
+            while(left < right)
+            {
+                if (height[left]< height[right])
+                {
+                    if(height[left] >= leftMax)
+                    {
+                        leftMax = height[left];
+                    }
+                    else
+                    {
+                        sum += leftMax - height[left];
+                    }
+                    left++;
+                }
+                else
+                {
+                    if (height[right] >= rightmax)
+                    {
+                        rightmax = height[right];
+                    }
+                    else
+                    {
+                        sum += rightmax - height[right];
+                    }
+                    right--;
+                }
+            }
+            return sum;
+        }
+        #endregion
     }
 }

@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0153
     {
-        public int FindMin(int[] nums)
+        #region     Solution
+        public int FindMin_(int[] nums)
         {
             //if no rotated;
             if (nums[0] < nums[nums.Length - 1]) return nums[0];
@@ -31,5 +32,41 @@ namespace leetcode.Problems
             }
             return nums[left];
         }
+        #endregion
+
+        #region 08/13/2023  dont +1 when bounded
+
+        public int FindMin_20230813(int[] nums) 
+        {
+            if (nums.Length == 1 || nums[0] < nums[nums.Length - 1]) return nums[0];
+
+            int result = 0;
+            int left = 0;
+            int right = nums.Length - 1;
+
+            while (left < right)
+            {
+                if (left + 1 == right)
+                {
+                    return nums[left] < nums[right] ? nums[left] : nums[right];
+                }
+
+                int mid = (right - left) / 2 + left;
+                if (nums[left] < nums[mid])
+                {
+                    left = mid;
+                }
+                else
+                {
+                    right = mid;
+                }
+
+            }
+
+
+            return nums[left];
+        }
+
+        #endregion
     }
 }

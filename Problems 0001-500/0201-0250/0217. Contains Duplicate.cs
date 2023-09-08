@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0217
     {
-        public bool ContainsDuplicate(int[] nums)
+        #region Solution
+        public bool ContainsDuplicate__(int[] nums)
         {
             Dictionary<int, int> dic = new Dictionary<int, int>() { };
             for (int i = 0; i < nums.Length; i++)
@@ -16,6 +17,9 @@ namespace leetcode.Problems
             }
             return false;
         }
+        #endregion
+
+        #region 12/16/2021
         //----------------12/16/2021---------
         public bool ContainsDuplicate_R2(int[] nums)
         {
@@ -28,6 +32,20 @@ namespace leetcode.Problems
             }
             return false;
         }
+        #endregion
+
+        #region 08/14/2023
+        public bool ContainsDuplicate_230230814(int[] nums)
+        {
+            HashSet<int> seen = new HashSet<int>() { };
+            for(int i =0; i < nums.Length;i++)
+            {
+                if (seen.Contains(nums[i])) return true;
+                seen.Add(nums[i]);
+            }
+            return false;
+        }
+        #endregion
 
     }
 }

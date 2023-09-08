@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace leetcode.Problems
@@ -7,7 +8,7 @@ namespace leetcode.Problems
     class _0114
     {
         #region answer
-        public void Flatten(TreeNode root)
+        public void Flatten_(TreeNode root)
         {
             travel(root);
         }
@@ -118,6 +119,67 @@ namespace leetcode.Problems
                 node = node.right;
             }
         }
+        #endregion
+
+        #region 08/10/2023
+        public void Flatten(TreeNode root)
+        {
+
+            helper_08112023(root);
+        }
+
+        public TreeNode helper_08112023(TreeNode node)
+        {
+            if (node == null) return null;
+            
+            TreeNode left = node.left;
+            TreeNode right = node.right;
+
+            if(left != null)
+            {
+                left = helper_08112023(left);
+                node.left = null;
+                node.right = left;
+                TreeNode end = left;
+                while(end !=null && end.right != null)
+                {
+                    end = end.right;
+                }
+                end.right = helper_08112023(right);
+         
+                
+            }
+            else
+            {
+                node.right = helper_08112023(right);
+            }
+
+            return node;
+        }
+        #endregion
+
+        #region 08/11/2023
+
+        public TreeNode helper_08112023_leftRightTail(TreeNode node)
+        {
+            if (node == null) return null;
+
+            if (node.left == null && node.right == null) return node;
+
+           
+            TreeNode left = helper_08112023_leftRightTail(node.left);
+            TreeNode right = helper_08112023_leftRightTail(node.right);
+
+            if (left != null)
+            {
+                left.right = node.right;
+                node.right = node.left;
+                node.left = null;
+
+            }
+            return right == null ? left : right;
+        }
+
         #endregion
     }
 }

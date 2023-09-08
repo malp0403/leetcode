@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -176,6 +177,47 @@ namespace leetcode.Problems
             }
             return string.Join('#', array);
         }
+
+        #endregion
+
+        #region 08/06/2023
+        public IList<IList<string>> GroupAnagrams_08062023(string[] strs)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>> { };
+            IList<IList<string>> list = new List<IList<string>>() { };
+
+            foreach (var item in strs)
+            {
+                string s = helper_08062023(item);
+                if (dic.ContainsKey(s))
+                {
+                    dic[s].Add(item);
+                }
+                else
+                {
+                    dic.Add(s, new List<string>() { item });
+                }
+            }
+
+            foreach (var key in dic.Keys)
+            {
+                list.Add(dic[key]);
+            }
+
+            return list;
+        }
+        public string helper_08062023(string s)
+        {
+            int[] arr = Enumerable.Repeat(0, 26).ToArray();
+
+            for(int i =0; i < s.Length; i++)
+            {
+                arr[s[i] - 'a']++;
+            }
+
+            return string.Join('#', arr);
+        }
+
 
         #endregion
 

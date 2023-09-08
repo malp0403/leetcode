@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
+#region Test Case
+//int[][] m = new int[3][];
+//m[0] = new int[3] { 1, 2, 3 };
+//m[1] = new int[3] { 4, 5, 6 };
+//m[2] = new int[3] { 7, 8, 9 };
+#endregion
+
 namespace leetcode.Problems
 {
     class _0054
@@ -41,5 +48,55 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region MyRegion
+
+        #endregion
+
+        #region 08/07/2023 remeber to stop returning if when upper == lower or left == right
+        public IList<int> SpiralOrder_20230807(int[][] matrix)
+        {
+            int n = matrix.Length;
+            int m = matrix[0].Length;
+            int upperBounded = 0;
+            int bottomBounded = n - 1;
+            int leftBounded = 0;
+            int rightBounded = m - 1;
+
+            List<int> list = new List<int>() { };
+
+
+            
+            while(upperBounded <= rightBounded && leftBounded <=bottomBounded)
+            {
+               for(int i =leftBounded;i<= rightBounded; i++)
+                {
+                    list.Add(matrix[upperBounded][i]);
+                }
+               for(int i = upperBounded+1;i <= bottomBounded; i++)
+                {
+                    list.Add(matrix[i][rightBounded]);
+                }
+                if (upperBounded == bottomBounded) break;
+
+                for (int i = rightBounded-1;i>= leftBounded; i--)
+                {
+                    list.Add(matrix[bottomBounded][i]);
+                }
+                if (leftBounded == rightBounded) break;
+
+                for (int i = bottomBounded-1; i > upperBounded; i--)
+                {
+                    list.Add(matrix[i][leftBounded]);
+                }
+
+                leftBounded++;
+                rightBounded--;
+                upperBounded++;
+                bottomBounded--;
+            }
+            return list;
+
+        }
+        #endregion  
     }
 }

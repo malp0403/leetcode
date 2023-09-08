@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 
@@ -87,18 +88,42 @@ namespace leetcode.Problems
             int max = int.MinValue;
             for (int i = 0; i < nums.Length; i++)
             {
-                if(dp[i] + nums[i] < 0)
+                if (dp[i] + nums[i] < 0)
                 {
                     max = Math.Max(nums[i], max);
                     dp[i] = 0;
                 }
                 else
                 {
-                    dp[i+1] = dp[i] + nums[i];
+                    dp[i + 1] = dp[i] + nums[i];
                     max = Math.Max(dp[i], max);
                 }
 
 
+            }
+            return max;
+        }
+        #endregion
+
+        #region 08/06/2023
+        public int MaxSubArray_20230806(int[] nums)
+        {
+            int[] dp = Enumerable.Repeat(0, nums.Length).ToArray();
+
+            int curSum = nums[0];
+            int max = nums[0];
+            dp[0] = nums[0];
+            for(int i=1; i < nums.Length; i++)
+            {
+                if (dp[i - 1] + nums[i] <= 0)
+                {
+                    dp[i] = 0;
+                }
+                else
+                {
+                    dp[i] = dp[i - 1] + nums[i];
+                    max = Math.Max(dp[i], max);
+                }
             }
             return max;
         }

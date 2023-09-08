@@ -10,7 +10,7 @@ namespace leetcode.Problems
         #endregion
 
         #region LeetCode Solution2: One Pass
-        public int MaxProfit(int[] prices)
+        public int MaxProfit_(int[] prices)
         {
             int min = Int32.MaxValue;
             int max = 0;
@@ -94,6 +94,28 @@ namespace leetcode.Problems
                 }
             }
             return profit;
+        }
+        #endregion
+
+        #region  08/11/2023
+        public int MaxProfit(int[] prices)
+        {
+            int max = 0;
+            int lowest = int.MaxValue;
+
+            for(int i =0; i < prices.Length; i++)
+            {
+                if(i==0)
+                {
+                    lowest = prices[i];
+                }
+                else
+                {
+                    max = Math.Max(max, prices[i] - lowest);
+                    lowest=Math.Min(lowest, prices[i]);
+                }
+            }
+            return max;
         }
         #endregion
     }

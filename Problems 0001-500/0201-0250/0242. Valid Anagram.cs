@@ -33,7 +33,8 @@ namespace leetcode.Problems
         #endregion
 
         #region my try
-        public bool IsAnagram_R2(string s, string t) {
+        public bool IsAnagram_R2(string s, string t)
+        {
             if (s.Length != t.Length) return false;
             int[] reference = Enumerable.Repeat(0, 26).ToArray();
             foreach (var c1 in s)
@@ -61,12 +62,34 @@ namespace leetcode.Problems
                 arr[c - 'a']++;
             }
 
-            for(int i =0; i < t.Length; i++)
+            for (int i = 0; i < t.Length; i++)
             {
                 arr[t[i] - 'a']--;
                 if (arr[t[i] - 'a'] < 0) return false;
             }
             return true;
+        }
+        #endregion
+
+        #region 09/04/2023
+        public bool IsAnagram_20230904(string s, string t)
+        {
+            if (s.Length != t.Length) return false;
+            int[] arr = Enumerable.Repeat(0, 26).ToArray();
+
+            for(int i = 0; i < s.Length; i++)
+            {
+                arr[s[i] - 'a']++;
+                arr[t[i] - 'a']--;
+
+            }
+            for (int i =0; i <26; i++)
+            {
+                if (arr[i] != 0) return false;
+
+            }
+            return true;
+            
         }
         #endregion
     }

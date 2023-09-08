@@ -117,5 +117,37 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 08/07/2023  0(1) records farthest.
+        public bool CanJump_20230807(int[] nums)
+        {
+            int farthest = 0;
+            for(int i =0; i < nums.Length; i++)
+            {
+                farthest = Math.Max(nums[i] + i, farthest);
+                if (farthest >= nums.Length - 1) return true;
+                if (i == farthest && nums[i] == 0) return false;
+            }
+            return true;
+
+        }
+        #endregion
+
+        #region 08/07/2023 backTracking
+
+        public bool CanJump_20230807_v2(int[] nums)
+        {
+            int lastPos = nums.Length - 1;
+            for(int i =nums.Length-1; i >= 0; i--)
+            {
+               if(i + nums[i] >= lastPos)
+                {
+                    lastPos = i;
+                }
+            }
+            return lastPos == 0;
+
+        }
+        #endregion
+
     }
 }
