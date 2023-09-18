@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using leetcode.Problems;
+using System.ComponentModel;
 
 #region TestData
 //var obj = new _0227() { };
@@ -127,7 +128,6 @@ namespace leetcode.Problems
         #endregion
 
         #region 09/04/2023
-
         public int Calculate_20230904(string s)
         {
             int lastNumber = 0;
@@ -143,39 +143,82 @@ namespace leetcode.Problems
 
                 if (!char.IsDigit(s[i]) && !char.IsWhiteSpace(s[i]) || i == s.Length - 1)
                 {
-                    
-                    
 
-                            if (oper == '*')
-                            {
-                                lastNumber = lastNumber * number;
-                            }
-                            else if (oper == '/')
-                            {
-                                lastNumber = lastNumber / number;
 
-                            }
-                            else if (oper == '+')
-                            {
-                                sum += lastNumber;
-                                lastNumber = number;
-                            }
-                            else
-                            {
-                                sum += lastNumber;
-                                lastNumber = -number;
-                            }
 
-                            number = 0;
-                            oper = s[i];
-                        
-                    
+                    if (oper == '*')
+                    {
+                        lastNumber = lastNumber * number;
+                    }
+                    else if (oper == '/')
+                    {
+                        lastNumber = lastNumber / number;
+
+                    }
+                    else if (oper == '+')
+                    {
+                        sum += lastNumber;
+                        lastNumber = number;
+                    }
+                    else
+                    {
+                        sum += lastNumber;
+                        lastNumber = -number;
+                    }
+
+                    number = 0;
+                    oper = s[i];
+
+
                 }
             }
             sum += lastNumber;
             return sum;
         }
+        #endregion
 
-            #endregion
+        #region 09/12/2023
+        public int Calculate_20230912(string s)
+        {
+
+            int number = 0;
+            int lastNumber = 0;
+            char operation = '+';
+            int sum = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    number = number * 10 + s[i] - '0';
+                }
+                if (!char.IsDigit(s[i]) && !char.IsWhiteSpace(s[i]) || i == s.Length-1)
+                {
+                    if (operation == '+')
+                    {
+                        sum += lastNumber;
+                        lastNumber = number;
+                    }
+                    else if (operation == '-')
+                    {
+                        sum += lastNumber;
+                        lastNumber = -number;
+                    }
+                    else if (operation == '*')
+                    {
+                        lastNumber *= number;
+                    }
+                    else
+                    {
+                        lastNumber /= number;
+                    }
+
+                    number = 0;
+                    operation = s[i];
+                }
+            }
+            sum += lastNumber;
+            return sum;
         }
+        #endregion
     }
+}
