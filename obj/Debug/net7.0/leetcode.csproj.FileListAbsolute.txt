@@ -3,7 +3,6 @@ C:\Github\leetcode\bin\Debug\net7.0\leetcode.deps.json
 C:\Github\leetcode\bin\Debug\net7.0\leetcode.runtimeconfig.json
 C:\Github\leetcode\bin\Debug\net7.0\leetcode.dll
 C:\Github\leetcode\bin\Debug\net7.0\leetcode.pdb
-C:\Github\leetcode\obj\Debug\net7.0\leetcode.csproj.AssemblyReference.cache
 C:\Github\leetcode\obj\Debug\net7.0\leetcode.GeneratedMSBuildEditorConfig.editorconfig
 C:\Github\leetcode\obj\Debug\net7.0\leetcode.AssemblyInfoInputs.cache
 C:\Github\leetcode\obj\Debug\net7.0\leetcode.AssemblyInfo.cs
