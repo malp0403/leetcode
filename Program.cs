@@ -13,7 +13,13 @@ using leetcode.Problems_0501_1000._0551_0600;
 using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+<<<<<<< HEAD
 using leetcode.Problems_1001_1500._1351_1400;
+=======
+using leetcode.Problems_1001_1500._1151_1200;
+using leetcode.Problems_1001_1500._1251_1300;
+using leetcode.Problems_1001_1500._1301_1350;
+>>>>>>> afe7fed54469c99fbe3655a4a64bbce6de4de833
 using leetcode.Problems_1001_1500._1401_1450;
 using leetcode.Problems_1001_1500._1451_1500;
 using leetcode.Problems_1501_2000._1501_1550;
@@ -60,8 +66,21 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
+<<<<<<< HEAD
             //var obj = new _1405();
             //obj.LongestDiverseString(1, 1,7);
+=======
+            var obj = new _1162();
+            obj.MaxDistance(new int[][]
+            {
+                new int[3]{1,0,0},                
+                new int[3]{0,0,0},
+                new int[3]{0,0,0}
+
+            });
+
+
+>>>>>>> afe7fed54469c99fbe3655a4a64bbce6de4de833
 
             var obj2 = new _1360() { };
             obj2.DaysBetweenDates("2020-01-15", "2019-12-31");

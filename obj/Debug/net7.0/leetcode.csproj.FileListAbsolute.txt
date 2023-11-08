@@ -27,3 +27,17 @@ C:\Github3\leetcode\obj\Debug\net7.0\refint\leetcode.dll
 C:\Github3\leetcode\obj\Debug\net7.0\leetcode.pdb
 C:\Github3\leetcode\obj\Debug\net7.0\leetcode.genruntimeconfig.cache
 C:\Github3\leetcode\obj\Debug\net7.0\ref\leetcode.dll
+C:\Users\ma\source\repos\leetcode2\bin\Debug\net7.0\leetcode.exe
+C:\Users\ma\source\repos\leetcode2\bin\Debug\net7.0\leetcode.deps.json
+C:\Users\ma\source\repos\leetcode2\bin\Debug\net7.0\leetcode.runtimeconfig.json
+C:\Users\ma\source\repos\leetcode2\bin\Debug\net7.0\leetcode.dll
+C:\Users\ma\source\repos\leetcode2\bin\Debug\net7.0\leetcode.pdb
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.AssemblyInfoInputs.cache
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.AssemblyInfo.cs
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.csproj.CoreCompileInputs.cache
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.dll
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\refint\leetcode.dll
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.pdb
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\leetcode.genruntimeconfig.cache
+C:\Users\ma\source\repos\leetcode2\obj\Debug\net7.0\ref\leetcode.dll
