@@ -13,6 +13,7 @@ using leetcode.Problems_0501_1000._0551_0600;
 using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+using leetcode.Problems_1001_1500._1051_1100;
 using leetcode.Problems_1001_1500._1151_1200;
 using leetcode.Problems_1001_1500._1251_1300;
 using leetcode.Problems_1001_1500._1301_1350;
@@ -62,14 +63,8 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _1162();
-            obj.MaxDistance(new int[][]
-            {
-                new int[3]{1,0,0},                
-                new int[3]{0,0,0},
-                new int[3]{0,0,0}
-
-            });
+            var obj = new _1031();
+            obj.MaxSumTwoNoOverlap(new int[] { 0, 6, 5, 2, 2, 5, 1, 9, 4 },1,2);
 
 
 
