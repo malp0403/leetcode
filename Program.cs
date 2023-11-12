@@ -14,8 +14,11 @@ using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
 using leetcode.Problems_1001_1500._1051_1100;
+<<<<<<< HEAD
+=======
 using leetcode.Problems_1001_1500._1351_1400;
 
+>>>>>>> 35dc539c84083da2786c1463b1c7713db033486d
 using leetcode.Problems_1001_1500._1151_1200;
 using leetcode.Problems_1001_1500._1251_1300;
 using leetcode.Problems_1001_1500._1301_1350;
@@ -66,6 +69,13 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
+<<<<<<< HEAD
+            var obj = new _1031();
+            obj.MaxSumTwoNoOverlap(new int[] { 0, 6, 5, 2, 2, 5, 1, 9, 4 },1,2);
+
+
+=======
+>>>>>>> 35dc539c84083da2786c1463b1c7713db033486d
 
             var obj = new _1089();
             obj.DuplicateZeros(new int[] { 1, 0, 2, 3, 0, 4, 5, 0 });
