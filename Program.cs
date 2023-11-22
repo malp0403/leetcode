@@ -57,9 +57,8 @@ using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text;
 using static leetcode.Problems_2001_2500._2405;
-
-
-
+using leetcode.Problems_0501_1000._0951_1000;
+using leetcode.Problems_0001_500._0351_0400;
 
 namespace leetcode
 {
@@ -69,9 +68,8 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-
-            var obj = new _1011();
-            obj.ShipWithinDays_BS_20231112(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5);
+            var obj = new _0377();
+            obj.CombinationSum4_2023_11_21_dps(new int[] {1 },1);
 
 
 
