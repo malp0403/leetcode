@@ -68,8 +68,8 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0377();
-            obj.CombinationSum4_2023_11_21_dps(new int[] {1 },1);
+            var obj = new _0394();
+            obj.DecodeString("3[a2[c]]");
 
 
 
