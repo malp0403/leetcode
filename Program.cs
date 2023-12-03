@@ -13,10 +13,11 @@ using leetcode.Problems_0501_1000._0551_0600;
 using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+using leetcode.Problems_1001_1500._1001_1050;
 using leetcode.Problems_1001_1500._1051_1100;
 
-using leetcode.Problems_1001_1500._1351_1400;
 
+using leetcode.Problems_1001_1500._1351_1400;
 
 using leetcode.Problems_1001_1500._1151_1200;
 using leetcode.Problems_1001_1500._1251_1300;
@@ -56,7 +57,8 @@ using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text;
 using static leetcode.Problems_2001_2500._2405;
-using leetcode.Problems_1001_1500._1001_1050;
+using leetcode.Problems_0501_1000._0951_1000;
+using leetcode.Problems_0001_500._0351_0400;
 
 namespace leetcode
 {
@@ -66,11 +68,32 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
+            int s = int.MinValue; int v = int.MaxValue;
+            var obj = new _0452();
+            obj.FindMinArrowShots(new int[][]
+            {
+                            new int[2]{9,12},
+                             new int[2]{1,10},
+                            new int[2]{4,11},
+                            new int[2]{8,12},
+                            new int[2]{3,9},
+                            new int[2]{6,9},
+                            new int[2]{6,7}
+            });
 
-            
 
-
-
+            obj.FindMinArrowShots(new int[][]
+            {
+                            new int[2]{-2147483646,-2147483645},
+                             new int[2]{2147483646,2147483647}
+            });
+            obj.FindMinArrowShots(new int[][]
+            {
+                new int[2]{10,16},
+                 new int[2]{2,8},
+                new int[2]{1,6},
+                new int[2]{7,12}
+            });
 
 
 
