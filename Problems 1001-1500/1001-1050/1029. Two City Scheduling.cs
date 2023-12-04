@@ -110,7 +110,7 @@ namespace leetcode.Problems_1001_1500._1001_1050
         #endregion
 
         #region difference
-        public int TwoCitySchedCost_DP(int[][] costs)
+        public int TwoCitySchedCost_DP_copy(int[][] costs)
         {
             Array.Sort(costs, (x, y) =>
             {
