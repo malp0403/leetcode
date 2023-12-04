@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-#region Examples
+#region Exampels
 /*
  Given an integer array nums of size n, return the minimum number of moves required to make all array elements equal.
 
@@ -39,25 +39,24 @@ namespace leetcode.Problems_0001_500._0451_0500
 {
     internal class _0462
     {
-        #region 11/26/2023
+        #region 11/27/2023   LeetCode Solution2 Better Brutal Force
         public int MinMoves2(int[] nums)
         {
-            long total = 0;
-            foreach (int x in nums)
-            {
-                total += x;
-            }
-            long average = total / nums.Length;
 
-            long target = (long)Math.Ceiling(average + 0.5);
+            long min = int.MaxValue;
 
-            long ans = 0;
             foreach (var item in nums)
             {
-                ans += Math.Abs(item - target);
+                long sum = 0;
+                foreach (var item2 in nums)
+                {
+                    sum += Math.Abs(item2 - item);
+                }
+                min = Math.Min(min, sum);
             }
 
-            return (int)ans;
+            return (int)min;
+           
         }
         #endregion
     }

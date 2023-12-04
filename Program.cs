@@ -69,6 +69,9 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
+<<<<<<< HEAD
+     
+=======
 
 
 
@@ -77,7 +80,9 @@ namespace leetcode
 
 
 
+>>>>>>> 9e7395afcb59399be05de594695710d00edb2580
 
+            
 
 
             Console.Read();
