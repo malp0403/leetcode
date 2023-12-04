@@ -68,34 +68,9 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            int s = int.MinValue; int v = int.MaxValue;
-            var obj = new _0452();
-            obj.FindMinArrowShots(new int[][]
-            {
-                            new int[2]{9,12},
-                             new int[2]{1,10},
-                            new int[2]{4,11},
-                            new int[2]{8,12},
-                            new int[2]{3,9},
-                            new int[2]{6,9},
-                            new int[2]{6,7}
-            });
+     
 
-
-            obj.FindMinArrowShots(new int[][]
-            {
-                            new int[2]{-2147483646,-2147483645},
-                             new int[2]{2147483646,2147483647}
-            });
-            obj.FindMinArrowShots(new int[][]
-            {
-                new int[2]{10,16},
-                 new int[2]{2,8},
-                new int[2]{1,6},
-                new int[2]{7,12}
-            });
-
-
+            
 
 
             Console.Read();
