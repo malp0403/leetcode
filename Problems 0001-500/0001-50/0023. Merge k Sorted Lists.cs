@@ -50,6 +50,7 @@ namespace leetcode.Problems
             return res.next;
         }
         #endregion
+
         #region 07/23/2023
         public ListNode MergeKLists_(ListNode[] lists)
         {
@@ -93,24 +94,70 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region 07/23/2023 Merge with Divide and conquer attempt
+        #region 07/23/2023 Merge with Divide and conquer attempt; beware of the inteval gap inside loop;i += interval * 2  &  interval *= 2;
 
         public ListNode MergeKLists_20230723_DivideConquer(ListNode[] lists)
         {
             int amount = lists.Length;
-            int intervel = 1;
-            while (intervel < amount)
+            int interval = 1;
+            while (interval < amount)
             {
-                for (int i = 0; i < amount - intervel;)
+                for (int i = 0; i < amount - interval;)
                 {
-                    lists[i] = helper_20230723(lists[i], lists[i + intervel]);
-                    i += intervel * 2;
+                    lists[i] = helper_2024_01_29(lists[i], lists[i + interval]);
+                    i += interval * 2;
                 }
+                interval *= 2;
+            }
+            return amount > 0 ? lists[0] : null;
+        }
+        #endregion
 
-                intervel *= 2;
+        #region 01/29/2024 merge with intervel
+        public ListNode MergeKLists(ListNode[] lists)
+        {
+            int amount = lists.Length;
+            int interval = 1;
+            while(interval < amount)
+            {
+                for(int i =0; i < amount - interval;i++)
+                {
+                    lists[i] = helper_2024_01_29(lists[i], lists[i + interval]);
+                }
+                interval *= 2;
             }
             return amount >0?lists[0]:null;
         }
+
+        public ListNode helper_2024_01_29(ListNode l1, ListNode l2)
+        {
+            ListNode answer = new ListNode();
+            ListNode temp = answer;
+            while(l1 !=null || l1 != null)
+            {
+                if(l1 == null)
+                {
+                    temp.next = l2;
+                    l2 = null;
+                }else if( l2 == null)
+                {
+                    temp.next = l1;
+                    l1 = null;
+                }else if( l1.val < l2.val)
+                {
+                    temp.next = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    temp.next = l2;
+                    l2 = l2.next;
+                }
+                temp = temp.next;
+            }
+            return answer.next;
+        }
+
         #endregion
     }
 }

@@ -26,7 +26,7 @@ namespace leetcode.Problems
 
             cur = head;
             ListNode prev = new ListNode();
-            while(cur != null)
+            while (cur != null)
             {
                 if (indx != target)
                 {
@@ -71,11 +71,11 @@ namespace leetcode.Problems
             ListNode first = dummy;
             ListNode second = dummy;
 
-            for(int i =1; i <= n + 1; i++)
+            for (int i = 1; i <= n + 1; i++)
             {
                 first = first.next;
             }
-            while(first != null)
+            while (first != null)
             {
                 first = first.next;
                 second = second.next;
@@ -87,13 +87,13 @@ namespace leetcode.Problems
 
         #region 07/18/2023
 
-        public ListNode removeNthFromEnd_20230718(ListNode head,int n)
+        public ListNode removeNthFromEnd_20230718(ListNode head, int n)
         {
             // count the total
 
             int total = 0;
             ListNode head_copy = head;
-            while(head_copy != null)
+            while (head_copy != null)
             {
                 total++;
                 head_copy = head_copy.next;
@@ -101,13 +101,13 @@ namespace leetcode.Problems
             if (total == n) return head.next;
 
             //the node before removed node
-            int target_number = total - n-1;
-            
+            int target_number = total - n - 1;
+
 
             ListNode head_copy2 = head;
-            while(true)
+            while (true)
             {
-                if(target_number == 0)
+                if (target_number == 0)
                 {
                     head_copy2.next = head_copy2.next.next;
                     break;
@@ -123,7 +123,7 @@ namespace leetcode.Problems
             ListNode n2 = head;
 
             int remain = n;
-            while(remain != 0)
+            while (remain != 0)
             {
                 n1 = n1.next;
                 remain--;
@@ -131,7 +131,7 @@ namespace leetcode.Problems
 
             if (n1 == null) return n2.next;
 
-            while(n1.next != null)
+            while (n1.next != null)
             {
                 n1 = n1.next;
                 n2 = n2.next;
@@ -151,21 +151,21 @@ namespace leetcode.Problems
             ListNode n2 = n1;
             n1.next = head;
 
-            while(n >=0)
+            while (n >= 0)
             {
                 n2 = n2.next;
                 n--;
             }
 
-            if(n2 == null) return head.next;
+            if (n2 == null) return head.next;
 
-            while(n2 != null)
+            while (n2 != null)
             {
                 n2 = n2.next;
                 n1 = n1.next;
             }
 
-            
+
 
             n1.next = n1.next.next;
 
@@ -175,6 +175,34 @@ namespace leetcode.Problems
 
 
         }
-            #endregion
+        #endregion
+
+        #region 01/24/2024 keep gap
+        public ListNode RemoveNthFromEnd_2024_01_24(ListNode head, int n)
+        {
+            ListNode n1 = new ListNode();
+            ListNode n2 = n1;
+            n1.next = head;
+
+            while(n >= 0)
+            {
+                n2 = n2.next;
+                n--;
+            }
+            if (n2 == null) return head.next;
+
+            while(n2 != null)
+            {
+                n1 = n1.next;
+                n2 = n2.next;
+
+            }
+
+            n1.next = n1.next.next;
+
+            return head;
+
         }
+        #endregion
     }
+}

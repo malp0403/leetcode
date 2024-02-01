@@ -65,5 +65,38 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 01/29/2024 greedy
+        IList<string> result_2024_01_29;
+        public IList<string> GenerateParenthesis_2024_01_29(int n)
+        {
+            result_2024_01_29 = new List<string>();
+            helper(2 * n, 0, new StringBuilder());
+            return result_2024_01_29;
+        }
+
+        public void helper(int operation, int open,StringBuilder sb)
+        {
+            if(operation == 0)
+            {
+                result_2024_01_29.Add(sb.ToString());
+            }
+            else
+            {
+                if(operation > open)
+                {
+                    sb.Append('(');
+                    helper(operation - 1, open + 1, sb);
+                    sb.Remove(sb.Length - 1, 1);
+                }
+
+                if(open > 0)
+                {
+                    sb.Append(')');
+                    helper(operation - 1, open - 1, sb);
+                    sb.Remove(sb.Length - 1, 1);
+                }
+            }
+        }
+        #endregion
     }
 }

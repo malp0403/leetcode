@@ -139,5 +139,46 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 01/29/2024
+        public ListNode ReverseKGroup_2024_01_29(ListNode head, int k)
+        {
+            ListNode answer = new ListNode();
+
+            ListNode nextHead = null;
+            ListNode prev = null;
+            ListNode cur = head;
+            ListNode end = head;
+
+            int remains = k;
+            ListNode temp = head;
+            while(temp != null && remains != 0)
+            {
+                temp = temp.next;
+                remains--;
+            }
+
+            if (remains > 0) return head;
+
+
+            int count = k;
+            while (true)
+            {
+                count--;
+                nextHead = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = nextHead;
+
+                if (count == 0) break;
+            }
+
+            answer.next = prev;
+            end.next = ReverseKGroup(nextHead, k);
+
+            return answer.next;
+        }
+
+        #endregion
+
     }
 }
