@@ -262,5 +262,58 @@ namespace leetcode.Problems
 
 
         #endregion
+
+        #region 01/21/2024 
+        public IList<IList<int>> ThreeSum_2024_01_21(int[] nums)
+        {
+            Array.Sort(nums);
+            int index = 0;
+            IList<IList<int>> result = new List<IList<int>>();
+            while (index < nums.Length - 1)
+            {
+                List<List<int>> res = this.TwoSum_2024_01_21(index + 1, nums.Length - 1, nums, nums[index]);
+                foreach (var item in res)
+                {
+                    result.Add(item);
+                }
+
+                index++;
+                while(index< nums.Length - 1 && nums[index] == nums[index - 1])
+                {
+                    index++;
+                }
+            }
+
+            return result;
+        }
+
+        public List<List<int>> TwoSum_2024_01_21(int l, int r, int[] nums, int initialValue)
+        {
+            List<List<int>> result = new List<List<int>>();
+            while (l < r)
+            {
+                int sum = nums[l] + nums[r] + initialValue;
+                if (sum == 0)
+                {
+                    result.Add(new List<int> { nums[l], nums[r], initialValue });
+                    l++;
+                    while (l < r && nums[l] == nums[l - 1])
+                    {
+                        l++;
+                    }
+                }
+                else if (sum < 0)
+                {
+                    l++;
+                }
+                else
+                {
+                    r--;
+                }
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace leetcode.Problems
@@ -70,6 +71,9 @@ namespace leetcode.Problems
             }
             return R - L - 1;
         }
+
+        #endregion
+        #region LeetCode Approach 4: Manacher's Algorithm
 
         #endregion
 
@@ -243,13 +247,95 @@ namespace leetcode.Problems
             int len = 0;
             if (s[i] != s[j]) return "";
 
-            while (i - len >= 0 && j + len < s.Length && s[i-len] == s[j+len])
+            while (i - len >= 0 && j + len < s.Length && s[i - len] == s[j + len])
             {
                 len++;
 
             }
 
             return s.Substring(i - len + 1, j - i + 1 + 2 * (len - 1));
+        }
+
+        #endregion
+
+        #region 01/02/2024 Extend in one point
+        public string LongestPalindrome_expand_2024_01_02(string s)
+        {
+            if (s.Length <= 1) return s;
+            string ans = "";
+            for(int i =0;i < s.Length-1; i++)
+            {
+                string s1 = helper_2024_01_02(i, i, s);
+                string s2 = helper_2024_01_02(i, i + 1, s);
+                if(s1.Length> ans.Length)
+                {
+                    ans = s1;
+                }
+                if (s2.Length > ans.Length)
+                {
+                    ans = s2;
+                }
+
+            }
+
+            return ans;
+        }
+        public string helper_2024_01_02(int i, int j, string s)
+        {
+            if (s[i] != s[j]) return "";
+
+            while (i >= 0 && j < s.Length && s[i] == s[j])
+            {
+                i--;
+                j++;
+            }
+
+            return s.Substring(i +1, j-i-1);
+
+        }
+
+        #endregion
+
+        #region 01/02/2024 DP; diff from 2 to n-1;
+        public string LongestPalindrome_DP_2024_01_02(string s)
+        {
+            int n = s.Length;
+            bool[][] dp = new bool[n][];
+            for(int i =0; i < n; i++)
+            {
+                dp[i] = Enumerable.Repeat(false, n).ToArray();
+            }
+
+            for(int i =0; i < n; i++)
+            {
+                dp[i][i] = true;
+            }
+            int start = 0;
+            int end = 0;
+            for(int i =0; i < n - 1; i++)
+            {
+                if (s[i]== s[i + 1])
+                {
+                    dp[i][i + 1] = true;
+                    start = i;
+                    end = i + 1;
+                }
+            }
+
+            for(int dif =2; dif < n; dif++)
+            {
+                for(int i =0; i < n - dif; i++)
+                {
+                    int j = i + dif;
+                    if (s[i] == s[j] && dp[i + 1][j - 1])
+                    {
+                        dp[i][j] = true;
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+            return s.Substring(start, end - start + 1);
         }
 
         #endregion

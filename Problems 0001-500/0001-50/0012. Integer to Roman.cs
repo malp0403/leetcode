@@ -67,5 +67,24 @@ namespace leetcode.Problems
             return sb.ToString();
         }
         #endregion
+
+        #region 01/14/2024 Approach 1: Greedy
+        public string IntToRoman_2024_01_14(int num) 
+        {
+            int[] values = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+            string[] symbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i < values.Length; i++)
+            {
+                while (values[i] <= num)
+                {
+                    num -= values[i];
+                    sb.Append(symbols[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        #endregion
     }
 }

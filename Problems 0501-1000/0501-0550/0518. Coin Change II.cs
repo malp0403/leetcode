@@ -79,18 +79,17 @@ namespace leetcode.Problems_0501_1000._0501_0550
         #endregion
 
         #region 11/27/2023
-        int count = 0;
-        int[][] dp;
-        public int Change(int amount, int[] coins)
+  
+        public int Change_2023_11_27(int amount, int[] coins)
         {
             int[][] dp = new int[coins.Length][];
             for(int i =0; i < dp.Length; i++)
             {
                 dp[i] = Enumerable.Repeat(-1, amount + 1).ToArray();
             }
-            return helper(0,coins, amount);
+            return helper_2023_11_27(0,coins, amount);
         }
-        public int helper(int start,int[] coins,int remains)
+        public int helper_2023_11_27(int start,int[] coins,int remains)
         {
             if (dp[start][remains] == -1)
             {
@@ -105,7 +104,7 @@ namespace leetcode.Problems_0501_1000._0501_0550
             int sum = 0;
             for (int i = start; i < coins.Length; i++)
             {
-                sum +=helper(i,coins, remains- coins[i]);
+                sum += helper_2023_11_27(i,coins, remains- coins[i]);
             }
             dp[start][remains] = sum;
             return dp[start][remains];

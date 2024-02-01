@@ -44,5 +44,13 @@ namespace leetcode.Problems_0501_1000._0801_0850
 
         //}
         #endregion
+
+        #region 12/10/2023 Approach #2: Check Area [Accepted]
+        public bool IsRectangleOverlap_2023_12_10(int[] rec1, int[] rec2)
+        {
+            return (Math.Max(rec1[0], rec2[0]) < Math.Min(rec1[2], rec2[2])) && (
+                Math.Max(rec1[1], rec2[1]) < Math.Min(rec1[3], rec2[3]));
+        }
+        #endregion
     }
 }

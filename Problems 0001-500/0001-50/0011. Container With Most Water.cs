@@ -6,6 +6,34 @@ namespace leetcode.Problems_0001_500._0001_50
 {
     public class _0011
     {
+        #region Approach 1: Brute Force
+
+        #endregion
+
+        #region Approach 2: Two Pointer Approach
+        public int MaxArea_2024_01_14(int[] height)
+        {
+            int l = 0;
+            int r = height.Length - 1;
+            int area = 0;
+            while (l < r)
+            {
+                int shorter = Math.Min(height[l], height[r]);
+                int temp = shorter * (r - l);
+
+                area = Math.Max(area, temp);
+                if (height[l] < height[r])
+                {
+                    l++;
+                }
+                else
+                {
+                    r--;
+                }
+            }
+            return area;
+        }
+        #endregion
 
         #region Time limit Exceed
         public int MaxArea(int[] height)
@@ -73,6 +101,32 @@ namespace leetcode.Problems_0001_500._0001_50
                 }
             }
             return max;
+        }
+
+        #endregion
+
+        #region 01/14/2024 two pointers
+        public int MaxArea_2024_01_14_2(int[] height)
+        {
+            int l = 0;
+            int r= height.Length - 1;
+            int area = 0;
+            while(l < r)
+            {
+                int shorter = Math.Min(height[l], height[r]);
+                int temp = shorter * (r - l);
+
+                area= Math.Max(area, temp);
+                if (height[l] < height[r])
+                {
+                    l++;
+                }
+                else
+                {
+                    r--;
+                }
+            }
+            return area;
         }
 
         #endregion

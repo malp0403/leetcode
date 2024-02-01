@@ -22,7 +22,7 @@ namespace leetcode.Problems
         {
             HashSet<int> set = new HashSet<int>() { };
             Dictionary<int, int> d = new Dictionary<int, int>() { };
-            for(int i=0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 if (set.Contains(target - nums[i]))
                 {
@@ -35,7 +35,7 @@ namespace leetcode.Problems
                     {
                         d.Add(nums[i], i);
                     }
-                   
+
                 }
             }
             return null;
@@ -48,7 +48,7 @@ namespace leetcode.Problems
             Dictionary<int, int> dic = new Dictionary<int, int>() { };
 
             int[] result = new int[2];
-            for(int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 int left = target - nums[i];
                 if (dic.ContainsKey(left))
@@ -64,17 +64,17 @@ namespace leetcode.Problems
                 }
             }
             return result;
-            
+
 
 
         }
         #endregion
 
         #region 12/27/2022
-        public int[] TwoSum_20221227(int[] nums,int target)
+        public int[] TwoSum_20221227(int[] nums, int target)
         {
             Dictionary<int, int> dic = new Dictionary<int, int>() { };
-            for(int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 if (dic.ContainsKey(target - nums[i]))
                 {
@@ -96,7 +96,7 @@ namespace leetcode.Problems
         {
             Dictionary<int, int> dic = new Dictionary<int, int>() { };
 
-            for(int i =0;i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 int remain = target - nums[i];
                 if (dic.ContainsKey(remain))
@@ -112,9 +112,34 @@ namespace leetcode.Problems
 
 
             return new int[] { 0, 0 };
-            
+
 
         }
-            #endregion
+        #endregion
+
+        #region 01/01/2024
+        public int[] TwoSum_2024_01_01(int[] nums, int target)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>() { };
+
+           for(int i = 0; i < nums.Length; i++)
+            {
+                int val = target - nums[i];
+                if (dic.ContainsKey(val))
+                {
+                    return new int[] { dic[val], i };
+                }
+                else
+                {
+                    if (!dic.ContainsKey(nums[i]))
+                    {
+                        dic.Add(nums[i], i);
+                    }
+                }
+            }
+            return null;
+            
         }
+        #endregion
+    }
 }
