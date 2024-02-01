@@ -20,6 +20,7 @@ namespace leetcode.Problems
             return second;
         }
         #endregion
+
         #region ***************Iterative*************************
         public ListNode SwapPairs_V2(ListNode head)
         {
@@ -45,6 +46,7 @@ namespace leetcode.Problems
 
         }
         #endregion
+
         #region 07/19/2022
         public ListNode SwapPairs_20220719(ListNode head)
         {
@@ -62,6 +64,50 @@ namespace leetcode.Problems
             dummy.next = head;
 
             return res.next;
+        }
+        #endregion
+
+        #region 01/29/2024 Rec
+        public ListNode SwapPairs_2024_01_29_Rec(ListNode head)
+        {
+            if (head == null || head.next == null) return head;
+
+            ListNode first = head;
+            ListNode second = head.next;
+
+            first.next = SwapPairs_2024_01_29_Rec(second.next);
+            second.next = first;
+            return second;
+        }
+        #endregion
+
+        #region 01/29/2024 Iterative
+        public ListNode SwapPairs_2024_01_29_Iter(ListNode head)
+        {
+            ListNode dummy = new ListNode();
+            dummy.next = head;
+
+            ListNode prev = dummy;
+
+            while(head != null || head.next != null)
+            {
+                ListNode first = head;
+                ListNode second = head.next;
+
+                //swapping
+                prev.next = second;
+                first.next = second.next;
+                second.next = first;
+
+                prev = first;
+                head = first.next;
+
+
+            }
+
+            return dummy.next;
+
+           
         }
         #endregion
     }

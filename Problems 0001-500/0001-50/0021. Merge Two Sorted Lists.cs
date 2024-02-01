@@ -61,6 +61,7 @@ namespace leetcode.Problems
             return head.next;
         }
         #endregion
+
         #region 07/18/2022
         public ListNode MergeTwoLists_20220719(ListNode list1, ListNode list2)
         {
@@ -97,6 +98,7 @@ namespace leetcode.Problems
             return res.next;
         }
         #endregion
+
         #region 07/23/2023
         public ListNode MergeTwoLists_20230723(ListNode list1, ListNode list2)
         {
@@ -126,6 +128,40 @@ namespace leetcode.Problems
                     temp = temp.next;
                 }
             }
+            return answer.next;
+        }
+        #endregion
+
+        #region 01/29/2024
+        public ListNode MergeTwoLists_2024_01_29(ListNode list1, ListNode list2)
+        {
+            ListNode answer = new ListNode();
+            ListNode list = answer;
+
+            while(list1 != null || list2 != null)
+            {
+                if(list1 == null)
+                {
+                    list.next = list2;
+                    list2 = null;
+                }else if( list2 == null)
+                {
+                    list.next = list1;
+                    list1 = null;
+                }else if( list1.val < list2.val)
+                {
+                    list.next = list1;
+                    list1 = list1.next;
+                }
+                else
+                {
+                    list.next = list2;
+                    list2 = list2.next;
+                }
+                list = list.next;
+
+            }
+
             return answer.next;
         }
         #endregion

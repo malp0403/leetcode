@@ -220,5 +220,36 @@ namespace leetcode.Problems
             return true;
         }
         #endregion
+
+        #region 01/29/2024 Stack
+        public bool IsValid_2024_01_29(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            int index = 0;
+            while(index < s.Length)
+            {
+                if (s[index] == ']')
+                {
+                    if (stack.Count ==0 || stack.Peek() != '[') return false;
+                    stack.Pop();
+                }else if (s[index] == ')')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '(') return false;
+                    stack.Pop();
+                }else if (s[index] == '}')
+                {
+                    if(stack.Count ==0 || stack.Peek() != '}') return false;
+                    stack.Pop();
+                }
+                else
+                {
+                    stack.Push(s[index]);
+                }
+            }
+
+            return stack.Count == 0 ? true : false;
+
+        }
+        #endregion
     }
 }
