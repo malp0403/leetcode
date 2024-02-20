@@ -10,6 +10,40 @@ namespace leetcode.Problems
 {
     class _0042  // 3 SOLUTIONS: left-right array, stack , two pointers
     {
+       
+        #region LeetCode Approach 2: Dynamic Programming
+        public int Trap_DP(int[] height)
+        {
+            int[] left = Enumerable.Repeat(0, height.Length).ToArray();
+            int[] right = Enumerable.Repeat(0, height.Length).ToArray();
+            left[0] = height[0];
+            for(int i =1; i < height.Length; i++)
+            {
+                left[i] = Math.Max(height[i], left[i - 1]);
+            }
+            right[height.Length - 1] = height[height.Length - 1];
+            for(int i = height.Length - 2; i >= 0; i--)
+            {
+                right[i] = Math.Max(height[i], right[i + 1]);
+            }
+            int ans = 0;
+            for(int i =0; i < height.Length; i++)
+            {
+                ans += Math.Min(left[i], right[i]) - height[i];
+            }
+            return ans;
+        }
+
+        #endregion
+
+        #region LeetCode Approach 3: Using stacks
+
+        #endregion
+
+        #region LeetCode Approach 4: Using 2 pointers
+
+        #endregion
+
         #region My Attempt: 1. find the highest, loop from 0->highest, then loop from end -> highest
         public int Trap(int[] height)
         {
@@ -73,30 +107,6 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region LeetCode Solution2: DP; clean solution!
-        public int Trap_DP(int[] height)
-        {
-            int[] left = Enumerable.Repeat(0, height.Length).ToArray();
-            int[] right = Enumerable.Repeat(0, height.Length).ToArray();
-            left[0] = height[0];
-            for(int i =1; i < height.Length; i++)
-            {
-                left[i] = Math.Max(height[i], left[i - 1]);
-            }
-            right[height.Length - 1] = height[height.Length - 1];
-            for(int i = height.Length - 2; i >= 0; i--)
-            {
-                right[i] = Math.Max(height[i], right[i + 1]);
-            }
-            int ans = 0;
-            for(int i =0; i < height.Length; i++)
-            {
-                ans += Math.Min(left[i], right[i]) - height[i];
-            }
-            return ans;
-        }
-
-        #endregion
         #region 12/28/2022
         public int Trap_20221228(int[] height)
         {
@@ -349,6 +359,31 @@ namespace leetcode.Problems
                     }
                     right--;
                 }
+            }
+            return sum;
+        }
+        #endregion
+
+        #region 02/19/2024
+        public int Trap_2024_02_19(int[] height)
+        {
+            int[] left = Enumerable.Repeat(0,height.Length).ToArray();
+            int[] right= Enumerable.Repeat(0, height.Length).ToArray();
+
+            for (int i =1;i <height.Length; i++)
+            {
+                left[i] = Math.Max(left[i - 1], height[i-1]);
+            }
+
+            for (int i = height.Length-2; i >=0; i--)
+            {
+                right[i] = Math.Max(right[i + 1], height[i + 1]);
+            }
+            int sum = 0;
+            for(int i =0; i <height.Length; i++)
+            {
+                int max = Math.Min(right[i], left[i]);
+                sum += max > height[i] ? max - height[i] : 0;
             }
             return sum;
         }

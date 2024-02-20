@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace leetcode.Problems
@@ -56,6 +57,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region 07/26/2022
         public void NextPermutation_20220726(int[] nums)
         {
@@ -97,6 +99,91 @@ namespace leetcode.Problems
             }
 
         }
+        #endregion
+
+        #region 02/01/2024
+        public void NextPermutation_2024_02_01(int[] nums)
+        {
+            int index = nums.Length - 2;
+
+
+            while(index >=0 &&  nums[index+1] <= nums[index])
+            { 
+                index--;
+            }
+
+            if(index >= 0)
+            {
+                int j = nums.Length - 1;
+                while (nums[j] <= nums[index]) {
+                    j--;
+                }
+                swap_2024_02_01(nums, index, j);
+            }
+
+            reverse_2024_02_01(nums, index + 1);
+
+        }
+
+        public void reverse_2024_02_01(int[] nums, int start)
+        {
+            int i = start;
+            int j = nums.Length - 1;
+            while(i< j)
+            {
+                swap_2024_02_01(nums, i, j);
+                i++;
+                j--;
+            }
+        }
+
+        public void swap_2024_02_01(int[] nums, int i,int j)
+        {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+        #endregion
+
+        #region 02/01/2024 second attemp1
+        public void NextPermutation_2024_02_01_attemp1(int[] nums)
+        {
+            int i = nums.Length - 2;
+            while(i >= 0 && nums[i+1] <= nums[i])
+            {
+                i--;
+            }
+            if(i >= 0)
+            {
+                int j = nums.Length - 1;
+                while (nums[j] <= nums[i])
+                {
+                    j--;
+                }
+                swap_2024_02_01_attemp1(nums, i, j);
+            }
+            reverse_2024_02_01_attemp1(nums, i + 1);
+        }
+
+        public void swap_2024_02_01_attemp1(int[] nums,int i , int j)
+        {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+
+        public void reverse_2024_02_01_attemp1(int[] nums,int start)
+        {
+            int i = start;
+            int j = nums.Length - 1;
+            while(i < j)
+            {
+                swap_2024_02_01_attemp1(nums,i, j);
+                i++;
+                j--;
+            }
+        }
+
         #endregion
     }
 }

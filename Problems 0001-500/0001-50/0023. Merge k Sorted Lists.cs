@@ -114,7 +114,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 01/29/2024 merge with intervel
-        public ListNode MergeKLists(ListNode[] lists)
+        public ListNode MergeKLists_2024_01_29(ListNode[] lists)
         {
             int amount = lists.Length;
             int interval = 1;

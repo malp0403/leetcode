@@ -15,6 +15,132 @@ namespace leetcode.Problems
 {
     class _0032
     {
+        #region LeetCode Approach 2: Using Dynamic Programming
+        public int LongestValidParentheses_2024_02_19(string s)
+        {
+            int max = 0;
+            int[] dp = Enumerable.Repeat(0, s.Length).ToArray();
+
+            for (int i = 1; i < dp.Length; i++)
+            {
+                if (s[i] == ')')
+                {
+                    if (s[i - 1] == '(')
+                    {
+                        dp[i] = i >= 2 ? dp[i - 2] + 2 : 2;
+                    }
+                    else if (i - dp[i - 1] > 0 && s[i - dp[i - 1] - 1] == '(')
+                    {
+                        dp[i] = dp[i - 1] + (i - dp[i - 1] >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                    }
+                    max = Math.Max(max, dp[i]);
+                }
+            }
+
+            return max;
+
+
+        }
+
+        #endregion
+
+        #region  LeetCode Approach 3: Using Stack
+        public int LongestValidParentheses_2024_02_19_stack(string s)
+        {
+            int max = 0;
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(-1);
+            int i = 0;
+            while (i < s.Length)
+            {
+                if (s[i] == '(')
+                {
+                    stack.Push(i);
+                }
+                else
+                {
+                    stack.Pop();
+                    if (stack.Count == 0)
+                    {
+                        stack.Push(i);
+                    }
+                    else
+                    {
+                        max = Math.Max(max, i - stack.Peek());
+                    }
+                }
+
+
+
+                i++;
+            }
+            return max;
+
+
+
+        }
+        #endregion
+
+        #region Approach 4: Without extra space
+        public int LongestValidParentheses_2024_02_19_leftRight(string s)
+        {
+            int left = 0;
+            int right = 0;
+            int max = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+
+                if (left == right)
+                {
+                    max = Math.Max(max, 2 * left);
+                }
+                else if (right > left)
+                {
+                    left = 0;
+                    right = 0;
+                }
+            }
+            left = 0;
+            right = 0;
+
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+
+                if (left == right)
+                {
+                    max = Math.Max(max, 2 * left);
+                }
+                else if (left > right)
+                {
+                    left = 0;
+                    right = 0;
+                }
+            }
+
+
+            return max;
+
+
+        }
+        #endregion
+
         #region solution 1 
         public int LongestValidParentheses(string s)
         {
@@ -269,5 +395,131 @@ namespace leetcode.Problems
         }
 
         #endregion
+
+        #region 02/19/2024 DP
+        public int LongestValidParentheses_2024_02_19_dp(string s)
+        {
+            int max = 0;
+            int[] dp = Enumerable.Repeat(0, s.Length).ToArray();
+
+            for(int i =1; i < dp.Length; i++)
+            {
+                if (s[i] == ')')
+                {
+                    if (s[i-1] == '(')
+                    {
+                        dp[i] = i >= 2 ? dp[i - 2] + 2 : 2;
+                    }else if( i - dp[i-1] >0 && s[i - dp[i-1]-1] == '(')
+                    {
+                        dp[i] = dp[i - 1] + (i - dp[i - 1] >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+                    }
+                    max = Math.Max(max, dp[i]);
+                }
+            }
+
+            return max;
+
+
+        }
+
+        #endregion
+
+        #region 02/19/2024 stack
+        public int LongestValidParentheses_2024_02_19_stack2(string s)
+        {
+            int max = 0;
+            
+            Stack<int> stack = new Stack<int> ();
+            stack.Push(-1);
+            int i = 0;
+            while(i < s.Length)
+            {
+                if (s[i] == '(')
+                {
+                    stack.Push(i);
+                }
+                else
+                {
+                    stack.Pop();
+                    if (stack.Count == 0)
+                    {
+                        stack.Push(i);
+                    }
+                    else
+                    {
+                        max = Math.Max(max, i - stack.Peek());
+                    }
+                }
+
+
+
+                i++;
+            }
+            return max;
+
+            
+
+        }
+        #endregion
+
+        #region 02/19/2024 1. from left to right 2. from right to left
+        public int LongestValidParentheses_2024_02_19_leftRight2(string s)
+        {
+            int left = 0;
+            int right = 0;
+            int max = 0;
+            for(int i =0; i< s.Length; i++)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+
+                if(left == right)
+                {
+                    max = Math.Max(max, 2 * left);
+                }else if( right > left)
+                {
+                    left = 0;
+                    right = 0;
+                }
+            }
+            left = 0;
+            right = 0;
+
+            for (int i = s.Length-1; i >=0; i--)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else
+                {
+                    right++;
+                }
+
+                if (left == right)
+                {
+                    max = Math.Max(max, 2 * left);
+                }
+                else if (left > right)
+                {
+                    left = 0;
+                    right = 0;
+                }
+            }
+
+
+            return max;
+
+
+        }
+        #endregion
+
+
     }
 }

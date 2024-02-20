@@ -21,18 +21,13 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            int a = int.MaxValue; //2147483647
-            int b = int.MinValue; //2147483648
+            var obj = new _0044() { };
+            var res1 = obj.IsMatch("","**");
 
-            int[] nums = new int[4] { -1, 2, 1, -4 };
-            var obj = new _0016() { };
-            var answer = obj.ThreeSumClosest_2024_01_21(nums,2);
+            //var res = obj.Divide_2024_02_01_approach2(10, 3);
 
-            //int[] nums2 = new int[4] { -1, 0, 0, 1 };
-            //var obj2 = new _0015() { };
-            //var answer2 = obj2.ThreeSum_2024_01_21(nums2);
 
-            Console.Read();
+            Console.Write(res1);
         }
 
 

@@ -74,5 +74,49 @@ namespace leetcode.Problems
             return r;
         }
         #endregion
+
+        #region 02/19/2024
+        public int[] SearchRange_2024_02_19(int[] nums, int target)
+        {
+      
+            int left = 0;
+            int right = nums.Length - 1;
+
+            int targetIndex = -1;
+            while(left <= right)
+            {
+                int mid = (left +right)/ 2;
+                if (nums[mid] == target)
+                {
+                    targetIndex = mid;
+                    break;
+                }
+                else if ( target > nums[mid])
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            if (targetIndex == -1) return new int[] { -1, -1 };
+            left = targetIndex;
+            right = targetIndex;
+
+            while(left >0 && nums[left-1] == target)
+            {
+                left--;
+            }
+            while(right <nums.Length-1 && nums[right+1] == target)
+            {
+                right++;
+            }
+
+            return new int[] { left, right };
+
+        }
+        #endregion
     }
 }
