@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+#region Example
+
+#endregion
+
+#region Test
+
+#endregion
+
 namespace leetcode.Problems
 {
     class _0045
@@ -161,6 +170,40 @@ namespace leetcode.Problems
 
 
         }
+        #endregion
+
+        #region 02/24/2024
+        public int Jump_2024_02_24(int[] nums)
+        {
+            
+            if (nums.Length <= 1) return 0;
+
+            int farthest = 0;
+            int jumpCount = 0;
+
+            for (int i =0; i < nums.Length;)
+            {
+                int temp = farthest;
+
+                while(i < nums.Length && i <= farthest){
+                    temp = Math.Max(nums[i] + i, temp);
+                    i++;
+                }
+
+                jumpCount++;
+
+                if (temp >= nums.Length - 1) break;
+
+                i = farthest + 1;
+                farthest = temp;
+
+
+            }
+
+            return jumpCount;
+            
+        }
+
         #endregion
     }
 }
