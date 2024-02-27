@@ -7,7 +7,7 @@ namespace leetcode.Problems
     class _0038
     {
         #region answer
-        public string CountAndSay(int n)
+        public string CountAndSay_1(int n)
         {
             string answer = "1";
             if (n == 1) return answer;
@@ -72,6 +72,54 @@ namespace leetcode.Problems
                 }
             }
             return result;
+        }
+        #endregion
+
+        #region 02/19/2024
+        public string CountAndSay(int n)
+        {
+            if (n == 1) return "1";
+
+            string str = "1";
+            while(n > 1)
+            {
+                str = helper_2024_02_19(str);
+                n--;
+
+            }
+
+            return str;
+        }
+
+        public string helper_2024_02_19(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            char cur = 'a';
+            int count = 1;
+            for(int i =0; i < s.Length; i++)
+            {
+                if (s[i] != cur)
+                {
+                    sb.Append(count);
+                    sb.Append(cur);
+
+                    //reset
+                    cur = s[i];
+                    count = 1;
+                }
+                else
+                {
+                    count++;
+                }
+
+                if (i == s.Length - 1)
+                {
+                    sb.Append(count);
+                    sb.Append(cur);
+                }
+
+            }
+            return sb.ToString().Substring(2);
         }
         #endregion
     }

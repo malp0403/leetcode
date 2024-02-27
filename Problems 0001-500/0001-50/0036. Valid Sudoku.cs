@@ -79,6 +79,66 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 02/19/2024
+        public bool IsValidSudoku_2024_02_19(char[][] board)
+        {
+            HashSet<int>[] rows = new HashSet<int>[9];
+            HashSet<int>[] cols = new HashSet<int>[9];
+
+            for (int i = 0; i < board.Length; i++)
+            {
+                HashSet<char> set = new HashSet<char>();
+                for (int j = 0; j < board[i].Length; j++)
+                {
+                    if (board[i][j] != '.')
+                    {
+                        if (set.Contains(board[i][j])) return false;
+                        else set.Add(board[i][j]);
+                    }
+                }
+            }
+
+            for (int i = 0; i < board[0].Length; i++)
+            {
+                HashSet<char> set = new HashSet<char>();
+                for (int j = 0; j < board.Length; j++)
+                {
+                    if (board[j][i] != '.')
+                    {
+                        if (set.Contains(board[j][i])) return false;
+                        else set.Add(board[j][i]);
+                    }
+                }
+            }
+
+            for (int i = 0; i < board.Length;)
+            {
+                int j = 0;
+                while (j < board[i].Length)
+                {
+                    HashSet<char> set = new HashSet<char>();
+                    for (int z = i; z < i + 3; z++)
+                    {
+                        for (int k = j; k < j + 3; k++)
+                        {
+                            if (board[z][k] != '.')
+                            {
+                                if (set.Contains(board[z][k])) return false;
+                                else set.Add(board[z][k]);
+                            }
+                        }
+                    }
+
+                    j += 3;
+                }
+
+                i += 3;
+            }
+
+            return true;
+
+        }
+        #endregion
 
         #region test sample
         //char[][] test = new char[9][] {

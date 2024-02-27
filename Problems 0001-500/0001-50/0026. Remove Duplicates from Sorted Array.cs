@@ -6,22 +6,30 @@ namespace leetcode.Problems
 {
     class _0026
     {
-        #region answer
-        public int RemoveDuplicates(int[] nums)
+        #region LeetCode Approach 1: Two indexes approach
+        public int RemoveDuplicates_LeetCode(int[] nums)
         {
-            if (nums.Length == 0) return 0;
-            int cur = 0;
-            for(int i=1;i< nums.Length; i++)
+            int index1 = 0;
+            int index2 = 0;
+
+            HashSet<int> set = new HashSet<int>();
+
+            while (index2 < nums.Length)
             {
-                if(nums[i] != nums[cur])
+                if (!set.Contains(nums[index2]))
                 {
-                    cur++;
-                    nums[cur] = nums[i];
+                    set.Add(nums[index2]);
+                    nums[index1] = nums[index2];
+                    index1++;
                 }
+
+                index2++;
             }
-            return cur + 1;
+
+            return index1;
         }
         #endregion
+
         #region 02/02/2022
         //02/02/2022------------------------
         public int ReMoveDuplicate(int[] nums)
@@ -39,6 +47,7 @@ namespace leetcode.Problems
             return (curr+1);
         }
         #endregion
+
         #region 07/26/2022
         public int RemoveDuplicates_20220726(int[] nums)
         {
@@ -54,6 +63,30 @@ namespace leetcode.Problems
                 }
             }
             return k;
+        }
+        #endregion
+
+        #region 02/01/2024 Two indexes approach
+        public int RemoveDuplicates_2024_02_01(int[] nums)
+        {
+            int index1 = 0;
+            int index2 = 0;
+
+            HashSet<int> set = new HashSet<int>();
+
+            while(index2 < nums.Length)
+            {
+                if (!set.Contains(nums[index2]))
+                {
+                    set.Add(nums[index2]);
+                    nums[index1] = nums[index2];
+                    index1++;
+                }
+
+                index2++;
+            }
+
+            return index1;
         }
         #endregion
     }

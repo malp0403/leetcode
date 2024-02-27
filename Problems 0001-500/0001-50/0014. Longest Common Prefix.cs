@@ -33,7 +33,7 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region 07/18/2022
+        #region 07/18/2022 Approach 1: Horizontal scanning
         public string LongestCommonPrefix_R1_1(string[] strs)
         {
             StringBuilder result = new StringBuilder() { };
@@ -57,6 +57,9 @@ namespace leetcode.Problems
 
         }
 
+        #endregion
+
+        #region Approach 2: Vertical scanning
         public string LongestCommonPrefix_R1_2(string[] strs)
         {
             StringBuilder result = new StringBuilder() { };
@@ -64,7 +67,7 @@ namespace leetcode.Problems
             if (strs.Length == 0) return "";
             string prefix = strs[0];
 
-            for(int j=1; j < strs.Length; j++)
+            for (int j = 1; j < strs.Length; j++)
             {
                 while (strs[j].IndexOf(prefix) != 0)
                 {
@@ -75,7 +78,39 @@ namespace leetcode.Problems
             return prefix;
 
         }
+        #endregion
 
+
+
+        #region 01/14/2024
+        public string LongestCommonPrefix_2024_01_14(string[] strs)
+        {
+            StringBuilder result = new StringBuilder();
+            int index = 0;
+            bool stop = false;
+            while (!stop)
+            {
+                if (index >= strs[0].Length) break;
+                char c = strs[0][index];
+                for (int i = 1; i < strs.Length; i++)
+                {
+                    if (index >= strs[i].Length || strs[i][index] !=c)
+                    {
+                        stop = true;
+                        break;
+                    }
+
+                }
+                if (!stop)
+                {
+                    result.Append(c);
+                }
+                index++;
+            }
+
+            return result.ToString();
+  
+        }
         #endregion
     }
 }

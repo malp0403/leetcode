@@ -52,5 +52,30 @@ namespace leetcode.Problems
             return l;
         }
         #endregion
+
+        #region 02/19/2024
+        public int SearchInsert_2024_02_19(int[] nums, int target)
+        {
+            if (target > nums[nums.Length - 1]) return nums.Length;
+            if (target < nums[0]) return 0;
+
+            int left = 0;
+            int right= nums.Length - 1;
+            while(left <= right)
+            {
+                int mid = (left + right) / 2;
+                if (nums[mid] == target) return mid;
+                else if (nums[mid] >target)
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+            }
+            return left;
+        }
+        #endregion
     }
 }

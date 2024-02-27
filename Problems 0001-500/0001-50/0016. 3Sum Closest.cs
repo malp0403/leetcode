@@ -66,5 +66,56 @@ namespace leetcode.Problems
             return max;
         }
         #endregion
+
+        #region 01/21/2024
+        int closest_2024_01_21 = int.MaxValue;
+        public int ThreeSumClosest_2024_01_21(int[] nums, int target)
+        {
+            Array.Sort(nums);
+            int index = 0;
+            while(index< nums.Length-2)
+            {
+                helper_2024_01_21(index + 1, nums.Length - 1, nums, nums[index], target);
+                index++;
+            }
+            return closest_2024_01_21;
+        }
+
+        public void helper_2024_01_21(int l,int r, int[] nums,int initialValue,int target)
+        {
+            while(l < r)
+            {
+                int sum = nums[l] + nums[r] + initialValue;
+                if(sum == target)
+                {
+                    closest_2024_01_21 = sum;
+                    return;
+                }else if(closest_2024_01_21 == int.MaxValue || Math.Abs(sum - target) < Math.Abs(closest_2024_01_21- target))
+                {
+                    closest_2024_01_21 = sum;
+                    if(sum > target)
+                    {
+                        r--;
+                    }
+                    else
+                    {
+                        l++;
+                    }
+                }
+                else
+                {
+                    if (sum > target)
+                    {
+                        r--;
+                    }
+                    else
+                    {
+                        l++;
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

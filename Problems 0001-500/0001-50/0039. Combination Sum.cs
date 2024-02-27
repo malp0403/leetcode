@@ -65,5 +65,32 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
+        #region 02/19/2024
+        IList<IList<int>> answer = new List<IList<int>>();
+        public IList<IList<int>> CombinationSum_2024_02_19(int[] candidates, int target)
+        {
+            helper_2024_02_19(0,candidates,target,new List<int>());
+            return answer;
+        }
+        public void helper_2024_02_19(int index1, int[] candidates,int remains,List<int> curList)
+        {
+            if(remains ==0)
+            {
+                answer.Add(new List<int>(curList));
+            }else if(remains > 0)
+            {
+                for(int i = index1; i < candidates.Length; i++)
+                {
+                    if(remains - candidates[i] >= 0)
+                    {
+                        curList.Add(candidates[i]);
+                        helper_2024_02_19(i, candidates, remains - candidates[i], curList);
+                        curList.RemoveAt(curList.Count - 1);
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
