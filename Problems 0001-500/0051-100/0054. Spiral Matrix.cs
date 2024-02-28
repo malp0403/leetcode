@@ -97,6 +97,63 @@ namespace leetcode.Problems
             return list;
 
         }
-        #endregion  
+        #endregion
+
+        #region 02/27/2024
+        public IList<int> SpiralOrder_2024_02_27(int[][] matrix)
+        {
+            int ROW = matrix.Length;
+            int COL = matrix[0].Length;
+            int top = 0;
+            int bottom = ROW - 1;
+            int left = 0;
+            int right = COL - 1;
+            IList<int> answer = new List<int>();
+            while(top <= bottom && left <= right)
+            {
+                //go right;
+                for(int i = left; i <= right; i++)
+                {
+                    answer.Add(matrix[top][i]);
+                }
+           
+          
+                //go down
+                for(int i = top+1;i <= bottom; i++)
+                {
+                    answer.Add(matrix[i][right]);
+                }
+
+
+            
+                if(top != bottom)
+                {
+                    //go left;
+                    for (int i = right - 1; i >= left; i--)
+                    {
+                        answer.Add(matrix[bottom][i]);
+                    }
+
+                }
+                if(left != right)
+                {
+                    //go up
+                    for (int i = bottom + 1; i >= top; i--)
+                    {
+                        answer.Add(matrix[i][left]);
+                    }
+                }
+
+                top++;
+                bottom--;
+                left++;
+                right--;
+
+
+            }
+
+            return answer;
+        }
+            #endregion
+        }
     }
-}

@@ -21,8 +21,8 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0047() { };
-            var res1 = obj.PermuteUnique_2024_02_24(new int[] { 1,1,2});
+            var obj = new _0051() { };
+            var res1 = obj.SolveNQueens_2024_02_27(4);
 
             //var res = obj.Divide_2024_02_01_approach2(10, 3);
 

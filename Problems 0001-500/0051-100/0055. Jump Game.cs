@@ -149,5 +149,29 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 02/27/2024
+        public bool CanJump_2024_02_27(int[] nums)
+        {
+            int farthest = 0;
+            for(int i =0; i < nums.Length;)
+            {
+                int temp = farthest;
+                while(i <= farthest)
+                {
+                    temp = Math.Max(temp, nums[i] + i);
+                    i++;
+                }
+
+                if (temp >= nums.Length-1) return true;
+                if (farthest == temp) break;
+
+                farthest = temp;
+                
+            }
+
+            return false;
+
+        }
+            #endregion
+        }
     }
-}

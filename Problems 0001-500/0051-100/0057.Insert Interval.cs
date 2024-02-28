@@ -67,5 +67,32 @@ namespace leetcode.Problems
         }
         #endregion
 
+        public int[][] Insert(int[][] intervals, int[] newInterval)
+        {
+            List<int[]> answer = new List<int[]>();
+
+            for(int i =0; i < intervals.Length)
+            {
+                if (newInterval[i] >= intervals[i][0] && newInterval[i] <= intervals[i][1])
+                {
+                    int start = Math.Min(intervals[i][0], newInterval[0]);
+                    int end = Math.Max(intervals[i][1], newInterval[1]);
+                    while(i < intervals.Length && (newInterval[1] >= intervals[i][0] || newInterval[1] <= intervals[i][1]))
+                    {
+                        end = Math.Max(end, intervals[i][1]);
+
+                        i++;
+                    }
+                    answer.Add(new int[] { start, end });
+                
+                }
+                else
+                {
+                    answer.Add(intervals[i]);
+                    i++;
+                }
+            }
+            return answer.ToArray();
+        }
     }
 }
