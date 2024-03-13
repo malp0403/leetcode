@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace leetcode.Problems
@@ -88,5 +89,33 @@ namespace leetcode.Problems
             return dp[dp.Length - 1][dp[0].Length - 1];
         }
         #endregion
+
+        #region 02/29/2024 DP 1D
+        public int MinPathSum_2024_02_29(int[][] grid)
+        {
+            int ROWS = grid.Length;
+            int COLS = grid[0].Length;
+
+            int[] dp = Enumerable.Repeat(0, COLS).ToArray();
+
+            for(int i =0; i < COLS; i++)
+            {
+                dp[i] = i == 0 ? grid[0][i] : dp[i - 1] + grid[0][i];
+            }
+
+            for(int i=1;i < ROWS; i++)
+            {
+                for(int j =0;j < COLS; j++)
+                {
+                    dp[j] = (j == 0 ? dp[j] : Math.Min(dp[j - 1], dp[j])) + grid[i][j];
+                }
+            }
+
+            return dp[COLS - 1];
+
+        }
+        
+
+            #endregion
+        }
     }
-}

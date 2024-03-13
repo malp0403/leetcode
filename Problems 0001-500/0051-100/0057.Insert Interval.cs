@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace leetcode.Problems
@@ -67,32 +68,30 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region MyRegion
         public int[][] Insert(int[][] intervals, int[] newInterval)
         {
-            List<int[]> answer = new List<int[]>();
+            List<int[]> list = intervals.ToList();
+            list.Add(newInterval);
+            list.Sort((a, b) => { return a[0] - b[0]; });
 
-            for(int i =0; i < intervals.Length)
+            List<int[]> answer= new List<int[]>();
+            for(int i =0; i < list.Count; i++)
             {
-                if (newInterval[i] >= intervals[i][0] && newInterval[i] <= intervals[i][1])
+                if(answer.Count ==0 || answer.Last()[1]< list[i][0])
                 {
-                    int start = Math.Min(intervals[i][0], newInterval[0]);
-                    int end = Math.Max(intervals[i][1], newInterval[1]);
-                    while(i < intervals.Length && (newInterval[1] >= intervals[i][0] || newInterval[1] <= intervals[i][1]))
-                    {
-                        end = Math.Max(end, intervals[i][1]);
-
-                        i++;
-                    }
-                    answer.Add(new int[] { start, end });
-                
+                    answer.Add(list[i]);
                 }
                 else
                 {
-                    answer.Add(intervals[i]);
-                    i++;
+                    answer.Last()[1] = Math.Max(list[i][1], answer.Last()[1]);
                 }
+
             }
+
             return answer.ToArray();
         }
+        #endregion
+
     }
 }

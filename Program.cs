@@ -1,4 +1,5 @@
-﻿using leetcode.Problems;
+﻿using leetcode.Class;
+using leetcode.Problems;
 using leetcode.Problems_0001_500._0001_50;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
@@ -21,11 +22,15 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0051() { };
-            var res1 = obj.SolveNQueens_2024_02_27(4);
+            var obj = new _0069() { };
 
+            //var res1 = obj.MySqrt(4);
+
+           var  res1 = obj.MySqrt(2147395599);
+            string s1 = "example  of  text";
             //var res = obj.Divide_2024_02_01_approach2(10, 3);
 
+            Console.Write(s1.Length);
 
             Console.Write(res1);
         }

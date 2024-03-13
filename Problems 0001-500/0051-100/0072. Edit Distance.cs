@@ -88,28 +88,28 @@ namespace leetcode.Problems_0001_500._0051_100
         #endregion
 
         #region BU
-        public int MinDistance(string word1, string word2)
+        public int MinDistance_BU(string word1, string word2)
         {
-            int[][] dp = new int[word1.Length+1][];
-            for(int i =0; i < dp.Length; i++)
+            int[][] dp = new int[word1.Length + 1][];
+            for (int i = 0; i < dp.Length; i++)
             {
                 dp[i] = Enumerable.Repeat(0, word2.Length + 1).ToArray();
             }
 
-            for(int i =0; i < dp[0].Length; i++)
+            for (int i = 0; i < dp[0].Length; i++)
             {
                 dp[0][i] = i;
             }
-            for(int i =0; i < dp.Length; i++)
+            for (int i = 0; i < dp.Length; i++)
             {
                 dp[i][0] = i;
             }
 
-            for(int i = 1; i < dp.Length; i++)
+            for (int i = 1; i < dp.Length; i++)
             {
-                for(int j=1;j < dp[i].Length; j++)
+                for (int j = 1; j < dp[i].Length; j++)
                 {
-                    if (word1[i-1] == word2[j - 1])
+                    if (word1[i - 1] == word2[j - 1])
                     {
                         dp[i][j] = dp[i - 1][j - 1];
                     }
@@ -122,6 +122,49 @@ namespace leetcode.Problems_0001_500._0051_100
             return dp[word1.Length][word2.Length];
         }
 
+        #endregion
+
+        #region 03/06/2024
+        int[][] memo_2024_03_06;
+        public int MinDistance(string word1, string word2)
+        {
+            memo = new int[word1.Length + 1][];
+            for (int i = 0; i < word1.Length; i++)
+            {
+                memo_2024_03_06[i] = Enumerable.Repeat(-1, word2.Length + 1).ToArray();
+            }
+            return helper_2024_03_06(0, 0, word1, word2);
+        }
+        public int helper_2024_03_06(int index1, int index2, string word1, string word2)
+        {
+            if (index1 >= word1.Length)
+            {
+                return word2.Length - index2;
+            }
+            else if (index2 >= word2.Length)
+            {
+                return word1.Length - index1;
+            }
+
+            if (memo_2024_03_06[index1][index2] != -1)
+            {
+                return memo[index1][index2];
+            }
+
+            //delete or replace
+            int delete = helper_2024_03_06(index1 + 1, index2, word1, word2) + 1;
+            int replace = helper_2024_03_06(index1 + 1, index2 + 1, word1, word2) + 1;
+            int insert = helper_2024_03_06(index1, index2 + 1, word1, word2) + 1;
+
+            int curMin = Math.Min(Math.Min(delete, replace), insert);
+            int noChange = int.MaxValue;
+            if (word1[index1] == word2[index2])
+            {
+                noChange = helper_2024_03_06(index1 + 1, index2 + 1, word1, word2);
+            }
+            memo[index1][index2] = Math.Min(curMin, noChange);
+            return memo[index1][index2];
+        }
         #endregion
     }
 }
