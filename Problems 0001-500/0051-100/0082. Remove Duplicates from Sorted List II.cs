@@ -7,8 +7,35 @@ namespace leetcode.Problems
 {
     class _0082
     {
-        #region answer
-        public ListNode DeleteDuplicates(ListNode head)
+        #region LeetCode Approach 1: Sentinel Head + Predecessor  0(1)
+        public ListNode DeleteDuplicates_Approach1(ListNode head)
+        {
+            ListNode result = new ListNode();
+            ListNode temp = result;
+
+            while(head != null)
+            {
+                if(head.next !=null && head.val == head.next.val)
+                {
+                    while(head.next !=null && head.val == head.next.val)
+                    {
+                        head = head.next;
+                    }
+                    //preset
+                    temp.next = head.next;
+                }
+                else
+                {
+                    temp = temp.next;
+                }
+                head = head.next;
+            }
+            return result.next;
+        }
+
+            #endregion
+            #region answer
+            public ListNode DeleteDuplicates_(ListNode head)
         {
             if (head == null) return null;
             //check head is duplicate;
@@ -77,6 +104,53 @@ namespace leetcode.Problems
                 return head.val != prev.val;
             }
         }
+        #endregion
+
+        #region 03/13/2024
+        public ListNode DeleteDuplicates_2024_04_19(ListNode head)
+        {
+            if (head == null) return null;
+            ListNode answer = new ListNode();
+            ListNode temp = answer;
+            Dictionary<int, int> records = new Dictionary<int, int>();
+            ListNode prev = null;
+            while(head != null)
+            {
+                if (records.ContainsKey(head.val))
+                {
+                    records[head.val]++;
+                }
+                else
+                {
+                    records.Add(head.val, 1);
+                }
+
+                if (prev != null && head.val != prev.val)
+                {
+                    if (records[prev.val] == 1)
+                    {
+                        temp.next = prev;
+                        temp = temp.next;
+                    }
+                }
+
+                prev = head;
+                head = head.next;
+
+            }
+            if (records[prev.val] == 1)
+            {
+                temp.next = prev;
+                temp = temp.next;
+            }
+   
+                temp.next = null;
+
+
+            return answer.next;
+        }
+
+
         #endregion
     }
 }

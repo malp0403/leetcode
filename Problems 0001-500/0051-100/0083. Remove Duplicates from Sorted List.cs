@@ -2,13 +2,35 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace leetcode.Problems
 {
     class _0083
     {
-        #region answer
+
+        #region MyRegion
         public ListNode DeleteDuplicates(ListNode head)
+        {
+
+            ListNode result = head;
+            while(result != null && result.next != null)
+            {
+                if(result.next.val == result.val)
+                {
+                    result.next = result.next.next;
+                }
+                else
+                {
+                    result = result.next;
+                }
+            }
+
+            return head;
+        }
+            #endregion
+            #region answer
+            public ListNode DeleteDuplicates_(ListNode head)
         {
             HashSet<int> seen = new HashSet<int>() { };
             ListNode temp = new ListNode();
@@ -42,6 +64,7 @@ namespace leetcode.Problems
             return head;
         }
         #endregion
+
         #region 12/27/2021
         //-------------12-27-2021---------------
         public ListNode DeleteDuplicates_R3(ListNode head)
@@ -83,6 +106,7 @@ namespace leetcode.Problems
             return ans;
         }
         #endregion
+
         #region 08/10/2022
         public ListNode DeleteDuplicates_20220810(ListNode head)
         {
@@ -101,6 +125,38 @@ namespace leetcode.Problems
 
             return res.next;
         }
+        #endregion
+
+        #region 03/13/2024
+        public ListNode DeleteDuplicates_2024_03_13(ListNode head)
+        {
+            if (head == null) return null;
+            ListNode result = new ListNode();
+            ListNode temp = result;
+            ListNode prev = null;
+
+            while(head != null)
+            {
+                if(prev == null || head.val != prev.val)
+                {
+                    temp.next = head;
+                    temp = temp.next;
+                }
+
+
+                prev = head;
+                head = head.next;
+            }
+            if(temp.val != prev.val)
+            {
+                temp.next = prev;
+                temp = temp.next;
+            }
+            temp.next = null;
+
+            return result.next;
+        }
+
         #endregion
         //public class ListNode
         //{

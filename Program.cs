@@ -20,6 +20,8 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+            string test1234 = null;
+            string test123 = string.Format("{0}dafsdfasd {1}", test1234,1);
             Console.WriteLine("starting...");
 
             var obj = new _0069() { };

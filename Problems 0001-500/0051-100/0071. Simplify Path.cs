@@ -76,7 +76,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 03/06/2024
-        public string SimplifyPath(string path)
+        public string SimplifyPath_(string path)
         {
             string[] arr = path.Split("/");
             Stack<string> stack = new Stack<string>();

@@ -6,12 +6,13 @@ namespace leetcode.Problems
 {
     class _0081
     {
-        public bool Search(int[] nums, int target)
+        #region Solution
+        public bool Search_Solution1(int[] nums, int target)
         {
             int pivet = 0;
-            for(int i = 1; i < nums.Length; i++)
+            for (int i = 1; i < nums.Length; i++)
             {
-                if(nums[i] < nums[i - 1])
+                if (nums[i] < nums[i - 1])
                 {
                     pivet = i;
                     break;
@@ -27,7 +28,7 @@ namespace leetcode.Problems
                     left = 0;
                     right = pivet - 1;
                 }
-                else if (target >=nums[pivet] && target <= nums[nums.Length - 1])
+                else if (target >= nums[pivet] && target <= nums[nums.Length - 1])
                 {
                     left = pivet;
                     right = nums.Length - 1;
@@ -41,7 +42,7 @@ namespace leetcode.Problems
             {
                 int mid = left + (right - left) / 2;
                 if (target == nums[mid]) return true;
-                else if(target > nums[mid])
+                else if (target > nums[mid])
                 {
                     left = mid + 1;
                 }
@@ -53,6 +54,10 @@ namespace leetcode.Problems
             return false;
 
         }
+
+        #endregion
+
+
 
     }
 }
