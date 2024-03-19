@@ -6,6 +6,33 @@ namespace leetcode.Problems
 {
     class _0066
     {
+        #region LeetCode  Approach 1: Schoolbook Addition with Carry
+        public int[] PlusOne_Approach1(int[] digits)
+        {
+
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                if (digits[i] == 9)
+                {
+                    digits[i] = 0;
+                }
+                else
+                {
+                    digits[i]++;
+
+                    return digits;
+                }
+            }
+
+            //resize
+            digits = new int[digits.Length + 1];
+            digits[0] = 1;
+            return digits;
+        }
+
+
+        #endregion
+
         #region answer
         public int[] PlusOne(int[] digits)
         {
@@ -106,6 +133,42 @@ namespace leetcode.Problems
             
         }
         #endregion
+
+        #region 03/06/2024
+        public int[] PlusOne_2024_03_06(int[] digits)
+        {
+            if (digits.Length == 0) return digits;
+
+            Stack<int> stack = new Stack<int>();
+
+            int incre = 1;
+            int index=digits.Length - 1;
+            while (index >= 0)
+            {
+                int number = digits[index];
+                stack.Push((number + incre) % 10);
+
+                incre = (number + incre) / 10;
+                index--;
+            }
+            if(incre == 1)
+            {
+                stack.Push(1);
+            }
+
+            List<int> list = new List<int>();
+            while (stack.Count != 0)
+            {
+                list.Add(stack.Pop());
+            }
+
+            return list.ToArray();
+
+
+        }
+        #endregion
+
+
 
     }
 }

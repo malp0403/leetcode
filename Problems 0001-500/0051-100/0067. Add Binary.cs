@@ -145,5 +145,39 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 03/06/2024
+        public string AddBinary_2024_03_06(string a, string b)
+        {
+            Stack<int> stack = new Stack<int>();
+            int index1 = a.Length - 1;
+            int index2 = b.Length - 1;
+            int incre = 0;
+
+            while(index1 >=0 || index2 >= 0)
+            {
+                int a1 = index1 >= 0 ? a[index1] - '0' : 0;
+                int b1 = index2 >= 0 ? b[index2] - '0' : 0;
+                stack.Push((a1 + b1 + incre) % 2);
+                incre =(a1+b1+incre) / 2;
+                index1--;
+                index2--;
+            }
+            if(incre == 1)
+            {
+                stack.Push(incre);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while(stack.Count != 0)
+            {
+                sb.Append(stack.Pop());
+            }
+
+            return sb.ToString();
+            
+
+        }
+            #endregion
+
+        }
     }
-}

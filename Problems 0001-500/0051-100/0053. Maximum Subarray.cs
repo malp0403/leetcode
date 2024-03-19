@@ -128,5 +128,29 @@ namespace leetcode.Problems
             return max;
         }
         #endregion
+
+        #region 02/27/2024
+        public int MaxSubArray_2024_02_27(int[] nums)
+        {
+            int max = int.MinValue;
+            int cur = 0;
+            int index = 0;
+            while(index < nums.Length)
+            {
+                cur += nums[index];
+
+                max = Math.Max(cur, max);
+
+                if(cur <= 0)
+                {
+                    cur = 0;
+                }
+
+
+                index++;
+            }
+            return max;
+        }
+            #endregion
+        }
     }
-}

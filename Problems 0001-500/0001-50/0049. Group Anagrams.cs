@@ -221,5 +221,45 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 02/27/2024 Categorize by Count
+        public IList<IList<string>> GroupAnagrams_2024_02_27(string[] strs)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
+
+            foreach (var item in strs)
+            {
+                string key = formKey_2024_02_27(item);
+                if(dic.ContainsKey(key))
+                {
+                    dic[key].Add(item);
+                }
+                else
+                {
+                    dic.Add(key,new List<string>() { item });
+                }
+            }
+
+            IList<IList<string>> answer = new List<IList<string>>();
+            foreach (var item in dic.Keys)
+            {
+                answer.Add(dic[item]);
+            }
+
+            return answer;
+        }
+
+        public string formKey_2024_02_27(string str)
+        {
+            int[] records = Enumerable.Repeat(0, 26).ToArray();
+            foreach (var item in str)
+            {
+                records[item - 'a']++;
+            }
+
+            return string.Join('#', records);
+        }
+
+        #endregion
+
     }
 }

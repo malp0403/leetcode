@@ -7,7 +7,7 @@ namespace leetcode.Problems
 {
     class _0070
     {
-        public int ClimbStairs(int n)
+        public int ClimbStairs_(int n)
         {
             int[] memory = Enumerable.Repeat(0, n + 1).ToArray();
             return climb(0, n, memory);
@@ -37,6 +37,23 @@ namespace leetcode.Problems
             return dp[n];
         }
 
+        #endregion
+
+        #region 03/06/2024
+        public int ClimbStairs_2024_03_06(int n)
+        {
+            if (n == 1) return 1;
+            if (n == 2) return 2;
+            int[] dp = Enumerable.Repeat(0, n+1).ToArray();
+            dp[1] = 1;
+            dp[2] = 2;
+
+            for(int i =3;i <= n; i++)
+            {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
+            return dp[n];
+        }
         #endregion
     }
 }

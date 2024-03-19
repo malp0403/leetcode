@@ -1,7 +1,14 @@
-﻿using System;
+﻿using leetcode.Problems;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-
+#region Test
+//var obj = new _0068() { };
+//var res1 = obj.FullJustify_2024_03_06(new string[] {
+//          "Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"
+//}, 20);
+#endregion
 namespace leetcode.Problems
 {
     class _0068
@@ -87,5 +94,85 @@ namespace leetcode.Problems
             }
             return sb.ToString();
         }
+
+        #region 03/06/2024
+        IList<string> answer_2024_03_06= new List<string>();
+        int maxLength = int.MaxValue;
+        public IList<string> FullJustify_2024_03_06(string[] words, int maxWidth)
+        {
+
+            IList<(int len,List<string> list)> res = new List<(int len,List<string> list)>();
+            IList<string> answer = new List<string>();
+
+            for (int i =0; i < words.Length; i++)
+            {
+                int len = words[i].Length;
+                if(res.Count ==0 || res.Last().len + res.Last().list.Count + len> maxWidth)
+                {
+                    var newItem = (len, new List<string>() { words[i] });
+                    res.Add(newItem);
+                }
+                else
+                {
+                    var updateItem = res.Last();
+                    updateItem.len = updateItem.len + words[i].Length;
+                    updateItem.list.Add(words[i]);
+                    res[res.Count - 1] = updateItem;
+
+                }
+            }
+
+            for(int i =0; i < res.Count; i++) {
+                
+                if(i != res.Count - 1)
+                {
+                    answer.Add(format_2024_03_06(res[i].len, res[i].list, maxWidth));
+                }
+                else
+                {
+                    string temp = string.Join(" ", res[i].list);
+                    temp = temp.Trim() + string.Join("", Enumerable.Repeat(" ", maxWidth - temp.Trim().Length).ToArray());
+                    answer.Add(temp);
+                }
+            }
+
+            return answer;  
+
+
+
+        }
+      
+        public string format_2024_03_06(int totalLen,List<string> list,int maxWidth)
+        {
+            StringBuilder sb = new StringBuilder();
+            if(list.Count == 1)
+            {
+                sb.Append(list.First());
+                sb.Append(string.Join("",Enumerable.Repeat(" ", maxWidth - totalLen).ToArray()));
+            }
+            else
+            {
+                int gap = (maxWidth - totalLen)/ (list.Count-1);
+                int extra = (maxWidth - totalLen) % (list.Count - 1);
+                string spaces = string.Join("", Enumerable.Repeat(" ", gap).ToArray());
+                for(int i=0;i < list.Count; i++)
+                {
+                    sb.Append(list[i]);
+                    if(i != list.Count - 1)
+                    {
+                        sb.Append(spaces);
+                        if (extra > 0)
+                        {
+                            sb.Append(" ");
+                            extra--;
+                        }
+                    }
+ 
+                }
+            }
+            return sb.ToString();
+
+        }
+        #endregion
     }
 }

@@ -74,5 +74,47 @@ namespace leetcode.Problems
             return res;
         }
         #endregion
+
+        #region 03/06/2024
+        public string SimplifyPath_(string path)
+        {
+            string[] arr = path.Split("/");
+            Stack<string> stack = new Stack<string>();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                string s = arr[i];
+                if(s== "." || string.IsNullOrEmpty(s))
+                {
+                    continue;
+                }else if(s=="..")
+                {
+                    if(stack.Count != 0)
+                    {
+                        stack.Pop();
+                    }
+                }
+                else
+                {
+                    stack.Push(s);
+                }
+            }
+            List<string> list = new List<string>();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in stack)
+            {
+                list.Add(item);
+            }
+            for(int i = list.Count - 1; i >= 0; i--)
+            {
+                sb.Append('/');
+                sb.Append(list[i]);
+            }
+
+            return sb.ToString().Length > 0 ? sb.ToString() : "/";
+
+        }
+        #endregion
     }
 }

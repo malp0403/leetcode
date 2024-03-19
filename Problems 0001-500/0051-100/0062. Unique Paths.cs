@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 
 namespace leetcode.Problems
@@ -83,6 +84,32 @@ namespace leetcode.Problems
             
 
         }
+        #endregion
+
+        #region 02/29/2024 DP; greedy will give TLE
+
+        public int UniquePaths_2024_02_29(int m, int n)
+        {
+            int[][] matrix = new int[m][];
+            for(int i =0; i < m; i++)
+            {
+                matrix[i] = Enumerable.Repeat(1,n).ToArray();
+            }
+
+            for(int i =1; i < m; i++)
+            {
+                for(int j =1; j < n; j++)
+                {
+                    matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
+                }
+            }
+
+            return matrix[m - 1][n - 1];
+
+         
+        }
+
+        
         #endregion
     }
 }
