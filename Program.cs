@@ -24,11 +24,9 @@ namespace leetcode
             string test123 = string.Format("{0}dafsdfasd {1}", test1234,1);
             Console.WriteLine("starting...");
 
-            var obj = new _0069() { };
+            var obj = new _0093() { };
 
-            //var res1 = obj.MySqrt(4);
-
-           var  res1 = obj.MySqrt(2147395599);
+            var res1 = obj.RestoreIpAddresses_2024_03_18("0000");
             string s1 = "example  of  text";
             //var res = obj.Divide_2024_02_01_approach2(10, 3);
 

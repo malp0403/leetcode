@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Transactions;
 
 #region examples
 /*
@@ -238,6 +239,75 @@ namespace leetcode.Problems
 
             return pre;
         }
+        #endregion
+
+        #region 03/18/2024
+        int count_2024_03_18 = 0;
+        Dictionary<int, int> dic_2024_03_18 = new Dictionary<int, int>();
+        public int NumDecodings_2024_03_18(string s)
+        {
+            HashSet<string> set = new HashSet<string>();
+            for(int i =1; i <= 26; i++)
+            {
+                set.Add(i.ToString());
+            }
+
+            return helper_2024_03_18(0, s, set);
+
+        }
+
+        public int helper_2024_03_18(int index, string s, HashSet<string> set)
+        {
+
+            if (dic_2024_03_18.ContainsKey(index)) return dic_2024_03_18[index];
+
+            if(index == s.Length)
+            {
+                return 1;
+            }
+           
+            string firstLetter = s.Substring(index, 1);
+
+            if (firstLetter == "0") return 0;
+            if (index == s.Length - 1) return 1;
+
+            int ans = helper_2024_03_18(index + 1, s, set);
+            if(index<s.Length-1 && set.Contains(s.Substring(index, 2))){
+                ans += helper_2024_03_18(index + 2, s, set);
+            }
+
+            dic_2024_03_18.Add(index, ans);
+
+            return ans;
+        }
+
+        #endregion
+
+        #region 03/18/2024 constant space
+        public int NumDecodings_2024_03_18_constant(string s)
+        {
+            if (s.Length == 0 || s[0]=='0') return 0;
+            int n = s.Length;
+            int twoBack = 1;
+            int oneBack = 1;
+            for(int i=1; i< n; i++)
+            {
+                int cur = 0;
+                if (s[i] != '0')
+                {
+                    cur = oneBack;
+                }
+                int twoDigit = int.Parse( s.Substring(i - 1, 2));
+                if(twoDigit>=10&& twoDigit<=26)
+                {
+                    cur += twoBack;
+                }
+                twoBack = oneBack;
+                oneBack = cur;
+            }
+            return oneBack;
+        }
+
         #endregion
     }
 }

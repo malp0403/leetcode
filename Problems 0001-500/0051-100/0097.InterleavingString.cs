@@ -88,5 +88,84 @@ namespace leetcode.Problems
 
 
         #endregion
+
+        #region 03/18/2024
+        Dictionary<(int i, int j, int k), bool> dic;
+        public bool IsInterleave_DP(string s1, string s2, string s3)
+        {
+            if (s3.Length != s1.Length + s2.Length) return false;
+
+            dic = new Dictionary<(int i, int j, int k), bool>();
+            return helper_2024_03_18(0, 0, 0, s1, s2, s3);
+        }
+        public bool helper_2024_03_18(int index1, int index2, int index3, string s1, string s2, string s3)
+        {
+            if (index1 == s1.Length && index2 == s2.Length&& index3 == s3.Length) { return true; }
+
+            if (dic.ContainsKey((index1, index2, index3))) return dic[(index1, index2, index3)];
+            bool isValid = false;
+
+            if (index1 == s1.Length)
+            {
+
+                isValid=  s2.Substring(index2) == s3.Substring(index3);
+            }else if(index2 >= s2.Length)
+            {
+                isValid =  s1.Substring(index1) == s3.Substring(index3);
+            }
+            else
+            {
+                
+                if (s1[index1] == s3[index3])
+                {
+                    isValid = isValid || helper_2024_03_18(index1 + 1, index2, index3+1, s1, s2, s3);
+                }
+                if (s2[index2] == s3[index3])
+                {
+                    isValid = isValid || helper_2024_03_18(index1, index2+1, index3+1, s1, s2, s3);
+                }
+            }
+
+            dic.Add((index1, index2, index3), isValid);
+            return isValid;
+           
+        }
+        #endregion
+
+        #region 03/18/2024 DP with 2d
+        public bool IsInterleave_2024_03_18(string s1, string s2, string s3)
+        {
+            if (s3.Length != s1.Length + s2.Length) return false;
+            bool[][] dp = new bool[s1.Length+1][];
+            for(int i =0; i < dp.Length; i++)
+            {
+                dp[i] = Enumerable.Repeat(false, s2.Length+1).ToArray();
+            }
+
+            for(int i =0; i <= s1.Length ; i++)
+            {
+                for(int j =0; j <= s2.Length ; j++)
+                {
+                    if(i ==0&& j == 0)
+                    {
+                        dp[i][j] = true;
+                    }else if (i == 0)
+                    {
+                        dp[i][j] = dp[i][j - 1] && s2[j-1] == s2[i + j - 1];
+                    }else if (j == 0)
+                    {
+                        dp[i][j] = dp[i - 1][j] && s1[i - 1] == s2[i + j - 1];
+                    }
+                    else
+                    {
+                        dp[i][j] = dp[i][j - 1] && s2[j - 1] == s2[i + j - 1] || dp[i - 1][j] && s1[i - 1] == s2[i + j - 1];
+                    }
+                }
+            }
+
+            return dp[s1.Length][s2.Length];
+        }
+
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace leetcode.Problems
 {
     class _0096
     {
-        #region Solution
+        #region Approach 1: Dynamic Programming
         int count = 0;
         public int NumTrees(int n)
         {
@@ -102,6 +102,43 @@ namespace leetcode.Problems
             }
             return dp[n];
         }
+
+        #region 03/18/2024
+        public int NumTrees_(int n)
+        {
+            Dictionary<(int start, int end), List<TreeNode>> dic = new Dictionary<(int start, int end), List<TreeNode>>();
+            return helper_2024_03_18(1, n,dic).Count;
+        }
+
+        public List<TreeNode> helper_2024_03_18(int left, int right, Dictionary<(int start, int end), List<TreeNode>> dic)
+        {
+            if (left > right) return new List<TreeNode>() { null };
+            if(dic.ContainsKey((left,right))) return dic[(left,right)];
+
+            List<TreeNode> list = new List<TreeNode>();
+            for (int i = left; i <= right; i++)
+            {
+                List<TreeNode> l = helper_2024_03_18(left, i - 1,dic);
+                List<TreeNode> r = helper_2024_03_18(i + 1, right, dic);
+
+                foreach (var item in l)
+                {
+                    foreach (var item2 in r)
+                    {
+                        TreeNode temp = new TreeNode(i);
+                        temp.left = item;
+                        temp.right = item2;
+                        list.Add(temp);
+                    }
+                }
+            }
+
+            dic.Add((left, right), list);
+
+            return list;
+        }
+
+        #endregion
 
     }
 }

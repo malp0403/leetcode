@@ -39,5 +39,20 @@ namespace leetcode.Problems
                 && isValid_20220812(node.right, node.val, max);
         }
         #endregion
+
+        #region 03/18/2024
+        public bool IsValidBST_2024_03_18(TreeNode root)
+        {
+            return helper_2024_03_18(root, null, null);
+        }
+
+        public bool helper_2024_03_18(TreeNode node, int? min, int? max)
+        {
+            if (node == null) return true;
+            if ((min != null && node.val <= min) || (max != null && node.val >= max)) return false;
+
+            return helper_2024_03_18(node.left, min, node.val) && helper_2024_03_18(node.right, node.val, max);
+        }
+        #endregion
     }
 }
