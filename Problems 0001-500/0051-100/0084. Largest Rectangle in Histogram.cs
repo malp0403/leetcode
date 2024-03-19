@@ -40,6 +40,7 @@ namespace leetcode.Problems
             return length * heights[index];
         }
         #endregion
+
         #region divide&conquer
         public int LargestRectangleArea_divide(int[] heights)
         {
@@ -59,6 +60,68 @@ namespace leetcode.Problems
             return Math.Max(heights[minIndex] * (end - start + 1),
                 Math.Max(helper_divide(heights, start, minIndex - 1),
                 helper_divide(heights, minIndex + 1, end)));
+        }
+        #endregion
+
+        #region LeetCode Approach 5: Using Stack
+        public int LargestRectangleArea_approach5(int[] heights)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(-1);
+            int max = int.MinValue;
+            for (int i = 0; i < heights.Length; i++)
+            {
+
+                while (stack.Peek() != -1 && heights[i] <= heights[stack.Peek()])
+                {
+                    int start = stack.Pop();
+                    int area = heights[start] * (i - stack.Peek() - 1);
+                    max = Math.Max(max, area);
+                }
+                stack.Push(i);
+
+
+            }
+
+            while (stack.Peek() != -1)
+            {
+                int start = stack.Pop();
+                int area = heights[start] * (heights.Length - stack.Peek() - 1);
+                max = Math.Max(max, area);
+            }
+
+            return max;
+        }
+        #endregion
+
+        #region 03/17/2024 Stack
+        public int LargestRectangleArea_2024_03_17(int[] heights)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(-1);
+            int max = int.MinValue;
+            for (int i = 0; i < heights.Length; i++)
+            {
+
+                while (stack.Peek() != -1 && heights[i] <= heights[stack.Peek()])
+                {
+                    int start = stack.Pop();
+                    int area = heights[start] * (i - stack.Peek() - 1);
+                    max = Math.Max(max, area);
+                }
+                stack.Push(i);
+
+
+            }
+
+            while (stack.Peek() != -1)
+            {
+                int start = stack.Pop();
+                int area = heights[start] * (heights.Length - stack.Peek() - 1);
+                max = Math.Max(max, area);
+            }
+
+            return max;
         }
         #endregion
     }

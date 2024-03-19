@@ -78,5 +78,60 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
+        #region 03/09/2024
+        public ListNode DeleteDuplicates_2024_03_09(ListNode head)
+        {
+            ListNode answer = new ListNode();
+            ListNode prev = null;
+
+            bool firstEncouter = false;
+            bool AgainEncouter = false;
+            
+
+            while(head != null)
+            {
+                if(prev == null)
+                {
+                    firstEncouter = true;
+                }
+                else
+                {
+                    if (head.val != prev.val)
+                    {
+                        if(firstEncouter)
+                        {
+                            if (!AgainEncouter)
+                            {
+                                answer.next = head;
+                                
+                            }
+       
+                            firstEncouter = true;
+                            AgainEncouter = false;
+                        }
+                    }
+                    else
+                    {
+                        AgainEncouter = true;
+                    }
+                }
+
+                prev = head;
+                head = head.next;
+            }
+
+            if (!AgainEncouter)
+            {
+                answer.next = prev;
+                answer.next.next = null;
+            }
+            else
+            {
+                answer.next = null;
+            }
+            return answer.next;
+        }
+        #endregion
     }
 }

@@ -7,6 +7,103 @@ namespace leetcode.Problems
 {
     class _0073
     {
+        #region LeetCode Approach 1: Additional Memory Approach
+        public void SetZeroes_Solution1(int[][] matrix)
+        {
+            HashSet<int> rows = new HashSet<int>();
+            HashSet<int> cols = new HashSet<int>();
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (matrix[i][j] == 0)
+                    {
+                        rows.Add(i);
+                        cols.Add(j);
+                    }
+                }
+            }
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (rows.Contains(i) || cols.Contains(j))
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+
+        }
+
+        #endregion
+
+        #region LeetCode Approach 2: O(1) Space, Efficient Solution; Using frist row/col as flag
+
+        public void SetZeroes_Solution2(int[][] matrix)
+        {
+            HashSet<int> rows = new HashSet<int>();
+            HashSet<int> cols = new HashSet<int>();
+            bool isCol = false;
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                if (matrix[i][0] == 0)
+                {
+                    isCol = true;
+                }
+                for (int j = 1; j < matrix[i].Length; j++)
+                {
+                    if (matrix[i][j] == 0)
+                    {
+                        matrix[i][0] = 0;
+                        matrix[0][j] = 0;
+                    }
+                }
+            }
+
+            for (int i = 1; i < matrix.Length; i++)
+            {
+                for (int j = 1; j < matrix[i].Length; j++)
+                {
+                    if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+
+            if (matrix[0][0] == 0)
+            {
+                for (int j = 0; j < matrix[0].Length; j++)
+                {
+                    matrix[0][j] = 0;
+                }
+            }
+            if (isCol)
+            {
+                for (int i = 0; i < matrix.Length; i++)
+                {
+                    matrix[i][0] = 0;
+                }
+            }
+
+
+
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (rows.Contains(i) || cols.Contains(j))
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+
+        }
+
+        #endregion
+
         #region answer
         public void SetZeroes_(int[][] matrix)
         {
@@ -141,6 +238,37 @@ namespace leetcode.Problems
         #endregion
 
         #region 08/07/2023 constant space
+
+        #endregion
+
+        #region 03/09/2024
+        public void SetZeroes_2024_03_09(int[][] matrix)
+        {
+            HashSet<int> rows = new HashSet<int>();
+            HashSet<int> cols = new HashSet<int>();
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (matrix[i][j] == 0)
+                    {
+                        rows.Add(i);
+                        cols.Add(j);
+                    }
+                }
+            }
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                for (int j = 0; j < matrix[i].Length; j++)
+                {
+                    if (rows.Contains(i) || cols.Contains(j))
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+
+        }
 
         #endregion
     }

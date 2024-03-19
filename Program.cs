@@ -21,13 +21,18 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0047() { };
-            var res1 = obj.PermuteUnique_2024_02_24(new int[] { 1,1,2});
+            var obj = new _0090() { };
+
+            obj.SubsetsWithDup(new int[] {
+                5,5,5
+            });
+
+           
 
             //var res = obj.Divide_2024_02_01_approach2(10, 3);
 
 
-            Console.Write(res1);
+            Console.Write("123");
         }
 
 

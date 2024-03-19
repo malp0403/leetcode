@@ -96,5 +96,57 @@ namespace leetcode.Problems
         //}
         #endregion
 
+        #region 03/09/2024
+        public string MinWindow_2024_03_09(string s, string t)
+        {
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+            foreach (var item in t)
+            {
+                if (dic.ContainsKey(item)) dic[item]++;
+                else dic.Add(item, 1);
+            }
+
+            int start = 0;
+            int end = 0;
+            string result= null;
+            while(end < s.Length)
+            {
+                if (dic.ContainsKey(s[end])){
+                    dic[s[end]]--;
+
+                    if (isValid(dic))
+                    {
+                        while( start <= end && (!dic.ContainsKey(s[start]) || dic[s[start]] < 0))
+                        {
+                            if (dic.ContainsKey(s[start])) dic[s[start]]++;
+
+                            start++;
+                        }
+                        string temp = s.Substring(start, end - start + 1);
+                        if (result == null || result.Length > temp.Length) {
+                            result = temp;
+                        }
+                    }
+                    
+                }
+
+                end++;
+            }
+
+            return result == null ? "" : result;
+
+
+        }
+
+        public bool isValid(Dictionary<char, int> dic)
+        {
+            foreach (var item in dic.Keys)
+            {
+                if (dic[item] > 0) return false;
+            }
+            return true;
+        }
+        #endregion
+
     }
 }

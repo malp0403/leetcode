@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 
@@ -137,6 +138,57 @@ namespace leetcode.Problems
                 visited[row][col] = false;
                 sb.Remove(sb.Length - 1, 1);
             }
+        }
+        #endregion
+
+        #region 03/09/2024 BackTracking
+        List<List<int>> direction_2024_03_09 = new List<List<int>>()
+        {
+            new List<int>(){ 1,0},
+            new List<int>(){ -1,0},
+            new List<int>(){ 0,1},
+            new List<int>(){ 0,-1},
+        };
+        public bool Exist_2024_03_09(char[][] board, string word)
+        {
+            bool isFound = false;
+            for(int i =0; i < board.Length; i++)
+            {
+                for(int j=0; j < board[i].Length; j++)
+                {
+                    if (word[0] == board[i][j])
+                    {
+                        bool[][] visited = new bool[board.Length][];
+                        for(int z=0; z < board.Length; z++)
+                        {
+                            visited[z] = Enumerable.Repeat(false, board[0].Length).ToArray();
+                        }
+                        visited[i][j] = true;
+                        isFound = isFound || helper_2024_03_09(i, j, board, word, 1, visited);
+                    }
+                }
+            }
+            return isFound;
+        }
+
+        public bool helper_2024_03_09(int x,int y, char[][] board,string word,int index, bool[][] visited)
+        {
+            if (index == word.Length) return true;
+
+            bool isFound = false;
+            foreach (var item in directions)
+            {
+                int r = x + item[0];
+                int c = y + item[1];
+                if (r < 0 || r >= board.Length || c < 0 || c >= board[0].Length || visited[r][c]) continue;
+                if (board[r][c] == word[index])
+                {
+                    visited[r][c] = true;
+                    isFound = isFound || helper_2024_03_09(r, c, board, word, index + 1, visited);
+                    visited[r][c] = false;
+                }
+            }
+            return isFound;
         }
         #endregion
 

@@ -7,6 +7,32 @@ namespace leetcode.Problems
 {
     class _0078
     {
+        #region LeetCode Approach 1: Cascading
+        public IList<IList<int>> Subsets_Approach1(int[] nums)
+        {
+            IList<IList<int>> output = new List<IList<int>>();
+            output.Add(new List<int>());
+            foreach (var item1 in nums)
+            {
+                IList<IList<int>> newSet = new List<IList<int>>() { };
+
+                foreach (var item2 in output)
+                {
+                    List<int> temp = new List<int>(item2) {item1 };
+                    newSet.Add(temp);
+                }
+
+                foreach (var item3 in newSet)
+                {
+                    output.Add(item3);
+                }
+
+            }
+
+            return output;
+        }
+        #endregion
+
         #region answer
         IList<IList<int>> ans = new List<IList<int>>() { };
         //*************** back tracking********************
@@ -57,6 +83,7 @@ namespace leetcode.Problems
             return ans;
         }
         #endregion
+
         #region 08/10/2022 BitMask
         public IList<IList<int>> Subsets_20220810(int[] nums)
         {
@@ -79,5 +106,33 @@ namespace leetcode.Problems
             return res;
         }
         #endregion
+
+        #region 03/09/2024 Approach 1: Cascading
+        public IList<IList<int>> Subsets_2024_03_09(int[] nums)
+        {
+            IList<IList<int>> output = new List<IList<int>>();
+            output.Add(new List<int>());
+            foreach (var item1 in nums)
+            {
+                IList<IList<int>> newSet = new List<IList<int>>() {};
+
+                foreach (var item2 in output)
+                {
+                    List<int> temp = new List<int>(item2);
+                    temp.Add(item1);
+                    newSet.Add(temp);
+                }
+
+                foreach (var item3 in newSet)
+                {
+                    output.Add(item3);
+                }
+
+            }
+
+            return output;
+        }
+        #endregion
+
     }
 }
