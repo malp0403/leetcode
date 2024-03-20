@@ -7,6 +7,14 @@ namespace leetcode.Problems
 {
     class _0103
     {
+        #region LeetCode Approach 1: BFS (Breadth-First Search)
+
+        #endregion
+
+        #region LeetCode Approach 2: DFS (Depth-First Search)
+
+        #endregion
+
         #region answer
         public IList<IList<int>> ZigzagLevelOrder(TreeNode root)
         {
@@ -86,6 +94,47 @@ namespace leetcode.Problems
                 reverse = !reverse;
             }
             return result;
+        }
+        #endregion
+
+        #region 03/18/2024
+        public IList<IList<int>> ZigzagLevelOrder_2024_03_18(TreeNode root)
+        {
+            IList<IList<int>> answer = new List<IList<int>>() { };
+
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            if (root == null) return answer;
+            bool isBackwards = false;
+            queue.Enqueue(root);
+
+            while(queue.Count != 0) { 
+                int count= queue.Count;
+                List<int> list = new List<int>();
+
+                while (count > 0)
+                {
+                    TreeNode node = queue.Dequeue();
+                    list.Add(node.val);
+                    if(node.left != null)
+                    {
+                        queue.Enqueue(node.left);
+                    }
+                    if(node.right != null)
+                    {
+                        queue.Enqueue(node.right);
+                    }
+
+
+                    count--;
+                }
+                if (isBackwards)
+                {
+                    list.Reverse();
+                }
+                answer.Add(list);
+                isBackwards = !isBackwards;
+            }
+            return answer;
         }
         #endregion
     }

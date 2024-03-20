@@ -16,6 +16,20 @@ namespace leetcode.Problems
 {
     class _0100
     {
+        #region LeetCode Approach 1: Recursion
+        public bool IsSameTree_Approach1(TreeNode p, TreeNode q)
+        {
+            if (p == null && q == null) return true;
+            if (p == null || q == null || q.val != p.val) return false;
+
+            return IsSameTree_Approach1(p.right, q.right) && IsSameTree_Approach1(p.left, q.left);
+        }
+        #endregion
+
+        #region LeetCode Approach 2: Iteration
+
+        #endregion
+
         #region answer
         public bool IsSameTree(TreeNode p, TreeNode q)
         {
@@ -95,6 +109,16 @@ namespace leetcode.Problems
             if ((p == null && q != null) || (p != null && q == null)) return false;
             if (p.val != q.val) return false;
             return IsSameTree_20220812(p.left, q.left) && IsSameTree_20220812(p.right, q.right);
+        }
+        #endregion
+
+        #region 03/18/2024
+        public bool IsSameTree_2024_03_18(TreeNode p, TreeNode q)
+        {
+            if (p == null && q == null) return true;
+            if (p == null || q == null || q.val != p.val) return false;
+
+            return IsSameTree(p.right, q.right) && IsSameTree(p.left, q.left);
         }
         #endregion
     }
