@@ -54,5 +54,21 @@ namespace leetcode.Problems
             return node;
         }
         #endregion
+
+        #region 03/20/2024
+        public TreeNode SortedArrayToBST_2024_03_20(int[] nums)
+        {
+            return SortedArrayToBST_2024_03_20(nums,0, nums.Length - 1);
+        }
+        public TreeNode SortedArrayToBST_2024_03_20(int[] nums,int left,int right)
+        {
+            if(left > right) return null;
+            int mid = left + (right - left) / 2;
+            TreeNode head = new TreeNode(nums[mid]);
+            head.left = SortedArrayToBST_2024_03_20(nums, left, mid - 1);
+            head.right = SortedArrayToBST_2024_03_20(nums, mid + 1, right);
+            return head;
+        }
+        #endregion
     }
 }

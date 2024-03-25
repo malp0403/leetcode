@@ -6,7 +6,7 @@ namespace leetcode.Problems
 {
     class _0110
     {
-        #region Recursive
+        #region LeetCode Approach 1: Top-down recursion
         //*****************Recursive***********************************************
         public bool IsBalanced_v1(TreeNode root)
         {
@@ -19,7 +19,7 @@ namespace leetcode.Problems
             return 1 + Math.Max(height(node.left), height(node.right));
         }
         #endregion
-        #region BottomUP
+        #region LeetCode Approach 2: Bottom-up recursion
         //*****************Bottom-Up***********************************************
 
         public bool IsBalanced_v2(TreeNode root)
@@ -104,7 +104,43 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 03/20/2024
+        Dictionary<TreeNode, int> dic_2024_03_20;
+        public bool IsBalanced_2024_03_20(TreeNode root)
+        {
+            dic_2024_03_20 = new Dictionary<TreeNode, int>();
+            if (root == null) return true;
+            depth(root);
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            while(queue.Count > 0)
+            {
+                TreeNode node = queue.Dequeue();
+                if(node != null)
+                {
+                    int left = node.left == null ? 0: dic_2024_03_20[node.left];
+                    int right = node.right == null ? 0 : dic_2024_03_20[node.right];
+                    if (Math.Abs(left - right) > 1) return false;
 
+                    queue.Enqueue(node.left);
+                    queue.Enqueue(node.right);
+                }
+
+            }
+
+            return true;
+
+
+        }
+        public int depth(TreeNode node)
+        {
+            if(node == null) return 0;
+            if(dic_2024_03_20.ContainsKey(node)) return dic_2024_03_20[node];
+            int val = Math.Max(depth(node.left), depth(node.right)) + 1;
+            dic_2024_03_20.Add(node, val);
+            return val;
+        }
+        #endregion
     }
 
 }

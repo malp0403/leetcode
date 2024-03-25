@@ -1,5 +1,7 @@
 ﻿using leetcode.Problems;
+using leetcode.Problems._0101_150;
 using leetcode.Problems_0001_500._0001_50;
+using leetcode.Problems_0001_500._0101_150;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
 using System;
@@ -21,11 +23,9 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0090() { };
+            var obj = new _0126() { };
 
-            obj.SubsetsWithDup(new int[] {
-                5,5,5
-            });
+            obj.FindLadders("hit","cog",new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
 
            
 

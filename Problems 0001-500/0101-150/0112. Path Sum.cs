@@ -6,6 +6,14 @@ namespace leetcode.Problems
 {
     class _0112
     {
+        #region LeetCode Approach 1: Recursion
+
+        #endregion
+
+        #region LeetCode Approach 2: Iterations
+
+        #endregion
+
         #region answer
         public bool HasPathSum(TreeNode root, int targetSum)
         {
@@ -77,7 +85,25 @@ namespace leetcode.Problems
 
         }
 
-        
+
+        #endregion
+
+        #region MyRegion
+        public bool HasPathSum_2024_03_22(TreeNode root, int targetSum)
+        {
+            return helper_2024_03_22(root, targetSum);
+        }
+
+        public bool helper_2024_03_22(TreeNode node, int targetSum)
+        {
+            if (node == null) return false;
+
+            if(node.left == null && node.right == null && node.val == targetSum)
+            {
+                return true;
+            }
+            return helper_2024_03_22(node.left, targetSum - node.val) || helper_2024_03_22(node.right, targetSum - node.val);
+        }
         #endregion
     }
 }
