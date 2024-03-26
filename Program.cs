@@ -23,9 +23,8 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0126() { };
-
-            obj.FindLadders("hit","cog",new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
+            var obj = new _0131() { };
+            obj.Partition("aab");
 
            
 

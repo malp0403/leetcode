@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Text;
 
 namespace leetcode.Problems
@@ -124,6 +125,7 @@ namespace leetcode.Problems
             return sum;
         }
         #endregion 01/17/2022 Morris
+        #region 01/17/2022
         //01-17-2022------------------------------
         public int SumNumbers_R2_Morris(TreeNode root)
         {
@@ -149,8 +151,8 @@ namespace leetcode.Problems
                         root = root.left;
                     }
                     else
-                    {   
-                        if(pre.left == null)
+                    {
+                        if (pre.left == null)
                         {
                             ans += currSum;
                         }
@@ -175,6 +177,8 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
+
         #region 08/17/2022
         int sum_20220817 = 0;
         public int SumNumbers_20220817(TreeNode root)
@@ -246,6 +250,38 @@ namespace leetcode.Problems
 
         }
 
+        #endregion
+
+        #region 03/25/2024
+        public int SumNumbers_03_25_2024(TreeNode root)
+        {
+            Queue<(TreeNode node, int cur)> q = new Queue<(TreeNode node, int cur)>();
+
+            if (root == null) return 0;
+            q.Enqueue((root, 0));
+            int answer = 0;
+            while (q.Count > 0)
+            {
+                var element = q.Dequeue();
+                int val = element.cur * 10 + element.node.val;
+
+                if(element.node.left == null && element.node.right == null)
+                {
+                    answer += val;
+                }
+                else
+                {
+                    if(element.node.left != null) { 
+                        q.Enqueue((element.node.left,val));
+                    }
+                    if (element.node.right != null)
+                    {
+                        q.Enqueue((element.node.right, val));
+                    }
+                }
+            }
+            return answer;
+        }
         #endregion
     }
 }

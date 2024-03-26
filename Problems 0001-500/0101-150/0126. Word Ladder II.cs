@@ -69,56 +69,51 @@ namespace leetcode.Problems_0001_500._0101_150
 
         public void helper(string cur, string EWord, HashSet<string> visited, List<string> list)
         {
-
+            if(answer.Count >0 && list.Count >= answer[0].Count)
+            {
+                return;
+            }
             list.Add(cur);
+            visited.Add(cur);
+
             if (cur == EWord)
             {
-
-            }
-            else
-            {
-
-            }
-
-            List<string> neighbors = dic[cur];
-
-
-            foreach (var item in neighbors)
-            {
-                if(visited.Contains(item)) continue;
-
-                visited.Add(item);
-                list.Add(item);
-
-                if(item == EWord)
+                if (answer.Count >0)
                 {
-                    
-                    if(list.Count < maxLen)
+                    if (answer[0].Count> list.Count)
                     {
-                      
-                            answer = new List<IList<string>>
-                            {
-                                new List<string>(list)
-                            };
-                       
-                        maxLen = list.Count;
-                    }
-                    else
+                        answer = new List<IList<string>>() { new List<string>(list) };
+
+
+                    }else if(answer[0].Count == list.Count)
                     {
                         answer.Add(new List<string>(list));
 
                     }
+
                 }
                 else
                 {
+                    answer = new List<IList<string>>() { new List<string>(list) };
+
+                }
+            }
+            else
+            {
+                List<string> neighbors = dic[cur];
+
+
+                foreach (var item in neighbors)
+                {
+                    if (visited.Contains(item)) continue;
+
                     helper(item, EWord, visited, list);
                 }
-
-                list.RemoveAt(list.Count-1);
-                visited.Remove(item);
-
             }
 
+
+
+            visited.Remove(cur);
             list.RemoveAt(list.Count - 1);
         }
         #endregion
