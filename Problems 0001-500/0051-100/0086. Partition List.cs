@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0086
     {
-        public ListNode Partition(ListNode head, int x)
+        #region Solution
+        public ListNode Partition_s(ListNode head, int x)
         {
             ListNode answer = new ListNode(101);
             ListNode cur = answer;
@@ -32,5 +33,37 @@ namespace leetcode.Problems
             return answer.next;
 
         }
+        #endregion
+
+        #region 03/17/2024
+        public ListNode Partition(ListNode head, int x)
+        {
+            ListNode first = new ListNode(0);
+            ListNode second = new ListNode(0);
+            ListNode first_temp = new ListNode(0);
+            ListNode second_temp = new ListNode(0);
+
+            while (head != null)
+            {
+                if (head.val <x)
+                {
+                    first_temp.next = head;
+                    first_temp = first_temp.next;
+                }
+                else
+                {
+                    second_temp.next = head;
+                    second_temp = second_temp.next;
+                }
+                head = head.next;
+            }
+            second_temp.next = null;
+
+            first_temp.next = second.next;
+
+            return first.next;
+        }
+        #endregion
+
     }
 }

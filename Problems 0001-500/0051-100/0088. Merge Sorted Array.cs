@@ -219,5 +219,35 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 03/17/2024
+        public void Merge_2024_03_17(int[] nums1, int m, int[] nums2, int n)
+        {
+            int index = nums1.Length - 1;
+            int l1 = m - 1;
+            int l2 = n - 1;
+            while (l1 >= 0 || l2 >= 0)
+            {
+                if(l1 < 0)
+                {
+                    nums1[index--] = nums2[l2--];
+                }else if(l2 < 0)
+                {
+                    nums1[index--] = nums1[l1--];
+                }
+                else
+                {
+                    if (nums1[l1] > nums2[l2])
+                    {
+                        nums1[index--] = nums1[l1--];
+                    }
+                    else
+                    {
+                        nums1[index--] = nums2[l2--];
+                    }
+                }
+            }
+        }
+            #endregion
+
+        }
     }
-}

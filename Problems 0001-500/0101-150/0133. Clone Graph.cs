@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace leetcode.Problems
@@ -83,6 +84,46 @@ namespace leetcode.Problems
                 }
             }
             return dic[node];
+        }
+        #endregion
+
+        #region 03/25/2024
+        public Node CloneGraph_2024_03_25(Node node)
+        {
+            if (node == null)
+            {
+                return null;
+            }
+            Dictionary<int, Node> dic = new Dictionary<int, Node>();
+            Queue<Node> que = new Queue<Node>();
+
+            que.Enqueue(node);
+
+            Node answer = new Node(node.val);
+            dic.Add(node.val, answer);
+
+            HashSet<int> visited = new HashSet<int>();
+
+            while (que.Count > 0)
+            {
+                Node n = que.Dequeue();
+                if (visited.Contains(n.val)) continue;
+
+                visited.Add(n.val);
+                foreach (var item in n.neighbors)
+                {
+                    que.Enqueue(item);
+                    if (!dic.ContainsKey(item.val))
+                    {
+                        dic.Add(item.val, new Node(item.val));
+                    }
+                    dic[n.val].neighbors.Add(dic[item.val]);
+                    
+                }
+            }
+
+            return answer;
+            
         }
         #endregion
         public class Node

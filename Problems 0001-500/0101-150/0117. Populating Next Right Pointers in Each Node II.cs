@@ -32,6 +32,7 @@ namespace leetcode.Problems
             return root;
         }
         #endregion
+
         #region 08/16/2022
         public Node Connect_20220816(Node root)
         {
@@ -110,6 +111,7 @@ namespace leetcode.Problems
             return node;
         }
         #endregion
+
         #region 08/17/2022
         public Node Connect_20220817(Node root)
         {
@@ -165,6 +167,42 @@ namespace leetcode.Problems
                 node = node.next;
             }
             return node ;
+        }
+        #endregion
+
+        #region 03/24/2024
+        public MyNode Connect_2024_03_24(MyNode root)
+        {
+            if (root == null) return null;
+            MyNode ans = root;
+
+            Queue<MyNode> q = new Queue<MyNode>();
+            q.Enqueue(root);
+            while (q.Count > 0)
+            {
+                int c = q.Count;
+                while (c > 0)
+                {
+                    MyNode node = q.Dequeue();
+
+                    node.next = c != 1 ? q.Peek() : null;
+                    if (node.left != null)
+                    {
+                        q.Enqueue(node.left);
+
+                    }
+                    if (node.right != null)
+                    {
+                        q.Enqueue(node.right);
+
+                    }
+                    c--;
+                }
+            }
+
+            return ans;
+
+
         }
         #endregion
         public class Node

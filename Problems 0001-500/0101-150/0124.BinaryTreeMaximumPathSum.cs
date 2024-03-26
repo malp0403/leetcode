@@ -30,6 +30,7 @@ namespace leetcode.Problems._0101_150
 
         }
         #endregion
+
         #region Solution2
         public int helper_v2(TreeNode node)
         {
@@ -43,5 +44,34 @@ namespace leetcode.Problems._0101_150
         }
         #endregion
 
+        #region 03/24/2024
+        Dictionary<TreeNode,int> dic = new System.Collections.Generic.Dictionary<TreeNode, int> ();
+        int max_2024_03_24= int.MinValue;
+        public int MaxPathSum_2024_03_24(TreeNode root)
+        {
+            if (root == null) return 0;
+            dps(root);
+
+            return max_2024_03_24;
+
+        }
+
+        public int dps(TreeNode node)
+        {
+            if (node == null) return 0;
+
+            if (dic.ContainsKey(node)) return dic[node];
+            int right = dps(node.right);
+            int left = dps(node.left);
+
+            max_2024_03_24 = Math.Max(max_2024_03_24, right + left + node.val) ;
+
+            int res = Math.Max(Math.Max(left, right),0) + node.val;
+            max_2024_03_24 = Math.Max(res,max_2024_03_24);
+            dic.Add(node, res);
+            return dic[node];
+
+        }
+        #endregion
     }
 }

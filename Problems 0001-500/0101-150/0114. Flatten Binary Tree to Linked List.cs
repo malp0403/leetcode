@@ -7,6 +7,38 @@ namespace leetcode.Problems
 {
     class _0114
     {
+        #region LeetCode Approach 3: O(1) Iterative Solution
+        public void Flatten_2024_03_23(TreeNode root)
+        {
+
+            if (root != null)
+            {
+
+                TreeNode node = root;
+                while (node.right != null)
+                {
+                    if (node.left != null)
+                    {
+                        TreeNode rightmost = node.left;
+                        while (rightmost != null)
+                        {
+                            rightmost = rightmost.right;
+                        }
+                        rightmost.right = node.right;
+                        node.right = node.left;
+                        node.left = null;
+                    }
+                    node = node.right;
+                }
+
+            }
+
+        }
+
+
+
+        #endregion
+
         #region answer
         public void Flatten_(TreeNode root)
         {
@@ -181,5 +213,38 @@ namespace leetcode.Problems
         }
 
         #endregion
+
+        #region 03/22/2024
+        public void Flatten_2024_03_22(TreeNode root)
+        {
+          
+                helper_2024_03_22(root);
+            
+        }
+
+        public TreeNode helper_2024_03_22(TreeNode node)
+        {
+            if (node == null) return null;
+            if (node.left == null && node.right == null) return node;
+
+
+            TreeNode left = helper_2024_03_22(node.left);
+            TreeNode right = helper_2024_03_22(node.right);
+
+            if(left != null)
+            {
+                left.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+
+
+            return right == null ? left : right;
+            
+        }
+
+        #endregion
+
+
     }
 }

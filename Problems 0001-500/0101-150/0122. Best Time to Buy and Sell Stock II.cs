@@ -11,14 +11,14 @@ namespace leetcode.Problems
         {
             int profit = 0;
             int i = 0;
-            while(i< prices.Length - 1)
+            while (i < prices.Length - 1)
             {
-                while(i<prices.Length-1 && prices[i] >= prices[i + 1])
+                while (i < prices.Length - 1 && prices[i] >= prices[i + 1])
                 {
                     i++;
                 }
                 int low = prices[i];
-                while(i< prices.Length-1 && prices[i] <= prices[i + 1])
+                while (i < prices.Length - 1 && prices[i] <= prices[i + 1])
                 {
                     i++;
                 }
@@ -33,12 +33,12 @@ namespace leetcode.Problems
         public int MaxProfit(int[] prices)
         {
             int sum = 0;
-            for(int i =1; i < prices.Length - 1; i++)
+            for (int i = 1; i < prices.Length - 1; i++)
             {
-                if(prices[i] > prices[i-1])
+                if (prices[i] > prices[i - 1])
                 {
                     //sell
-                    sum += prices[i] - prices[i-1];
+                    sum += prices[i] - prices[i - 1];
                 }
             }
             return sum;
@@ -50,7 +50,7 @@ namespace leetcode.Problems
         public int MaxProfit_R2(int[] prices)
         {
             int max = 0;
-            for(int i = 0; i < prices.Length - 1; i++)
+            for (int i = 0; i < prices.Length - 1; i++)
             {
                 if (prices[i] - prices[i - 1] > 0)
                 {
@@ -66,7 +66,7 @@ namespace leetcode.Problems
         {
             int profit = 0;
             int cur = 0;
-            for(int i =0; i < prices.Length; i++)
+            for (int i = 0; i < prices.Length; i++)
             {
                 if (i == 0)
                 {
@@ -78,7 +78,7 @@ namespace leetcode.Problems
                     {
                         profit += prices[i] - cur;
                         i++;
-                        if (i < prices.Length-1)
+                        if (i < prices.Length - 1)
                         {
                             cur = prices[i];
                             i++;
@@ -104,13 +104,13 @@ namespace leetcode.Problems
             int start = prices[0];
             int profit = 0;
 
-            for(int i =0; i < prices.Length; i++)
+            for (int i = 0; i < prices.Length; i++)
             {
-                if(prices[i] > start)
+                if (prices[i] > start)
                 {
                     profit = prices[i] - start;
                 }
-                    start = prices[i];
+                start = prices[i];
             }
             return profit;
         }
@@ -120,7 +120,7 @@ namespace leetcode.Problems
         public int MaxProfit_20230811(int[] prices)
         {
             int max = 0;
-            for(int i =1;i< prices.Length; i++)
+            for (int i = 1; i < prices.Length; i++)
             {
                 int remain = prices[i] - prices[i - 1];
                 if (remain > 0)
@@ -139,12 +139,32 @@ namespace leetcode.Problems
             int max = 0;
             for (int i = 1; i < prices.Length; i++)
             {
-                if (prices[i] - start>0)
+                if (prices[i] - start > 0)
                 {
-                    max +=(prices[i]- start);
+                    max += (prices[i] - start);
                 }
                 start = prices[i];
 
+            }
+            return max;
+        }
+        #endregion
+
+        #region 03/24/2024
+        public int MaxProfit_2024_03_24(int[] prices)
+        {
+            int max = 0;
+
+            for(int i =0; i <prices.Length; i++)
+            {
+                if(i != 0)
+                {
+                    int temp = prices[i] - prices[i - 1];
+                    if (temp>=0)
+                    {
+                        max += temp;
+                    }
+                }
             }
             return max;
         }

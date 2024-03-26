@@ -60,5 +60,36 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
+        #region 03/09/2024
+        public void SortColors_2024_03_09(int[] nums)
+        {
+            int left = 0;
+            int right= nums.Length - 1;
+            int pivot = 0;
+            while(pivot <= right)
+            {
+                if(nums[pivot] == 0)  
+                {
+                    int temp = nums[left];
+                    nums[left] = nums[pivot];
+                    nums[pivot] = temp;
+                    left++;
+                    pivot++;
+                }else if(nums[pivot] == 2)
+                {
+                    int temp = nums[right];
+                    nums[right]  = nums[pivot];
+                    nums[pivot] = temp;
+                    right--;
+                }
+                else
+                {
+                    pivot++;
+                }
+            }
+            var test = '1';
+        }
+        #endregion
     }
 }

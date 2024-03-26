@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Quic;
 using System.Text;
 
 #region Test Data
@@ -23,6 +24,46 @@ namespace leetcode.Problems
 {
     class _0101
     {
+
+        #region LeetCode Approach 1: Recursive
+        public bool IsSymmetric_approach1(TreeNode root)
+        {
+            if (root == null) return true;
+            return helper_approach1(root.left, root.right);
+        }
+
+        public bool helper_approach1(TreeNode node1, TreeNode node2)
+        {
+            if (node1 == null && node2 == null) return true;
+            if (node1 == null || node2 == null || node1.val != node2.val) return false;
+
+            return helper_approach1(node1.right, node2.left) && helper_approach1(node1.left, node2.right);
+        }
+        #endregion
+
+        #region LeetCode Approach 2: Iterative
+        public bool IsSymmetric_approach2(TreeNode root)
+        {
+            if (root == null) return true;
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            queue.Enqueue(root);
+            while(queue.Count > 0)
+            {
+                TreeNode n1= queue.Dequeue();
+                TreeNode n2= queue.Dequeue();
+                if (n1 == null && n2 == null) continue;
+                if (n1 == null || n2 == null || n1.val != n2.val) return false;
+                queue.Enqueue(n1.left);
+                queue.Enqueue(n2.right);
+                queue.Enqueue(n1.right);
+                queue.Enqueue(n2.left);
+            }
+
+            return true;
+        }
+        #endregion
+
         #region answer
         public bool IsSymmetric(TreeNode root)
         {
@@ -202,6 +243,22 @@ namespace leetcode.Problems
 
             }
             return true;
+        }
+        #endregion
+
+        #region 03/18/2024
+        public bool IsSymmetric_2024_03_18(TreeNode root)
+        {
+            if (root == null) return true;
+            return helper_2024_03_18(root.left, root.right);
+        }
+
+        public bool helper_2024_03_18(TreeNode node1, TreeNode node2)
+        {
+            if (node1 == null && node2 == null) return true;
+            if (node1 == null || node2 == null || node1.val != node2.val) return false;
+
+            return helper_2024_03_18(node1.right, node2.left) && helper_2024_03_18(node1.left, node2.right);
         }
         #endregion
     }

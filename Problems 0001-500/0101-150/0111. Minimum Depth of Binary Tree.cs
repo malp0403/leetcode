@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace leetcode.Problems
@@ -101,6 +102,15 @@ namespace leetcode.Problems
                 min = Math.Min(MinDepth_20220816v2(root.right), min);
             }
             return min + 1;
+        }
+
+        #endregion
+
+        #region 03/20/2024
+        public int MinDepth_2024_03_20(TreeNode root)
+        {
+            if (root == null) return 0;
+            return 1 + Math.Min(MinDepth_2024_03_20(root.left), MinDepth_2024_03_20(root.right));
         }
 
         #endregion

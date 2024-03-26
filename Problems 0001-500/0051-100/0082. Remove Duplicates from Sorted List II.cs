@@ -7,35 +7,8 @@ namespace leetcode.Problems
 {
     class _0082
     {
-        #region LeetCode Approach 1: Sentinel Head + Predecessor  0(1)
-        public ListNode DeleteDuplicates_Approach1(ListNode head)
-        {
-            ListNode result = new ListNode();
-            ListNode temp = result;
-
-            while(head != null)
-            {
-                if(head.next !=null && head.val == head.next.val)
-                {
-                    while(head.next !=null && head.val == head.next.val)
-                    {
-                        head = head.next;
-                    }
-                    //preset
-                    temp.next = head.next;
-                }
-                else
-                {
-                    temp = temp.next;
-                }
-                head = head.next;
-            }
-            return result.next;
-        }
-
-            #endregion
-            #region answer
-            public ListNode DeleteDuplicates_(ListNode head)
+        #region answer
+        public ListNode DeleteDuplicates(ListNode head)
         {
             if (head == null) return null;
             //check head is duplicate;
@@ -106,51 +79,59 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region 03/13/2024
-        public ListNode DeleteDuplicates_2024_04_19(ListNode head)
+        #region 03/09/2024
+        public ListNode DeleteDuplicates_2024_03_09(ListNode head)
         {
-            if (head == null) return null;
             ListNode answer = new ListNode();
-            ListNode temp = answer;
-            Dictionary<int, int> records = new Dictionary<int, int>();
             ListNode prev = null;
+
+            bool firstEncouter = false;
+            bool AgainEncouter = false;
+            
+
             while(head != null)
             {
-                if (records.ContainsKey(head.val))
+                if(prev == null)
                 {
-                    records[head.val]++;
+                    firstEncouter = true;
                 }
                 else
                 {
-                    records.Add(head.val, 1);
-                }
-
-                if (prev != null && head.val != prev.val)
-                {
-                    if (records[prev.val] == 1)
+                    if (head.val != prev.val)
                     {
-                        temp.next = prev;
-                        temp = temp.next;
+                        if(firstEncouter)
+                        {
+                            if (!AgainEncouter)
+                            {
+                                answer.next = head;
+                                
+                            }
+       
+                            firstEncouter = true;
+                            AgainEncouter = false;
+                        }
+                    }
+                    else
+                    {
+                        AgainEncouter = true;
                     }
                 }
 
                 prev = head;
                 head = head.next;
-
             }
-            if (records[prev.val] == 1)
+
+            if (!AgainEncouter)
             {
-                temp.next = prev;
-                temp = temp.next;
+                answer.next = prev;
+                answer.next.next = null;
             }
-   
-                temp.next = null;
-
-
+            else
+            {
+                answer.next = null;
+            }
             return answer.next;
         }
-
-
         #endregion
     }
 }

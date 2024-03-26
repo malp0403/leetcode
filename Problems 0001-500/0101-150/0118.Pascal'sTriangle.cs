@@ -156,5 +156,30 @@ namespace leetcode.Problems._0101_150
             return ans;
         }
         #endregion
+
+        #region 03/24/2024
+        public IList<IList<int>> Generate_2024_03_24(int numRows)
+        {
+            IList < IList<int> > answer = new List<IList<int>>();
+            for (int i =0; i< numRows; i++)
+            {
+                List<int> list = new List<int> ();
+                for(int j=0; j <= i; j++)
+                {
+                    if(j==0 || j == i)
+                    {
+                        list.Add(1);
+                    }
+                    else 
+                    {
+                        list.Add(answer[i - 1][j] + answer[i - 1][j - 1]);
+                    }
+                }
+                answer.Add(list);
+            }
+            return answer;
+        }
+
+            #endregion
+        }
     }
-}

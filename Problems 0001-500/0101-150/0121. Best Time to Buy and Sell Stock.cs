@@ -118,5 +118,20 @@ namespace leetcode.Problems
             return max;
         }
         #endregion
+
+        #region 03/24/2024
+        public int MaxProfit_2024_03_24(int[] prices)
+        {
+            int max = 0;
+            int lowest = int.MaxValue;
+            for(int i =0;i < prices.Length; i++)
+            {
+                lowest = Math.Min(lowest, prices[i]);
+                max = Math.Max(max, prices[i] - lowest);
+            }
+
+            return max;
+        }
+            #endregion
+        }
     }
-}

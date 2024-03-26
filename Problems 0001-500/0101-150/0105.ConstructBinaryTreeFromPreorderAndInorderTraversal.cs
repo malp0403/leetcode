@@ -55,5 +55,32 @@ namespace leetcode.Problems._0101_150
         }
         #endregion
 
+        #region 03/20/2024
+        int index_2024_03_20 = 0;
+        public TreeNode BuildTree_2024_03_20(int[] preorder, int[] inorder)
+        {
+            Dictionary<int,int> dic = new Dictionary<int, int> { };
+            for(int i =0;i < inorder.Length; i++)
+            {
+                dic.Add(inorder[i], i);
+            }
+
+            return helper_2024_03_20(preorder, 0, preorder.Length - 1, dic);
+
+        }
+        public TreeNode helper_2024_03_20(int[] preorder,int left,int right,Dictionary<int,int> dic)
+        {
+            if (left > right) return null;
+
+            int val = preorder[index_2024_03_20];
+            TreeNode head = new TreeNode(val);
+            index_2024_03_20++;
+            head.left = helper_2024_03_20(preorder, left, dic[val] - 1, dic);
+            head.right = helper_2024_03_20(preorder, dic[val] + 1, right, dic);
+
+            return head;
+        }
+        #endregion
+
     }
 }

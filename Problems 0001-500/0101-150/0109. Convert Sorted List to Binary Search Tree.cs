@@ -2,6 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 using leetcode.Class;
+
+#region testing
+
+//var obj = new _0109() { };
+//ListNode l0 = new ListNode(0);
+//ListNode l1 = new ListNode(1);
+//ListNode l2 = new ListNode(2);
+//ListNode l3 = new ListNode(3);
+//ListNode l4 = new ListNode(4);
+//ListNode l5 = new ListNode(5);
+//l0.next = l1;
+//    l1.next = l2;
+//    l2.next = l3;
+//    l3.next = l4;
+//    l4.next = l5;
+//    var test123 = obj.SortedListToBST_20220816(l0);
+#endregion
+
 namespace leetcode.Problems
 {
     class _0109
@@ -77,21 +95,31 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region testing
+        #region 03/20/2024
+        List<int> list_2024_03_20;
+        public TreeNode SortedListToBST_2024_03_20(ListNode head)
+        {
+            list_2024_03_20 = new List<int>();
+            while(head != null)
+            {
+                list_2024_03_20.Add(head.val);
+                head = head.next;
+            }
 
-        //var obj = new _0109() { };
-        //ListNode l0 = new ListNode(0);
-        //ListNode l1 = new ListNode(1);
-        //ListNode l2 = new ListNode(2);
-        //ListNode l3 = new ListNode(3);
-        //ListNode l4 = new ListNode(4);
-        //ListNode l5 = new ListNode(5);
-        //l0.next = l1;
-        //    l1.next = l2;
-        //    l2.next = l3;
-        //    l3.next = l4;
-        //    l4.next = l5;
-        //    var test123 = obj.SortedListToBST_20220816(l0);
+            return helper_2024_03_20(0, list_2024_03_20.Count - 1);
+        }
+        public TreeNode helper_2024_03_20(int left, int right)
+        {
+            if(left>right) return null;
+            int mid = left + (right - left)/2;
+
+            TreeNode head = new TreeNode(list_2024_03_20[mid]);
+            head.left = helper_2024_03_20(left, mid - 1);
+            head.right = helper_2024_03_20(mid+1, right);
+
+            return head;
+
+        }
         #endregion
     }
 }

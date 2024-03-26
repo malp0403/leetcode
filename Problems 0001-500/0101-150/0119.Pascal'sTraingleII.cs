@@ -49,11 +49,11 @@ namespace leetcode.Problems._0101_150
         #region solution2 Backwards
         public IList<int> GetRow_v2(int rowIndex)
         {
-            IList<int> answer = new List<int>() { 1};
+            IList<int> answer = new List<int>() { 1 };
 
-            for(int i =0; i < rowIndex; i++)
+            for (int i = 0; i < rowIndex; i++)
             {
-                for(int j = i; j > 0; j--)
+                for (int j = i; j > 0; j--)
                 {
                     answer[j] = answer[j] + answer[j - 1];
                 }
@@ -64,6 +64,33 @@ namespace leetcode.Problems._0101_150
 
             return answer;
         }
+        #endregion
+
+        #region 03/24/2024
+        public IList<int> GetRow_2024_03_24(int rowIndex)
+
+        {
+
+            IList<IList<int>> answer = new List<IList<int>>();
+            for (int i = 0; i <= rowIndex; i++)
+            {
+                List<int> list = new List<int>();
+                for (int j = 0; j <= i; j++)
+                {
+                    if (j == 0 || j == i)
+                    {
+                        list.Add(1);
+                    }
+                    else
+                    {
+                        list.Add(answer[i - 1][j] + answer[i - 1][j - 1]);
+                    }
+                }
+                answer.Add(list);
+            }
+            return answer[rowIndex];
+        }
+
         #endregion
     }
 }

@@ -40,6 +40,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region 08/16/2022
         IList<IList<int>> answer = new List<IList<int>>() { };
         public IList<IList<int>> PathSum_20220816(TreeNode root, int targetSum)
@@ -63,6 +64,31 @@ namespace leetcode.Problems
             helper_20220816(node.left, targetSum, cur + node.val, list);
             helper_20220816(node.right, targetSum, cur + node.val, list);
             list.RemoveAt(list.Count - 1);
+        }
+        #endregion
+
+        #region 03/22/2024
+        IList<IList<int>> res_2024_03_22 ;
+        public IList<IList<int>> PathSum_2024_03_24(TreeNode root, int targetSum)
+        {
+            res_2024_03_22 = new List<IList<int>>() { };
+            helper_2024_03_22(root,targetSum,new List<int> { });
+
+            return res_2024_03_22;
+
+        }
+        public void helper_2024_03_22(TreeNode node, int targetSum, List<int> list)
+        {
+            if (node == null) return;
+            if(node.val == (targetSum) && node.left == null && node.right== null) {
+                res_2024_03_22.Add(new List<int>(list));
+                return;
+            }
+
+            list.Add(node.val);
+            helper_2024_03_22(node.left, targetSum - node.val, list);
+            helper_2024_03_22(node.right, targetSum - node.val, list);
+            list.RemoveAt((int)list.Count - 1);
         }
         #endregion
 

@@ -6,6 +6,66 @@ namespace leetcode.Problems
 {
     class _0102
     {
+        #region Approach 1: Recursion
+        IList<IList<int>> answer_1 = new List<IList<int>>();
+        public IList<IList<int>> LevelOrder_1(TreeNode root) { 
+            if(root == null) return answer_1;
+            helper(root, 0);
+            return answer_1;
+        }
+        public void helper(TreeNode node, int level)
+        {
+            if(level == answer_1.Count)
+            {
+                answer_1.Add(new List<int>());
+            }
+            answer_1[level].Add(node.val);
+
+            if(node.left != null)
+            {
+                helper(node.left, level + 1);
+            }
+            if (node.right != null)
+            {
+                helper(node.right, level + 1);
+            }
+        }
+        #endregion
+
+        #region Approach 2: Iteration
+        public IList<IList<int>> LevelOrder_2(TreeNode root)
+        {
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            IList<IList<int>> answer = new List<IList<int>>() { };
+            if (root == null) return answer;
+
+            queue.Enqueue(root);
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                List<int> list = new List<int>();
+                while (count > 0)
+                {
+                    TreeNode node = queue.Dequeue();
+                    if (node != null)
+                    {
+                        list.Add(node.val);
+                        if (node.left != null)
+                            queue.Enqueue(node.left);
+                        if (node.right != null)
+                            queue.Enqueue(node.right);
+                    }
+                    count--;
+
+                }
+
+                answer.Add(list);
+
+            }
+            return answer;
+        }
+        #endregion
+
         #region answer
         public IList<IList<int>> LevelOrder(TreeNode root)
         {
@@ -89,6 +149,40 @@ namespace leetcode.Problems
 
 
             
+        }
+        #endregion
+
+        #region 03/18/2024
+        public IList<IList<int>> LevelOrder_2024_03_18(TreeNode root)
+        {
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            IList<IList<int>> answer= new List<IList<int>>() { };
+            if (root == null) return answer;
+
+            queue.Enqueue(root);
+            while (queue.Count != 0)
+            {
+                int count = queue.Count;
+                List<int> list = new List<int>();
+                while (count>0)
+                {
+                    TreeNode node = queue.Dequeue();
+                    if(node != null)
+                    {
+                        list.Add(node.val);
+                        if(node.left != null)
+                        queue.Enqueue(node.left);
+                        if(node.right != null)
+                        queue.Enqueue(node.right);
+                    }
+                    count--;
+
+                }
+       
+                    answer.Add(list);
+               
+            }
+            return answer;
         }
         #endregion
     }

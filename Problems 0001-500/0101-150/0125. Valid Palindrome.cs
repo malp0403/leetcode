@@ -54,5 +54,35 @@ namespace leetcode.Problems
             return true;
         }
         #endregion
+
+        #region 03/24/2024
+        public bool IsPalindrome_2024_03_24(string s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+
+            while(left < right)
+            {
+                while (left < right && !char.IsLetterOrDigit(s[left]))
+                {
+                    left++;
+                }
+                while (right > left && !char.IsLetterOrDigit(s[right]))
+                {
+                    right--;
+                }
+                string c1 = s[left].ToString().ToLower();
+                string c2= s[right].ToString().ToLower();
+
+                if (c1 != c2) return false;
+                left++;
+                right--;
+
+            }
+            return true;
+        }
+
+        
+        #endregion
     }
 }
