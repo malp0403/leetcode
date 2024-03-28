@@ -21,6 +21,7 @@ namespace leetcode.Problems
             return dic[head];
         }
         #endregion
+
         #region 08/18/2022
         public Node CopyRandomList_20220818(Node head)
         {
@@ -63,6 +64,49 @@ namespace leetcode.Problems
             return null;
         }
 
+        #endregion
+
+        #region 03/26/2024
+        public Node CopyRandomList_2024_03_26(Node head)
+        {
+            Dictionary<Node, Node> dic = new Dictionary<Node, Node>();
+
+            if (head == null) return null;
+
+            Node copyHead = new Node(head.val);
+            dic.Add(head, copyHead);
+            Queue<Node> q= new Queue<Node>();
+            q.Enqueue(head);
+
+            while (q.Count > 0)
+            {
+                Node n = q.Dequeue();
+                if(n.next != null)
+                {
+                    q.Enqueue(n.next);
+
+                    if (!dic.ContainsKey(n.next))
+                    {
+                        dic.Add(n.next, new Node(n.next.val));
+                      
+                    }
+                    dic[n].next = dic[n.next];
+                }
+                if(n.random != null)
+                {
+                    if (!dic.ContainsKey(n.random))
+                    {
+                        dic.Add(n.random, new Node(n.random.val));
+
+                    }
+                    dic[n].random = dic[n.random];
+                }
+            }
+
+            return copyHead;    
+
+
+        }
         #endregion
         public class Node
         {
