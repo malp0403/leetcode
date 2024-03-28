@@ -42,7 +42,7 @@ namespace leetcode.Problems._0101_150
         #endregion
 
         #region 03/25/2024
-        public int CanCompleteCircuit(int[] gas, int[] cost)
+        public int CanCompleteCircuit_2024_03_25(int[] gas, int[] cost)
         {
             int total = 0;
             int index = 0;

@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0144
     {
+        #region LeetCode Solution 1 Recursive
         //*****************Solution 1 Recursive*************************
         public IList<int> PreorderTraversal(TreeNode root)
         {
@@ -22,14 +23,16 @@ namespace leetcode.Problems
                 helper(n.right, li);
             }
         }
+        #endregion
+        #region LeetCode Solution 2 Iterative
         //*****************Solution 2 Iterative*************************
         public IList<int> PreorderTraversal_v2(TreeNode root)
         {
             IList<int> ans = new List<int>() { };
             if (root == null) return ans;
             Stack<TreeNode> stack = new Stack<TreeNode>() { };
-            TreeNode cur= root;
-            while (cur!=null || stack.Count != 0)
+            TreeNode cur = root;
+            while (cur != null || stack.Count != 0)
             {
                 if (cur != null)
                 {
@@ -45,7 +48,9 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
 
+        #region LeetCode Solution 3 Iterative
         //*****************Solution 3 Iterative*************************
         public IList<int> PreorderTraversal_v3(TreeNode root)
         {
@@ -57,70 +62,29 @@ namespace leetcode.Problems
             while (stack.Count != 0)
             {
                 cur = stack.Pop();
-                if(cur == null)
+                if (cur == null)
                 {
                     continue;
                 }
                 ans.Add(cur.val);
                 stack.Push(cur.right);
                 stack.Push(cur.left);
-               
+
             }
             return ans;
         }
+        #endregion
 
+        #region LeetCode Solution 4 Morris Traversal
         //*****************Solution 4 Morris Traversal*************************
         public IList<int> PreorderTraversal_v4(TreeNode root)
         {
             IList<int> ans = new List<int>() { };
             if (root == null) return ans;
             TreeNode cur = root;
-            while(cur != null)
-            {
-                if(cur.left == null)
-                {
-                    ans.Add(cur.val);
-                    cur = cur.right;
-                }
-                else
-                {
-                    var pre = cur.left;
-                    while(pre.right !=null && pre.right != cur)
-                    {
-                        pre = pre.right;
-                    }
-                    if(pre.right == null)
-                    {
-                        ans.Add(cur.val);
-                        pre.right = cur;
-                        cur = cur.left;
-                    }
-                    if(pre.right == cur)
-                    {
-                        pre.right = null;
-                        cur = cur.right;
-                    }
-                }
-            }
-            return ans;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             while (cur != null)
             {
-                if(cur.left == null)
+                if (cur.left == null)
                 {
                     ans.Add(cur.val);
                     cur = cur.right;
@@ -128,28 +92,33 @@ namespace leetcode.Problems
                 else
                 {
                     var pre = cur.left;
-                    while(pre.right !=null && pre.right != cur)
+                    while (pre.right != null && pre.right != cur)
                     {
                         pre = pre.right;
                     }
-
-                    if(pre.right == null)
+                    if (pre.right == null)
                     {
                         ans.Add(cur.val);
                         pre.right = cur;
                         cur = cur.left;
                     }
-                    else
+                    if (pre.right == cur)
                     {
                         pre.right = null;
                         cur = cur.right;
                     }
                 }
-
-
             }
             return ans;
         }
+
+        #endregion
+
+        #region 03/26/2024
+
+        #endregion
+
+
 
 
     }

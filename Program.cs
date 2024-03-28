@@ -1,4 +1,5 @@
-﻿using leetcode.Problems;
+﻿using leetcode.Class;
+using leetcode.Problems;
 using leetcode.Problems._0101_150;
 using leetcode.Problems_0001_500._0001_50;
 using leetcode.Problems_0001_500._0101_150;
@@ -23,8 +24,13 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0131() { };
-            obj.Partition("aab");
+            var obj = new _0143() { };
+            ListNode n1 = new ListNode(1);
+            ListNode n2 = new ListNode(2);
+            ListNode n3= new ListNode(3);
+            ListNode n4 = new ListNode(4);
+            n1.next = n2;n2.next = n3;n3.next = n4;
+            obj.ReorderList_2024_03_26(n1);
 
            
 
