@@ -24,13 +24,9 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0143() { };
-            ListNode n1 = new ListNode(1);
-            ListNode n2 = new ListNode(2);
-            ListNode n3= new ListNode(3);
-            ListNode n4 = new ListNode(4);
-            n1.next = n2;n2.next = n3;n3.next = n4;
-            obj.ReorderList_2024_03_26(n1);
+            var obj = new _0151() { };
+
+            obj.ReverseWords(" asdasd df f");
 
            
 

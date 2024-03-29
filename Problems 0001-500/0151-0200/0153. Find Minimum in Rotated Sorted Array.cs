@@ -36,7 +36,7 @@ namespace leetcode.Problems
 
         #region 08/13/2023  dont +1 when bounded
 
-        public int FindMin_20230813(int[] nums) 
+        public int FindMin_20230813(int[] nums)
         {
             if (nums.Length == 1 || nums[0] < nums[nums.Length - 1]) return nums[0];
 
@@ -67,6 +67,44 @@ namespace leetcode.Problems
             return nums[left];
         }
 
+        #endregion
+
+        #region 03/28/2024
+        public int FindMin_2024_03_28(int[] nums)
+        {
+            int left = 0;
+            int right = nums.Length - 1;
+
+            while(left < right)
+            {
+                if(left + 1== right)
+                {
+                    return Math.Min(nums[left], nums[right]);
+                }
+                else
+                {
+                    int mid = left + (right - left) / 2;
+
+                    if (nums[mid] > nums[right])
+                    {
+                        left = mid + 1;
+                    }
+                    else if (nums[mid] < nums[left])
+                    {
+                        right = mid;
+                    }
+                    else
+                    {
+                        right = mid - 1;
+                    }
+
+                    
+                }
+            }
+
+            return nums[left];
+
+        }
         #endregion
     }
 }
