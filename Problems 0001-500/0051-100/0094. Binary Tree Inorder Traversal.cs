@@ -145,5 +145,26 @@ namespace leetcode.Problems
             helper_20220812(node.right, answer);
         }
         #endregion
+
+        #region 03/18/2024
+        List<int> answer_2024_03_18;
+        public IList<int> InorderTraversal_2024_03_18(TreeNode root)
+        {
+            answer_2024_03_18 = new List<int>();
+            helper_2024_03_18(root);
+
+            return answer_2024_03_18;
+        }
+
+        public void helper_2024_03_18(TreeNode head)
+        {
+            if (head == null) return;
+       
+            helper_2024_03_18(head.left);
+            answer_2024_03_18.Add(head.val);
+            helper_2024_03_18(head.right);
+
+        }
+        #endregion
     }
 }

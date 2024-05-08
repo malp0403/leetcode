@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 #region Examples
 /*
@@ -81,15 +82,15 @@ namespace leetcode.Problems
         #endregion
 
         #region 11/15/2023 BackTracking  as leetCode Solution1
-        IList<string> ans= new List<string>();
+        IList<string> ans = new List<string>();
         public IList<string> RestoreIpAddresses_2023_11_15(string s)
         {
-            int total  = dfs_2023_11_15(0, 4, s,new List<int>());
+            int total = dfs_2023_11_15(0, 4, s, new List<int>());
             return ans;
         }
-        public int dfs_2023_11_15(int index,int count,string s,List<int> list)
+        public int dfs_2023_11_15(int index, int count, string s, List<int> list)
         {
-            if(index == s.Length)
+            if (index == s.Length)
             {
                 if (count == 0)
                 {
@@ -99,25 +100,25 @@ namespace leetcode.Problems
                 return 0;
             }
             int total = 0;
-            if (s[index]== '0')
+            if (s[index] == '0')
             {
                 list.Add(0);
-                total += dfs_2023_11_15(index + 1, count - 1,s,list);
+                total += dfs_2023_11_15(index + 1, count - 1, s, list);
                 list.RemoveAt(list.Count - 1);
             }
             else
             {
-                list.Add(int.Parse(s.Substring(index,1)));
-                total += dfs_2023_11_15(index + 1, count - 1, s,list);
+                list.Add(int.Parse(s.Substring(index, 1)));
+                total += dfs_2023_11_15(index + 1, count - 1, s, list);
                 list.RemoveAt(list.Count - 1);
-                if (index+1 < s.Length)
+                if (index + 1 < s.Length)
                 {
                     list.Add(int.Parse(s.Substring(index, 2)));
-                    total += dfs_2023_11_15(index + 2, count - 1, s,list);
+                    total += dfs_2023_11_15(index + 2, count - 1, s, list);
                     list.RemoveAt(list.Count - 1);
 
                 }
-                if (index + 2 < s.Length && int.Parse(s.Substring(index,3)) <=255)
+                if (index + 2 < s.Length && int.Parse(s.Substring(index, 3)) <= 255)
                 {
                     list.Add(int.Parse(s.Substring(index, 3)));
                     total += dfs_2023_11_15(index + 3, count - 1, s, list);
@@ -128,6 +129,50 @@ namespace leetcode.Problems
             return total;
 
         }
+        #endregion
+
+        #region 03/18/2024
+        IList<string> answer_2024_03_18;
+        public IList<string> RestoreIpAddresses_2024_03_18(string s)
+        {
+            answer_2024_03_18 = new List<string>();
+            backTracking(0, s, new List<string>(), 0);
+            return answer_2024_03_18;
+        }
+        public void backTracking(int index, string s, List<string> list, int added)
+        {
+            if (index == s.Length && added == 4)
+            {
+                answer_2024_03_18.Add(String.Join(".", list));
+                return;
+            }
+            if (added > 4) return;
+            if (index >= s.Length) return;
+
+            char c1 = s[index];
+            list.Add(c1.ToString());
+            backTracking(index + 1, s, list, added + 1);
+            list.RemoveAt(list.Count - 1);
+
+            if (c1 != '0')
+            {
+                if (index + 1 < s.Length)
+                {
+                    list.Add(s.Substring(index, 2));
+                    backTracking(index + 2, s, list, added + 1);
+                    list.RemoveAt(list.Count - 1);
+                }
+                if (index + 2 < s.Length && int.Parse(s.Substring(index, 3)) <= 255)
+                {
+                    list.Add(s.Substring(index, 3));
+                    backTracking(index + 3, s, list, added + 1);
+                    list.RemoveAt(list.Count - 1);
+                }
+            }
+
+
+        }
+
         #endregion
 
     }
