@@ -1,4 +1,5 @@
-﻿using System;
+﻿using leetcode.Class;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -118,7 +119,44 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 03/27/2024 morris
+        public IList<int> PreorderTraversal_Morris(TreeNode root)
+        {
+            IList<int> res = new List<int>();
 
+            TreeNode node = root;
+            while(node != null)
+            {
+                if(node.left == null)
+                {
+                    res.Add(node.val);
+                    node = node.right;
+                }
+                else
+                {
+                    var pres = node.left;
+                    while(pres.right !=null && pres.right != node)
+                    {
+                        pres = pres.right;
+                    }
+
+                    if(pres.right == null)
+                    {
+                        res.Add(node.val);
+                        pres.right = node;
+                        node = node.left;
+
+                    }
+                    else
+                    {
+                        pres.right = null;
+                        node = node.right;
+                    }
+                }
+            }
+            return res;
+        }
+        #endregion
 
 
     }
