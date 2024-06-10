@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0145
     {
+        #region Solution 1
         IList<int> ans = new List<int>() { };
         public IList<int> PostorderTraversal(TreeNode root)
         {
@@ -25,7 +26,8 @@ namespace leetcode.Problems
 
             }
         }
-
+        #endregion
+        #region Solution2
         //******************Solution 2************************
         public IList<int> PostorderTraversal_V2(TreeNode root)
         {
@@ -87,7 +89,8 @@ namespace leetcode.Problems
             return ans;
         }
 
-
+        #endregion
+        #region Solution 3
         //******************Solution 3 using Last pointer*********************
         public IList<int> PostorderTraversal_V4(TreeNode root)
         {
@@ -118,45 +121,9 @@ namespace leetcode.Problems
                 }
             }
             return ans;
-
-
-
-
-
-
-
-
-
-
-
-
-
-            while (cur != null || stack.Count != 0)
-            {
-                if (cur != null)
-                {
-                    stack.Push(cur);
-                    cur = cur.left;
-                }
-                else
-                {
-                    var n = stack.Peek();
-                    if (n.right != null && n.right != last)
-                    {
-                        cur = n.right;
-                    }
-                    else
-                    {
-                        ans.Add(n.val);
-                        last = n;
-                        stack.Pop();
-                    }
-                }
-            }
-            return ans;
         }
-
-
+        #endregion
+        #region Solution 4
         //******************Solution 4*********************
         //******************Morris Traversal*********************
         public IList<int> PostorderTraversal_V5(TreeNode root)
@@ -164,7 +131,9 @@ namespace leetcode.Problems
             return null;
 
         }
+        #endregion
 
+        #region 12/16/2021
         // -----------------------12/16/2021 review-----------------------------------------------------------------
         //recusive
         public IList<int> PostorderTraversal_R_12162021(TreeNode root)
@@ -222,14 +191,15 @@ namespace leetcode.Problems
             Stack<TreeNode> stack = new Stack<TreeNode>() { };
             TreeNode lastPointer = null;
             TreeNode curr = root;
-            while(curr !=null || stack.Count != 0)
+            while (curr != null || stack.Count != 0)
             {
                 if (curr != null)
                 {
                     stack.Push(curr);
                     curr = curr.left;
                 }
-                else {
+                else
+                {
                     var node = stack.Peek();
                     if (node.right == null || node.right == lastPointer)
                     {
@@ -242,10 +212,55 @@ namespace leetcode.Problems
                         curr = node.right;
                     }
                 }
-               
+
             }
             return ans;
         }
+        #endregion
+
+        #region 03/27/2024
+        public IList<int> PostorderTraversal_2024_03_27(TreeNode root)
+        {
+            IList<int> res = new List<int>();
+
+            TreeNode node = root;
+            while (node != null)
+            {
+                if(node.right == null)
+                {
+                    res.Add(node.val);
+                    node = node.left;
+                }
+                else
+                {
+                    var pres = node.right;
+                    while(pres.left != null && pres.left != node)
+                    {
+                        pres = pres.left;
+                    }
+
+                    if(pres.left == null)
+                    {
+                        pres.left = node;
+                        node = node.right;
+                    }
+                    else
+                    {
+                        res.Add(node.val);
+
+                        node = node.left;
+                        pres.left = null;
+                    }
+                }
+            }
+          
+            return res.Reverse().ToList();
+        }
+        #endregion
+
+
+
+
 
     }
 }

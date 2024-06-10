@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace leetcode.Problems
@@ -157,6 +159,73 @@ namespace leetcode.Problems
         #endregion
 
         #region 08/11/2023 double linked node
+        //int capacity;
+        //Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
+        //Node_ head;
+        //Node_ tail;
+        //public _0146(int capacity)
+        //{
+        //    this.capacity = capacity;
+        //    this.head = new Node_(-1,-1);
+        //    this.tail = new Node_(-1, -1);
+        //    this.head.next = tail;
+        //    tail.prev = head;
+        //}
+
+        //public int Get(int key)
+        //{
+        //    if (dic.ContainsKey(key))
+        //    {
+        //        Node_ n = dic[key];
+        //        remove(n);
+        //        add(n);
+        //        return n.val;
+        //    }
+        //    else
+        //    {
+        //        return -1;
+        //    }
+        //}
+
+        //public void Put(int key, int value)
+        //{
+        //    if(dic.ContainsKey(key))
+        //    {
+        //        remove(dic[key]);
+        //        dic[key] = new Node_(key, value);
+        //        add(dic[key]);
+        //    }
+        //    else
+        //    {
+        //        if(dic.Count >= capacity)
+        //        {
+        //            Node_ removed = this.head.next;
+        //            dic.Remove(removed.key);
+        //            remove(removed);
+        //        }
+        //            Node_ toadd = new Node_(key, value);
+        //            dic.Add(key, toadd);
+        //            add(toadd);
+
+               
+        //    }
+        //}
+        //public void remove(Node_ remove)
+        //{
+        //    remove.prev.next = remove.next;
+        //    remove.next.prev = remove.prev;
+        //}
+        //public void add(Node_ add)
+        //{
+        //    Node_ previousEnd = tail.prev;
+        //    previousEnd.next = add;
+        //    add.prev = previousEnd;
+        //    add.next = tail;
+        //    tail.prev = add;
+        //}
+        #endregion
+
+        #region 03/27/2024
         int capacity;
         Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
         Node_ head;
@@ -164,7 +233,7 @@ namespace leetcode.Problems
         public _0146(int capacity)
         {
             this.capacity = capacity;
-            this.head = new Node_(-1,-1);
+            this.head = new Node_(-1, -1);
             this.tail = new Node_(-1, -1);
             this.head.next = tail;
             tail.prev = head;
@@ -177,47 +246,43 @@ namespace leetcode.Problems
                 Node_ n = dic[key];
                 remove(n);
                 add(n);
-                return n.val;
+                return dic[key].val;
             }
-            else
-            {
-                return -1;
-            }
+            return -1;
         }
 
         public void Put(int key, int value)
         {
-            if(dic.ContainsKey(key))
-            {
+           if(dic.ContainsKey(key)) {
+
                 remove(dic[key]);
                 dic[key] = new Node_(key, value);
                 add(dic[key]);
             }
             else
             {
-                if(dic.Count >= capacity)
+                if (dic.Count >= capacity)
                 {
-                    Node_ removed = this.head.next;
-                    dic.Remove(removed.key);
-                    remove(removed);
+                    var temp = head.next;
+                    remove(temp);
+                    dic.Remove(temp.key);
                 }
-                    Node_ toadd = new Node_(key, value);
-                    dic.Add(key, toadd);
-                    add(toadd);
-
-               
+                Node_ toAdd = new Node_(key, value);
+                add(toAdd);
+                dic.Add(key, toAdd);
             }
         }
         public void remove(Node_ remove)
         {
             remove.prev.next = remove.next;
             remove.next.prev = remove.prev;
+
         }
         public void add(Node_ add)
         {
-            Node_ previousEnd = tail.prev;
-            previousEnd.next = add;
-            add.prev = previousEnd;
+            Node_ _PrevEnd = this.tail.prev;
+            _PrevEnd.next = add;
+            add.prev = _PrevEnd;
             add.next = tail;
             tail.prev = add;
         }
