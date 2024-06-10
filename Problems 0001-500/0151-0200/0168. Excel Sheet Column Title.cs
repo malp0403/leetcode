@@ -28,5 +28,20 @@ namespace leetcode.Problems_0001_500._0151_0200
 
         }
         #endregion
+
+        #region 04/15/2024
+        public string ConvertToTitle_2024_04_15(int columnNumber)
+        {
+            StringBuilder sb = new StringBuilder();
+            while(columnNumber > 0)
+            {
+                columnNumber--;
+                sb.Append((char)('A' + columnNumber % 26));
+                columnNumber = columnNumber / 26;
+            }
+            return new string(sb.ToString().Reverse().ToArray());
+        }
+
+            #endregion
+        }
     }
-}

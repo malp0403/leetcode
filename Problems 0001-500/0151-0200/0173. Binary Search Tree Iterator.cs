@@ -47,17 +47,50 @@ namespace leetcode.Problems
         //}
         // 01-08-2022
 
-        public TreeNode curr = new TreeNode(-1);
+        //public TreeNode curr = new TreeNode(-1);
+        //public TreeNode head;
+        //public _0173(TreeNode root)
+        //{
+        //    head = curr;
+        //    inorder(root);
+
+        //}
+        //public void inorder(TreeNode node)
+        //{
+        //    if(node != null)
+        //    {
+        //        inorder(node.left);
+        //        head.right = node;
+        //        head = head.right;
+        //        inorder(node.right);
+        //    }
+        //}
+
+        //public int Next()
+        //{
+        //    if (curr == null) return 0;
+        //    TreeNode ans = curr.right;
+        //    curr = curr.right;
+        //    return ans.val;
+        //}
+
+        //public bool HasNext()
+        //{
+        //    return curr != null && curr.right != null;
+        //}
+
+        #region 04/16/2024
+        public TreeNode cur = new TreeNode(-1);
         public TreeNode head;
         public _0173(TreeNode root)
         {
-            head = curr;
+            head = cur;
             inorder(root);
-            
         }
+
         public void inorder(TreeNode node)
         {
-            if(node != null)
+            if (node != null)
             {
                 inorder(node.left);
                 head.right = node;
@@ -68,15 +101,16 @@ namespace leetcode.Problems
 
         public int Next()
         {
-            if (curr == null) return 0;
-            TreeNode ans = curr.right;
-            curr = curr.right;
-            return ans.val;
+            if (cur == null) return 0;
+            cur = cur.right;
+            return cur.val;
         }
 
         public bool HasNext()
         {
-            return curr != null && curr.right != null;
+            return cur != null && cur.right != null ? true : false;
         }
+        #endregion
+
     }
 }

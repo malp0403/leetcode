@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace leetcode.Problems
@@ -37,5 +38,33 @@ namespace leetcode.Problems
             Array.Sort(nums);
             return nums[nums.Length / 2];
         }
+
+        #region 04/15/2024 Boyer-Moore Voting Algorithm
+        public int MajorityElement_2024_04_15(int[] nums)
+        {
+            int count = 1;
+            int num = nums[0];
+            for(int i =1; i < nums.Length; i++)
+            {
+                if(count == 0)
+                {
+                    num = nums[i];
+                    count = 1;
+                }
+                else
+                {
+                    if(num == nums[i])
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        count--;
+                    }
+                }
+            }
+            return num;
+        }
+        #endregion
     }
 }

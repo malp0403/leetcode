@@ -3,8 +3,10 @@ using leetcode.Problems;
 using leetcode.Problems._0101_150;
 using leetcode.Problems_0001_500._0001_50;
 using leetcode.Problems_0001_500._0101_150;
+using leetcode.Problems_0001_500._0151_0200;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+using leetcode.Problems_1501_2000._1651_1700;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +26,10 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0151() { };
+            var obj = new _0167() { };
+            obj.TwoSum_2024_04_15(new int[] {2,3,4},6);
 
-            obj.ReverseWords(" asdasd df f");
+            //obj.CompareVersion("0.1","1.1");
 
            
 

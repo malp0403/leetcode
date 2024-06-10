@@ -73,5 +73,24 @@ namespace leetcode.Problems_0001_500._0151_0200
             return count;
         }
         #endregion
+
+        #region 04/15/2024
+        public int TrailingZeroes_2024_04_15(int n)
+        {
+            int count = 0;
+            
+            for(int i =n; i >= 5; i--)
+            {
+                int temp = i;
+                while(temp % 5 == 0)
+                {
+                    count++;
+                temp /= 5;  
+                }
+            }
+
+            return count;
+        }
+        #endregion
     }
 }

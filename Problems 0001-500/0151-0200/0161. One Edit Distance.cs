@@ -7,6 +7,7 @@ namespace leetcode.Problems
 {
     class _0161
     {
+        #region Solution
         public bool IsOneEditDistance(string s, string t)
         {
             if (s.Length == t.Length)
@@ -49,10 +50,13 @@ namespace leetcode.Problems
 
         }
 
+        #endregion
+
+        #region 02/05/2022
         //02/05/2022
-        public bool IsOneEditDistance_R2(string s,string t)
+        public bool IsOneEditDistance_R2(string s, string t)
         {
-           if(s.Length== t.Length)
+            if (s.Length == t.Length)
             {
                 int difference = 0;
                 int p1 = 0;
@@ -64,7 +68,7 @@ namespace leetcode.Problems
                 }
                 return difference == 1;
             }
-            else if( Math.Abs(s.Length - t.Length) ==1)
+            else if (Math.Abs(s.Length - t.Length) == 1)
             {
                 string longer = s.Length > t.Length ? s : t;
                 string shorter = s.Length < t.Length ? s : t;
@@ -73,7 +77,7 @@ namespace leetcode.Problems
                 int difference = 0;
                 while (p2 < shorter.Length)
                 {
-                    if(longer[p1] != shorter[p2])
+                    if (longer[p1] != shorter[p2])
                     {
                         p1++;
                         difference++;
@@ -82,11 +86,56 @@ namespace leetcode.Problems
                     {
                         p1++; p2++;
                     }
-                    if (difference == 2) return false; 
+                    if (difference == 2) return false;
                 }
                 return true;
             }
             return false;
         }
+        #endregion
+
+        #region 03/29/2024
+        Dictionary<(int i, int j, int m), bool> dic = new Dictionary<(int i, int j, int m), bool>();
+        public bool IsOneEditDistance_2024_03_29(string s, string t)
+        {
+            if(s.Length < t.Length)
+            {
+                string temp = s;
+                s = t;
+                t = temp;
+            }
+            return helper(0, 0, s, t, 0);
+        }
+
+        public bool helper(int index1,int index2,string s,string t,int modif)
+        {
+            if(index2 >= t.Length && index1 >= s.Length)
+            {
+                return modif == 1?true:false;
+            }
+            if(index1 >= s.Length || index2 >= t.Length || modif >=2) return false;
+
+            if(dic.ContainsKey((index1,index2,modif))) return dic[(index1,index2,modif)];
+
+            bool isValid = false;
+            if (s[index1] == s[index2])
+            {
+                helper(index1++, index2++, s, t, modif);
+            }
+            else
+            {
+                //delete
+                isValid = isValid || helper(index1 + 1, index2, s, t, modif + 1);
+                //insert
+                isValid = isValid || helper(index1, index2 + 1, s, t, modif + 1);
+                //replace
+                isValid = isValid || helper(index1 + 1, index2 + 1, s, t, modif + 1);
+            }
+
+            dic.Add((index1, index2, modif), isValid);
+
+            return isValid;
+        }
+        #endregion
     }
 }

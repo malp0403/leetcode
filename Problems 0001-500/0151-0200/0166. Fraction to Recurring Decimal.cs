@@ -89,5 +89,41 @@ namespace leetcode.Problems_0001_500._0151_0200
             return sb.ToString();
         }
         #endregion
+
+        #region 04/15/2024
+        public string FractionToDecimal_2024_04_15(int n, int d)
+        {
+            if (n == 0) return "0";
+            StringBuilder sb = new StringBuilder();
+            if(n <0 ^ d < 0)
+            {
+                sb.Append("-");
+            }
+            long dividend = Math.Abs((long)(n));
+            long divisor = Math.Abs((long)d);
+            sb.Append(dividend / divisor);
+
+            long reminder = dividend % divisor;
+            if(reminder ==0) return sb.ToString();
+            sb.Append(".");
+            Dictionary<long, int> map = new Dictionary<long, int>();
+            while(reminder != 0)
+            {
+                if (map.ContainsKey(reminder))
+                {
+                    sb.Insert(map[reminder],"(");
+                    sb.Append(")");
+                    return sb.ToString();
+                }
+                map.Add((long)reminder, sb.Length);
+                reminder *= 10;
+
+                sb.Append(reminder / divisor);
+                reminder %= divisor;
+            }
+            return sb.ToString();
+        }
+
+        #endregion
     }
 }
