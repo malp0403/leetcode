@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace leetcode.Problems_0001_500._0151_0200
 {
-    internal class _0182
+    internal class _0183
     {
-        #region 04/16/2024
-
-        #endregion
-
         #region 06/10/2024
         /*
-        with cte as(
-select ROW_NUMBER() over ( partition by email order by email) as rowno,email from Person
-)
-select email from cte where rowno = 2
+         select c.name as Customers from Customers c where c.Id not in (select customerId from orders)
          */
         #endregion
     }

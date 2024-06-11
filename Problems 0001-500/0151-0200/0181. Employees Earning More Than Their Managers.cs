@@ -15,5 +15,11 @@ namespace leetcode.Problems_0001_500._0151_0200
         where m.salary < e.salary
          */
         #endregion
+
+        #region 06/10/2024
+        /*
+         select * from Employee e join employee m on m.id = e.managerId and m.salary < e.salary
+         */
+        #endregion
     }
 }

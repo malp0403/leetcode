@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace leetcode.Problems_0001_500._0151_0200
 {
@@ -52,6 +54,21 @@ namespace leetcode.Problems_0001_500._0151_0200
 
             return string.Concat(s);
         }
+        #endregion
+
+        #region 06/10/2024
+        public string LargestNumber_2024_06_10(int[] nums)
+        {
+            List<string> list = nums.Select(x=>x.ToString()).ToList();
+            if (list.All(x => x == "0")) return "0";
+
+            list.Sort((x, y) => {  return  (y+x).CompareTo(x+y); });
+
+            string result = string.Join("",list);
+
+            return result;
+        }
+
         #endregion
     }
 

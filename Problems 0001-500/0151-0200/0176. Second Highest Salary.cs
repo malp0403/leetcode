@@ -11,5 +11,14 @@ namespace leetcode.Problems_0001_500._0151_0200
         #region 04/16/2024
         //select max(salary) as SecondHighestSalary  from Employee where salary < (select max(salary) from Employee) 
         #endregion
+
+        #region 06/10/2024
+        /*
+         select max(salary) as SecondHighestSalary from Employee where salary < (select max(salary) from Employee)
+
+    
+
+         */
+        #endregion
     }
 }

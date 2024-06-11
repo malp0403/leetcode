@@ -20,5 +20,11 @@ namespace leetcode.Problems_0001_500._0151_0200
         //    from Person p
         //    left join Address a on p.personId  = a.personId
         #endregion
+
+        #region 06/10/2024
+        /*
+            select p.firstName,p.lastname,a.city,a.state from Person p left join Address a on a.personId = p.personId
+         */
+        #endregion
     }
 }
