@@ -46,14 +46,14 @@ namespace leetcode.Problems_0001_500._0201_0250
         public int CountPrimes_2023_11_19(int n)
         {
             if (n == 0 || n == 1) return 0;
-            bool[] dp = Enumerable.Repeat(false, n ).ToArray();
+            bool[] dp = Enumerable.Repeat(false, n).ToArray();
 
-            for(int i =2;i<= (int)Math.Sqrt(n); i++)
+            for (int i = 2; i <= (int)Math.Sqrt(n); i++)
             {
                 if (dp[i] == false)
                 {
 
-                    for(int j = i*i;j < n;j+= i)
+                    for (int j = i * i; j < n; j += i)
                     {
                         dp[j] = true;
                     }
@@ -61,11 +61,40 @@ namespace leetcode.Problems_0001_500._0201_0250
             }
 
             int count = 0;
-            for(int i =2;i< dp.Length; i++)
+            for (int i = 2; i < dp.Length; i++)
             {
                 count += dp[i] ? 0 : 1;
             }
             return count;
+        }
+        #endregion
+
+        #region 06/11/2024
+        public int CountPrimes_2024_06_11(int n)
+        {
+            if (n == 0 || n == 1 || n == 2) return 0;
+            bool[] dp = Enumerable.Repeat(false,n).ToArray();
+
+            for(int i =2; i <= (int)Math.Sqrt(n); i++)
+            {
+                if (dp[i] == false)
+                {
+
+                    for(int j =i *i; j < n; j += i)
+                    {
+                        dp[j] = true;
+                    }
+
+                }
+            }
+
+            int count = 0;
+            for(int i = 2; i < dp.Length; i++)
+            {
+                count += dp[i] == false ? 1 : 0;
+            }
+            return count;
+
         }
         #endregion
     }

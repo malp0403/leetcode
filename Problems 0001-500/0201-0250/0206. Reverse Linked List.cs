@@ -120,5 +120,22 @@ namespace leetcode.Problems
 
         }
         #endregion
+
+        #region 06/11/2024
+        public ListNode ReverseList_2024_06_11(ListNode head)
+        {
+            if(head == null || head.next == null)
+            {
+                return head;
+            }
+
+            ListNode temp = ReverseList_2024_06_11(head.next);
+            head.next.next = head;
+            head.next = null;
+
+
+            return temp;
+        }
+        #endregion
     }
 }

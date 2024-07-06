@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,44 @@ namespace leetcode.Problems_0001_500._0151_0200
             }
 
         }
+        #endregion
+
+        #region 06/11/2024
+        List<List<int>> direction_2024_06_11 = new List<List<int>>()
+        {
+            new List<int>(){0,1},
+            new List<int>(){0,-1},
+            new List<int>(){-1,0},
+            new List<int>(){1,0}
+        };
+        public int NumIslands_2024_06_11(char[][] grid)
+        {
+            int count = 0;
+            for(int i =0; i < grid.Length; i++)
+            {
+                for(int j =0; j < grid[i].Length; j++)
+                {
+                    if (grid[i][j] == '1')
+                    {
+                        count++;
+                        helper_2024_06_11(i, j, grid);
+                    }
+                }
+            }
+            return count;
+        }
+        public void helper_2024_06_11(int row, int col, char[][] grid)
+        {
+            if (row < 0 || row >= grid.Length || col < 0 || col >= grid[0].Length || grid[row][col] =='0') return;
+            grid[row][col] = '0';
+            foreach (var item in direction_2024_06_11)
+            {
+                int r = row + item[0];
+                int c = col + item[1];
+                helper_2024_06_11(r, c, grid);
+            }
+        }
+
         #endregion
     }
 }

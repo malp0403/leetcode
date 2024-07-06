@@ -7,6 +7,7 @@ using leetcode.Problems_0001_500._0151_0200;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
 using leetcode.Problems_1501_2000._1651_1700;
+using leetcode.Problems_2001_2500._2001_2050;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,16 @@ namespace leetcode
         {
             Console.WriteLine("starting...");
 
-            var obj = new _0167() { };
-            obj.TwoSum_2024_04_15(new int[] {2,3,4},6);
+            var obj = new _0203() { };
+            ListNode n1 = new ListNode(1);
+            ListNode n2 = new ListNode(2);
+            ListNode n3 = new ListNode(6);
+            ListNode n4 = new ListNode(3);
+            ListNode n5 = new ListNode(4);
+            ListNode n6 = new ListNode(5);
+            ListNode n7 = new ListNode(6);
+            n1.next = n2; n2.next = n3;n3.next = n4;n4.next = n5;n5.next = n6;n6.next = n7;
+            obj.RemoveElements_2024_06_11(n1,6);
 
             //obj.CompareVersion("0.1","1.1");
 

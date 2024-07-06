@@ -14,7 +14,7 @@ namespace leetcode.Problems_0001_500._0201_0250
             Dictionary<char, char> dic = new Dictionary<char, char>() { };
             HashSet<char> set = new HashSet<char>() { };
 
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (!dic.ContainsKey(s[i]))
                 {
@@ -25,7 +25,7 @@ namespace leetcode.Problems_0001_500._0201_0250
                 }
                 else
                 {
-                    if (dic[s[i]] != t[i] )
+                    if (dic[s[i]] != t[i])
                     {
                         return false;
                     }
@@ -45,7 +45,7 @@ namespace leetcode.Problems_0001_500._0201_0250
         {
             StringBuilder sb = new StringBuilder() { };
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
-            for(int i =0; i < str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 if (!dic.ContainsKey(str[i]))
                 {
@@ -58,6 +58,32 @@ namespace leetcode.Problems_0001_500._0201_0250
 
             return sb.ToString();
         }
-            #endregion
+        #endregion
+
+        #region 06/11/2024
+        public bool IsIsomorphic(string s, string t)
+        {
+            Dictionary<char, char> dic = new Dictionary<char, char>();
+            HashSet<char> map = new HashSet<char>();
+            if (s.Length != t.Length) return false;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dic.ContainsKey(s[i]))
+                {
+                    if (dic[s[i]] != t[i]) return false;
+                }
+                else
+                {
+                    if (map.Contains(t[i])) return false;
+
+                    dic.Add(s[i], t[i]);
+                }
+                map.Add(t[i]);
+            }
+            return true;
         }
+        #endregion
     }
+
+}
