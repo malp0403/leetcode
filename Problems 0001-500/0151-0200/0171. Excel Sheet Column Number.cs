@@ -25,5 +25,21 @@ namespace leetcode.Problems_0001_500._0151_0200
 
         }
         #endregion
+
+        #region 04/15/2024
+        public int TitleToNumber_2024_08_14(string columnTitle)
+        {
+            int total = 0;
+           
+            int p = 0;
+            while(p<columnTitle.Length)
+            {
+                total = total * 26 + columnTitle[p] - 'A' + 1;
+
+                p++;
+            }
+            return total;
+        }
+            #endregion
+        }
     }
-}
