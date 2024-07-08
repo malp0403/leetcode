@@ -58,6 +58,69 @@ namespace leetcode.Problems_0001_500._0201_0250
 
         #endregion
 
+        #region 07/07/2024
+        public int[] MaxSlidingWindow_2024_07_07(int[] nums, int k)
+        {
+            int n = nums.Length;
+            int[] res = new int[n - k + 1];
+            int index = 0;
+
+            LinkedList<int> list = new LinkedList<int>();
+
+            for(int i =0; i < n; i++)
+            {
+                while(list.Count>0 && list.First.Value< i - k + 1)
+                {
+                    list.RemoveFirst();
+                }
+                while(list.Count>0 && nums[list.Last.Value] < nums[i])
+                {
+                    list.RemoveLast();
+                }
+
+                list.AddLast(i);
+
+                if(i >= k - 1)
+                {
+                    res[index++] = nums[list.First.Value];
+                }
+            }
+            return res;
+        }
+
+        #endregion
+
+        #region 07/07/2024 my attempt
+        public int[] MaxSlidingWindow_2024_07_07_attemp1(int[] nums, int k)
+        {
+            int n = nums.Length;
+            int[] res = new int[n - k + 1];
+            int index = 0;
+
+            LinkedList<int> list = new LinkedList<int> { };
+
+            for(int i =0; i < nums.Length; i++)
+            {
+                while(list.Count>0 && list.First.Value < i - k + 1)
+                {
+                    list.RemoveFirst();
+                }
+                while (list.Count > 0 && nums[list.Last.Value] < nums[i])
+                {
+                    list.RemoveLast();
+                }
+                list.AddLast(i);
+
+                if(i >= k - 1)
+                {
+                    res[index++] = nums[list.First.Value];
+                }
+            }
+
+            return res;
+        }
+
+        #endregion
     }
 
 

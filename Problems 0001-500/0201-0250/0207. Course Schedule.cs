@@ -4,6 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
+#region Test Case
+/*
+             var obj = new _0207() { };
+            obj.CanFinish_20240706(2, new int[][] { new int[] { 0,1 } });
+            obj.CanFinish_20240706(2, new int[][] { new int[] { 1,0 } });
+ */
+#endregion
+
 namespace leetcode.Problems
 {
     class _0207
@@ -61,10 +69,10 @@ namespace leetcode.Problems
         #endregion
 
         #region 06/11/2024
-        public bool CanFinish(int numCourses, int[][] prerequisites)
+        public bool CanFinish_20240611(int numCourses, int[][] prerequisites)
         {
             int count = 0;
-            Dictionary<int,List<int>> dic = new Dictionary<int, List<int>>();
+            Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
             HashSet<int> noPreCourse = new HashSet<int>();
             int[] level = Enumerable.Repeat(0, numCourses).ToArray();
             for (int i = 0; i < numCourses; i++)
@@ -89,7 +97,7 @@ namespace leetcode.Problems
 
             count += noPreCourse.Count;
 
-            while(noPreCourse.Count > 0)
+            while (noPreCourse.Count > 0)
             {
                 HashSet<int> newSet = new HashSet<int>();
                 foreach (var item in noPreCourse)
@@ -111,12 +119,70 @@ namespace leetcode.Problems
                     }
                 }
 
-                noPreCourse = newSet;   
+                noPreCourse = newSet;
             }
 
             return count == numCourses;
 
 
+        }
+        #endregion
+
+        #region 07/06/2024
+        public bool CanFinish_20240706(int numCourses, int[][] prerequisites)
+        {
+            int[] level = Enumerable.Repeat(0, numCourses).ToArray();
+            Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
+
+            foreach (var item in prerequisites)
+            {
+                int target = item[0];
+                int preCourse = item[1];
+                if (dic.ContainsKey(preCourse))
+                {
+                    dic[preCourse].Add(target);
+                }
+                else
+                {
+                    dic.Add(preCourse, new List<int>() { target });
+                }
+                level[target]++;
+            }
+
+            Queue<int> queue = new Queue<int>();
+
+            for(int i =0; i < level.Length; i++)
+            {
+                if (level[i] == 0) queue.Enqueue(i);
+            }
+
+
+            if (queue.Count == 0) return false;
+
+            while (queue.Count > 0)
+            {
+                int number = queue.Dequeue();
+
+                if (dic.ContainsKey(number))
+                {
+                    List<int> list = dic[number];
+                    foreach (var item in list)
+                    {
+                        level[item]--;
+                        if (level[item] == 0)
+                        {
+                            queue.Enqueue(item);
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < level.Length; i++)
+            {
+                if (level[i] != 0) return false;
+            }
+
+            return true;
         }
         #endregion
     }

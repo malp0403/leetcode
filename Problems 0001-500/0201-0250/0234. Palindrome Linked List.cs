@@ -142,5 +142,53 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 07/07/2024
+        public bool IsPalindrome_2024_07_07(ListNode head)
+        {
+            if (head == null) return false;
+            ListNode firsthalf = firsthalf_2024_07_07(head);
+            ListNode secondhalf = reverse_2024_07_07(firsthalf.next);
+
+            ListNode p1 = head;
+            ListNode p2 = secondhalf;
+            while(p2 != null)
+            {
+                if (p1.val != p2.val) return false;
+                p1 = p1.next;
+                p2 = p2.next;
+            }
+            return true;
+        }
+
+        public ListNode firsthalf_2024_07_07(ListNode node)
+        {
+            ListNode fast = node;
+            ListNode slow = node;
+            while(fast.next !=null && fast.next.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+
+        public ListNode reverse_2024_07_07(ListNode node)
+        {
+            ListNode pre = null;
+            ListNode cur = node;
+            while(cur != null)
+            {
+                ListNode future = cur.next;
+                cur.next = pre;
+
+                pre = cur;
+                cur = future;
+            }
+
+            return pre;
+        }
+
+        #endregion
+
     }
 }

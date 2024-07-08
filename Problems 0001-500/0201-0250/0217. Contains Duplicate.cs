@@ -47,5 +47,20 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 07/07/2024
+        public bool ContainsDuplicate(int[] nums)
+        {
+
+            HashSet<int> seen = new HashSet<int> { };
+
+            foreach (var item in nums)
+            {
+                if (seen.Contains(item)) return true;
+                seen.Add(item);
+            }
+            return false;
+        }
+            #endregion
+
+        }
     }
-}

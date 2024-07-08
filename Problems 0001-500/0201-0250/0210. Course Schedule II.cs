@@ -83,12 +83,13 @@ namespace leetcode.Problems
             List<int> answer = new List<int>();
 
             HashSet<int> set = new HashSet<int>() { };
-            for(int i =0; i < numCourses; i++)
+            for (int i = 0; i < numCourses; i++)
             {
                 set.Add(i);
             }
 
-            for (int i = 0;i < prerequisites.Length;i++) { 
+            for (int i = 0; i < prerequisites.Length; i++)
+            {
                 int target = prerequisites[i][0];
                 int pre = prerequisites[i][1];
                 set.Remove(target);
@@ -125,7 +126,8 @@ namespace leetcode.Problems
 
                 foreach (int target in set)
                 {
-                    if (pres.ContainsKey(target)){
+                    if (pres.ContainsKey(target))
+                    {
                         List<int> list = pres[target];
                         for (int i = 0; i < list.Count; i++)
                         {
@@ -143,7 +145,59 @@ namespace leetcode.Problems
             }
 
 
-            return answer.Count == numCourses?answer.ToArray():new int[] { };
+            return answer.Count == numCourses ? answer.ToArray() : new int[] { };
+
+        }
+        #endregion
+
+        #region 07/06/2024
+        public int[] FindOrder_2024_07_06(int numCourses, int[][] prerequisites)
+        {
+            int[] levels = Enumerable.Repeat(0, numCourses).ToArray();
+            Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
+            List<int> orders = new List<int>();
+
+            foreach (var item in prerequisites)
+            {
+                int target = item[0];
+                int preCourse = item[1];
+                if (dic.ContainsKey(preCourse))
+                {
+                    dic[preCourse].Add(target);
+                }
+                else
+                {
+                    dic.Add(preCourse, new List<int>() { target});
+                }
+                levels[target]++;
+            }
+
+            Queue<int> queue = new Queue<int>();
+            for(int i =0;i < levels.Length; i++)
+            {
+                if (levels[i] == 0) { queue.Enqueue(i); }
+            }
+
+            while (queue.Count > 0)
+            {
+                int course = queue.Dequeue();
+                orders.Add(course);
+                if (dic.ContainsKey(course))
+                {
+                    foreach (var item in dic[course])
+                    {
+                        levels[item]--;
+                        if (levels[item] == 0)
+                        {
+                            queue.Enqueue(item);
+                        }
+                    }
+                }
+            }
+
+            return orders.Count != numCourses ? new int[] { } : orders.ToArray();
+
+
 
         }
         #endregion
