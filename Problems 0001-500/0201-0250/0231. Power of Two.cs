@@ -10,7 +10,20 @@ namespace leetcode.Problems_0001_500._0201_0250
     {
         public bool IsPowerOfTwo(int n)
         {
-            return true;
+            List<int> list = new List<int>();
+            for(int i =0; i < 31; i++)
+            {
+                list.Add((int)Math.Pow(2, i));
+            }
+            for(int i =list.Count-1;i >= 0; i--)
+            {
+                if (n == list[i])
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0226
     {
+        #region Solution
         public TreeNode InvertTree(TreeNode root)
         {
             if (root == null) return null;
@@ -24,7 +25,7 @@ namespace leetcode.Problems
         {
             Queue<TreeNode> q = new Queue<TreeNode>() { };
             q.Enqueue(root);
-            while(q.Count != 0)
+            while (q.Count != 0)
             {
                 var a = q.Dequeue();
                 var tempLeft = a.left;
@@ -54,14 +55,14 @@ namespace leetcode.Problems
         }
         public TreeNode InvertTree_Review2_iterative(TreeNode root)
         {
-            
+
             Queue<TreeNode> queue = new Queue<TreeNode>() { };
             if (root == null) return null;
             queue.Enqueue(root);
             while (queue.Count != 0)
             {
                 var node = queue.Dequeue();
-                if(node != null)
+                if (node != null)
                 {
                     var temp = node.right;
                     node.right = node.left;
@@ -70,9 +71,27 @@ namespace leetcode.Problems
                     queue.Enqueue(node.right);
                 }
             }
-          
+
 
             return root;
         }
+        #endregion
+
+        #region 07/07/2024
+        public TreeNode InvertTree_2024_07_07(TreeNode root)
+        {
+            if (root == null) return null;
+
+            TreeNode node = root;
+
+            TreeNode left = InvertTree_2024_07_07(node.left);
+            TreeNode right = InvertTree_2024_07_07(node.right);
+            node.right = left;
+            node.left = right;
+
+            return node;
+        }
+        #endregion
+
     }
 }

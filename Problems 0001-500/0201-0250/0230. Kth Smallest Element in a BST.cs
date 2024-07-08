@@ -86,7 +86,25 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 07/07/2024
+        List<int> list_2024_07_07;
+        public int KthSmallest_2024_07_07(TreeNode root, int k) {
+            list_2024_07_07 = new List<int>() { };
+            helper(root);
 
+            return list_2024_07_07[k - 1];
+
+        }
+        public void helper(TreeNode root)
+        {
+            if (root == null) return;
+
+            helper(root.left);
+            list_2024_07_07.Add((int)root.val);
+            helper(root.right);
+        }
+
+        #endregion
 
     }
 }

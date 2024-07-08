@@ -7,6 +7,11 @@ namespace leetcode.Problems
 {
     class _0215
     {
+        #region LeetCode Approach 2: Min-Heap(Priority Queue)
+        #endregion
+        #region LeetCode Approach 3: Quickselect
+        #endregion
+
         #region Sort Solution
         public int findKthLargest(int[] nums, int k)
         {
@@ -123,6 +128,69 @@ namespace leetcode.Problems
   
         }
         #endregion
+
+        #region 07/07/2024
+        public int FindKthLargest_2024_07_07(int[] nums, int k)
+        {
+            PriorityQueue<int,int> queue = new PriorityQueue<int,int>();
+
+            for(int i =0; i < nums.Length; i++)
+            {
+                if(queue.Count<k) queue.Enqueue(nums[i], nums[i]);
+                else
+                {
+                    if (queue.Peek() > nums[i]) continue;
+                    else
+                    {
+                        queue.Dequeue();
+                        queue.Enqueue(nums[i], nums[i]);
+                    }
+                }
+            }
+            return queue.Peek();
+        }
+        #endregion
+
+        #region 07/07/2024_quickSelect
+        public int FindKthLargest_2024_07_07_quickSelect(int[] nums, int k)
+        {
+            return helper_2024_07_07(nums.ToList(), k);
+        }
+        public int helper_2024_07_07(List<int> list,int k)
+        {
+            int pivot = list[new Random().Next(0,list.Count-1)] ;
+            List<int> bigger = new List<int>();
+            List<int> mid = new List<int>();
+            List<int> smaller = new List<int>();
+            foreach(int i in list)
+            {
+                if(i < pivot)
+                {
+                    smaller.Add(i);
+                }else if(i > pivot)
+                {
+                    bigger.Add(i);
+                }
+                else
+                {
+                    mid.Add(i);
+                }
+            }
+            if(bigger.Count >= k)
+            {
+                return helper_2024_07_07(bigger, k);
+            }
+            if(bigger.Count + mid.Count < k)
+            {
+                return helper_2024_07_07(smaller, k - bigger.Count - mid.Count);
+            }
+
+            return pivot;
+
+        }
+        #endregion
+
+
 
     }
 }

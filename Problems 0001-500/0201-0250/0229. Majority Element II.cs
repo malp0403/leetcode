@@ -25,17 +25,20 @@ namespace leetcode.Problems_0001_500._0201_0250
             int count2 = 0;
             for (int i = 0; i < nums.Length; i++)
             {
-                if(can1 !=null && can1 == nums[i])
+                if (can1 != null && can1 == nums[i])
                 {
                     count1++;
-                }else if( can2 != null && can2 == nums[i])
+                }
+                else if (can2 != null && can2 == nums[i])
                 {
                     count2++;
-                }else if( count1 == 0)
+                }
+                else if (count1 == 0)
                 {
                     can1 = nums[i];
                     count1++;
-                }else if( count2 == 0)
+                }
+                else if (count2 == 0)
                 {
                     can2 = nums[i];
                     count2++;
@@ -50,7 +53,7 @@ namespace leetcode.Problems_0001_500._0201_0250
 
             count1 = 0;
             count2 = 0;
-            for(int i =0; i  < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 if (nums[i] == can1) count1++;
                 if (nums[i] == can2) count2++;
@@ -105,6 +108,7 @@ namespace leetcode.Problems_0001_500._0201_0250
         }
         #endregion
 
+        #region Solution
         public string test(string s)
         {
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
@@ -143,11 +147,11 @@ namespace leetcode.Problems_0001_500._0201_0250
         public string test2(string s)
         {
             int[] arr = new int[26];
-            for(int i = 0; i < 26; i++)
+            for (int i = 0; i < 26; i++)
             {
                 arr[i] = 0;
             }
-   
+
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
             for (int i = 0; i < s.Length; i++)
             {
@@ -180,6 +184,57 @@ namespace leetcode.Problems_0001_500._0201_0250
             return answer;
 
         }
+
+        #endregion
+
+        #region 07/07/2024  be carefull, need to set n1,n2 to be null in the beginning
+        public IList<int> MajorityElement(int[] nums)
+        {
+            int? num1 = null;
+            int? num2 = null;
+            int c1 = 0;
+            int c2 = 0;
+            foreach (var item in nums)
+            {
+                if (num1 != null && num1 == item)
+                {
+                    c1++;
+                }
+                else if (num2 != null && num2 == item)
+                {
+                    c2++;
+                }
+                else if (c1 == 0)
+                {
+                    num1 = item;
+                    c1++;
+                }
+                else if (c2 == 0)
+                {
+                    num2 = item;
+                    c2++;
+                }
+                else
+                {
+                    c1--;
+                    c2--;
+                }
+            }
+            c1 = 0;
+            c2 = 0;
+            foreach (var item in nums)
+            {
+                if (num1 == item) c1++;
+                if (num2 == item) c2++;
+            }
+            List<int> result = new List<int>();
+            if (c1 > nums.Length / 3) result.Add((int)num1);
+            if (c2 > nums.Length / 3) result.Add((int)num2);
+
+            return result;
+
+        }
+        #endregion
 
     }
 }

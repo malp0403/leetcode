@@ -147,5 +147,68 @@ namespace leetcode.Problems_0001_500._0201_0250
 
 
         #endregion
+
+        #region 07/07/2024
+        public int Calculate_2024_07_07(string s)
+        {
+            Stack<object> stack= new Stack<object>();
+            int n = 0;
+            int number = 0;
+            for(int i =s.Length-1;i >=0; i--)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    number = (int)Math.Pow(10, n) * (s[i] - '0') + number;
+                    n++;
+                }else if (s[i] !=' ')
+                {
+                    if (n != 0)
+                    {
+                        stack.Push(number);
+                        n = 0;
+                        number = 0;
+                    }
+                    if (s[i] == '(')
+                    {
+                        int res = helper_2024_07_07(stack);
+                        stack.Pop();
+                        stack.Push(res);
+                    }
+                    else
+                    {
+                        stack.Push(s[i]);
+                    }
+ 
+                }
+            }
+            if(n != 0)
+            {
+                stack.Push(number);
+            }
+            return helper_2024_07_07(stack);
+        }
+
+        public int helper_2024_07_07(Stack<object> stack)
+        {
+            if(stack.Count==0 || !(stack.Peek() is int))
+            {
+                stack.Push(0);
+            }
+            int res = (int)stack.Peek();
+
+            while(stack.Count > 0 && (char)stack.Peek() != ')') {
+                char sign = (char)stack.Pop();
+                if(sign == '+')
+                {
+                    res += (int)stack.Pop();
+                }
+                else
+                {
+                    res -= (int)stack.Pop();
+                }
+            }
+            return res;
+        }
+        #endregion
     }
 }

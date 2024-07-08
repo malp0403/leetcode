@@ -191,7 +191,7 @@ namespace leetcode.Problems
                 {
                     number = number * 10 + s[i] - '0';
                 }
-                if (!char.IsDigit(s[i]) && !char.IsWhiteSpace(s[i]) || i == s.Length-1)
+                if (!char.IsDigit(s[i]) && !char.IsWhiteSpace(s[i]) || i == s.Length - 1)
                 {
                     if (operation == '+')
                     {
@@ -217,6 +217,53 @@ namespace leetcode.Problems
                 }
             }
             sum += lastNumber;
+            return sum;
+        }
+        #endregion
+
+        #region 07/07/2024
+        public int Calculate_2024_07_07(string s)
+        {
+            int sum = 0;
+            int curNumber = 0;
+            int n = 0;
+            char oper = '+';
+            int lastNumber = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    curNumber = curNumber * 10 + s[i] - '0';
+                }
+                if (!char.IsDigit(s[i]) && !char.IsWhiteSpace(s[i]) || i == s.Length - 1)
+                {
+                    if (oper == '*')
+                    {
+                        lastNumber = lastNumber * curNumber;
+                    }
+                    else if (oper == '/')
+                    {
+                        lastNumber = lastNumber / curNumber;
+                    }
+                    else if (oper == '+')
+                    {
+
+                        sum += lastNumber;
+                        lastNumber = curNumber;
+                    }
+                    else if (oper == '-')
+                    {
+                        sum += lastNumber;
+                        lastNumber = -curNumber;
+                    }
+
+                    oper = s[i];
+                    curNumber = 0;
+                }
+            }
+            sum += lastNumber;
+
             return sum;
         }
         #endregion
