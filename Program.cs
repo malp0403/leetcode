@@ -27,8 +27,8 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0231();
-            obj.IsPowerOfTwo(16);
+            var obj = new _0246();
+            obj.IsStrobogrammatic("1");
 
 
 

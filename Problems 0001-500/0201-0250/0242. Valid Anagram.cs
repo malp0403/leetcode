@@ -92,5 +92,29 @@ namespace leetcode.Problems
             
         }
         #endregion
+
+        #region 07/08/2024
+        public bool IsAnagram(string s, string t)
+        {
+            int[] arr1 = Enumerable.Repeat(0, 26).ToArray();
+            foreach (var item in s)
+            {
+                arr1[item - 'a']++;
+            }
+
+            foreach (var item in t)
+            {
+                arr1[item - 'a']--;
+                if (arr1[item - 'a'] < 0) return false;
+            }
+
+            foreach (var item in arr1)
+            {
+                if (item != 0) return false;
+            }
+            return true;
+        }
+        #endregion
     }
+
 }
