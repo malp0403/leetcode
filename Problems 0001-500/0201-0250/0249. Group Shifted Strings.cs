@@ -84,7 +84,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 07/08/2022
-        public IList<IList<string>> GroupStrings(string[] strings)
+        public IList<IList<string>> GroupStrings_2024_07_08(string[] strings)
         {
             Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
 
