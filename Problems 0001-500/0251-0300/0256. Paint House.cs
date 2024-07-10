@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,49 +9,22 @@ namespace leetcode.Problems_0001_500._0251_0300
 {
     internal class _0256
     {
-        #region 07/08/2024
-        int min = int.MaxValue;
-        int[][] dp;
         public int MinCost(int[][] costs)
         {
-            dp = new int[costs.Length][];
-            for(int i =0; i < dp.Length; i++)
+            int c1 = 0;
+            int c2 = 0;
+            int c3 = 0;
+            for(int i =0; i < costs.Length; i++)
             {
-                dp[i] = Enumerable.Repeat(int.MaxValue, 3).ToArray();
+                int temp1 = c1;
+                int temp2 = c2;
+                int temp3 = c3;
+                c1 = Math.Min(temp2 , temp3) + costs[i][0];
+                c2 = Math.Min(temp1 , temp3) + costs[i][1];
+                c3 = Math.Min(temp1, temp2) + costs[i][2];
             }
 
-            helper(0,)
+            return Math.Min(c1, Math.Min(c2, c3));
         }
-        public int helper(int index, int prev, int[][] costs)
-        {
-            if(index == costs.Length)
-            {
-                return 0;
-            }
-            if (dp[index][prev] != int.MaxValue)
-            {
-                return dp[index][prev];
-            }
-            int sum1 = 0;
-            int sum2 = 0;
-            if(prev ==0 )
-            {
-                sum1 = helper(index + 1, 1, costs) + costs[index][1];
-                sum2 = helper(index + 1, 2, costs) + costs[index][2];
-            }else if (prev == 1)
-            {
-                sum1 = helper(index + 1, 0, costs) + costs[index][0];
-                sum2 = helper(index + 1, 2, costs) + costs[index][2];
-            }
-            else
-            {
-                sum1 = helper(index + 1, 0, costs) + costs[index][0];
-                sum2 = helper(index + 1, 1, costs) + costs[index][1];
-            }
-            dp[index][prev] = Math.Min(sum1, sum2);
-
-            return dp[index][prev];
-        }
-        #endregion
     }
 }
