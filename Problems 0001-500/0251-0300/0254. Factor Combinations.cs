@@ -12,11 +12,28 @@ namespace leetcode.Problems_0001_500._0251_0300
         IList<IList<int>> answer = new List<IList<int>>();
         public IList<IList<int>> GetFactors(int n)
         {
-            return null;
+            if (n == 1) return answer;
+            backTracking(n, new List<int>() { }, false,2);
+            return answer;
         }
-        public void backTracking(int n,List<int> curList)
+        public void backTracking(int n,List<int> curList,bool isInclusive,int smallest)
         {
-            if (n == 1) return;
+            if (n == 1)
+            {
+                answer.Add(curList.ToList());
+                return;
+            }
+
+            for(int i = smallest; i <= (isInclusive?n:n-1); i++)
+            {
+                if(n%i == 0)
+                {
+                    curList.Add(i);
+
+                    backTracking(n / i, curList,true,i);
+                    curList.RemoveAt(curList.Count - 1);
+                }
+            }
             
 
         }
