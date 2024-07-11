@@ -28,12 +28,10 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0265();
-            obj.MinCostII(new int[][] { 
-            
-                new int[]{ 3,20,7,7,16,8,7,12,11,19,1},
-                new int[]{ 10, 14, 3, 3, 9, 13, 4, 12, 14, 13, 1 }
-            });
+            var obj = new _0267();
+            obj.GeneratePalindromes_2024_07_09("a");
+
+            obj.GeneratePalindromes_2024_07_09("aabb");
 
 
 
