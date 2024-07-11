@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace leetcode.Problems
 {
     class _0266
     {
+        #region Solution
         public bool CanPermutePalindrome(string s)
         {
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
@@ -26,7 +28,7 @@ namespace leetcode.Problems
             }
 
             return singleCount >= 1;
-            
+
             //if( s.Length %2 == 0)
             //{
             //    valid = singleCount == 0;
@@ -37,7 +39,10 @@ namespace leetcode.Problems
             //}
             //return valid;
         }
-//********************** 12/16/2021 **********
+        #endregion
+
+        #region 12/16/2021
+        //********************** 12/16/2021 **********
         public bool CanPermutePalindrome_R2(string s)
         {
             Dictionary<char, int> d = new Dictionary<char, int>() { };
@@ -49,10 +54,31 @@ namespace leetcode.Problems
             int single = 0;
             foreach (var item in d.Keys)
             {
-                if (d[item] %2 == 1) single++;
+                if (d[item] % 2 == 1) single++;
                 if (single >= 2) return false;
             }
             return true;
         }
+        #endregion
+
+        #region 07/09/2024
+        public bool CanPermutePalindrome_2024_07_09(string s)
+        {
+            int[] arr= Enumerable.Repeat(0,26).ToArray();
+
+            int count = 0;
+            foreach(char c in s)
+            {
+                arr[c - 'a']++;
+                if (arr[c - 'a'] % 2 == 1) count++;
+                else
+                {
+                    count--;
+                }
+            }
+
+            return count == 0 || count == 1;
+        }
+        #endregion
     }
 }
