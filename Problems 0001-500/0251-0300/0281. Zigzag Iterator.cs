@@ -15,7 +15,7 @@ namespace leetcode.Problems_0001_500._0251_0300
         int l2 = 0;
         bool isOne = true;
         IList<int> _v1;
-        IList<int> _v2
+        IList<int> _v2;
         public _0281(IList<int> v1, IList<int> v2)
         {
             _v1 = v1;
@@ -24,14 +24,16 @@ namespace leetcode.Problems_0001_500._0251_0300
 
         public bool HasNext()
         {
-            return l1 == _v1.Count && l1 == _v2.Count; 
+            return l1 < _v1.Count || l2 < _v2.Count; 
         }
 
         public int Next()
         {
             if (isOne)
             {
-                if(l1 == _v1.Count)
+                isOne = !isOne;
+
+                if (l1 == _v1.Count)
                 {
                     return _v2[l2++];
                 }
@@ -42,7 +44,9 @@ namespace leetcode.Problems_0001_500._0251_0300
             }
             else
             {
-                if(l2 == _v2.Count)
+                isOne = !isOne;
+
+                if (l2 == _v2.Count)
                 {
                     return _v1[l1++];
                 }
@@ -51,8 +55,6 @@ namespace leetcode.Problems_0001_500._0251_0300
                     return _v2[l2++];
                 }    
             }
-
-            isOne = !isOne;
         }
         #endregion
     }
