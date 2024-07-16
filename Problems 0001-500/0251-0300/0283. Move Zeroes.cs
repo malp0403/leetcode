@@ -99,6 +99,6 @@ namespace leetcode.Problems
                 j++;
             }
         }
-            #endregion
-        }
+        #endregion
     }
+}

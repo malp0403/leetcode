@@ -1,6 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+#region Test Case
+/*
+             var obj = new _0270();
+            TreeNode n4 = new TreeNode(4);
+            TreeNode n2 = new TreeNode(2);
+            TreeNode n5 = new TreeNode(5);
+            TreeNode n1 = new TreeNode(1);
+            TreeNode n3 = new TreeNode(3);
+            n4.left = n2; n4.right = n5;
+            n2.left = n1;n2.right = n3;
+
+            obj.ClosestValue_2024_07_11(n4,3.7);
+
+            TreeNode n1_ = new TreeNode(1);
+            TreeNode n2_ = new TreeNode(3);
+            n1_.right = n2_;
+            obj.ClosestValue_2024_07_11(n1_,3.4);
+ */
+#endregion
 
 namespace leetcode.Problems
 {

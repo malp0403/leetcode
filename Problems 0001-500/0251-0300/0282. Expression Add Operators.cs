@@ -21,6 +21,7 @@ namespace leetcode.Problems_0001_500._0251_0300
             num_2024_07_12 = num;
             operation_2024_07_12 = new List<string>() { "+", "-", "*" };
             buildLists = new List<string>();
+            return buildLists;
         }
 
         public void Build_2024_07_12(int i, string num, int target, StringBuilder sb)
