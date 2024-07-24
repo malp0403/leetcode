@@ -29,8 +29,8 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0309();
-            obj.MaxProfit_2024_07_22(new int[] { 1, 2, 3, 0, 2 });
+            var obj = new _0324();
+            obj.WiggleSort(new int[6] { 1, 5, 1, 1, 6, 4});
 
         }
 
