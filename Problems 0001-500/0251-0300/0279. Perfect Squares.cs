@@ -55,7 +55,34 @@ namespace leetcode.Problems_0001_500._0251_0300
             return dp[n];
 
         }
-       
+
+
+        #endregion
+
+        #region 07/11/2024
+        int[] dp_2024_07_11;
+        public int NumSquares(int n)
+        {
+            dp_2024_07_11 = Enumerable.Repeat(-1, 10001).ToArray();
+            return helper_2024_07_11(n);
+        }
+        public int helper_2024_07_11(int n)
+        {
+            if (n == 0) return 0;
+
+            if (dp_2024_07_11[n] != -1) return dp_2024_07_11[n];
+
+            int min = int.MaxValue;
+            for(int i =1;i <= Math.Sqrt(n); i++)
+            {
+                min = Math.Min(min, 1 + helper_2024_07_11(n - i * i));
+            }
+
+            dp_2024_07_11[n] = min;
+            return min;
+
+        }
+
 
         #endregion
     }

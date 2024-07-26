@@ -6,6 +6,7 @@ using leetcode.Problems_0001_500._0101_150;
 using leetcode.Problems_0001_500._0151_0200;
 using leetcode.Problems_0001_500._0201_0250;
 using leetcode.Problems_0001_500._0251_0300;
+using leetcode.Problems_0001_500._0301_0350;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
 using leetcode.Problems_1501_2000._1651_1700;
@@ -28,15 +29,9 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0267();
-            obj.GeneratePalindromes_2024_07_09("a");
+            var obj = new _0324();
+            obj.WiggleSort(new int[6] { 1, 5, 1, 1, 6, 4});
 
-            obj.GeneratePalindromes_2024_07_09("aabb");
-
-
-
-
-            Console.Write("123");
         }
 
 

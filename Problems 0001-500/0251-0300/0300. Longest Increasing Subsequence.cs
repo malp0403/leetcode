@@ -1,21 +1,14 @@
-﻿using leetcode.Problems_0001_500._0301_0350;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-#region Test Data
 
-//var obj = new _0300() { };
-//obj.LengthOfLIS(new int[] { 7, 7, 7, 7, 7 });
-//obj.LengthOfLIS_20230904(new int[] { 1, 3, 6, 7, 9, 4, 10, 5, 6 });
-//obj.LengthOfLIS_20230904(new int[] { 0, 1, 0, 3, 2, 3 });
-#endregion
-namespace leetcode.Problems_0001_500._0301_0350
+namespace leetcode.Problems_0001_500._0251_0300
 {
     internal class _0300
     {
+       
         #region Solution
         int max = 1;
         int[] nums;
@@ -65,53 +58,53 @@ namespace leetcode.Problems_0001_500._0301_0350
         #region 09/04/2023
         public int LengthOfLIS_20230904(int[] nums)
         {
-            (int count, int curMax)[][] dp = new (int count,int curMax)[3][];
-            for(int i =0; i < dp.Length; i++)
+            (int count, int curMax)[][] dp = new (int count, int curMax)[3][];
+            for (int i = 0; i < dp.Length; i++)
             {
-                dp[i] = Enumerable.Repeat((0, -10001), nums.Length+1).ToArray();
+                dp[i] = Enumerable.Repeat((0, -10001), nums.Length + 1).ToArray();
             }
 
-            for(int i =0;i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 if (nums[i] > dp[2][i].curMax)
                 {
-                    dp[0][i+1] = (dp[2][i].count + 1, nums[i]);
+                    dp[0][i + 1] = (dp[2][i].count + 1, nums[i]);
                     dp[1][i + 1] = dp[0][i];
                     dp[2][i + 1] = helper_20230904(dp[0][i + 1], dp[1][i + 1]);
                 }
-                else 
+                else
                 {
                     int j = i;
                     int target = j;
                     int count = -1;
-                    for(; j >= 0; j--)
+                    for (; j >= 0; j--)
                     {
-                        if(dp[0][j].curMax < nums[i])
+                        if (dp[0][j].curMax < nums[i])
                         {
-                            if(dp[0][j].count + (dp[0][j].curMax != nums[i] ? 1 : 0) > count)
+                            if (dp[0][j].count + (dp[0][j].curMax != nums[i] ? 1 : 0) > count)
                             {
                                 count = dp[0][j].count + (dp[0][j].curMax != nums[i] ? 1 : 0);
                                 target = j;
                             }
                         }
                     }
-   
-                    dp[0][i + 1] = (dp[0][target].count + (dp[0][target].curMax!=nums[i]? 1:0),nums[i]);
+
+                    dp[0][i + 1] = (dp[0][target].count + (dp[0][target].curMax != nums[i] ? 1 : 0), nums[i]);
                     dp[1][i + 1] = dp[2][i];
-                    dp[2][i+1] = helper_20230904(dp[0][i + 1], dp[1][i+1]);
+                    dp[2][i + 1] = helper_20230904(dp[0][i + 1], dp[1][i + 1]);
 
                 }
-               
+
             }
 
             return dp[2][nums.Length].count;
 
         }
 
-        public (int count, int curMax) helper_20230904((int count,int curMax) a, (int count, int curMax) b)
+        public (int count, int curMax) helper_20230904((int count, int curMax) a, (int count, int curMax) b)
         {
             if (a.count > b.count) return a;
-            if(b.count > a.count) return b;
+            if (b.count > a.count) return b;
             if (a.curMax < b.curMax) return a;
             else return b;
         }
@@ -122,9 +115,9 @@ namespace leetcode.Problems_0001_500._0301_0350
         {
             int[] dp = Enumerable.Repeat(1, nums.Length).ToArray();
 
-            for(int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                for(int j = 0; j < i; j++)
+                for (int j = 0; j < i; j++)
                 {
                     if (nums[i] > nums[j])
                     {
@@ -133,7 +126,7 @@ namespace leetcode.Problems_0001_500._0301_0350
                 }
             }
             int longest = 0;
-            for(int i =0; i < dp.Length; i++)
+            for (int i = 0; i < dp.Length; i++)
             {
                 longest = Math.Max(dp[i], longest);
             }

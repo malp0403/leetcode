@@ -55,5 +55,20 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 07/15/2024 catch it if it is negative value
+        public int FindDuplicate_2024_07_15(int[] nums)
+        {
+           
+            for(int i =0; i < nums.Length; i++)
+            {
+                int index = Math.Abs(nums[i]) - 1;
+                if (nums[index] < 0) return Math.Abs(nums[i]);
+                nums[index] = -nums[index];
+            }
+            return 0;
+           
+        }
+
+        #endregion
     }
 }

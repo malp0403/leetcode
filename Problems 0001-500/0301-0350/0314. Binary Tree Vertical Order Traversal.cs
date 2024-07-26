@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 namespace leetcode.Problems
 {
     class _0314
     {
-        public IList<IList<int>> VerticalOrder(TreeNode root)
+        #region Solution
+
+       
+        public IList<IList<int>> VerticalOrder_(TreeNode root)
         {
             int pos = 0;
             SortedDictionary<int, SortedDictionary<int, List<int>>> dic = new SortedDictionary<int, SortedDictionary<int, List<int>>>() { };
@@ -51,5 +57,55 @@ namespace leetcode.Problems
                 travel(root.right, pos + 1, level + 1, dic);
             }
         }
+        #endregion
+
+        #region 07/23/2024 
+        SortedDictionary<int, List<int>> dic_2024_07_22;
+        public IList<IList<int>> VerticalOrder_2024_07_22(TreeNode root)
+        {
+            dic_2024_07_22 = new SortedDictionary<int, List<int>>();
+            IList<IList<int>> ans = new List<IList<int>>();
+
+            Queue<(TreeNode node, int level)> queue = new Queue<(TreeNode node, int level)>();
+            if (root == null) return ans;
+
+            queue.Enqueue((root, 0));
+            while(queue.Count != 0)
+            {
+
+                int n = queue.Count;
+                while(n > 0)
+                {
+                    var ele = queue.Dequeue();
+                    if (dic_2024_07_22.ContainsKey(ele.level))
+                    {
+                        dic_2024_07_22[ele.level].Add(ele.node.val);
+                    }
+                    else
+                    {
+                        dic_2024_07_22.Add(ele.level, new List<int>() { ele.node.val });
+                    }
+
+                    if(ele.node.left != null)
+                    {
+                        queue.Enqueue((ele.node.left, ele.level - 1));
+                    }
+                    if (ele.node.right != null)
+                    {
+                        queue.Enqueue((ele.node.right, ele.level + 1));
+                    }
+
+                    n--;
+                }
+
+            }
+
+            foreach (var item in dic_2024_07_22.Keys)
+            {
+                ans.Add(dic_2024_07_22[item]);
+            }
+            return ans;
+        }
+        #endregion
     }
 }

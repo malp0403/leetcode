@@ -85,7 +85,8 @@ namespace leetcode.Problems
             ListNode p2 = head.next;
             ListNode evenStart = p2;
 
-            while(p2 !=null && p2.next != null){
+            while (p2 != null && p2.next != null)
+            {
                 ListNode temp = p2.next;
 
                 p1.next = temp;
@@ -96,6 +97,34 @@ namespace leetcode.Problems
             }
             p1.next = evenStart;
             return head;
+        }
+
+        #endregion
+
+        #region 07/25/2024
+        public ListNode OddEvenList_2024_07_25(ListNode head)
+        {
+            if (head == null || head.next == null) return head;
+
+            ListNode p1 = head;
+            ListNode p2 = head.next;
+            ListNode evenStart = p2;
+
+            while(p2 != null && p2.next !=null)
+            {
+                ListNode temp = p2.next;
+
+                p1.next = temp;
+                p1 = p1.next;
+
+                p2.next = temp.next;
+                p2 = p2.next;
+
+            }
+            p1.next = evenStart;
+
+            return head;
+            
         }
 
         #endregion
