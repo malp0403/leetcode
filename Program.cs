@@ -21,7 +21,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text;
-
+using static leetcode.Problems._0339;
 
 namespace leetcode
 {
@@ -29,8 +29,7 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0324();
-            obj.WiggleSort(new int[6] { 1, 5, 1, 1, 6, 4});
+  
 
         }
 

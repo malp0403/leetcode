@@ -36,33 +36,32 @@ namespace leetcode.Problems
 
         #region 07/25/2024
         Dictionary<(TreeNode root, bool isRob),int> dic;
-        Dictionary<(TreeNode root, bool isRob), int> dic2;
 
         public int Rob_2024_07_25(TreeNode root)
         {
             dic = new Dictionary<(TreeNode root, bool isRob), int>();
-            dic2 = new Dictionary<(TreeNode root, bool isRob), int>();
-
             return Math.Max(helper(root, false), helper(root, true));
         }
 
         public int helper(TreeNode root, bool canRob)
         {
             if (root == null) return 0;
-            if(dic.ContainsKey((root,canRob))) return dic[(root,canRob)];
+
+            if (dic.ContainsKey((root,canRob)))
+            {
+                return dic[(root, canRob)];
+            }
 
             int val = 0;
             if (canRob)
             {
-                val = canRob ? root.val : 0 + helper(root.left, !canRob) + helper(root.right, !canRob); ;
+                val = root.val + helper(root.right,false)+ helper(root.left,false);
             }
-
-            val = Math.Max(val, helper(root.left, true) + helper(root.right, true));
-
+            val = Math.Max(val, helper(root.right, true) + helper(root.left, true));
 
             dic.Add((root, canRob), val);
 
-            return dic[(root,canRob)];
+            return val;
         }
 
 

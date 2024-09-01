@@ -6,10 +6,12 @@ namespace leetcode.Problems
 {
     class _0339
     {
+        #region Solution
+
         int sum = 0;
-        public int DepthSum(IList<NestedInteger> nestedList)
+        public int DepthSum_s1(IList<NestedInteger> nestedList)
         {
-            foreach(var ele in nestedList)
+            foreach (var ele in nestedList)
             {
                 transform(ele, 1);
             }
@@ -36,30 +38,59 @@ namespace leetcode.Problems
             }
 
         }
+        #endregion
 
+        #region 01/01/2021
         //01-01-2021--------------------
         public int DepthSum_R2(IList<NestedInteger> nestedList)
         {
             int sum = 0;
-            foreach(var ele in nestedList)
+            foreach (var ele in nestedList)
             {
                 sum += helper(ele, 1);
             }
             return sum;
         }
-        public int helper(NestedInteger n,int level)
+        public int helper(NestedInteger n, int level)
         {
             if (n.IsInteger()) return n.GetInteger() * level;
             else
             {
                 int sum = 0;
-                foreach(var ele in n.GetList())
+                foreach (var ele in n.GetList())
                 {
                     sum += helper(ele, level + 1);
                 }
                 return sum;
             }
         }
+        #endregion
+
+        #region 08/31/2024
+
+        public int DepthSum_2024_08_31(IList<NestedInteger> nestedList)
+        {
+            int sum = 0;
+
+            return DepthSum_helper_2024_08_31(nestedList, 1);
+        }
+
+        public int DepthSum_helper_2024_08_31(IList<NestedInteger> nestedList,int depth)
+        {
+            int sum = 0;
+
+            foreach(var ele in nestedList)
+            {
+                if (ele.IsInteger()) sum += ele.GetInteger() * depth;
+                else {
+                    sum += DepthSum_helper_2024_08_31(ele.GetList(), depth + 1);
+
+                }
+            }
+            return sum;
+        }
+
+        #endregion
         public interface NestedInteger
         {
 
