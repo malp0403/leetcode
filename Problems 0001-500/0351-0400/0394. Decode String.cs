@@ -86,6 +86,54 @@ namespace leetcode.Problems
             return answer;
         }
         #endregion
-       
+
+        #region 09/01/2024
+        public string DecodeString(string s)
+        {
+            Stack<string> stack = new Stack<string>();
+
+            for(int i =0; i < s.Length; i++)
+            {
+                if (s[i] == ']')
+                {
+                    string temp = "";
+                    while(stack.Count >0 && stack.Peek() != "[")
+                    {
+                        temp = stack.Pop() + temp;
+                    }
+                    stack.Pop();
+
+                    string number = "";
+                    while(stack.Count >0 && char.IsDigit(stack.Peek().ToCharArray()[0]))
+                    {
+                        number = stack.Pop() + number;
+                    }
+                    int count = number ==""?1:int.Parse(number);
+                    string ans = "";
+                    while (count > 0)
+                    {
+                        count--;
+                        ans += temp;
+                    }
+                    stack.Push(ans);
+
+                }
+                else
+                {
+                    stack.Push(s[i].ToString());
+                }
+            }
+
+            string answer = "";
+            while (stack.Count > 0)
+            {
+                answer = stack.Pop() + answer;
+            }
+
+            return answer;
+
+        }
+            #endregion
+
+        }
     }
-}

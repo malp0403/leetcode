@@ -48,5 +48,45 @@ namespace leetcode.Problems_0001_500._0351_0400
             return 0;
         }
         #endregion
+
+        #region 09/01/2024 DFS (Depth-First Search) without sorting
+        Dictionary<TreeNode, int> dic_2024_09_01;
+        IList<IList<int>> answer_2024_09_01 = new List<IList<int>>();
+
+        public IList<IList<int>> FindLeaves(TreeNode root)
+        {
+            dic_2024_09_01 = new Dictionary<TreeNode, int>();
+            depth_2024_09_01(root);
+
+            return answer_2024_09_01;
+
+        }
+        public int depth_2024_09_01(TreeNode node)
+        {
+            if (node == null) return 0;
+
+            if (dic_2024_09_01.ContainsKey(node))
+            {
+                return dic_2024_09_01[node];
+            }
+
+            int depth = Math.Max(depth_2024_09_01(node.left),depth_2024_09_01(node.right))+1;
+
+            dic.Add(node, depth);
+            if(answer_2024_09_01.Count < depth)
+            {
+                answer_2024_09_01.Add(new List<int>() { node.val });
+            }
+            else
+            {
+                answer_2024_09_01[depth - 1].Add(node.val);
+            }
+            return dic[node];
+            
+
+        }
+        #endregion
+
+
     }
 }

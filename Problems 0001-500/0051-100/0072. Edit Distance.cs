@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 #region Examples
 /*
  Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
@@ -40,6 +41,11 @@ Constraints:
 word1 and word2 consist of lowercase English letters.
  */
 #endregion
+
+#region Test
+
+#endregion
+
 namespace leetcode.Problems_0001_500._0051_100
 {
     internal class _0072
@@ -165,6 +171,51 @@ namespace leetcode.Problems_0001_500._0051_100
             memo[index1][index2] = Math.Min(curMin, noChange);
             return memo[index1][index2];
         }
+        #endregion
+
+        #region 09/01/2024 Top down
+        int[][] memo_2024_09_01;
+        public int MinDistance_2024_09_01(string word1, string word2)
+        {
+            memo_2024_09_01 = new int[word1.Length][];
+            for(int i =0;i < word1.Length; i++)
+            {
+                memo_2024_09_01[i] = Enumerable.Repeat(-1, word2.Length).ToArray();
+            }
+
+            return dfs_2024_09_01(word1, word2, 0, 0);
+        }
+        public int dfs_2024_09_01(string word1, string word2,int index1,int index2)
+        {
+            if(index1 == word1.Length)
+            {
+                return word2.Length - index2;
+            }
+            if(index2 == word2.Length)
+            {
+                return word1.Length - index1;
+            }
+
+            if (memo_2024_09_01[index1][index2] != -1) return memo_2024_09_01[index1][index2];
+
+            int ans = 0;
+            if (word1[index1] == word2[index2])
+            {
+                return dfs_2024_09_01(word1, word2, index1 + 1, index2 + 1);
+            }
+            else
+            {
+                int insert = dfs_2024_09_01(word1, word2, index1, index2 + 1) +1;
+                int replace = dfs_2024_09_01(word1, word2, index1 + 1, index2 + 1) +1;
+                int delete = dfs_2024_09_01(word1, word2, index1 + 1, index2) +1;
+                ans = Math.Min(insert, Math.Min(replace, delete));
+
+            }
+
+            memo_2024_09_01[index1][index2] = ans;
+            return ans;
+        }
+
         #endregion
     }
 }
