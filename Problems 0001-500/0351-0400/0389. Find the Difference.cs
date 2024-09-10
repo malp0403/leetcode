@@ -49,7 +49,7 @@ namespace leetcode.Problems_0001_500._0351_0400
             foreach (var item in t)
             {
                 arr[item - 'a']--;
-                if (arr[item-'a'] < 0)
+                if (arr[item - 'a'] < 0)
                 {
                     return item;
                 }
@@ -57,6 +57,28 @@ namespace leetcode.Problems_0001_500._0351_0400
 
             return ' ';
 
+        }
+        #endregion
+
+        #region 09/03/2024
+        public char FindTheDifference_2024_09_03(string s, string t)
+        {
+            int[] arr = Enumerable.Repeat(0, 26).ToArray();
+            foreach (var c in s)
+            {
+                arr[c - 'a']++;
+            }
+            foreach (var c in t)
+            {
+
+                if (arr[c - 'a'] == 0)
+                {
+                    return c;
+                }
+                arr[c - 'a']--;
+            }
+
+            return ' ';
         }
         #endregion
     }

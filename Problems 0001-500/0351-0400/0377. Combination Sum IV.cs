@@ -58,7 +58,7 @@ namespace leetcode.Problems_0001_500._0351_0400
 
             dp[0] = 1;
 
-            for(int i =1; i < target + 1; i++)
+            for (int i = 1; i < target + 1; i++)
             {
                 foreach (var item in nums)
                 {
@@ -68,8 +68,8 @@ namespace leetcode.Problems_0001_500._0351_0400
                     }
                 }
             }
-            
-            
+
+
             return dp[target];
         }
         #endregion
@@ -94,9 +94,9 @@ namespace leetcode.Problems_0001_500._0351_0400
 
             int sum = 0;
 
-            for(int i = 0;i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                sum +=DfsHelper_2023_11_21(curSum - nums[i], nums);
+                sum += DfsHelper_2023_11_21(curSum - nums[i], nums);
             }
 
             dp[curSum] = sum;
@@ -105,6 +105,57 @@ namespace leetcode.Problems_0001_500._0351_0400
 
 
         }
-            #endregion
+        #endregion
+
+        #region Approach 1: Top-Down Dynamic Programming 09/01/2024
+        Dictionary<int,int> dic_app1;
+        public int CombinationSum4_app1(int[] nums, int target)
+        {
+            dic_app1 = new Dictionary<int, int>();
+            return dps_app1(nums, target);
         }
+        public int dps_app1(int[] dp, int remain)
+        {
+            if (remain == 0) return 1;
+            if (dic_app1.ContainsKey(remain))
+            {
+                return dic_app1[remain];
+            }
+            int result = 0;
+            foreach (int i in dp)
+            {
+                if(remain - i >= 0)
+                {
+                    result += dps_app1(dp, remain - i);
+                }
+
+            }
+            dic_app1.Add(remain, result);
+            return result;
+        }
+
+        #endregion
+
+        #region Approach 2: Bottom-Up Dynamic Programming 09/01/2024
+        public int CombinationSum4_app2(int[] nums, int target)
+        {
+            int[] dp = Enumerable.Repeat(0, target + 1).ToArray();
+            dp[0] = 1;
+
+            for(int i = 1; i < dp.Length; i++)
+            {
+                foreach (var item in nums)
+                {
+                    if(i-item >= 0)
+                    {
+                        dp[i] += dp[i - item];
+                    }
+                }
+            }
+
+            return dp[target];
+        }
+
+        #endregion
     }
+}

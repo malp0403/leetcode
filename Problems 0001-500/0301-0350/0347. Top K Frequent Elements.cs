@@ -127,6 +127,36 @@ namespace leetcode.Problems_0001_500._0301_0350
         }
         #endregion
 
+        #region 08/31/2024 Priority Queue
+        public int[] TopKFrequent(int[] nums, int k)
+        {
+            Dictionary<int, int> countDic = new Dictionary<int, int>();
+            foreach (int num in nums)
+            {
+                if (!countDic.ContainsKey(num))
+                {
+                    countDic.Add(num, 1);
+                }
+                else
+                {
+                    countDic[num]++;
+                }
+            }
+            PriorityQueue<int, int> queue = new PriorityQueue<int, int>() { };
+            foreach (var item in countDic.Keys)
+            {
+                queue.Enqueue(item, -countDic[item]);
+            }
+
+            List<int> list = new List<int> { };
+            while (k > 0 && queue.Count > 0)
+            {
+                list.Add(queue.Dequeue());
+                k--;
+            }
+            return list.ToArray();
+        }
+        #endregion
 
     }
 }

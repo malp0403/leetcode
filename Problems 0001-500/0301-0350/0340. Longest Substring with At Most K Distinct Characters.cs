@@ -6,7 +6,8 @@ namespace leetcode.Problems
 {
     class _0340
     {
-        public int LengthOfLongestSubstringKDistinct(string s, int k)
+        #region Solution
+        public int LengthOfLongestSubstringKDistinct_s(string s, int k)
         {
             if (k == 0) return 0;
             Dictionary<char, int> dic = new Dictionary<char, int>() { };
@@ -18,12 +19,12 @@ namespace leetcode.Problems
                 if (!dic.ContainsKey(s[r])) dic.Add(s[r], 1);
                 else dic[s[r]]++;
 
-                if(dic.Keys.Count <= k) max = Math.Max(max, r - l + 1);
+                if (dic.Keys.Count <= k) max = Math.Max(max, r - l + 1);
 
                 while (dic.Keys.Count > k)
                 {
                     dic[s[l]]--;
-                    if(dic[s[l]] == 0)
+                    if (dic[s[l]] == 0)
                     {
                         dic.Remove(s[l]);
                     }
@@ -33,5 +34,41 @@ namespace leetcode.Problems
             }
             return max;
         }
+        #endregion
+
+
+        #region 08/31/2024
+        public int LengthOfLongestSubstringKDistinct(string s, int k)
+        {
+            int l = 0;
+            int r = 0;
+            int max = 0;
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+
+            while(r < s.Length)
+            {
+                char c = s[r];
+                if (!dic.ContainsKey(c)) dic.Add(c, 1);
+                else dic[c]++;
+
+                while(dic.Keys.Count > k)
+                {
+                    dic[s[l]]--;
+                    if (dic[s[l]] == 0)
+                    {
+                        dic.Remove(s[l]);
+                    }
+                    l++;
+                }
+
+                max = Math.Max(max, l - r + 1);
+                r++;
+
+            }
+            return max;
+        }
+
+        #endregion
+
     }
 }

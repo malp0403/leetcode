@@ -71,5 +71,31 @@ namespace leetcode.Problems_0001_500._0351_0400
         //}
         #endregion
 
+        #region 09/01/2024
+        //Dictionary<string, int> dic = new Dictionary<string, int>();
+
+        //public _0359()
+        //{
+
+        //}
+
+        //public bool ShouldPrintMessage(int timestamp, string message)
+        //{
+        //    if (!dic.ContainsKey(message))
+        //    {
+        //        dic.Add(message, timestamp);
+        //        return true;
+        //    }
+
+        //    int t = dic[message];
+        //    if (timestamp - t >= 10)
+        //    {
+        //        dic[message] = timestamp;
+        //        return true;
+        //    }
+        //    return false;
+        //}
+        #endregion
+
     }
 }

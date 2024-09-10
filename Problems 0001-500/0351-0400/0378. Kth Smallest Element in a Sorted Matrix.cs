@@ -49,7 +49,7 @@ namespace leetcode.Problems_0001_500._0351_0400
         public int KthSmallest(int[][] matrix, int k)
         {
 
-           Queue<(int r,int c)> queue = new Queue<(int r,int c)> ();
+            Queue<(int r, int c)> queue = new Queue<(int r, int c)>();
             PriorityQueue<int, int> summary_queue = new PriorityQueue<int, int>();
             HashSet<(int r, int c)> visited = new HashSet<(int r, int c)>();
             List<List<int>> directions = new List<List<int>>()
@@ -58,15 +58,15 @@ namespace leetcode.Problems_0001_500._0351_0400
                 new List<int>(){1,0}
             };
             queue.Enqueue((0, 0));
-            visited.Add((0,0));
+            visited.Add((0, 0));
             summary_queue.Enqueue(matrix[0][0], matrix[0][0]);
 
-            while (queue.Count > 0 || summary_queue.Count <k)
+            while (queue.Count > 0 || summary_queue.Count < k)
             {
                 int count = queue.Count;
-                while(count > 0)
+                while (count > 0)
                 {
-                     var element = queue.Dequeue();
+                    var element = queue.Dequeue();
                     foreach (var item in directions)
                     {
                         int row = element.r + item[0];
@@ -107,6 +107,89 @@ namespace leetcode.Problems_0001_500._0351_0400
             }
             return index;
         }
+        #endregion
+
+        #region 09/01/2024
+        public int KthSmallest_2024_09_01(int[][] matrix, int k)
+        {
+            List<List<int>> dir = new List<List<int>>()
+            {
+                new List<int>(){0,1},
+                new List<int>(){1,0}
+            };
+            PriorityQueue<(int row, int col), int> priorityQueue = new PriorityQueue<(int row, int col), int>();
+            HashSet<(int row, int col)> seen = new HashSet<(int row, int col)>();
+
+            Queue<(int row, int col)> queue = new Queue<(int row, int col)>();
+
+            queue.Enqueue((0, 0));
+            seen.Add((0, 0));
+            priorityQueue.Enqueue((0, 0), matrix[0][0]);
+            while (queue.Count > 0)
+            {
+                var item = queue.Dequeue();
+                foreach (var ele in dir)
+                {
+                    int r = ele[0] + item.row;
+                    int c = ele[1] + item.col;
+                    if (r >= matrix.Length || c >= matrix[0].Length || seen.Contains((r, c))) continue;
+                    queue.Enqueue((r, c));
+                    seen.Add((r, c));
+                    priorityQueue.Enqueue((r, c), matrix[r][c]);
+                }
+
+            }
+
+            int ans = 1;
+            while (k > 0)
+            {
+                var ele = priorityQueue.Dequeue();
+                ans = matrix[ele.row][ele.col];
+                k--;
+            }
+
+            return ans;
+
+
+        }
+        #endregion
+
+        #region Approach 1: Min-Heap approach 09/01/2024
+        public int KthSmallest_app1(int[][] matrix, int k)
+        {
+            PriorityQueue<(int row, int index), int> priorityQueue = new PriorityQueue<(int row, int index), int>();
+
+            for(int i =0; i < matrix.Length; i++)
+            {
+                priorityQueue.Enqueue((i, 0), matrix[i][0]);
+            }
+            int ans = 1;
+            while(k > 0)
+            {
+                var ele = priorityQueue.Dequeue();
+                ans = matrix[ele.row][ele.index];
+
+                if(ele.index +1 < matrix[0].Length)
+                {
+                    priorityQueue.Enqueue((ele.row, ele.index + 1), matrix[ele.row][ele.index+1]);
+                }
+
+
+
+
+                k--;
+
+
+
+            }
+
+            return ans;
+
+        }
+        #endregion  
+
+        #region Approach 2: Binary Search  still cant understand
+
         #endregion
     }
 }

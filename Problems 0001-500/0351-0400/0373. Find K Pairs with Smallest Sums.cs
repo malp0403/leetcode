@@ -48,7 +48,7 @@ namespace leetcode.Problems_0001_500._0351_0400
             PriorityQueue<int[], int> q = new PriorityQueue<int[], int>();
 
             IList<IList<int>> ans = new List<IList<int>>();
-  
+
             HashSet<(int i, int j)> visited = new HashSet<(int i, int j)>();
 
             q.Enqueue(new int[2] { 0, 0 }, nums1[0] + nums2[0]);
@@ -60,15 +60,15 @@ namespace leetcode.Problems_0001_500._0351_0400
                 int i = ele[0];
                 int j = ele[1];
                 ans.Add(new List<int>() { nums1[i], nums2[j] });
-                if (i + 1 < nums1.Length && !visited.Contains((i+1,j)) )
+                if (i + 1 < nums1.Length && !visited.Contains((i + 1, j)))
                 {
                     q.Enqueue(new int[] { i + 1, j }, nums1[i + 1] + nums2[j]);
-                    visited.Add((i+1, j));
+                    visited.Add((i + 1, j));
                 }
-                if (j + 1 < nums2.Length && !visited.Contains((i, j+1)))
+                if (j + 1 < nums2.Length && !visited.Contains((i, j + 1)))
                 {
                     q.Enqueue(new int[] { i, j + 1 }, nums1[i] + nums2[j + 1]);
-                    visited.Add((i, j+1));
+                    visited.Add((i, j + 1));
                 }
                 k--;
             }
@@ -76,5 +76,38 @@ namespace leetcode.Problems_0001_500._0351_0400
             return ans;
         }
         #endregion
+
+        #region 09/01/2024 Approach1: Using Heap
+        public IList<IList<int>> KSmallestPairs_2024_09_01(int[] nums1, int[] nums2, int k)
+        {
+            PriorityQueue<(int i1, int i2), int> queue = new PriorityQueue<(int i1, int i2), int>();
+            HashSet<(int i1, int i2)> seen = new HashSet<(int i1, int i2)>();
+
+            IList<IList<int>> answer = new List<IList<int>>();
+            queue.Enqueue((0, 0), nums1[0] + nums2[0]);
+            seen.Add((0, 0));
+            while (answer.Count < k)
+            {
+                var ele = queue.Dequeue();
+                answer.Add(new List<int>() { nums1[ele.i1], nums2[ele.i2] });
+
+                if (ele.i2 + 1 < nums2.Length && !seen.Contains((ele.i1, ele.i2 + 1)))
+                {
+                    queue.Enqueue((ele.i1, ele.i2 + 1), nums1[ele.i1] + nums2[ele.i2 + 1]);
+                    seen.Add((ele.i1, ele.i2 + 1));
+                }
+                if (ele.i1 + 1 < nums1.Length && !seen.Contains((ele.i1 + 1, ele.i2)))
+                {
+                    queue.Enqueue((ele.i1 + 1, ele.i2), nums1[ele.i1 + 1] + nums2[ele.i2]);
+                    seen.Add((ele.i1 + 1, ele.i2));
+                }
+               
+            }
+
+            return answer;
+        }
+        #endregion
+
+
     }
 }

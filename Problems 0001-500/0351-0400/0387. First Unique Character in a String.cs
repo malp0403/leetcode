@@ -109,5 +109,23 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 09/03/2024
+        public int FirstUniqChar_2024_09_03(string s)
+        {
+            int[] arr= Enumerable.Repeat(0, 26).ToArray();
+
+            foreach(char c in s)
+            {
+                arr[c - 'a']++;
+            }
+
+            for(int i =0; i < s.Length; i++)
+            {
+                if (arr[s[i] - 'a'] == 1) return i;
+            }
+            return -1;
+        }
+            #endregion
+
+        }
     }
-}
