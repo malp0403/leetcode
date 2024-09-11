@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0398
     {
+        #region 01/11/2022   
         //Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>() { };
         //public _0398(int[] nums)
         //{
@@ -26,23 +27,53 @@ namespace leetcode.Problems
         //}
 
         //01-11-2022-----------------------------
-        Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>() { };
+        //Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>() { };
+        //public _0398(int[] nums)
+        //{
+        //    for (int i = 0; i < nums.Length; i++)
+        //    {
+        //        if (!dic.ContainsKey(nums[i])) dic.Add(nums[i], new List<int>() { i });
+        //        else
+        //        {
+        //            dic[nums[i]].Add(i);
+        //        }
+        //    }
+        //}
+        //public int Pick(int target)
+        //{
+        //    List<int> list = dic[target];
+        //    int indx = new Random().Next(0, list.Count);
+        //    return list[indx];
+        //}
+        #endregion
+
+        #region 09/04/2024
+        Dictionary<int, List<int>> dic;
         public _0398(int[] nums)
         {
-            for(int i=0; i < nums.Length; i++)
+            dic = new Dictionary<int, List<int>>();
+
+            for (int i = 0; i < nums.Length; i++)
             {
-                if (!dic.ContainsKey(nums[i])) dic.Add(nums[i], new List<int>() { i });
+                if (!dic.ContainsKey(nums[i]))
+                {
+                    dic.Add(nums[i], new List<int>() { i });
+                }
                 else
                 {
                     dic[nums[i]].Add(i);
                 }
             }
         }
+
         public int Pick(int target)
         {
             List<int> list = dic[target];
-            int indx = new Random().Next(0,list.Count);
-            return list[indx];
+
+            int index= new Random().Next(list.Count);
+
+            return list[index];
         }
+        #endregion
     }
 }
