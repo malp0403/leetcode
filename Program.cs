@@ -9,6 +9,7 @@ using leetcode.Problems_0001_500._0201_0250;
 using leetcode.Problems_0001_500._0251_0300;
 using leetcode.Problems_0001_500._0301_0350;
 using leetcode.Problems_0001_500._0351_0400;
+using leetcode.Problems_0001_500._0401_0450;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
 using leetcode.Problems_1501_2000._1651_1700;
@@ -31,8 +32,8 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0072();
-            var res = obj.MinDistance_2024_09_01("horse", "ros");
+            var obj = new _0423();
+            var res = obj.OriginalDigits("owoztneoer");
 
         }
 

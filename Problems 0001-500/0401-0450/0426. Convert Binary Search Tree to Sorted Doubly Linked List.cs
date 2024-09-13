@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0426
     {
+        #region Approach 1: Recursion
         //****************dfs binding during Recursive****************
         Node first = null;
         Node last = null;
@@ -20,10 +21,10 @@ namespace leetcode.Problems
         }
         public void helper_dfs(Node root)
         {
-            if(root != null)
+            if (root != null)
             {
                 helper_dfs(root.left);
-                if(last == null)
+                if (last == null)
                 {
                     last = root;
                     first = root;
@@ -36,10 +37,12 @@ namespace leetcode.Problems
                 }
                 helper_dfs(root.right);
             }
-           
+
         }
         //********************************
+        #endregion
 
+        #region Solution
         List<Node> inorder = new List<Node>() { };
         public Node TreeToDoublyList(Node root)
         {
@@ -48,7 +51,7 @@ namespace leetcode.Problems
             Node head = new Node(-1001);
             head.right = inorder[0];
             Node pre = inorder[inorder.Count - 1];
-            for(int i =0; i < inorder.Count; i++)
+            for (int i = 0; i < inorder.Count; i++)
             {
                 inorder[i].left = pre;
                 pre.right = inorder[i];
@@ -59,14 +62,49 @@ namespace leetcode.Problems
         }
         public void dfs(Node node)
         {
-            if(node != null)
+            if (node != null)
             {
                 dfs(node.left);
                 inorder.Add(node);
                 dfs(node.right);
             }
         }
-       
+        #endregion
+
+        #region 09/12/2024
+        Node first_2024_09_12;
+        Node last_2024_09_12;
+        public Node TreeToDoublyList_2024_09_12(Node root)
+        {
+            if (root == null) return null;
+            helper_2024_09_12(root);
+            last.right = first;
+            first.left = last;
+
+            return first;
+        }
+        public void helper_2024_09_12(Node node)
+        {
+            if(node != null)
+            {
+                helper_2024_09_12(node.left);
+
+                if(last_2024_09_12 != null)
+                {
+                    node.left = last_2024_09_12;
+                    last.right = node;
+                }
+                else
+                {
+                    first_2024_09_12 = node;
+                }
+                last_2024_09_12 = node;
+
+                helper_2024_09_12(node.right);
+            }
+        }
+        #endregion
+
     }
     public class Node
     {

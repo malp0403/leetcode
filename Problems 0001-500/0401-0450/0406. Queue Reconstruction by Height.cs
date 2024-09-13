@@ -6,16 +6,17 @@ namespace leetcode.Problems
 {
     class _0406
     {
-        public int[][] ReconstructQueue(int[][] people)
+        #region solution
+        public int[][] ReconstructQueue_S(int[][] people)
         {
-           Array.Sort(people, CompareStrings);
-
-           
+            Array.Sort(people, CompareStrings);
 
 
-            for(int i=0; i < people.Length; i++)
+
+
+            for (int i = 0; i < people.Length; i++)
             {
-                for(int j=0; j < people[i].Length; j++)
+                for (int j = 0; j < people[i].Length; j++)
                 {
                     Console.Write(people[i][j] + " ");
                 }
@@ -27,14 +28,17 @@ namespace leetcode.Problems
         {
             return o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0];
         }
+        #endregion
+
+        #region 01/05/2022
         //01-05-2022----------------
         public int[][] ReconstructQueue_R2(int[][] people)
         {
             Array.Sort(people, CompareStrings);
             List<int[]> ans = new List<int[]>() { };
-            for(int i=0; i < people.Length; i++)
+            for (int i = 0; i < people.Length; i++)
             {
-                if(people[i][1] == ans.Count)
+                if (people[i][1] == ans.Count)
                 {
                     ans.Add(people[i]);
                 }
@@ -45,6 +49,7 @@ namespace leetcode.Problems
             }
             return ans.ToArray();
         }
+        #endregion
     }
 
 }

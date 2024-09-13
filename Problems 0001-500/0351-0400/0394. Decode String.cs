@@ -88,7 +88,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 09/01/2024
-        public string DecodeString(string s)
+        public string DecodeString_2024_09_01(string s)
         {
             Stack<string> stack = new Stack<string>();
 
