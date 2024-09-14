@@ -8,7 +8,7 @@ namespace leetcode.Problems_0001_500._0401_0450
 {
     public class _0431
     {
-        #region 09/12/2024
+        #region 09/12/2024 Double Link Node: prev,next,count,hashset<string> keys
 
         public Node head;
         public Node tail;
@@ -38,22 +38,86 @@ namespace leetcode.Problems_0001_500._0401_0450
 
         public void Inc(string key)
         {
-            if()
+            if (dic.ContainsKey(key))
+            {
+                var curNode = dic[key];
+                curNode.Keys.Remove(key);
+                if(curNode.Next ==tail || curNode.Next.Count > curNode.Count + 1)
+                {
+                    Node newNode = new Node(curNode.Count + 1);
+                    AddNodeAfter(newNode, curNode);
+                }
+
+                curNode.Next.Keys.Add(key);
+                dic[key] = curNode.Next;
+
+                if (curNode.Keys.Count == 0)
+                {
+                    RemoveNode(curNode);
+                }
+
+            }
+            else
+            {
+                if(head.Next == tail || head.Next.Count > 1)
+                {
+                    var newNode= new Node(1);
+                    AddNodeAfter(newNode, head);
+                }
+                head.Next.Keys.Add(key);
+                dic[key] = head.Next;   
+
+            }
         }
 
         public void Dec(string key)
         {
+            if (!dic.ContainsKey(key))
+            {
+                return;
+            }
+
+            var curNode = dic[key];
+            curNode.Keys.Remove(key);
+
+            if (curNode.Count > 1)
+            {
+                if(curNode.Prev ==head || curNode.Prev.Count < curNode.Count - 1)
+                {
+                    var newNode = new Node(curNode.Count - 1);
+                    AddNodeAfter(newNode, curNode.Prev);
+                }
+                curNode.Prev.Keys.Add(key);
+                dic[key] = curNode.Prev;
+            }
+            else
+            {
+                dic.Remove(key);
+            }
+
+            if (curNode.Keys.Count == 0)
+            {
+                RemoveNode(curNode);
+            }
 
         }
 
         public string GetMaxKey()
         {
-
+            foreach (var item in tail.Prev.Keys)
+            {
+                return item;
+            }
+            return "";
         }
 
         public string GetMinKey()
         {
-
+            foreach (var item in head.Next.Keys)
+            {
+                return item;
+            }
+            return "";
         }
         public class Node
         {
@@ -68,6 +132,6 @@ namespace leetcode.Problems_0001_500._0401_0450
                 Keys = new HashSet<string>();
             }
         }
-        #endregion
+        #endregion 
     }
 }

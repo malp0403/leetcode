@@ -32,8 +32,21 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0423();
-            var res = obj.OriginalDigits("owoztneoer");
+            var obj = new _0431();
+            obj.Inc("hello");
+            obj.Inc("goodbye");
+            obj.Inc("hello");
+            obj.Inc("hello");
+            var res = obj.GetMaxKey();
+            obj.Inc("leet");
+            obj.Inc("code");
+            obj.Inc("leet");
+            obj.Dec("hello");
+            obj.Inc("leet");
+            obj.Inc("code");
+            obj.Inc("code");
+            res = obj.GetMaxKey();
+           
 
         }
 
