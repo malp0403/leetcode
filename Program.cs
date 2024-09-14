@@ -26,12 +26,47 @@ using System.Runtime.Remoting;
 using System.Text;
 using static leetcode.Problems._0339;
 
+#region Question
+/*
+ Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
+
+You must solve the problem without using any built-in library for handling large integers (such as BigInteger). You must also not convert the inputs to integers directly.
+
+ 
+
+Example 1:
+
+Input: num1 = "11", num2 = "123"
+Output: "134"
+Example 2:
+
+Input: num1 = "456", num2 = "77"
+Output: "533"
+Example 3:
+
+Input: num1 = "0", num2 = "0"
+Output: "0"
+ 
+
+Constraints:
+
+1 <= num1.length, num2.length <= 104
+num1 and num2 consist of only digits.
+num1 and num2 don't have any leading zeros except for the zero itself.
+ */
+#endregion
+
+#region Test
+
+#endregion
+
 namespace leetcode
 {
     class Program
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             var obj = new _0431();
             obj.Inc("hello");
             obj.Inc("goodbye");
@@ -47,6 +82,12 @@ namespace leetcode
             obj.Inc("code");
             res = obj.GetMaxKey();
            
+=======
+            var obj = new _0418();
+            var res = obj.WordsTyping(new string[] { "a", "bcd", "e" }, 3, 6);
+
+            var res2 = obj.WordsTyping(new string[] { "i", "had", "apple", "pie" }, 4, 5);
+>>>>>>> 06102b645cb92f5f7f7a740ef3dede1253ae2862
 
         }
 

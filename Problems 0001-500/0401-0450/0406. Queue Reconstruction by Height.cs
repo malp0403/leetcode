@@ -6,8 +6,13 @@ namespace leetcode.Problems
 {
     class _0406
     {
+<<<<<<< HEAD
         #region solution
         public int[][] ReconstructQueue_S(int[][] people)
+=======
+        #region Approach 1: Greedy
+        public int[][] ReconstructQueue(int[][] people)
+>>>>>>> 06102b645cb92f5f7f7a740ef3dede1253ae2862
         {
             Array.Sort(people, CompareStrings);
 
@@ -50,6 +55,27 @@ namespace leetcode.Problems
             return ans.ToArray();
         }
         #endregion
+<<<<<<< HEAD
+=======
+
+        #region 09/05/2024 sort by height in desceding then sort count by assceding order
+        public int[][] ReconstructQueue_2024_09_05(int[][] people)
+        {
+            Array.Sort(people, (a, b) =>
+            {
+                if (a[0] == b[0]) return a[1] - b[1];
+                else return b[0] - a[0];
+            });
+
+            List<int[]> output = new List<int[]>();
+            for(int i =0;i < people.Length; i++)
+            {
+                output.Insert(people[i][1], people[i]);
+            }
+            return output.ToArray();
+        }
+        #endregion
+>>>>>>> 06102b645cb92f5f7f7a740ef3dede1253ae2862
     }
 
 }
