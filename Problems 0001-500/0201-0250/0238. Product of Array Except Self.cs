@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -77,24 +78,45 @@ namespace leetcode.Problems
         }
         #endregion
 
-        #region 07/07/2024 from left to right; from right to left;
+        #region Approach 2: O(1) space approach 07/07/2024 from left to right; from right to left;
 
         public int[] ProductExceptSelf_2024_07_07(int[] nums)
         {
             int[] ans = Enumerable.Repeat(0, nums.Length).ToArray();
             ans[0] = 1;
-            for(int i =1; i < ans.Length; i++)
+            for (int i = 1; i < ans.Length; i++)
             {
                 ans[i] = ans[i - 1] * nums[i - 1];
             }
             int r = 1;
-            for(int i =ans.Length-1;i>= 0; i--)
+            for (int i = ans.Length - 1; i >= 0; i--)
             {
                 ans[i] = ans[i] * r;
                 r *= nums[i];
             }
 
             return ans;
+        }
+        #endregion
+
+        #region 09/16/2024
+        public int[] ProductExceptSelf_2024_09_16(int[] nums)
+        {
+            int[] prod = Enumerable.Repeat(1, nums.Length).ToArray();
+            for(int i = 1; i < nums.Length; i++)
+            {
+                prod[i] = prod[i - 1] * nums[i - 1];
+            }
+
+            int right = 1;
+
+            for(int i=nums.Length-1;i >= 0; i--)
+            {
+                prod[i] = prod[i] * right;
+                right *= nums[i];
+            }
+
+            return prod;
         }
         #endregion
     }

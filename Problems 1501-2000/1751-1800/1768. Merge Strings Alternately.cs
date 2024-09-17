@@ -58,11 +58,12 @@ namespace leetcode.Problems_1501_2000._1751_1800
         #endregion
 
         #region 09/23/2023 one pointer
-        public string MergeAlternately_20230923(string word1,string word2)
+        public string MergeAlternately_20230923(string word1, string word2)
         {
             StringBuilder sb = new StringBuilder();
             int index = 0;
-            while(index < word1.Length || index < word2.Length) {
+            while (index < word1.Length || index < word2.Length)
+            {
                 if (index < word1.Length)
                 {
                     sb.Append(word1[index]);
@@ -73,6 +74,31 @@ namespace leetcode.Problems_1501_2000._1751_1800
                 }
                 index++;
             }
+            return sb.ToString();
+        }
+        #endregion
+
+        #region 09/16/2024 one pointer
+        public string MergeAlternately_2024_09_16(string word1, string word2)
+        {
+            int index = 0;
+            StringBuilder sb = new StringBuilder();
+            while (index < Math.Min(word1.Length, word2.Length))
+            {
+                sb.Append(word1[index]);
+                sb.Append(word2[index]);
+                index++;
+            }
+
+            if(index < word1.Length)
+            {
+                sb.Append(word1.Substring(index));
+            }
+            if(index < word2.Length)
+            {
+                sb.Append(word2.Substring(index));
+            }
+
             return sb.ToString();
         }
         #endregion
