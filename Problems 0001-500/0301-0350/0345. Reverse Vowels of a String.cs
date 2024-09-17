@@ -13,19 +13,19 @@ namespace leetcode.Problems_0001_500._0301_0350
         {
             HashSet<char> set = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u'
             ,'A','E','I','O','U'};
-            char[] arr= s.ToCharArray();
+            char[] arr = s.ToCharArray();
 
             int l = 0;
-            int r = arr.Length-1;
+            int r = arr.Length - 1;
 
             while (l < r)
             {
-                while( l <r && !set.Contains(arr[l]))
+                while (l < r && !set.Contains(arr[l]))
                 {
                     l++;
                 }
                 if (l >= r) break;
-                while( l< r && !s.Contains(arr[r]))
+                while (l < r && !s.Contains(arr[r]))
                 {
                     r--;
                 }
@@ -38,9 +38,40 @@ namespace leetcode.Problems_0001_500._0301_0350
                 l++;
                 r--;
             }
-            return new string(arr); 
+            return new string(arr);
 
 
+        }
+        #endregion
+
+        #region 09/16/2024 Two Pointers
+        public string ReverseVowels_2024_09_16(string s)
+        {
+            HashSet<char> set = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u'
+            ,'A','E','I','O','U'};
+            char[] array = s.ToCharArray();
+
+            int left = 0;
+            int right = s.Length - 1;
+            while(left < right)
+            {
+                while(left < right && !set.Contains(array[left]))
+                {
+                    left++;
+                }
+                while(right > left && !set.Contains(array[right]))
+                {
+                    right--;
+                }
+                char c = array[left];
+                array[left]= array[right];
+                array[right] = c;
+
+
+                left++;
+                right--;
+            }
+            return new String(array);
         }
         #endregion
     }

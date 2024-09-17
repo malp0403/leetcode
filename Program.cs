@@ -66,10 +66,35 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             var obj = new _0422();
             var res = obj.ValidWordSquare_app2(new List<string>{
                 "abc","b"
             });
+=======
+<<<<<<< HEAD
+            var obj = new _0431();
+            obj.Inc("hello");
+            obj.Inc("goodbye");
+            obj.Inc("hello");
+            obj.Inc("hello");
+            var res = obj.GetMaxKey();
+            obj.Inc("leet");
+            obj.Inc("code");
+            obj.Inc("leet");
+            obj.Dec("hello");
+            obj.Inc("leet");
+            obj.Inc("code");
+            obj.Inc("code");
+            res = obj.GetMaxKey();
+           
+=======
+            var obj = new _0418();
+            var res = obj.WordsTyping(new string[] { "a", "bcd", "e" }, 3, 6);
+
+            var res2 = obj.WordsTyping(new string[] { "i", "had", "apple", "pie" }, 4, 5);
+>>>>>>> 06102b645cb92f5f7f7a740ef3dede1253ae2862
+>>>>>>> 33ec5476b61e1673b94afb81016a3d34c3c24884
 
         }
 
