@@ -66,10 +66,10 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var obj = new _0418();
-            var res = obj.WordsTyping(new string[] { "a", "bcd", "e" }, 3, 6);
-
-            var res2 = obj.WordsTyping(new string[] { "i", "had", "apple", "pie" }, 4, 5);
+            var obj = new _0422();
+            var res = obj.ValidWordSquare_app2(new List<string>{
+                "abc","b"
+            });
 
         }
 
