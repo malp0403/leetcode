@@ -120,6 +120,26 @@ namespace leetcode.Problems_0001_500._0351_0400
             return true;
         }
         #endregion
+
+        #region 09/16/2024 two pointers code is simple
+        public bool IsSubsequence_2024_09_16(string s, string t)
+        {
+            int i = 0;int j = 0;
+            while(i < s.Length && j < t.Length)
+            {
+                if (s[i] == t[j])
+                {
+                    i++;
+                }
+                j++;
+            }
+
+            return i == s.Length;
+        }
+
+        #endregion
+
+
     }
 
 }

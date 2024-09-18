@@ -131,5 +131,29 @@ namespace leetcode.Problems_0001_500._0001_50
 
         #endregion
 
+        #region 09/16/2024
+        public int MaxArea_2024_09_16(int[] height)
+        {
+            int i = 0;
+            int j = height.Length - 1;
+            int max = 0;
+            while(i < j)
+            {
+                int h = Math.Min(height[i], height[j]);
+                max = Math.Max(max, h * (j - i));
+                if (height[i] < height[j])
+                {
+                    i++;
+                }
+                else
+                {
+                    j--;
+                }
+            }
+            return max;
+
+        }
+
+        #endregion
     }
 }

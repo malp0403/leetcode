@@ -45,22 +45,22 @@ namespace leetcode.Problems
         {
             Stack<object> stack = new Stack<object>();
 
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] == ']')
                 {
                     string temp = "";
-                    while (stack.Count>0&&!(stack.Peek() is char && (char)stack.Peek() =='['))
+                    while (stack.Count > 0 && !(stack.Peek() is char && (char)stack.Peek() == '['))
                     {
                         temp = stack.Pop() + temp;
                     }
                     stack.Pop();
                     string number = "";
-                    while(stack.Count>0 && stack.Peek() is char && char.IsNumber((char)stack.Peek()))
+                    while (stack.Count > 0 && stack.Peek() is char && char.IsNumber((char)stack.Peek()))
                     {
                         number = (char)stack.Pop() + number;
                     }
-                    int num = number ==""?1:int.Parse(number);
+                    int num = number == "" ? 1 : int.Parse(number);
                     string ans = "";
                     while (num > 0)
                     {
@@ -92,23 +92,23 @@ namespace leetcode.Problems
         {
             Stack<string> stack = new Stack<string>();
 
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] == ']')
                 {
                     string temp = "";
-                    while(stack.Count >0 && stack.Peek() != "[")
+                    while (stack.Count > 0 && stack.Peek() != "[")
                     {
                         temp = stack.Pop() + temp;
                     }
                     stack.Pop();
 
                     string number = "";
-                    while(stack.Count >0 && char.IsDigit(stack.Peek().ToCharArray()[0]))
+                    while (stack.Count > 0 && char.IsDigit(stack.Peek().ToCharArray()[0]))
                     {
                         number = stack.Pop() + number;
                     }
-                    int count = number ==""?1:int.Parse(number);
+                    int count = number == "" ? 1 : int.Parse(number);
                     string ans = "";
                     while (count > 0)
                     {
@@ -133,7 +133,13 @@ namespace leetcode.Problems
             return answer;
 
         }
-            #endregion
+        #endregion
+
+        #region 09/16/2024
+        public string DecodeString(string s)
+        {
 
         }
+        #endregion
     }
+}

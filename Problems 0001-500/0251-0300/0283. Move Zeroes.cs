@@ -100,5 +100,26 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
+        #region 09/16/2024
+        public void MoveZeroes_2024_09_16(int[] nums)
+        {
+            int i = 0;
+            int j = 0;
+            while (i < nums.Length)
+            {
+                if (nums[i] != 0)
+                {
+                    nums[j] = nums[i];
+                    j++;
+                }
+                i++;
+            }
+            for (int k = j; j < nums.Length; k++)
+            {
+                nums[k] = 0;
+            }
+        }
+            #endregion
+        }
     }
-}

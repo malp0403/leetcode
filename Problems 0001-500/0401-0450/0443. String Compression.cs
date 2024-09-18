@@ -104,40 +104,101 @@ namespace leetcode.Problems
         #endregion
 
         #region 09/16/2024
-        public int Compress(char[] chars)
+        public int Compress_2024_09_16(char[] chars)
         {
+            if (chars.Length == 1) return 1;
             int index = 1;
-            int insertIndex = 1;
             int count = 1;
-            while(index < chars.Length)
+            int sum = 0;
+            int insertIndex = 0;
+            while (index < chars.Length)
             {
                 if (chars[index] != chars[index - 1])
                 {
-                    if(count > 1)
+                    chars[insertIndex] = chars[index - 1];
+                    insertIndex++;
+
+                    if (count > 1)
                     {
                         string countString = count.ToString();
-                        int countStringindex = 0;
-                        while(countStringindex < countString.Length)
+                        int i = 0;
+                        while (i < countString.Length)
                         {
-                            chars[insertIndex] = countString[countStringindex];
-                            countStringindex++;
+                            chars[insertIndex] = countString[i];
+                            i++;
                             insertIndex++;
                         }
                     }
 
-
-
-                    insertIndex = index + 1;
+                    //reset
                     count = 1;
                 }
                 else
                 {
                     count++;
                 }
+                if (index == chars.Length - 1)
+                {
+                    chars[insertIndex] = chars[index];
+                    insertIndex++;
+
+                    if (count > 1)
+                    {
+                        string countString = count.ToString();
+                        int i = 0;
+                        while (i < countString.Length)
+                        {
+                            chars[insertIndex] = countString[i];
+                            i++;
+                            insertIndex++;
+                        }
+                    }
+
+
+                }
+                index++;
 
 
             }
+            char[] answer = new char[insertIndex];
+            for (int i = 0; i < answer.Length; i++)
+            {
+                answer[i] = chars[i];
+            }
 
+            chars = answer;
+
+
+            return answer.Length;
+
+        }
+        #endregion
+
+        #region LeetCode Solution 1 09/16/2024 
+        public int Compress_app1(char[] chars)
+        {
+            int res = 0;
+            int i = 0;
+            while (i < chars.Length)
+            {
+                int len = 1;
+                while (i + len < chars.Length && chars[i + len] == chars[i])
+                {
+                    len++;
+                }
+
+                chars[res++] = chars[i];
+                if(len > 1)
+                {
+                    string str = len.ToString();
+                    for(int j = 0; j < str.Length; j++)
+                    {
+                        chars[res++] = str[j];
+                    }
+                }
+                i += len;
+            }
+            return res;
         }
         #endregion
     }
