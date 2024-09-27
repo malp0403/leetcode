@@ -46,7 +46,7 @@ namespace leetcode.Problems_0501_1000._0801_0850
 {
     internal class _0841
     {
-        #region 12/10/2023   similar to Approach #1: Depth-First Search 
+        #region 12/10/2023   Approach #1: Depth-First Search  Using Array to check visited
         public bool CanVisitAllRooms_2023_12_10(IList<IList<int>> rooms)
         {
             //no room
@@ -58,7 +58,7 @@ namespace leetcode.Problems_0501_1000._0801_0850
 
             queue.Enqueue(0);
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 int r = queue.Dequeue();
                 visited[r] = true;
@@ -79,6 +79,45 @@ namespace leetcode.Problems_0501_1000._0801_0850
             }
 
             return true;
+
+        }
+        #endregion  
+
+        #region 09/26/2024 using hashSet to check visited 
+        public bool CanVisitAllRooms_2024_09_26(IList<IList<int>> rooms)
+        {
+            if (rooms.Count <= 1) return true;
+
+            HashSet<int> keys = new HashSet<int>();
+            HashSet<int> visitedRooms = new HashSet<int>();
+            foreach (var item in rooms[0])
+            {
+                keys.Add(item);
+            }
+            visitedRooms.Add(0);
+
+            while (keys.Count > 0)
+            {
+                HashSet<int> newKeys = new HashSet<int>();
+                foreach (var key in keys) {
+
+                    visitedRooms.Add(key);
+                    foreach (var ro in rooms[key])
+                    {
+                        if (!visitedRooms.Contains(ro))
+                        {
+                            newKeys.Add(ro);
+                        }
+                    }
+
+
+                }
+
+                keys = newKeys;
+
+            }
+
+            return visitedRooms.Count == rooms.Count;
 
         }
         #endregion
