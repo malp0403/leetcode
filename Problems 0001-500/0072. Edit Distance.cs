@@ -217,5 +217,88 @@ namespace leetcode.Problems_0001_500._0051_100
         }
 
         #endregion
+
+        #region 09/30/2024
+        int[][] dp_2024_09_30;
+        public int MinDistance_2024_09_30(string word1, string word2)
+        {
+            dp_2024_09_30 = new int[word1.Length][];
+            for(int i =0; i < dp_2024_09_30.Length; i++)
+            {
+                dp_2024_09_30[i] = Enumerable.Repeat(-1,word2.Length).ToArray();
+            }
+
+            return helper_2024_09_30(0, 0, word1, word2);
+        }
+        public int helper_2024_09_30(int index1, int index2,string word1,string word2)
+        {
+            if(index1  == word1.Length)
+            {
+                return word2.Length - index2;
+            }
+            if(index2 == word2.Length)
+            {
+                return word1.Length - index1;
+            }
+
+            if (dp_2024_09_30[index1][index2] != -1) return dp_2024_09_30[index1][index2];
+
+            int sum = 0;
+            if (word1[index1] == word2[index2])
+            {
+                sum = helper_2024_09_30(index1+1,index2+1,word1,word2);
+            }
+            else
+            {
+                //replace
+                int replace = 1+helper_2024_09_30(index1 + 1, index2 + 1, word1, word2);
+                //delete
+                int delete = 1+helper_2024_09_30(index1 + 1, index2, word1, word2);
+                //insert
+                int insert = 1+
+                    helper_2024_09_30(index1,index2+1, word1, word2);
+
+                sum = Math.Min(Math.Min(replace, delete), insert);
+            }
+            dp_2024_09_30[index1][index2] = sum;
+
+            return sum;
+        }
+        #endregion
+
+        #region 09/30/2024 BU
+        public int MinDistance_2024_09_30_Bu(string word1, string word2)
+        {
+            int[][] dp = new int[word1.Length+1][];
+            for(int i =0; i < dp.Length; i++)
+            {
+                dp[i] = Enumerable.Repeat(0, word2.Length+1).ToArray();
+            }
+            for(int i =0; i < dp.Length; i++)
+            {
+                dp[i][0] = i;
+            }
+            for(int i =0; i < dp[0].Length; i++)
+            {
+                dp[i][0] = i;
+            }
+            for(int i=1;i < dp.Length; i++)
+            {
+                for(int j=1;j < dp[i].Length; j++)
+                {
+                    if (word1[i-1] == word2[j - 1])
+                    {
+                        dp[i][j] = dp[i - 1][j-1];
+                    }
+                    else
+                    {
+                        dp[i][j] = Math.Min(Math.Min(dp[i][j - 1], dp[i - 1][j] + 1), dp[i - 1][j-1]) +1;
+                    }
+                }
+            }
+
+            return dp[word1.Length][word2.Length];
+        }
+        #endregion
     }
 }

@@ -90,22 +90,43 @@ namespace leetcode.Problems
         {
             int l = 0;
             int r = nums.Length - 1;
+            while (l < r)
+            {
+                int mid = l + (r - l) / 2;
+                if (nums[mid] > nums[mid + 1])
+                {
+                    r = mid;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+
+            return l;
+        }
+        #endregion
+
+        #region 09/29/2024 smart apporach binary search
+        public int FindPeakElement_2024_09_29(int[] nums)
+        {
+            int l = 0;
+            int r = nums.Length - 1;
+
             while(l < r)
             {
                 int mid = l + (r - l) / 2;
                 if (nums[mid] > nums[mid + 1])
                 {
-                        r = mid;
-                    }
-                    else
-                    {
-                        l = mid + 1;
-                    }
+                    r = mid;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
             }
-
-                return l;
+            return l;
         }
         #endregion
-
     }
 }

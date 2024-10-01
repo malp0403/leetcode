@@ -8,13 +8,14 @@ namespace leetcode.Problems
     class _1137
     {
 
-        public int Tribonacci(int n)
+        #region Solution
+        public int Tribonacci_s(int n)
         {
             if (n == 0) return 0;
             if (n == 1) return 1;
             if (n == 2) return 1;
 
-            int[] arr = Enumerable.Repeat(0, n+1).ToArray();
+            int[] arr = Enumerable.Repeat(0, n + 1).ToArray();
             arr[1] = 1;
             arr[2] = 1;
             for (int i = 3; i <= n; i++)
@@ -23,7 +24,9 @@ namespace leetcode.Problems
             }
             return arr[n];
         }
+        #endregion
 
+        #region 2022/06/15
         //06/15/2022----------------------------
         Dictionary<int, int> dic_r2 = new Dictionary<int, int>() { };
         public int td_r2(int n)
@@ -72,6 +75,28 @@ namespace leetcode.Problems
 
 
         //06/15/2022----------------------------
+        #endregion
 
+        #region 2024/09/29
+        public int Tribonacci_2024_09_29(int n)
+        {
+            Dictionary<int ,int> dic = new Dictionary<int ,int>();
+
+            return helper_2024_09_29(n, dic);
+        }
+        public int helper_2024_09_29(int n, Dictionary<int, int> dic)
+        {
+            if (n == 0) return 0;
+            if (n == 1) return 1;
+            if (n == 2) return 1;
+            if(dic.ContainsKey(n)) return dic[n];
+
+            int val= helper_2024_09_29(n - 1,dic) + helper_2024_09_29(n - 2, dic) + helper_2024_09_29(n - 3, dic);
+
+            dic.Add(n, val);
+            return val;
+        
+        }
+        #endregion
     }
 }

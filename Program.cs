@@ -10,10 +10,13 @@ using leetcode.Problems_0001_500._0251_0300;
 using leetcode.Problems_0001_500._0301_0350;
 using leetcode.Problems_0001_500._0351_0400;
 using leetcode.Problems_0001_500._0401_0450;
+using leetcode.Problems_0001_500._0451_0500;
 using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+using leetcode.Problems_1001_1500;
 using leetcode.Problems_1001_1500._1451_1500;
+using leetcode.Problems_1501_2000;
 using leetcode.Problems_1501_2000._1651_1700;
 using leetcode.Problems_1501_2000._1701_1750;
 using leetcode.Problems_2001_2500._2001_2050;
@@ -70,15 +73,33 @@ namespace leetcode
         static void Main(string[] args)
         {
 
-            var obj = new _0328();
-            ListNode n1 = new ListNode(1);
-            ListNode n2 = new ListNode(2);
-            ListNode n3 = new ListNode(3);
-            ListNode n4 = new ListNode(4);
-            ListNode n5 = new ListNode(5);
-            n1.next = n2;n2.next = n3;n3.next=n4;n4.next = n5;
-            obj.OddEvenList_2024_09_22(n1);
-  
+            int s = int.MinValue; int v = int.MaxValue;
+            var obj = new _0452();
+            obj.FindMinArrowShots_2024_09_30(new int[][]
+   {
+                new int[2]{10,16},
+                 new int[2]{2,8},
+                new int[2]{1,6},
+                new int[2]{7,12}
+   });
+            obj.FindMinArrowShots(new int[][]
+            {
+                            new int[2]{9,12},
+                             new int[2]{1,10},
+                            new int[2]{4,11},
+                            new int[2]{8,12},
+                            new int[2]{3,9},
+                            new int[2]{6,9},
+                            new int[2]{6,7}
+            });
+
+
+            obj.FindMinArrowShots(new int[][]
+            {
+                            new int[2]{-2147483646,-2147483645},
+                             new int[2]{2147483646,2147483647}
+            });
+   
 
         }
 

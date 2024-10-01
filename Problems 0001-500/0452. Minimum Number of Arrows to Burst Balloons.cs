@@ -85,9 +85,9 @@ namespace leetcode.Problems_0001_500._0451_0500
 
             int count = 1;
             int max = int.MinValue;
-            for(int i =0; i < points.Length; i++)
+            for (int i = 0; i < points.Length; i++)
             {
-               if(max == int.MinValue)
+                if (max == int.MinValue)
                 {
                     max = points[i][1];
                 }
@@ -108,5 +108,52 @@ namespace leetcode.Problems_0001_500._0451_0500
             return count;
         }
         #endregion
+
+        #region  09/30/2024
+        public int FindMinArrowShots_2024_09_30(int[][] points)
+        {
+            points = points.OrderBy(a => a[0]).ThenBy(a => a[1]).ToArray();
+            int count = 1;
+            int start = points[0][0];
+            int end = points[0][1];
+            for (int i = 1; i < points.Length; i++)
+            {
+                if (start <= points[i][0] && points[i][0] <= end)
+                {
+                    start = Math.Max(start, points[i][0]);
+                    end = Math.Max(end, points[i][1]);
+                }
+                else
+                {
+                    count++;
+                    start = points[i][0];
+                    end = points[i][1];
+                }
+
+            }
+            return count;
+        }
+        #endregion
+
+        #region  cleaner code ;only sort end;09/30/2024  Approach 1: Greedy   
+        public int FindMinArrowShots_app1(int[][] points)
+        {
+            points = points.OrderBy(a => a[0]).ThenBy(a => a[1]).ToArray();
+            int count = 1;
+            int end = points[0][1];
+            for (int i = 0; i < points.Length; i++)
+            {
+
+                 if(end < points[i][0])
+                {
+                    count++;
+                    end = points[i][1];
+                }
+            }
+            return count;
+        }
+        #endregion
+
+
     }
 }

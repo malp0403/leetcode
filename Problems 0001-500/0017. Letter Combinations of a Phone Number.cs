@@ -6,9 +6,11 @@ namespace leetcode.Problems
 {
     class _0017
     {
+
+ 
         #region  Solution
         Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
-        public IList<string> LetterCombinations(string digits)
+        public IList<string> LetterCombinations_s(string digits)
         {
             if (digits.Length == 0) return new List<string>() { };
             dic.Add("2", new List<string>() { "a", "b", "c" });
@@ -85,5 +87,44 @@ namespace leetcode.Problems
         }
 
         #endregion
+
+        #region 2024/09/29
+        public IList<string> LetterCombinations_2024_09_29(string digits)
+        {
+            var result = new List<string>();
+
+            if (digits.Length == 0) return result;
+            if (digits.Length == 1) return setupDic()[digits[0]];
+
+            List<string> list = setupDic()[digits[0]];
+            IList<string> list2 = LetterCombinations_2024_09_29(digits.Substring(1));
+
+            foreach (var item in list)
+            {
+                foreach(var item2 in list2)
+                {
+                    result.Add(item + item2);
+                }
+            }
+            return result;
+
+        }
+        #endregion
+
+
+        public Dictionary<char, List<string>> setupDic()
+        {
+            Dictionary<char, List<string>> dic = new Dictionary<char, List<string>>();
+
+            dic.Add('2', new List<string>() { "a", "b", "c" });
+            dic.Add('3', new List<string>() { "d", "e", "f" });
+            dic.Add('4', new List<string>() { "g", "h", "i" });
+            dic.Add('5', new List<string>() { "j", "k", "l" });
+            dic.Add('6', new List<string>() { "m", "n", "o" });
+            dic.Add('7', new List<string>() { "p", "q", "r", "s" });
+            dic.Add('8', new List<string>() { "t", "u", "v" });
+            dic.Add('9', new List<string>() { "w", "x", "y", "z" });
+            return dic;
+        }
     }
 }

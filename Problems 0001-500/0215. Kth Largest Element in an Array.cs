@@ -83,7 +83,7 @@ namespace leetcode.Problems
             List<int> smaller = new List<int>();
             List<int> bigger = new List<int>();
 
-            for (int i =1; i < list.Count; i++)
+            for (int i = 1; i < list.Count; i++)
             {
                 if (list[i] >= temp)
                 {
@@ -96,7 +96,7 @@ namespace leetcode.Problems
             }
 
             if (bigger.Count == k - 1) return temp;
-            if(bigger.Count > k - 1)
+            if (bigger.Count > k - 1)
             {
                 return helper(bigger, k);
             }
@@ -112,10 +112,11 @@ namespace leetcode.Problems
         public int FindKthLargest_20230814_sortDic(int[] nums, int k)
         {
             PriorityQueue<int, int> q = new PriorityQueue<int, int>();
-            for(int i =0;i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if(q.Count <k) { q.Enqueue(nums[i], nums[i]); }
-                else {
+                if (q.Count < k) { q.Enqueue(nums[i], nums[i]); }
+                else
+                {
                     if (q.Peek() > nums[i]) continue;
                     else
                     {
@@ -125,18 +126,18 @@ namespace leetcode.Problems
                 }
             }
             return q.Peek();
-  
+
         }
         #endregion
 
         #region 07/07/2024
         public int FindKthLargest_2024_07_07(int[] nums, int k)
         {
-            PriorityQueue<int,int> queue = new PriorityQueue<int,int>();
+            PriorityQueue<int, int> queue = new PriorityQueue<int, int>();
 
-            for(int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if(queue.Count<k) queue.Enqueue(nums[i], nums[i]);
+                if (queue.Count < k) queue.Enqueue(nums[i], nums[i]);
                 else
                 {
                     if (queue.Peek() > nums[i]) continue;
@@ -156,18 +157,19 @@ namespace leetcode.Problems
         {
             return helper_2024_07_07(nums.ToList(), k);
         }
-        public int helper_2024_07_07(List<int> list,int k)
+        public int helper_2024_07_07(List<int> list, int k)
         {
-            int pivot = list[new Random().Next(0,list.Count-1)] ;
+            int pivot = list[new Random().Next(0, list.Count - 1)];
             List<int> bigger = new List<int>();
             List<int> mid = new List<int>();
             List<int> smaller = new List<int>();
-            foreach(int i in list)
+            foreach (int i in list)
             {
-                if(i < pivot)
+                if (i < pivot)
                 {
                     smaller.Add(i);
-                }else if(i > pivot)
+                }
+                else if (i > pivot)
                 {
                     bigger.Add(i);
                 }
@@ -176,11 +178,11 @@ namespace leetcode.Problems
                     mid.Add(i);
                 }
             }
-            if(bigger.Count >= k)
+            if (bigger.Count >= k)
             {
                 return helper_2024_07_07(bigger, k);
             }
-            if(bigger.Count + mid.Count < k)
+            if (bigger.Count + mid.Count < k)
             {
                 return helper_2024_07_07(smaller, k - bigger.Count - mid.Count);
             }
@@ -188,6 +190,49 @@ namespace leetcode.Problems
             return pivot;
 
         }
+        #endregion
+
+        #region 09/28/2024 Quick Select Smaller; mid; bigger
+        public int FindKthLargest_2024_09_28_QuickSelect(int[] nums, int k)
+        {
+            return helper_2024_09_28(nums.ToList(), k);
+        }
+        public int helper_2024_09_28(List<int> list, int k)
+        {
+            int pivote = list[new Random().Next(0, list.Count - 1)];
+            List<int> bigger = new List<int>();
+            List<int> smaller = new List<int>();
+            List<int> middle = new List<int>();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] < pivote)
+                {
+                    smaller.Add(list[i]);
+                }
+                else if (list[i] > pivote)
+                {
+                    bigger.Add(list[i]);
+                }
+                else
+                {
+                    middle.Add(list[i]);
+                }
+            }
+
+            if (bigger.Count >= k)
+            {
+                return helper_2024_09_28(bigger, k);
+            }
+            else if (bigger.Count + middle.Count < k)
+            {
+                return helper_2024_09_28(smaller, k - bigger.Count - middle.Count);
+            }
+
+            return pivote;
+
+        }
+
         #endregion
 
 

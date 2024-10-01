@@ -217,92 +217,174 @@ namespace leetcode.Problems
         #endregion
 
         #region 07/06/2024
-        private TrieNode root;
+        //private TrieNode root;
 
-        public _0208()
-        {
-            root = new TrieNode();
-        }
+        //public _0208()
+        //{
+        //    root = new TrieNode();
+        //}
 
-        public void Insert(string word)
-        {
-            TrieNode node = root;
-            for(int i =0; i < word.Length; i++)
-            {
-                char c = word[i];
-                if (!node.containsKey(c))
-                {
-                    node.put(c, new TrieNode());
-                }
-                node = node.get(c);
-            }
-            node.setEnd();
-        }
+        //public void Insert(string word)
+        //{
+        //    TrieNode node = root;
+        //    for(int i =0; i < word.Length; i++)
+        //    {
+        //        char c = word[i];
+        //        if (!node.containsKey(c))
+        //        {
+        //            node.put(c, new TrieNode());
+        //        }
+        //        node = node.get(c);
+        //    }
+        //    node.setEnd();
+        //}
 
-        public TrieNode SearchPrefix(string word)
-        {
-            TrieNode node = root;
-            for(int i =0;i < word.Length; i++)
-            {
-                char c = word[i];
-                if (node.containsKey(c))
-                {
-                    node = node.get(c);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            return node;
-        }
+        //public TrieNode SearchPrefix(string word)
+        //{
+        //    TrieNode node = root;
+        //    for(int i =0;i < word.Length; i++)
+        //    {
+        //        char c = word[i];
+        //        if (node.containsKey(c))
+        //        {
+        //            node = node.get(c);
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    return node;
+        //}
 
-        public bool Search(string word)
-        {
-            TrieNode node = SearchPrefix(word);
-            return node != null && node.getisEnd();
-        }
+        //public bool Search(string word)
+        //{
+        //    TrieNode node = SearchPrefix(word);
+        //    return node != null && node.getisEnd();
+        //}
 
-        public bool StartsWith(string prefix)
-        {
-            TrieNode node = SearchPrefix(prefix);
-            return node != null;
-        }
+        //public bool StartsWith(string prefix)
+        //{
+        //    TrieNode node = SearchPrefix(prefix);
+        //    return node != null;
+        //}
 
-        public class TrieNode
-        {
-            private TrieNode[] links;
-            private int R = 26;
-            private bool isEnd;
+        //public class TrieNode
+        //{
+        //    private TrieNode[] links;
+        //    private int R = 26;
+        //    private bool isEnd;
 
-            public TrieNode()
-            {
-                links = Enumerable.Repeat<TrieNode>(null, R).ToArray();
-            }
+        //    public TrieNode()
+        //    {
+        //        links = Enumerable.Repeat<TrieNode>(null, R).ToArray();
+        //    }
 
-            public bool containsKey(char ch)
-            {
-                return links[ch - 'a'] != null;
-            }
+        //    public bool containsKey(char ch)
+        //    {
+        //        return links[ch - 'a'] != null;
+        //    }
 
-            public TrieNode get(char ch)
-            {
-                return links[ch-'a'];
-            }
+        //    public TrieNode get(char ch)
+        //    {
+        //        return links[ch-'a'];
+        //    }
 
-            public void put(char ch, TrieNode node)
-            {
-                links[ch - 'a'] = node;
-            }
-            public void setEnd()
-            {
-                this.isEnd = true;
-            }
-            public bool getisEnd()
-            {
-                return this.isEnd;
-            }
-        }
+        //    public void put(char ch, TrieNode node)
+        //    {
+        //        links[ch - 'a'] = node;
+        //    }
+        //    public void setEnd()
+        //    {
+        //        this.isEnd = true;
+        //    }
+        //    public bool getisEnd()
+        //    {
+        //        return this.isEnd;
+        //    }
+        //}
+        #endregion
+
+        #region 09/30/2024
+        //private TrieNode root;
+        //public _0208()
+        //{
+        //    root = new TrieNode();
+        //}
+
+        //public void Insert(string word)
+        //{
+        //    TrieNode temp = root;
+        //    for (int i = 0; i < word.Length; i++)
+        //    {
+        //        if (!root.containsKey(word[i]))
+        //        {
+        //            TrieNode node = new TrieNode();
+        //            temp.put(word[i], node);
+        //        }
+
+        //        temp = temp.get(word[i]);
+
+        //    }
+        //    temp.setEnd();
+        //}
+        //public TrieNode searchPrefix(string word)
+        //{
+        //    TrieNode node = root;
+        //    for (int i = 0; i < word.Length; i++)
+        //    {
+        //        if (node.containsKey(word[i]))
+        //        {
+        //            node = node.get(word[i]);
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    return node;
+        //}
+        //public bool Search(string word)
+        //{
+        //    TrieNode node = searchPrefix(word);
+        //    return node != null && node.getIsEnd();
+        //}
+
+        //public bool StartsWith(string prefix)
+        //{
+        //    TrieNode node = searchPrefix(prefix);
+        //    return node != null;
+        //}
+        //public class TrieNode
+        //{
+        //    private TrieNode[] links;
+        //    private int R = 26;
+        //    private bool isEnd = false;  
+        //    public TrieNode()
+        //    {
+        //        links = Enumerable.Repeat<TrieNode>(null, R).ToArray();
+        //    }
+        //    public bool containsKey(char c)
+        //    {
+        //        return links[c - 'a'] != null;
+        //    }
+        //    public TrieNode get(char ch)
+        //    {
+        //        return links[ch - 'a'];
+        //    }
+        //    public void put(char ch, TrieNode n)
+        //    {
+        //        links[ch - 'a'] = n;
+        //    }
+        //    public void setEnd()
+        //    {
+        //        isEnd = true;
+        //    }
+        //    public bool getIsEnd()
+        //    {
+        //        return isEnd;
+        //    }
+        //}
         #endregion
     }
 }

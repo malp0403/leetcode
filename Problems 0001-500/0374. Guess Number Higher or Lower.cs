@@ -23,13 +23,14 @@ namespace leetcode.Problems_0001_500._0351_0400
         {
             int l = 1;
             int r = n;
-            while(l<= r)
+            while (l <= r)
             {
                 int mid = l + (r - l) / 2;
-                if(guess(mid) == 0)
+                if (guess(mid) == 0)
                 {
                     return mid;
-                }else if(guess(mid) == 1)
+                }
+                else if (guess(mid) == 1)
                 {
                     l = mid + 1;
                 }
@@ -39,7 +40,7 @@ namespace leetcode.Problems_0001_500._0351_0400
                 }
             }
             return -1;
-            
+
         }
         #endregion
 
@@ -57,10 +58,11 @@ namespace leetcode.Problems_0001_500._0351_0400
                 int res2 = guess(mid2);
                 if (res1 == 0) return mid1;
                 if (res2 == 0) return mid2;
-                if(res1 < 0)
+                if (res1 < 0)
                 {
                     r = mid1 - 1;
-                }else if (res2 > 0)
+                }
+                else if (res2 > 0)
                 {
                     l = mid2 + 1;
                 }
@@ -69,13 +71,38 @@ namespace leetcode.Problems_0001_500._0351_0400
                     r = mid1 + 1;
                     l = mid2 - 1;
                 }
-              
+
             }
             return -1;
 
         }
-        #endregion  
+        #endregion
 
+        #region 09/29/2024
+        public int GuessNumber_2024_09_29(int n)
+        {
+            int l = 1;
+            int r = n;
+            while(l <= r)
+            {
+                int mid = l + (r - l) / 2;
+
+                int res = guess(mid);
+                if (res == 0)
+                {
+                    return mid;
+                }else if(res == -1)
+                {
+                    r = mid;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+            return l;
+        }
+        #endregion
         //mock api
         public int guess(int n)
         {

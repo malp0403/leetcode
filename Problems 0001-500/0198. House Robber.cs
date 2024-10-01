@@ -9,7 +9,7 @@ namespace leetcode.Problems
     {
         #region solution
         int[] memory;
-        public int Rob(int[] nums)
+        public int Rob_s(int[] nums)
         {
             memory = Enumerable.Repeat(-1, 100).ToArray();
 
@@ -65,6 +65,26 @@ namespace leetcode.Problems
             dp_2024_06_11[index][canRob] = max;
 
             return max;
+        }
+        #endregion
+
+        #region 09/29/2024
+        public int Rob_2024_09_29_Bu(int[] nums)
+        {
+
+            int rob = 0;
+            int noRob = 0;
+
+            for(int i =0; i < nums.Length; i++)
+            {
+                int curRob = nums[i] + noRob;
+                int curNorob = Math.Max(rob, noRob);
+
+                rob = curRob;
+                noRob = curNorob;
+            }
+
+            return Math.Min(rob, noRob);
         }
         #endregion
     }

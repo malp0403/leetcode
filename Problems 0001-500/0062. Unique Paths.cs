@@ -109,7 +109,31 @@ namespace leetcode.Problems
          
         }
 
-        
+
         #endregion
+
+        #region 09/29/2024
+        int uniquePaths_2024_09_29(int m, int n)
+        {
+            int[][] dp = new int[m][];
+            for(int i =0; i < m; i++)
+            {
+                dp[i] = Enumerable.Repeat(1, n).ToArray();
+            }
+
+            for(int i =1; i < m; i++)
+            {
+                for(int j = 1; j < n; j++)
+                {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+
+            return dp[m - 1][n - 1];
+
+        }
+        #endregion
+
+
     }
 }
