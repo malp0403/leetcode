@@ -72,34 +72,13 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+            List<string> arr = Enumerable.Repeat("", 26).ToList();
+          
 
-            int s = int.MinValue; int v = int.MaxValue;
-            var obj = new _0452();
-            obj.FindMinArrowShots_2024_09_30(new int[][]
-   {
-                new int[2]{10,16},
-                 new int[2]{2,8},
-                new int[2]{1,6},
-                new int[2]{7,12}
-   });
-            obj.FindMinArrowShots(new int[][]
-            {
-                            new int[2]{9,12},
-                             new int[2]{1,10},
-                            new int[2]{4,11},
-                            new int[2]{8,12},
-                            new int[2]{3,9},
-                            new int[2]{6,9},
-                            new int[2]{6,7}
-            });
+            var obj = new _1249();
+            obj.MinRemoveToMakeValid_2024_10_01("))((");
 
-
-            obj.FindMinArrowShots(new int[][]
-            {
-                            new int[2]{-2147483646,-2147483645},
-                             new int[2]{2147483646,2147483647}
-            });
-   
+            obj.MinRemoveToMakeValid_2024_10_01("lee(t(c)o)de)");
 
         }
 

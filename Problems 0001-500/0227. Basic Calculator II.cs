@@ -267,5 +267,46 @@ namespace leetcode.Problems
             return sum;
         }
         #endregion
+
+        #region 10/02/2024
+        public int Calculate_2024_10_02(string s)
+        {
+            int sum = 0;
+            int cur = 0;
+            char oper = '+';
+            int lastNumber = 0;
+            for(int i =0; i < s.Length; i++)
+            {
+                if (char.IsDigit(s[i]))
+                {
+                    cur = cur * 10 + s[i] - '0';
+                }
+                if (!char.IsWhiteSpace(s[i]) && !char.IsDigit((char)s[i]) || i == s.Length - 1)
+                {
+                    if (oper == '*')
+                    {
+                        lastNumber *= cur;
+                    }else if(oper == '/')
+                    {
+                        lastNumber /= cur;
+                    }else if(oper == '+')
+                    {
+                        sum += lastNumber;
+                        lastNumber = cur;
+                    }
+                    else
+                    {
+                        sum += lastNumber;
+                        lastNumber = -cur;
+                    }
+                    oper= s[i];
+                    cur = 0;
+                }
+            }
+            sum += lastNumber;
+            return sum;
+        }
+            #endregion
+
+        }
     }
-}

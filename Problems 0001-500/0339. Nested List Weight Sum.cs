@@ -6,6 +6,14 @@ namespace leetcode.Problems
 {
     class _0339
     {
+        #region Approach 1: Depth-first Search
+
+        #endregion
+
+        #region Approach 2: Breadth-first Search
+
+        #endregion
+
         #region Solution
 
         int sum = 0;
@@ -90,6 +98,30 @@ namespace leetcode.Problems
             return sum;
         }
 
+        #endregion
+
+        #region 10/02/2024
+        public int DepthSum(IList<NestedInteger> nestedList)
+        {
+            return helper_2024_10_02(nestedList,1);
+        }
+        public int helper_2024_10_02(IList<NestedInteger> nestedList,int deep)
+        {
+            if (nestedList.Count == 0) return 0;
+            int sum = 0;
+            foreach (var item in nestedList)
+            {
+                if (item.IsInteger())
+                {
+                    sum += item.GetInteger()*deep;
+                }
+                else
+                {
+                    sum += helper_2024_10_02(item.GetList(),deep+1);
+                }
+            }
+            return sum;
+        }
         #endregion
         public interface NestedInteger
         {

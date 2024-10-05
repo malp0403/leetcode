@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -106,6 +107,47 @@ namespace leetcode.Problems
             }
             return ans;
         }
+        #endregion
+
+        #region 10/01/2024, must use queue, because of order
+        public IList<IList<int>> VerticalOrder_2024_10_01(TreeNode root)
+        {
+            SortedDictionary<int,List<int>> dic= new SortedDictionary<int, List<int>>();
+
+            IList<IList<int>> res= new List<IList<int>>();
+            if (root == null) return res;
+            Queue<(int n,TreeNode node)> stack = new Queue<(int n, TreeNode node)>();
+            stack.Enqueue((0, root));
+            while (stack.Count > 0)
+            {
+                var element = stack.Dequeue();
+                if(dic.ContainsKey(element.n))
+                {
+                    dic[element.n].Add(element.node.val);
+                }
+                else
+                {
+                    dic.Add(element.n, new List<int>() { element.node.val});
+                }
+
+                if (element.node.left != null)
+                {
+                    stack.Enqueue((element.n-1, element.node.left));
+                }
+                if (element.node.right != null)
+                {
+                    stack.Enqueue((element.n + 1, element.node.right));
+                }
+
+            }
+
+            foreach (var item in dic.Keys)
+            {
+                res.Add(dic[item]);
+            }
+            return res;
+        }
+
         #endregion
     }
 }

@@ -56,7 +56,7 @@ namespace leetcode.Problems
             int abbrIndex = 0;
             int gap = 0;
 
-            for(int i =0; i < abbr.Length; i++)
+            for (int i = 0; i < abbr.Length; i++)
             {
                 if (char.IsLetter(abbr[i]))
                 {
@@ -64,10 +64,12 @@ namespace leetcode.Problems
                     if (gap == 0 && i - 1 >= 0 && abbr[i - 1] == '0') return false;
 
 
-                    if (wordIndex + gap + 1 >= word.Length) {
+                    if (wordIndex + gap + 1 >= word.Length)
+                    {
                         return false;
                     }
-                    if (word[wordIndex + gap + 1] != abbr[i]) {
+                    if (word[wordIndex + gap + 1] != abbr[i])
+                    {
                         return false;
                     }
                     wordIndex = wordIndex + gap + 1;
@@ -78,23 +80,61 @@ namespace leetcode.Problems
                 {
                     //check invalid 0 situation
                     if (gap == 0 && i - 1 >= 0 && abbr[i - 1] == '0') return false;
-                    
+
                     gap = gap * 10 + abbr[i] - '0';
                 }
             }
-             
 
-            if(wordIndex == word.Length - 1)
+
+            if (wordIndex == word.Length - 1)
             {
                 return gap > 0 ? false : true;
             }
             else
             {
-                return (wordIndex + gap) ==word.Length - 1;
+                return (wordIndex + gap) == word.Length - 1;
             }
 
         }
         #endregion
 
+        #region  10/01/2024 two pointers
+        //1. i,j inside Length 2. check leading zero situation
+        public bool ValidWordAbbreviation_2024_10_01(string word, string abbr)
+        {
+            word = "a" + word;
+            abbr = "a" + abbr;
+            int i = 0;
+            int j = 0;
+
+            while (j < abbr.Length && i < word.Length)
+            {
+                if (char.IsLetter(abbr[j]))
+                {
+                    if (word[i] != abbr[j]) return false;
+                    i++; j++;
+                }
+                else
+                {
+                    if (abbr[j] == '0')
+                    {
+                        if (j == abbr.Length - 1) return false;
+                        if (char.IsLetter(abbr[j + 1]) || char.IsDigit(abbr[j + 1])) return false;
+                    }
+
+                    int cur = 0;
+                    while (j < abbr.Length && char.IsDigit(abbr[j]))
+                    {
+                        cur = cur * 10 + abbr[j] - '0';
+                        j++;
+                    }
+                    i += cur;
+
+                }
+            }
+
+            return i == word.Length && j == abbr.Length;
+        }
+        #endregion
     }
 }
