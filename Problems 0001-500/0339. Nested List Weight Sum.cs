@@ -123,6 +123,34 @@ namespace leetcode.Problems
             return sum;
         }
         #endregion
+
+        #region 10/05/2024
+        public int DepthSum_2024_10_05(IList<NestedInteger> nestedList)
+        {
+            return helper_2024_10_05(nestedList, 1);
+        }
+        public int helper_2024_10_05(IList<NestedInteger> nestedList,int lvl)
+        {
+            int sum = 0;
+            foreach (var item in nestedList)
+            {
+                if (item.IsInteger())
+                {
+                    sum += item.GetInteger()*lvl;
+                }
+                else
+                {
+                    sum += helper_2024_10_05(item.GetList(), lvl + 1);
+                }
+            }
+            return sum;
+        }
+        #endregion
+
+
+
+
+
         public interface NestedInteger
         {
 

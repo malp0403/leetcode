@@ -11,10 +11,10 @@ namespace leetcode.Problems
         {
             var arr = path.Split('/');
             Stack<string> stack = new Stack<string>() { };
-            for(int i =0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] == "." || arr[i] == "") continue;
-                if(arr[i] == "..")
+                if (arr[i] == "..")
                 {
                     if (stack.Count > 0)
                     {
@@ -29,8 +29,8 @@ namespace leetcode.Problems
 
             string s = "";
             while (stack.Count > 0)
-            {   
-                s = stack.Pop()+"/" + s;
+            {
+                s = stack.Pop() + "/" + s;
             }
             s = "/" + s;
             return s.Length == 1 ? s : s.Remove(s.Length - 1);
@@ -42,13 +42,13 @@ namespace leetcode.Problems
         {
             string[] arr = path.Split('/');
             Stack<string> stack = new Stack<string>() { };
-            for(int i =0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                if(arr[i] == "." ||arr[i]== "")
+                if (arr[i] == "." || arr[i] == "")
                 {
                     continue;
                 }
-                if(arr[i] == "..")
+                if (arr[i] == "..")
                 {
                     if (stack.Count > 0)
                     {
@@ -84,12 +84,13 @@ namespace leetcode.Problems
             for (int i = 0; i < arr.Length; i++)
             {
                 string s = arr[i];
-                if(s== "." || string.IsNullOrEmpty(s))
+                if (s == "." || string.IsNullOrEmpty(s))
                 {
                     continue;
-                }else if(s=="..")
+                }
+                else if (s == "..")
                 {
-                    if(stack.Count != 0)
+                    if (stack.Count != 0)
                     {
                         stack.Pop();
                     }
@@ -106,7 +107,7 @@ namespace leetcode.Problems
             {
                 list.Add(item);
             }
-            for(int i = list.Count - 1; i >= 0; i--)
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 sb.Append('/');
                 sb.Append(list[i]);
@@ -116,5 +117,42 @@ namespace leetcode.Problems
 
         }
         #endregion
+
+        #region 10/06/2024  Using Stack; watch out for "." and empty scenario
+        public string SimplifyPath_2024_10_06(string path)
+        {
+
+            string[] arr = path.Split("/");
+            Stack<string> stack = new Stack<string> { };
+
+            foreach (var item in arr)
+            {
+                if (item == "" || item ==".") continue;
+                else if(item ==".." )
+                {
+                if (stack.Count != 0)
+                    {
+                        stack.Pop();
+
+                    }
+                }
+                else
+                {
+                    stack.Push(item);
+                }
+            }
+            if (stack.Count == 0) return "/";
+            string res = "";
+           
+            while(stack.Count > 0)
+            {
+
+                res = "/" + stack.Pop() +res;
+            }
+            return res;
+        }
+        #endregion
+
+
     }
 }

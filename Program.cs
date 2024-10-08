@@ -1,6 +1,7 @@
 ﻿using leetcode.Class;
 using leetcode.Problems;
 using leetcode.Problems._0101_150;
+using leetcode.Problems_0001_500;
 using leetcode.Problems_0001_500._0001_50;
 using leetcode.Problems_0001_500._0051_100;
 using leetcode.Problems_0001_500._0101_150;
@@ -11,6 +12,7 @@ using leetcode.Problems_0001_500._0301_0350;
 using leetcode.Problems_0001_500._0351_0400;
 using leetcode.Problems_0001_500._0401_0450;
 using leetcode.Problems_0001_500._0451_0500;
+using leetcode.Problems_0501_1000;
 using leetcode.Problems_0501_1000._0701_0750;
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
@@ -72,14 +74,11 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            List<string> arr = Enumerable.Repeat("", 26).ToList();
-          
 
-            var obj = new _1249();
-            obj.MinRemoveToMakeValid_2024_10_01("))((");
+            var obj = new _0480();
+            obj.MedianSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 },3);
 
-            obj.MinRemoveToMakeValid_2024_10_01("lee(t(c)o)de)");
-
+            Console.Read();
         }
 
 

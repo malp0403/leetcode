@@ -275,7 +275,7 @@ namespace leetcode.Problems
             int cur = 0;
             char oper = '+';
             int lastNumber = 0;
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (char.IsDigit(s[i]))
                 {
@@ -286,10 +286,12 @@ namespace leetcode.Problems
                     if (oper == '*')
                     {
                         lastNumber *= cur;
-                    }else if(oper == '/')
+                    }
+                    else if (oper == '/')
                     {
                         lastNumber /= cur;
-                    }else if(oper == '+')
+                    }
+                    else if (oper == '+')
                     {
                         sum += lastNumber;
                         lastNumber = cur;
@@ -299,14 +301,60 @@ namespace leetcode.Problems
                         sum += lastNumber;
                         lastNumber = -cur;
                     }
-                    oper= s[i];
+                    oper = s[i];
                     cur = 0;
                 }
             }
             sum += lastNumber;
             return sum;
         }
-            #endregion
+        #endregion
 
+        #region 10/05/2024
+        public int Calculate_2024_10_05(string s)
+        {
+            int sum = 0;
+            int lastNumber = 0;
+            int curNumber = 0;
+            char oper = '+';
+
+            for(int i =0; i < s.Length; i++)
+            {
+                if (char.IsDigit(s[i]))
+                {
+
+                    curNumber = curNumber * 10 + s[i] - '0';
+                }
+                if ((!char.IsWhiteSpace(s[i]) && !char.IsDigit((char)s[i])) || i == s.Length - 1) 
+                {
+                    if (oper == '*')
+                    {
+                        lastNumber  *= curNumber;
+                    }else if(oper == '/')
+                    {
+                        lastNumber /= curNumber;
+                    }else if(oper == '+')
+                    {
+                        sum += lastNumber;
+                        lastNumber = curNumber;
+                    }
+                    else
+                    {
+                        sum += lastNumber;
+                        lastNumber = -curNumber;
+                    }
+
+                    curNumber = 0;
+                    oper = s[i];
+                }
+
+            }
+
+            sum += lastNumber;
+            return sum;
         }
+        #endregion
+
+
     }
+}

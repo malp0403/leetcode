@@ -10,21 +10,21 @@ namespace leetcode.Problems
         public int SubarraySum(int[] nums, int k)
         {
             int count = 0;
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
-               count += subArray(nums, i, k);
+                count += subArray(nums, i, k);
             }
             return count;
         }
         public int subArray(int[] nums, int start, int k)
         {
             int sum = 0;
-            int count =0;
+            int count = 0;
             while (start < nums.Length)
             {
                 sum += nums[start];
                 if (sum == k)
-                { 
+                {
                     count++;
                 }
                 start++;
@@ -77,22 +77,22 @@ namespace leetcode.Problems
         #endregion
 
         #region 09/11/2023
-        public int SubarraySum_20230911(int[] nums,int k)
+        public int SubarraySum_20230911(int[] nums, int k)
         {
             Dictionary<int, int> dic = new Dictionary<int, int>() { };
             int c = 0;
-            for (int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 int sum = 0;
-                for(int j =i; j < nums.Length; j++)
+                for (int j = i; j < nums.Length; j++)
                 {
                     sum += nums[j];
-                    if(sum == k)
+                    if (sum == k)
                     {
                         c++;
                     }
                 }
-            }         
+            }
             return c;
         }
         #endregion
@@ -107,7 +107,7 @@ namespace leetcode.Problems
             //smart move
             dic.Add(0, 1);
 
-            for(int i =0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 sum += nums[i];
                 if (dic.ContainsKey(sum - k))
@@ -129,6 +129,91 @@ namespace leetcode.Problems
         }
 
 
-            #endregion
+        #endregion
+
+        #region 10/06/2024 if no adding add(0,1) as default, then need to calculate sum =k scenario
+        public int SubarraySum_2024_10_06(int[] nums, int k)
+        {
+            Dictionary<int,int> dic = new Dictionary<int, int> { };
+
+            int sum = 0;
+            int count = 0;
+            for(int i =0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                if( sum == k)
+                {
+                    count++;
+                }
+                if(dic.ContainsKey(sum - k))
+                {
+                    count += dic[sum - k];
+                }
+
+                if (dic.ContainsKey(sum))
+                {
+                    dic[sum]++;
+                }
+                else
+                {
+                    dic.Add(sum, 1);
+                }
+            }
+
+            return count;
+
         }
+        #endregion 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+}

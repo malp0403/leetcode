@@ -9,6 +9,14 @@ namespace leetcode.Problems_0001_500._0151_0200
 {
     internal class _0200
     {
+        List<List<int>> direction = new List<List<int>>()
+        {
+            new List<int>(){0,1},
+            new List<int>(){0,-1},
+            new List<int>(){-1,0},
+            new List<int>(){1,0}
+        };
+
         #region 08/14/2023 set to value to 0 to avoid making new visited[][];
 
         public int NumIslands_20230814(char[][] grid)
@@ -90,5 +98,43 @@ namespace leetcode.Problems_0001_500._0151_0200
         }
 
         #endregion
+
+        #region 10/06/2024
+        public int NumIslands_2024_10_06(char[][] grid)
+        {
+            int count = 0;
+            for(int i =0; i < grid.Length; i++)
+            {
+                for(int j=0; j < grid[i].Length; j++)
+                {
+                    if (grid[i][j] == '1')
+                    {
+                        grid[i][j] = '0';
+                        count++;
+                        dfs(i,j, grid);
+                    }
+                }
+            }
+            return count;
+        }
+        public void dfs(int i ,int j, char[][] grid)
+        {
+            foreach (var item in direction)
+            {
+                int r=i + item[0];
+                int c = j + item[1];
+                if (r < 0 || r >= grid.Length || c < 0 || c >= grid[0].Length || grid[r][c] == '0') continue;
+                grid[r][c] = '0';
+                dfs(r, c, grid);
+            }
+        }
+        #endregion
+
+
+
+
+
+
+
     }
 }

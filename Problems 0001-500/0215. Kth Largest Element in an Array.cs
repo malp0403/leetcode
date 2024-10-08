@@ -276,6 +276,46 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 10/06/2024 quick select
+        public int FindKthLargest_2024_10_06(int[] nums, int k)
+        {
+            return helper_2024_10_05(nums.ToList(), k);
+        }
+
+        public int helper_2024_10_05(List<int> list, int k)
+        {
+            List<int> mid = new List<int>();
+            List<int> smaller = new List<int>();
+            List<int> bigger = new List<int>();
+
+            int index= new Random().Next(0, list.Count);
+            int pivot = list[index];
+
+            foreach (var item in list)
+            {
+                if(item == pivot)
+                {
+                    mid.Add(item);
+                }else if(item < pivot)
+                {
+                    smaller.Add(item);
+                }
+                else { bigger.Add(item); }
+            }
+
+            if(bigger.Count >= k)
+            {
+                return helper_2024_10_05(bigger, k);
+            }else if( bigger.Count + mid.Count < k)
+            {
+                return helper_2024_10_05(smaller, k - bigger.Count - mid.Count);
+            }
+            return pivot;
+        }
+        #endregion
+
+
+
 
     }
 }

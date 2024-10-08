@@ -75,24 +75,24 @@ namespace leetcode.Problems
 
             Node copyHead = new Node(head.val);
             dic.Add(head, copyHead);
-            Queue<Node> q= new Queue<Node>();
+            Queue<Node> q = new Queue<Node>();
             q.Enqueue(head);
 
             while (q.Count > 0)
             {
                 Node n = q.Dequeue();
-                if(n.next != null)
+                if (n.next != null)
                 {
                     q.Enqueue(n.next);
 
                     if (!dic.ContainsKey(n.next))
                     {
                         dic.Add(n.next, new Node(n.next.val));
-                      
+
                     }
                     dic[n].next = dic[n.next];
                 }
-                if(n.random != null)
+                if (n.random != null)
                 {
                     if (!dic.ContainsKey(n.random))
                     {
@@ -103,11 +103,61 @@ namespace leetcode.Problems
                 }
             }
 
-            return copyHead;    
+            return copyHead;
 
 
         }
         #endregion
+
+        #region 10/06/2024 watch out!  the node value may be duplicate
+        public Node CopyRandomList_2024_10_06(Node head)
+        {
+            Node key = head;
+            Dictionary<Node, Node> dic = new Dictionary<Node, Node>();
+
+            if (head == null) return null;
+            while (head != null)
+            {
+                if (!dic.ContainsKey(head))
+                {
+                    dic.Add(head, new Node(head.val));
+                }
+
+                if (head.next != null)
+                {
+                    if (!dic.ContainsKey(head.next))
+                        dic.Add(head.next, new Node(head.next.val));
+
+                    dic[head].next = dic[head.next];
+
+                }
+
+
+                if (head.random != null)
+                {
+                    if (!dic.ContainsKey(head.random))
+                        dic.Add(head.random, new Node(head.random.val));
+
+                    dic[head].random = dic[head.random];
+                }
+                head = head.next;
+            }
+
+            return dic[key];
+
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
         public class Node
         {
             public int val;

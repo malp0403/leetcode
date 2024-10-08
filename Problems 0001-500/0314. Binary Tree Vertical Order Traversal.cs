@@ -149,5 +149,46 @@ namespace leetcode.Problems
         }
 
         #endregion
+
+        #region 10/05/2024
+        public IList<IList<int>> VerticalOrder(TreeNode root)
+        {
+            
+            IList<IList<int>> ans = new List<IList<int>>();
+            if (root == null) return ans;
+            SortedDictionary<int,List<int>> dic = new SortedDictionary<int,List<int>>();
+            Queue<(int lvl,TreeNode n )> q = new Queue<(int lvl, TreeNode n)>();
+            q.Enqueue((0, root));
+            while(q.Count > 0)
+            {
+                var element = q.Dequeue();
+                if (!dic.ContainsKey(element.lvl))
+                {
+                    dic.Add(element.lvl, new List<int>() { element.n.val});
+                }
+                else
+                {
+                    dic[element.lvl].Add(element.n.val);
+                }
+                if(element.n.left != null)
+                {
+                    q.Enqueue((element.lvl -1, element.n.left));
+                }
+                if( element.n.right != null) {
+                    q.Enqueue((element.lvl + 1, element.n.right));
+
+                }
+            }
+
+            foreach (var key in dic.Keys)
+            {
+                ans.Add(dic[key]);
+            }
+
+            return ans;
+        }
+        #endregion
+
+
     }
 }

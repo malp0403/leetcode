@@ -1,6 +1,7 @@
 ﻿using leetcode.Class;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace leetcode.Problems
@@ -12,7 +13,7 @@ namespace leetcode.Problems
         {
             if (lists.Length == 1) return lists[0];
             ListNode d = null;
-            for(int i =0; i < lists.Length; i++)
+            for (int i = 0; i < lists.Length; i++)
             {
                 d = helper(d, lists[i]);
             }
@@ -118,32 +119,34 @@ namespace leetcode.Problems
         {
             int amount = lists.Length;
             int interval = 1;
-            while(interval < amount)
+            while (interval < amount)
             {
-                for(int i =0; i < amount - interval;i++)
+                for (int i = 0; i < amount - interval; i += interval * 2)
                 {
                     lists[i] = helper_2024_01_29(lists[i], lists[i + interval]);
                 }
                 interval *= 2;
             }
-            return amount >0?lists[0]:null;
+            return amount > 0 ? lists[0] : null;
         }
 
         public ListNode helper_2024_01_29(ListNode l1, ListNode l2)
         {
             ListNode answer = new ListNode();
             ListNode temp = answer;
-            while(l1 !=null || l1 != null)
+            while (l1 != null || l1 != null)
             {
-                if(l1 == null)
+                if (l1 == null)
                 {
                     temp.next = l2;
                     l2 = null;
-                }else if( l2 == null)
+                }
+                else if (l2 == null)
                 {
                     temp.next = l1;
                     l1 = null;
-                }else if( l1.val < l2.val)
+                }
+                else if (l1.val < l2.val)
                 {
                     temp.next = l1;
                     l1 = l1.next;
@@ -158,6 +161,54 @@ namespace leetcode.Problems
             return answer.next;
         }
 
+        #endregion
+
+        #region 10/07/2024  Merge with Divide And Conquer
+        public ListNode MergeKLists_2024_10_07(ListNode[] lists)
+        {
+            int amount = lists.Length;
+            int intervel = 1;
+            while (intervel < amount)
+            {
+                for (int i = 0; i < amount - intervel; i += intervel * 2)
+                {
+                    lists[i] = helper_2024_10_06(lists[i], lists[i + intervel]);
+                }
+                intervel *= 2;
+            }
+            return amount > 0 ? lists[0] : null;
+        }
+        public ListNode helper_2024_10_06(ListNode l1, ListNode l2)
+        {
+            ListNode n1 = new ListNode();
+            ListNode n2 = n1;
+
+
+            while (l1 != null || l2 != null)
+            {
+                if (l1 == null)
+                {
+                    n2.next = l2; break;
+                }
+                else if (l2 == null)
+                {
+                    n2.next = l1; break;
+                }
+                else if (l1.val < l2.val)
+                {
+                    n2.next = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    n2.next = l2;
+                    l2 = l2.next;
+                }
+                n2 = n2.next;
+            }
+
+            return n1.next;
+        }
         #endregion
     }
 }

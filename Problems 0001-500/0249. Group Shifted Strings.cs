@@ -51,7 +51,6 @@ namespace leetcode.Problems
         #endregion
 
         #region 01/11/2022
-        // 01-11-2022-------------------------------------
         public IList<IList<string>> GroupStrings_R2(string[] strings)
         {
             Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
@@ -122,6 +121,56 @@ namespace leetcode.Problems
             return sb.ToString();
         }
         #endregion
+
+        #region 10/07/2024  formkey need to +26 
+        public IList<IList<string>> GroupStrings_2024_10_07(string[] strings)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
+            foreach (string s in strings)
+            {
+                string key = FormKey_2024_10_06(s);
+                if (dic.ContainsKey(key))
+                {
+                    dic[key].Add(s);
+                }
+                else
+                {
+                    dic.Add(key, new List<string>() { s });
+                }
+
+
+            }
+
+            IList<IList<string>> ans = new List<IList<string>>();
+
+            foreach (var key in dic.Keys)
+            {
+                ans.Add(dic[key]);
+            }
+            return ans;
+        }
+        public string FormKey_2024_10_06(string s)
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i =1;i<s.Length;i++)
+            {
+                sb.Append((s[i] - s[i - 1] +26)%26);
+                sb.Append('#');
+            }
+            return sb.ToString();
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

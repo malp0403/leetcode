@@ -92,5 +92,40 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 10/06/2024
+        int max_2024_10_06 = 0;
+        public int DiameterOfBinaryTree_2024_10_06(TreeNode root)
+        {
+
+            dfs_2024_10_06(root);
+            return max_2024_10_06-1;
+        }
+
+        public int dfs_2024_10_06(TreeNode node)
+        {
+            if(node == null) return 0;
+
+            int left = dfs_2024_10_06(node.left);
+            int right = dfs_2024_10_06(node.right);
+
+            max_2024_10_06 = Math.Max(left+right+1,max_2024_10_06);
+
+            return Math.Max(left, right) + 1;
+
+
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
     }
 }

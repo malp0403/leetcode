@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 
 #region Test
@@ -92,18 +93,19 @@ namespace leetcode.Problems
         #region 10/01/2024
         public string MinRemoveToMakeValid_2024_10_01(string s)
         {
-            
+
             List<string> list = Enumerable.Repeat("", s.Length).ToList();
 
             int left = 0;
-            for(int i =0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 string str = s[i].ToString();
                 if (str == "(")
                 {
                     left++;
                     list[i] = str;
-                }else if (str == ")")
+                }
+                else if (str == ")")
                 {
                     if (left == 0) continue;
                     else
@@ -118,8 +120,8 @@ namespace leetcode.Problems
                 }
             }
 
-            int j= list.Count - 1;
-            while (j >=0 && left>0)
+            int j = list.Count - 1;
+            while (j >= 0 && left > 0)
             {
                 if (list[j] == "(")
                 {
@@ -131,9 +133,56 @@ namespace leetcode.Problems
 
             return string.Join("", list);
 
- 
+
         }
         #endregion
 
+        #region 10/05/2024  Invalidset 
+        public string MinRemoveToMakeValid_2024_10_05(string s)
+        {
+            HashSet<int> invalidSet = new HashSet<int>();
+            int left = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '(')
+                {
+                    left++;
+                }
+                else if (s[i] == ')')
+                {
+                    if (left == 0)
+                    {
+                        invalidSet.Add(i);
+                    }
+                    else
+                    {
+                        left--;
+                    }
+                }
+            }
+            int indx = s.Length - 1;
+            while (left > 0)
+            {
+                if (s[indx] == '(')
+                {
+                    invalidSet.Add(indx);
+                    left--;
+                }
+
+                indx--;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for(int i =0; i < s.Length; i++)
+            {
+                if (!invalidSet.Contains(i))
+                {
+                    sb.Append(s[i]);
+                }
+            }
+
+            return sb.ToString();
+        }
+        #endregion
     }
 }

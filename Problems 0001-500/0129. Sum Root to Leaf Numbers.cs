@@ -7,6 +7,18 @@ namespace leetcode.Problems
 {
     class _0129
     {
+        #region LeetCode Approach 1: Iterative Preorder Traversal.
+
+        #endregion
+
+        #region LeetCode Approach 2: Recursive Preorder Traversal.
+
+        #endregion
+
+        #region LeetCode Approach 3: Morris Preorder Traversal.
+
+        #endregion
+
         #region Solution1
         List<string> list;
         List<string> arr;
@@ -40,6 +52,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region Solution2
         //****************Solution 2********************
         int sum = 0;
@@ -67,6 +80,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region 01/17/2022
         //01-17-2022----------------------------------
         public int SumNumbers_R2(TreeNode root)
@@ -91,6 +105,7 @@ namespace leetcode.Problems
             }
         }
         #endregion
+
         #region 01/17/2022 Iterative
         // 01-17-2022---------------------------
         public int SumNumbers_R2_Iterative(TreeNode root)
@@ -125,6 +140,7 @@ namespace leetcode.Problems
             return sum;
         }
         #endregion 01/17/2022 Morris
+
         #region 01/17/2022
         //01-17-2022------------------------------
         public int SumNumbers_R2_Morris(TreeNode root)
@@ -183,13 +199,13 @@ namespace leetcode.Problems
         int sum_20220817 = 0;
         public int SumNumbers_20220817(TreeNode root)
         {
-            helper_20220817(root,0);
+            helper_20220817(root, 0);
             return sum_20220817;
         }
-        public void helper_20220817(TreeNode node,int curSum)
+        public void helper_20220817(TreeNode node, int curSum)
         {
             if (node == null) return;
-            if(node.left == null && node.right == null)
+            if (node.left == null && node.right == null)
             {
                 sum_20220817 += curSum * 10 + node.val;
                 return;
@@ -204,17 +220,17 @@ namespace leetcode.Problems
             int sum = 0;
             int step = 1;
             int curSum = 0;
-            while(root != null)
+            while (root != null)
             {
-                if(root.left != null)
+                if (root.left != null)
                 {
                     TreeNode pre = root.left;
-                    while(pre.right !=null && pre.right != root)
+                    while (pre.right != null && pre.right != root)
                     {
                         pre = pre.right;
                         step++;
                     }
-                    if(pre.right == null)
+                    if (pre.right == null)
                     {
                         curSum = curSum * 10 + root.val;
                         pre.right = root;
@@ -222,11 +238,11 @@ namespace leetcode.Problems
                     }
                     else
                     {
-                        if(pre.left == null)
+                        if (pre.left == null)
                         {
                             sum += curSum;
                         }
-                        for(int i = 0; i < step; i++)
+                        for (int i = 0; i < step; i++)
                         {
                             curSum /= 10;
                         }
@@ -237,7 +253,7 @@ namespace leetcode.Problems
                 else
                 {
                     curSum = curSum * 10 + root.val;
-                    if(root.right == null)
+                    if (root.right == null)
                     {
                         sum += curSum;
                     }
@@ -265,14 +281,15 @@ namespace leetcode.Problems
                 var element = q.Dequeue();
                 int val = element.cur * 10 + element.node.val;
 
-                if(element.node.left == null && element.node.right == null)
+                if (element.node.left == null && element.node.right == null)
                 {
                     answer += val;
                 }
                 else
                 {
-                    if(element.node.left != null) { 
-                        q.Enqueue((element.node.left,val));
+                    if (element.node.left != null)
+                    {
+                        q.Enqueue((element.node.left, val));
                     }
                     if (element.node.right != null)
                     {
@@ -283,5 +300,46 @@ namespace leetcode.Problems
             return answer;
         }
         #endregion
+
+        #region 10/07/2024
+        public int SumNumbers_2024_10_07(TreeNode root)
+        {
+            int sum = 0;
+            Queue<(int cur, TreeNode node)> q = new Queue<(int cur, TreeNode node)>();
+            if (root == null) return 0;
+            q.Enqueue((root.val, root));
+            while (q.Count > 0)
+            {
+                var ele = q.Dequeue();
+                if (ele.node.right == null && ele.node.left == null)
+                {
+                    sum += ele.cur;
+                }
+                if (ele.node.left != null)
+                {
+                    q.Enqueue((ele.cur * 10 + ele.node.left.val, ele.node.left));
+                }
+                if (ele.node.right != null)
+                {
+                    q.Enqueue((ele.cur * 10 + ele.node.right.val, ele.node.right));
+
+                }
+
+            }
+
+            return sum;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
     }
 }

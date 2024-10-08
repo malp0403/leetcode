@@ -14,10 +14,18 @@ namespace leetcode.Problems_0001_500._0301_0350
 {
     internal class _0347
     {
+        #region LeetCode Approach 1: Heap
+
+        #endregion
+
+        #region LeetCode Approach 2: Quickselect (Hoare's selection algorithm)
+
+        #endregion
+
         #region 09/05/2023  My Attempt with LinkedList
         public int[] TopKFrequent_20230905_linkedList(int[] nums, int k)
         {
-            SortedDictionary<int,int> dic = new SortedDictionary<int,int>();
+            SortedDictionary<int, int> dic = new SortedDictionary<int, int>();
             foreach (int num in nums)
             {
                 if (dic.ContainsKey(num))
@@ -29,20 +37,20 @@ namespace leetcode.Problems_0001_500._0301_0350
                     dic.Add(num, 1);
                 }
             }
-            LinkedList<(int value,int count)> list = new LinkedList<(int value, int count)>();    
+            LinkedList<(int value, int count)> list = new LinkedList<(int value, int count)>();
             foreach (int num in dic.Keys)
             {
 
-                if(list.Count < k)
+                if (list.Count < k)
                 {
                     LinkedList<(int value, int count)> tempList = new LinkedList<(int value, int count)>();
-                    while(list.Count>0 && dic[num] > list.Last.Value.count)
+                    while (list.Count > 0 && dic[num] > list.Last.Value.count)
                     {
                         tempList.AddLast(list.Last.Value);
                         list.RemoveLast();
                     }
                     list.AddLast((num, dic[num]));
-                    while(tempList.Count > 0)
+                    while (tempList.Count > 0)
                     {
                         list.AddLast(tempList.Last.Value);
                         tempList.RemoveLast();
@@ -51,7 +59,7 @@ namespace leetcode.Problems_0001_500._0301_0350
                 else
                 {
                     if (dic[num] <= list.Last.Value.count) continue;
-                    if(dic[num] > list.First.Value.count)
+                    if (dic[num] > list.First.Value.count)
                     {
                         list.AddFirst((num, dic[num]));
                         list.RemoveLast();
@@ -76,7 +84,7 @@ namespace leetcode.Problems_0001_500._0301_0350
             }
 
             List<int> result = new List<int>();
-            while(list.Count > 0)
+            while (list.Count > 0)
             {
                 result.Add(list.First.Value.value);
                 list.RemoveFirst();
@@ -105,7 +113,7 @@ namespace leetcode.Problems_0001_500._0301_0350
             PriorityQueue<int, int> q = new PriorityQueue<int, int>() { };
             foreach (var item in dic.Keys)
             {
-                if(q.Count < k)
+                if (q.Count < k)
                 {
                     q.Enqueue(item, dic[item]);
                 }
@@ -155,6 +163,39 @@ namespace leetcode.Problems_0001_500._0301_0350
                 k--;
             }
             return list.ToArray();
+        }
+        #endregion
+
+        #region 10/07/2024
+        public int[] TopKFrequent_2024_10_07(int[] nums, int k)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            foreach (var item in nums)
+            {
+                if (dic.ContainsKey(item))
+                {
+                    dic[item]++;
+                }
+                else
+                {
+                    dic.Add(item, 1);
+                }
+            }
+
+            PriorityQueue<int,int> q= new PriorityQueue<int, int> { };
+            List<int> ans= new List<int>();
+            foreach (var key in dic.Keys)
+            {
+                q.Enqueue(key, -dic[key]);
+            }
+
+            while (k > 0)
+            {
+                ans.Add(q.Dequeue());
+
+                k--;
+            }
+            return ans.ToArray();
         }
         #endregion
 

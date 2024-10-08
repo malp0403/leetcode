@@ -64,6 +64,37 @@ namespace leetcode.Problems
 
         #endregion
 
+        #region 10/06/2024
+
+        //HashSet<int> nonZeroSet= new HashSet<int>();
+        //int[] _nums;
+        //public SparseVector(int[] nums)
+        //{
+        //    _nums= nums;
+        //    for(int i =0; i<nums.Length; i++)
+        //    {
+        //        if (nums[i] != 0)
+        //        {
+        //            nonZeroSet.Add(i);
+
+        //        }
+        //    }
+
+        //}
+        //public int DotProduct(SparseVector vec)
+        //{
+        //    int sum = 0;
+        //    foreach (int i in vec.nonZeroSet)
+        //    {
+        //        if (nonZeroSet.Contains(i))
+        //        {
+        //            sum += (vec._nums[i] * _nums[i]);
+        //        }
+        //    }
+        //    return sum;
+        //}
+        #endregion
+
 
     }
 }

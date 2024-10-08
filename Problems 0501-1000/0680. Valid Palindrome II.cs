@@ -122,5 +122,50 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 10/05/2024
+        bool hasDeleted = false;
+        public bool ValidPalindrome__2024_10_05(string s)
+        {
+            return helper_2024_10_06(0, s.Length - 1, s);
+        }
+
+        public bool helper_2024_10_06(int l, int r, string s)
+        {
+            while (l < r)
+            {
+                if (s[l] != s[r])
+                {
+                    if (hasDeleted) return false;
+                    hasDeleted = true;
+                    return helper_2024_10_06(l + 1, r, s) || helper_2024_10_06(l, r - 1, s);
+                }
+                else
+                {
+                    l++;
+                    r--;
+                }
+            }
+
+            return true;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

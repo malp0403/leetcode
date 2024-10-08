@@ -120,6 +120,35 @@ namespace leetcode.Problems
                 nums[k] = 0;
             }
         }
-            #endregion
+        #endregion
+
+        #region 10/06/2024 remember to set value to zero in the end
+        public void MoveZeroes_2024_10_05(int[] nums)
+        {
+            int i = 0; int j = 0;
+            while(i < nums.Length)
+            {
+                if (nums[i] != 0)
+                {
+                    nums[j] = nums[i];
+                    j++;
+                }
+
+
+                i++;
+            }
+
+            while(j < nums.Length)
+            {
+                nums[j++] = 0;
+            }
         }
+        #endregion
+
+
+
+
+
+
     }
+}

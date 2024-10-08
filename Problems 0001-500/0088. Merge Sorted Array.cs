@@ -10,14 +10,15 @@ namespace leetcode.Problems
         #region answer1
         public void Merge(int[] nums1, int m, int[] nums2, int n)
         {
-            if (m == 0) {
-                for(int i =0; i < n; i++)
+            if (m == 0)
+            {
+                for (int i = 0; i < n; i++)
                 {
                     nums1[i] = nums2[i];
                 }
                 return;
             }
-      
+
             for (int i = 0; i < n; i++)
             {
                 if (nums2[i] >= nums1[m + i - 1])
@@ -50,14 +51,15 @@ namespace leetcode.Problems
 
         #region 3 pointers
         //****************** 3 pointers ********************
-        public void Merge_V2(int[] nums1, int m, int[] nums2, int n) {
+        public void Merge_V2(int[] nums1, int m, int[] nums2, int n)
+        {
             int p1 = m - 1;
             int p2 = n - 1;
-            for(int p = m + n - 1; p >= 0; p--)
+            for (int p = m + n - 1; p >= 0; p--)
             {
                 if (p2 < 0) break;
 
-                if (p1>=0 && nums1[p1] >= nums2[p2])
+                if (p1 >= 0 && nums1[p1] >= nums2[p2])
                 {
                     nums1[p] = nums1[p1];
                     p1--;
@@ -73,7 +75,7 @@ namespace leetcode.Problems
 
         #region 12/29/2021
         //-----12-29-2021------
-        public void Merge_R2(int[] nums1,int m, int[] nums2,int n)
+        public void Merge_R2(int[] nums1, int m, int[] nums2, int n)
         {
             if (m == 0)
             {
@@ -195,15 +197,17 @@ namespace leetcode.Problems
 
             while (currentIndex >= 0)
             {
-                if(l1 < 0)
+                if (l1 < 0)
                 {
                     nums1[currentIndex] = nums2[l2];
                     l2--;
-                }else if(l2 < 0)
+                }
+                else if (l2 < 0)
                 {
                     nums1[currentIndex] = nums1[l1];
                     l1--;
-                }else if (nums1[l1] > nums2[l2])
+                }
+                else if (nums1[l1] > nums2[l2])
                 {
                     nums1[currentIndex] = nums1[l1];
                     l1--;
@@ -227,10 +231,11 @@ namespace leetcode.Problems
             int l2 = n - 1;
             while (l1 >= 0 || l2 >= 0)
             {
-                if(l1 < 0)
+                if (l1 < 0)
                 {
                     nums1[index--] = nums2[l2--];
-                }else if(l2 < 0)
+                }
+                else if (l2 < 0)
                 {
                     nums1[index--] = nums1[l1--];
                 }
@@ -247,7 +252,73 @@ namespace leetcode.Problems
                 }
             }
         }
-            #endregion
+        #endregion
 
+        #region 10/06/2024
+        public void Merge_2024_10_06(int[] nums1, int m, int[] nums2, int n)
+        {
+            int index = nums1.Length - 1;
+            int i1 = m - 1;
+            int i2 = n - 1;
+
+            while (i1 >= 0 || i2 >= 0)
+            {
+                if (i1 < 0)
+                {
+                    nums1[index] = nums2[i2];
+                    i2--;
+                }
+                else if (i2 < 0)
+                {
+                    nums1[index] = nums1[i1];
+                    i1--;
+                }
+                else if (nums1[i1] > nums2[i2])
+                {
+                    nums1[index] = nums1[i1];
+                    i1--;
+                }
+                else
+                {
+                    nums1[index] = nums2[i2];
+                    i2--;
+                }
+
+
+
+                index--;
+            }
+
+            
         }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+}

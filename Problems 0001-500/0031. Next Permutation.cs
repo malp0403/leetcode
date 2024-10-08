@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
+#region Test
+/*
+ 
+var obj = new _0031();
+obj.NextPermutation_2024_10_07(new int[] { 1, 2, 3 });
+ 
+ */
+#endregion
+
 namespace leetcode.Problems
 {
     class _0031
@@ -185,5 +194,100 @@ namespace leetcode.Problems
         }
 
         #endregion
+
+        #region 10/06/2024  take example   111154321
+        public void NextPermutation_2024_10_06(int[] nums)
+        {
+            int i = nums.Length - 2;
+            while(i >=0 && nums[i+1] <= nums[i])
+            {
+                i--;
+            }
+
+            if(i >= 0)
+            {
+
+                int j = nums.Length - 1;
+                while (nums[j] <= nums[i])
+                {
+                    j--;
+                }
+
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+
+            }
+
+            //reverse
+            int l = i + 1;
+            int r = nums.Length - 1;
+            while (l < r)
+            {
+                int temp2= nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp2;
+            }
+        }
+
+        #endregion
+
+        #region 10/07/2024 review
+        public void NextPermutation_2024_10_07(int[] nums)
+        {
+            int i = nums.Length - 2;
+            while(i>=0 && nums[i+1] <= nums[i])
+            {
+                i--;
+            }
+
+            if (i >= 0)
+            {
+                int j = nums.Length - 1;
+                while (nums[j] <= nums[i])
+                {
+                    j--;
+                }
+
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+
+            int l = i + 1;
+            int r = nums.Length - 1;
+            while (l < r)
+            {
+                int temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+                l++;
+                r--;
+            }
+
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

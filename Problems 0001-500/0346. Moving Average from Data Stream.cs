@@ -7,6 +7,13 @@ namespace leetcode.Problems
 {
     class _0346
     {
+        #region Approach 1: Array or List
+
+        #endregion
+
+        #region Approach 2: Double-ended Queue
+
+        #endregion
         #region Solution
         //Queue<int> memo = new Queue<int>() { };
         //double sum = 0;
@@ -54,6 +61,40 @@ namespace leetcode.Problems
         //}
         #endregion
 
+        #region 10/07/2024
+        /*
+        int moveIndex = 0;
+        List<int> list;
+        double total = 0;
+        int size = 0;
+        public MovingAverage(int size)
+        {
+            this.size = size;
+            list = new List<int>();
+        }
 
+        public double Next(int val)
+        {
+            if (list.Count < size)
+            {
+                list.Add(val);
+            }
+            else
+            {
+                int toMoveValue = list[moveIndex];
+                total -= toMoveValue;
+                list[moveIndex] = val;
+
+                moveIndex = ((moveIndex + 1) % size);
+            }
+
+            total += val;
+
+
+            return total / list.Count;
+        }
+
+            */
+        #endregion
     }
 }

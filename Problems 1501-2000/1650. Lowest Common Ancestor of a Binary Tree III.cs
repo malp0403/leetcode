@@ -75,14 +75,14 @@ namespace leetcode.Problems
         public Node LowestCommonAncestor_2024_10_01(Node p, Node q)
         {
             HashSet<Node> set1 = new HashSet<Node>();
-            HashSet<Node > set2 = new HashSet<Node>();
-            while(p !=null || q != null)
+            HashSet<Node> set2 = new HashSet<Node>();
+            while (p != null || q != null)
             {
-                if(p != null)
+                if (p != null)
                 {
                     set1.Add(p);
                 }
-                if(q != null)
+                if (q != null)
                 {
                     set2.Add(q);
                 }
@@ -95,12 +95,12 @@ namespace leetcode.Problems
                 {
                     return p;
                 }
-                if(p != null)
+                if (p != null)
                 {
 
                     p = p.parent;
                 }
-                if(q != null)
+                if (q != null)
                 {
                     q = q.parent;
                 }
@@ -108,7 +108,31 @@ namespace leetcode.Problems
             return null;
         }
 
-        
+
+        #endregion
+
+        #region 10/05/2024 One hashSet
+        public Node LowestCommonAncestor_2024_10_05(Node p, Node q)
+        {
+           
+            HashSet<Node> set1 = new HashSet<Node>();
+
+            while (p != null)
+            {
+                set1.Add(p);
+                p = p.parent;
+            }
+            while(q != null)
+            {
+                if (set1.Contains(q)) return q;
+       
+                q = q.parent;
+            }
+
+            return null;
+
+            
+        }
         #endregion
     }
 }

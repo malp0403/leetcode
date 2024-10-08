@@ -105,6 +105,46 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 10/07/2024  global first , last;
+        Node first_2024_10_07 = null;
+        Node last_2024_10_07 = null;
+        public Node TreeToDoublyList_2024_10_07(Node root)
+        {
+            if (root == null) return null;
+            helper(root);
+            last.right = first;
+            first.left = last;
+            return first;
+        }
+        public void helper(Node node)
+        {
+            if(node != null)
+            {
+                helper(node.left);
+
+                if (last !=null)
+                {
+                    last.right = node;
+                    node.left = last;
+                }
+                else
+                {
+                    first = node;
+                }
+
+                last = node;
+                helper(node.right);
+
+            }
+        }
+        #endregion
+
+
+
+
+
+
+
     }
     public class Node
     {

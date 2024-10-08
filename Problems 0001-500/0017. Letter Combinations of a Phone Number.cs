@@ -7,7 +7,7 @@ namespace leetcode.Problems
     class _0017
     {
 
- 
+
         #region  Solution
         Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>() { };
         public IList<string> LetterCombinations_s(string digits)
@@ -61,7 +61,7 @@ namespace leetcode.Problems
             return result_2024_01_21;
         }
 
-        public void helper_2024_01_21(int index,StringBuilder sb,string s)
+        public void helper_2024_01_21(int index, StringBuilder sb, string s)
         {
             if (index >= s.Length)
             {
@@ -83,7 +83,7 @@ namespace leetcode.Problems
                 }
             }
 
-            
+
         }
 
         #endregion
@@ -101,7 +101,7 @@ namespace leetcode.Problems
 
             foreach (var item in list)
             {
-                foreach(var item2 in list2)
+                foreach (var item2 in list2)
                 {
                     result.Add(item + item2);
                 }
@@ -111,6 +111,28 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 10/07/2024
+        public IList<string> LetterCombinations_2024_10_07(string digits)
+        {
+            var dic = setupDic();
+            IList<string> ans = new List<string>();
+            if (digits.Length == 0) return ans;
+            if (digits.Length == 1) return dic[digits[0]];
+            IList<string> list = LetterCombinations_2024_10_07(digits.Substring(1));
+            List<string> list2 = dic[digits[0]];
+            foreach (var item in list2)
+            {
+                foreach (var item2 in list)
+                {
+                    ans.Add(item + item2);
+                }
+            }
+
+            return ans;
+
+        }
+
+        #endregion
 
         public Dictionary<char, List<string>> setupDic()
         {

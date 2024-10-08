@@ -4,7 +4,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+#region Test
+/*
+             var obj = new _0146(2) { };
+            obj.Put(1, 1);
+            obj.Put(2, 2);
+            obj.Get(1);
+            obj.Put(3, 3);
+            obj.Get(2);
+            obj.Put(4, 4);
+            obj.Get(1); obj.Get(3); obj.Get(4);
 
+ */
+#endregion
 namespace leetcode.Problems
 {
     class _0146
@@ -207,7 +219,7 @@ namespace leetcode.Problems
         //            dic.Add(key, toadd);
         //            add(toadd);
 
-               
+
         //    }
         //}
         //public void remove(Node_ remove)
@@ -226,6 +238,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 03/27/2024
+        /*
         int capacity;
         Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
         Node_ head;
@@ -253,7 +266,8 @@ namespace leetcode.Problems
 
         public void Put(int key, int value)
         {
-           if(dic.ContainsKey(key)) {
+            if (dic.ContainsKey(key))
+            {
 
                 remove(dic[key]);
                 dic[key] = new Node_(key, value);
@@ -286,7 +300,89 @@ namespace leetcode.Problems
             add.next = tail;
             tail.prev = add;
         }
+
+        */
         #endregion
+
+        #region 10/06/2024 double linked node
+        /*
+        int _capacity;
+        Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
+        Node_ head;
+        Node_ tail;
+        public _0146(int capacity)
+        {
+            head = new Node_(-1, -1);
+            tail = new Node_(-2, -2);
+
+            head.next = tail;
+            tail.prev = head;
+            _capacity = capacity;
+        }
+
+        public int Get(int key)
+        {
+            if (dic.ContainsKey(key))
+            {
+                Node_ node = dic[key];
+                remove(node.key);
+                add(node.key, node.val);
+                return node.val;
+            }
+            return -1;
+        }
+
+        public void Put(int key, int value)
+        {
+            if (dic.ContainsKey(key))
+            {
+                remove(key);
+                add(key, value);
+
+            }
+            else
+            {
+                if (dic.Count >= _capacity)
+                {
+                    remove(head.next.key);
+
+                }
+                add(key, value);
+
+            }
+
+
+
+        }
+        public void add(int key, int val)
+        {
+            Node_ newNode = new Node_(key, val);
+            dic.Add(key, newNode);
+
+            Node_ oldPrev = tail.prev;
+
+            tail.prev = newNode;
+            newNode.next = tail;
+
+            oldPrev.next = newNode;
+            newNode.prev = oldPrev;
+        }
+        public void remove(int key)
+        {
+            Node_ toRemove = dic[key];
+            toRemove.next.prev = toRemove.prev;
+            toRemove.prev.next = toRemove.next;
+
+            dic.Remove(key);
+
+
+        }
+        */
+        #endregion
+
+
+
+
 
     }
 }
@@ -298,7 +394,7 @@ public class Node_
     public Node_ next;
     public Node_ prev;
 
-    public Node_(int key,int val)
+    public Node_(int key, int val)
     {
         this.key = key;
         this.val = val;

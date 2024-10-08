@@ -55,5 +55,31 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 10/06/2024 remember to use 'n' as long to avoid overflow
+        public double MyPow_2024_10_06(double x, int n)
+        {
+
+            return helper_2024_10_06(x, (long)n);
+
+        }
+
+        public double helper_2024_10_06(double x,long n)
+        {
+            if (n == 0) return 1;
+            if( n <0)
+            {
+                return helper_2024_10_06(1 / x, -n);
+            }
+
+            if(n %2 == 1)
+            {
+                return x * helper_2024_10_06(x*x, (n - 1) / 2);
+            }
+            else
+            {
+                return helper_2024_10_06(x * x, n / 2);
+            }
+        }
+            #endregion
+        }
     }
-}

@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+#region Test
+/*
+       var obj = new _0125();
+            obj.IsPalindrome_2024_10_06("race a car");
 
+ */
+#endregion
 namespace leetcode.Problems
 {
     class _0125
@@ -10,40 +16,41 @@ namespace leetcode.Problems
         public bool IsPalindrome(string s)
         {
             int l = 0;
-            int r = s.Length-1;
+            int r = s.Length - 1;
             while (l < r)
             {
-                while(l<r && !char.IsLetterOrDigit(s[l]))
+                while (l < r && !char.IsLetterOrDigit(s[l]))
                 {
                     l++;
                 }
-                while(l<r && !char.IsLetterOrDigit(s[r]))
+                while (l < r && !char.IsLetterOrDigit(s[r]))
                 {
                     r--;
                 }
                 if (s[l].ToString().ToLower() != s[r].ToString().ToLower()) return false;
-                l++;r--;
+                l++; r--;
             }
             return true;
         }
         #endregion
+
         #region 08/17/2022
         public bool IsPalindrome_20220817(string s)
         {
             int left = 0;
             int right = s.Length - 1;
-            while(left < right)
+            while (left < right)
             {
                 while (left < s.Length && !char.IsLetterOrDigit(s[left]))
                 {
                     left++;
                 }
-                while(right>=0 && !char.IsLetterOrDigit(s[right]))
+                while (right >= 0 && !char.IsLetterOrDigit(s[right]))
                 {
                     right--;
                 }
-                if(left >= right) { return true; }
-                if(s[left].ToString().ToLower() != s[right].ToString().ToLower())
+                if (left >= right) { return true; }
+                if (s[left].ToString().ToLower() != s[right].ToString().ToLower())
                 {
                     return false;
                 }
@@ -61,7 +68,7 @@ namespace leetcode.Problems
             int left = 0;
             int right = s.Length - 1;
 
-            while(left < right)
+            while (left < right)
             {
                 while (left < right && !char.IsLetterOrDigit(s[left]))
                 {
@@ -72,7 +79,7 @@ namespace leetcode.Problems
                     right--;
                 }
                 string c1 = s[left].ToString().ToLower();
-                string c2= s[right].ToString().ToLower();
+                string c2 = s[right].ToString().ToLower();
 
                 if (c1 != c2) return false;
                 left++;
@@ -82,7 +89,41 @@ namespace leetcode.Problems
             return true;
         }
 
-        
+
+        #endregion
+
+        #region 10/06/2024  IsLetterOrDigit
+        public bool IsPalindrome_2024_10_06(string s)
+        {
+            int l = 0;
+            int r= s.Length - 1;
+            while(l < r)
+            {
+                while ( l < r && !char.IsLetterOrDigit(s[l]))
+                {
+                    l++;
+                }
+
+                while( l<r && !char.IsLetterOrDigit(s[r]))
+                {
+                    r--;
+                }
+
+                if (l >= r) break;
+                if (s[l] == s[r] || s[l].ToString().ToLower() == s[r].ToString().ToLower())
+                {
+                    l++;
+                    r--;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
         #endregion
     }
 }

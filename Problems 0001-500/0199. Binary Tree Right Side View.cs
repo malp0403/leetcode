@@ -119,5 +119,81 @@ namespace leetcode.Problems
 
         }
         #endregion
+
+        #region 10/06/2024 level
+        public IList<int> RightSideView_2024_10_06(TreeNode root)
+        {
+            IList<int> ans = new List<int>() { };
+
+            if (root == null) return ans;
+
+            Queue<(TreeNode node, int level)> q = new Queue<(TreeNode node, int level)>();
+            q.Enqueue((root, 1));
+            while (q.Count > 0)
+            {
+                var ele = q.Dequeue();
+                if (ans.Count < ele.level)
+                {
+                    ans.Add(ele.node.val);
+                }
+
+                if (ele.node.right != null)
+                {
+                    q.Enqueue((ele.node.right, ele.level + 1));
+                }
+                if (ele.node.left != null)
+                {
+                    q.Enqueue((ele.node.left, ele.level + 1));
+                }
+            }
+
+            return ans;
+
+        }
+        #endregion
+
+        #region 10/07/2024
+        public IList<int> RightSideView_2024_10_07(TreeNode root)
+        {
+            IList<int> ans = new List<int>() { };
+            if (root == null) return ans;
+
+            Queue<(int degree, TreeNode node)> q = new Queue<(int degree, TreeNode node)>();
+            q.Enqueue((1, root));
+            while (q.Count > 0)
+            {
+                var ele = q.Dequeue();
+                if(ele.degree > ans.Count)
+                {
+                    ans.Add(ele.node.val);
+                }
+
+                if(ele.node.right != null)
+                {
+                    q.Enqueue((ele.degree+1,ele.node.right));
+                }
+                if (ele.node.left != null)
+                {
+                    q.Enqueue((ele.degree+1, ele.node.left));
+                }
+            }
+            return ans;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

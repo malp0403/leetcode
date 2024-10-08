@@ -72,6 +72,52 @@ namespace leetcode.Problems
             return list.ToArray();
         }
         #endregion
+
+        #region 10/06/2024  watch out 1. length ==1  2. [1,10][2,3]
+        public int[][] Merge_2024_10_06(int[][] intervals)
+        {
+            if (intervals.Length == 1) return intervals;
+            Array.Sort(intervals, (a, b) =>
+            {
+                return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
+            });
+
+            List<int[]> ans = new List<int[]>();
+            int start = intervals[0][0];
+            int end = intervals[0][1];
+
+            for (int i =1;i < intervals.Length; i++)
+            {
+                if (intervals[i][0]  > end )
+                {
+                    ans.Add(new int[] { start, end });
+                    start = intervals[i][0];
+                    end = intervals[i][1];
+
+
+                }
+                else
+                {
+                    end = Math.Max(intervals[i][1],end);
+                }
+
+                if(i == intervals.Length - 1)
+                {
+                    ans.Add(new int[] { start,end });
+                }
+
+
+
+            }
+            return ans.ToArray();
+        }
+        #endregion
+
+
+
+
+
+
     }
 }
 

@@ -186,26 +186,28 @@ namespace leetcode.Problems
             Stack<char> stack = new Stack<char>();
 
             int index = 0;
-            while(index < s.Length)
+            while (index < s.Length)
             {
                 if (s[index] == ')')
                 {
-                    if(stack.Peek() != '(')
+                    if (stack.Peek() != '(')
                     {
                         return false;
                     }
                     stack.Pop();
-                }else if (s[index] == '[')
+                }
+                else if (s[index] == '[')
                 {
-                    if(stack.Peek() != ']')
+                    if (stack.Peek() != ']')
                     {
                         return false;
                     }
                     stack.Pop();
 
-                }else if (s[index] == '{')
+                }
+                else if (s[index] == '{')
                 {
-                    if(stack.Peek() != '}')
+                    if (stack.Peek() != '}')
                     {
                         return false;
                     }
@@ -226,19 +228,21 @@ namespace leetcode.Problems
         {
             Stack<char> stack = new Stack<char>();
             int index = 0;
-            while(index < s.Length)
+            while (index < s.Length)
             {
                 if (s[index] == ']')
                 {
-                    if (stack.Count ==0 || stack.Peek() != '[') return false;
+                    if (stack.Count == 0 || stack.Peek() != '[') return false;
                     stack.Pop();
-                }else if (s[index] == ')')
+                }
+                else if (s[index] == ')')
                 {
                     if (stack.Count == 0 || stack.Peek() != '(') return false;
                     stack.Pop();
-                }else if (s[index] == '}')
+                }
+                else if (s[index] == '}')
                 {
-                    if(stack.Count ==0 || stack.Peek() != '}') return false;
+                    if (stack.Count == 0 || stack.Peek() != '}') return false;
                     stack.Pop();
                 }
                 else
@@ -249,6 +253,36 @@ namespace leetcode.Problems
 
             return stack.Count == 0 ? true : false;
 
+        }
+        #endregion
+
+        #region 10/07/2024
+        public bool IsValid_2024_10_07(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            for(int i =0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c == '[' || c == '(' || c == '{')
+                {
+                    stack.Push(c);
+                }
+                else if(c == ']')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '[') return false;
+                    stack.Pop();
+                }else if (c == '}')
+                {
+                    if (stack.Count == 0 || stack.Peek() != '{') return false;
+                    stack.Pop();
+                }
+                else
+                {
+                    if (stack.Count == 0 || stack.Peek() != '(') return false;
+                    stack.Pop();
+                }
+            }
+            return stack.Count ==0?true:false;
         }
         #endregion
     }

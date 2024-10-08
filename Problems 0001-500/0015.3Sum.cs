@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 
 #region Test Data
-//int[] nums = new int[6] { -1, 0, 1, 2, -1, 4 };
-//var obj = new _0015() { };
-//var answer = obj.ThreeSum_20230718(nums);
+/*
+int[] nums = new int[6] { -1, 0, 1, 2, -1, 4 };
+var obj = new _0015() { };
+var answer = obj.ThreeSum_20230718(nums);
 
-//int[] nums2 = new int[4] { -1, 0,0,1 };
-//var obj2 = new _0015() { };
-//var answer2 = obj2.ThreeSum_20230718(nums2);
+int[] nums2 = new int[4] { -1, 0,0,1 };
+var obj2 = new _0015() { };
+var answer2 = obj2.ThreeSum_20230718(nums2);
+*/
 #endregion
 namespace leetcode.Problems
 {
@@ -173,7 +175,7 @@ namespace leetcode.Problems
                     hi--;
                 }
             }
-                      
+
         }
         #endregion
 
@@ -181,13 +183,13 @@ namespace leetcode.Problems
         public void helper_20221228v2(int[] nums, int start, int end, int target)
         {
             HashSet<int> set = new HashSet<int>() { };
-            for(int i = start; i <= end; i++)
+            for (int i = start; i <= end; i++)
             {
                 int result = target - nums[i];
                 if (set.Contains(result))
                 {
                     answer_20221228.Add(new List<int>() { nums[i], result, -target });
-                    while (i + 1 <= end && nums[i+1] == nums[i])
+                    while (i + 1 <= end && nums[i + 1] == nums[i])
                     {
                         i++;
                     }
@@ -211,7 +213,7 @@ namespace leetcode.Problems
 
             for (int i = 0; i < nums.Length; i++)
             {
-                if(i==0 || nums[i] != nums[i - 1])
+                if (i == 0 || nums[i] != nums[i - 1])
                 {
                     helper_20230718(i, nums, answer);
                 }
@@ -227,21 +229,22 @@ namespace leetcode.Problems
             int r = nums.Length - 1;
             int remain = -nums[index];
 
-            while (l < r && l < nums.Length - 1 && r>0)
+            while (l < r && l < nums.Length - 1 && r > 0)
             {
                 if (nums[l] + nums[r] > remain)
                 {
                     r--;
-                    while(r >0 && nums[r] == nums[r + 1])
+                    while (r > 0 && nums[r] == nums[r + 1])
                     {
                         r--;
                     }
                     //skip duplicate
 
-                }else if (nums[l] + nums[r] < remain)
+                }
+                else if (nums[l] + nums[r] < remain)
                 {
                     l++;
-                    while ( l < nums.Length-1 && nums[l] == nums[l - 1])
+                    while (l < nums.Length - 1 && nums[l] == nums[l - 1])
                     {
                         l++;
                     }
@@ -278,7 +281,7 @@ namespace leetcode.Problems
                 }
 
                 index++;
-                while(index< nums.Length - 1 && nums[index] == nums[index - 1])
+                while (index < nums.Length - 1 && nums[index] == nums[index - 1])
                 {
                     index++;
                 }
@@ -315,5 +318,101 @@ namespace leetcode.Problems
             return result;
         }
         #endregion
+
+        #region 10/06/2024  one pointer; inside loop; pick next value if not the same as previous 
+        public IList<IList<int>> ThreeSum_2024_10_06(int[] nums)
+        {
+            IList<IList<int>> ans_2024_10_06 = new List<IList<int>>();
+            Array.Sort(nums);
+
+            int i = 0; int j = nums.Length - 1;
+
+
+            while (i < nums.Length - 2)
+            {
+                int left = i + 1;
+                int right = nums.Length - 1;
+
+
+                while (left < right)
+                {
+
+
+                    if (nums[i] + nums[left] + nums[right] == 0)
+                    {
+                        ans_2024_10_06.Add(new List<int>() { nums[i], nums[left], nums[right] });
+                        left++;
+                        while (left < right && nums[left] == nums[left - 1])
+                        {
+                            left++;
+                        }
+                    }
+                    else if (nums[i] + nums[left] + nums[right] > 0)
+                    {
+                        right--;
+                    }
+                    else
+                    {
+                        left++;
+                    }
+                }
+                i++;
+
+                while (i < j && nums[i] == nums[i - 1])
+                {
+                    i++;
+                }
+
+
+            }
+
+            return ans_2024_10_06;
+
+
+        }
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

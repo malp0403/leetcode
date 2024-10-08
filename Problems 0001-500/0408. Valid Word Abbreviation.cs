@@ -136,5 +136,45 @@ namespace leetcode.Problems
             return i == word.Length && j == abbr.Length;
         }
         #endregion
+
+        #region 10/05/2024 two pointers
+        public bool ValidWordAbbreviation_2024_10_05(string word, string abbr)
+        {
+            int first = 0;
+            int second = 0;
+            while(second < abbr.Length && first < word.Length)
+            {
+                if (word[first] == abbr[second])
+                {
+                    first++;
+                    second++;
+                }
+                else
+                {
+                    if (!char.IsDigit(abbr[second]))
+                    {
+                        return false;
+                    }
+
+                    
+                    if (abbr[second] == '0' )
+                    {
+                        return false;
+                    }
+
+                    int distance = 0;
+                    while (second < abbr.Length && char.IsDigit(abbr[second]))
+                    {
+                        distance = distance * 10 + word[second] - '0';
+                        second++;
+                    }
+
+                    first += distance;
+                }
+            }
+
+            return first == word.Length && second == abbr.Length;
+        }
+        #endregion
     }
 }

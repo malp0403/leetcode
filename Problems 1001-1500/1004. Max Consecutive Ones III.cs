@@ -67,7 +67,7 @@ namespace leetcode.Problems
             int l = 0;
             int r = 0;
             int n = nums.Length;
-            for(r=0;r < n; r++)
+            for (r = 0; r < n; r++)
             {
                 if (nums[r] == 0)
                 {
@@ -88,7 +88,7 @@ namespace leetcode.Problems
         {
             int l = 0;
             int r = 0;
-            for(r=0;r < nums.Length; r++)
+            for (r = 0; r < nums.Length; r++)
             {
                 if (nums[r] == 0)
                 {
@@ -96,7 +96,7 @@ namespace leetcode.Problems
                 }
                 if (k < 0)
                 {
-                    
+
                     if (nums[l] == 0)
                     {
                         k++;
@@ -106,7 +106,39 @@ namespace leetcode.Problems
             }
             return r - l;
         }
-            #endregion
+        #endregion
+
+        #region 10/07/2024 sliding Window; no while loop
+        public int LongestOnes_2024_10_07(int[] nums, int k)
+        {
+            int l = 0;
+            int r = 0;
+           
+            while (r < nums.Length)
+            {
+                if (nums[r] == 0)
+                {
+                    k--;
+                }
+
+                if (k < 0)
+                {
+                    if (nums[l] == 0)
+                    {
+                        k++;
+                    }
+                    l++;
+                }
+
+
+
+
+                r++;
+            }
+            return r - l;
 
         }
+        #endregion
+
     }
+}
