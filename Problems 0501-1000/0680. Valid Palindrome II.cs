@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace leetcode.Problems
+{
+    class _0680
+    {
+        #region Solution
+<<<<<<< HEAD:Problems 0501-1000/0651-0700/0680. Valid Palindrome II.cs
+        public bool ValidPalindrome(string s)
+=======
+        public bool ValidPalindrome_S(string s)
+>>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0501-1000/0680. Valid Palindrome II.cs
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            bool res = true;
+            bool deleted = false;
+            while (left < right)
+            {
+                if (s[left] == s[right])
+                {
+                    left++;
+                    right--;
+                }
+                else
+                {
+                    deleted = true;
+                    break;
+                }
+            }
+            if (deleted)
+            {
+                int newLeft = left;
+                int newRight = right - 1;
+                bool newRes1 = true;
+                while (newLeft < newRight)
+                {
+                    if (s[newLeft] == s[newRight])
+                    {
+                        newLeft++;
+                        newRight--;
+                    }
+                    else
+                    {
+                        newRes1 = false;
+                        break;
+                    }
+                }
+
+                int newLeft2 = left++;
+                int newRight2 = right;
+                bool newRes2 = true;
+                while (newLeft2 < newRight2)
+                {
+                    if (s[newLeft2] == s[newRight2])
+                    {
+                        newLeft2++;
+                        newRight2--;
+                    }
+                    else
+                    {
+                        newRes2 = false;
+                        break;
+                    }
+                }
+                res = newRes2 || newRes1;
+            }
+
+            return res;
+        }
+
+        #endregion
+
+<<<<<<< HEAD:Problems 0501-1000/0651-0700/0680. Valid Palindrome II.cs
+        #region 2021/12/30
+=======
+        #region MyRegion
+>>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0501-1000/0680. Valid Palindrome II.cs
+        //--------------12-30-2021---------------
+        int deleted = 1;
+        public bool ValidPalindrome_R2(string s)
+        {
+            int l = 0;
+            int r = s.Length - 1;
+            while (l < r)
+            {
+                if (s[l] != s[r])
+                {
+                    if (deleted == 0) return false;
+                    deleted = 0;
+
+
+                    var temp = r - l + 1 <= s.Length ? ValidPalindrome_R2(s.Substring(l + 1, r - l)) : true;
+                    var temp2 = ValidPalindrome_R2(s.Substring(l, r - l));
+                    return temp || temp2;
+                }
+                l++;
+                r--;
+            }
+            return true;
+        }
+        #endregion
+
+        #region 10/01/2024
+        int delete_2024_10_01 = 1;
+        public bool ValidPalindrome(string s)
+        {
+            int left = 0;
+            int right = s.Length - 1;
+            while (left < right)
+            {
+                if (s[left] != s[right])
+                {
+                    if (delete_2024_10_01 == 0) return false;
+                    delete_2024_10_01 = 0;
+
+                    bool keepLeft = ValidPalindrome(s.Substring(left, right - left));
+                    bool keepRight = ValidPalindrome(s.Substring(left + 1, right - left));
+                    return keepLeft || keepRight;
+                }
+                else
+                {
+                    left++;
+                    right--;
+                }
+            }
+            return true;
+        }
+        #endregion
+
+        #region 10/05/2024
+        bool hasDeleted = false;
+        public bool ValidPalindrome__2024_10_05(string s)
+        {
+            return helper_2024_10_06(0, s.Length - 1, s);
+        }
+
+        public bool helper_2024_10_06(int l, int r, string s)
+        {
+            while (l < r)
+            {
+                if (s[l] != s[r])
+                {
+                    if (hasDeleted) return false;
+                    hasDeleted = true;
+                    return helper_2024_10_06(l + 1, r, s) || helper_2024_10_06(l, r - 1, s);
+                }
+                else
+                {
+                    l++;
+                    r--;
+                }
+            }
+
+            return true;
+        }
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #endregion
+
+        #region 2025/01/07
+        public bool ValidPalindrome(string s)
+        {
+            return helper_20250107(0, s.Length - 1, false,s);
+        }
+        public bool helper_20250107(int l, int r,bool isDeleted,string s)
+        {
+            if (l >= r) return true;
+            if (s[l] == s[r])
+            {
+                return helper_20250107(l+1,r-1,isDeleted,s);
+            }
+            else
+            {
+                if(isDeleted) return false;
+                return helper_20250107(l + 1, r, true, s) || helper_20250107(l, r - 1, true, s);
+            }
+        }
+
+        #endregion
+
+    }
+}

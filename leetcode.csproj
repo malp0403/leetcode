@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Problems 2501-3000\NewFolder3\" />
+    <Compile Remove="Problems 2501-3000\NewFolder3\**" />
+    <EmbeddedResource Remove="Problems 2501-3000\NewFolder3\**" />
+    <None Remove="Problems 2501-3000\NewFolder3\**" />
   </ItemGroup>
 </Project>

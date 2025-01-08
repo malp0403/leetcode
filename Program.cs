@@ -1,6 +1,7 @@
 ﻿using leetcode.Class;
 using leetcode.Problems;
 using leetcode.Problems._0101_150;
+using leetcode.Problems_0001_500;
 using leetcode.Problems_0001_500._0001_50;
 using leetcode.Problems_0001_500._0051_100;
 using leetcode.Problems_0001_500._0101_150;
@@ -10,10 +11,20 @@ using leetcode.Problems_0001_500._0251_0300;
 using leetcode.Problems_0001_500._0301_0350;
 using leetcode.Problems_0001_500._0351_0400;
 using leetcode.Problems_0001_500._0401_0450;
+<<<<<<< HEAD
 using leetcode.Problems_0501_1000._0651_0700;
+=======
+using leetcode.Problems_0001_500._0451_0500;
+using leetcode.Problems_0501_1000;
+using leetcode.Problems_0501_1000._0701_0750;
+>>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c
 using leetcode.Problems_0501_1000._0751_0800;
 using leetcode.Problems_0501_1000._0801_0850;
+using leetcode.Problems_1001_1500;
+using leetcode.Problems_1001_1500._1451_1500;
+using leetcode.Problems_1501_2000;
 using leetcode.Problems_1501_2000._1651_1700;
+using leetcode.Problems_1501_2000._1701_1750;
 using leetcode.Problems_2001_2500._2001_2050;
 using leetcode.Problems_2501_3000._2201_2250;
 using System;
@@ -67,8 +78,15 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             var obj = new _0670();
+=======
 
+            var obj = new _0480();
+            obj.MedianSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 },3);
+>>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c
+
+            Console.Read();
         }
 
 
