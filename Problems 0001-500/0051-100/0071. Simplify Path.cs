@@ -6,15 +6,15 @@ namespace leetcode.Problems
 {
     class _0071
     {
-        #region answer
-        public string SimplifyPath(string path)
+        #region Approach: Using Stacks
+        public string SimplifyPath_app(string path)
         {
             var arr = path.Split('/');
             Stack<string> stack = new Stack<string>() { };
-            for(int i =0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] == "." || arr[i] == "") continue;
-                if(arr[i] == "..")
+                if (arr[i] == "..")
                 {
                     if (stack.Count > 0)
                     {
@@ -29,8 +29,8 @@ namespace leetcode.Problems
 
             string s = "";
             while (stack.Count > 0)
-            {   
-                s = stack.Pop()+"/" + s;
+            {
+                s = stack.Pop() + "/" + s;
             }
             s = "/" + s;
             return s.Length == 1 ? s : s.Remove(s.Length - 1);
@@ -42,13 +42,13 @@ namespace leetcode.Problems
         {
             string[] arr = path.Split('/');
             Stack<string> stack = new Stack<string>() { };
-            for(int i =0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                if(arr[i] == "." ||arr[i]== "")
+                if (arr[i] == "." || arr[i] == "")
                 {
                     continue;
                 }
-                if(arr[i] == "..")
+                if (arr[i] == "..")
                 {
                     if (stack.Count > 0)
                     {
@@ -84,12 +84,13 @@ namespace leetcode.Problems
             for (int i = 0; i < arr.Length; i++)
             {
                 string s = arr[i];
-                if(s== "." || string.IsNullOrEmpty(s))
+                if (s == "." || string.IsNullOrEmpty(s))
                 {
                     continue;
-                }else if(s=="..")
+                }
+                else if (s == "..")
                 {
-                    if(stack.Count != 0)
+                    if (stack.Count != 0)
                     {
                         stack.Pop();
                     }
@@ -106,7 +107,7 @@ namespace leetcode.Problems
             {
                 list.Add(item);
             }
-            for(int i = list.Count - 1; i >= 0; i--)
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 sb.Append('/');
                 sb.Append(list[i]);
@@ -114,6 +115,33 @@ namespace leetcode.Problems
 
             return sb.ToString().Length > 0 ? sb.ToString() : "/";
 
+        }
+        #endregion
+
+        #region 01/07/2025 split into array then triage
+        public string SimplifyPath_2024_01_07(string path)
+        {
+            var arr = path.Split("/");
+            Stack<string> stack = new Stack<string> { };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == "" || arr[i] == ".") continue;
+                if (arr[i] == "..")
+                {
+                    if (stack.Count > 0) { stack.Pop(); }
+                }
+                else
+                {
+                    stack.Push(arr[i]);
+                }
+            }
+            if (stack.Count == 0) return "/";
+            string ans = "";
+            while (stack.Count > 0)
+            {
+                ans = "/" + stack.Pop() + ans;
+            }
+            return ans;
         }
         #endregion
     }

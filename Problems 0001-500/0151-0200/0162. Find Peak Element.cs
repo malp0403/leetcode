@@ -38,6 +38,14 @@ namespace leetcode.Problems
 {
     class _0162
     {
+        #region Approach 2: Recursive Binary Search
+
+        #endregion
+
+        #region Approach 3: Iterative Binary Search
+
+        #endregion
+
         #region Solution
         public int FindPeakElement(int[] nums)
         {
@@ -107,5 +115,29 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 01/07/2025 Approach 3: Iterative Binary Search
+        public int FindPeakElement_20250107(int[] nums)
+        {
+            int l = 0;
+            int r = nums.Length - 1;
+
+            while (l < r)
+            {
+                int mid = l + (r - l) / 2;
+                if (nums[mid] > nums[mid + 1])
+                {
+                    r = mid;
+                }
+                else
+                {
+                    l = mid + 1;
+                }
+            }
+
+            return l;
+        }
+      
+            #endregion
+
+        }
     }
-}

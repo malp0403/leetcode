@@ -25,9 +25,9 @@ namespace leetcode.Problems
 {
     class _0543
     {
-        #region Solution
+        #region Approach 1: Depth-first Search
         int max = 0;
-        public int DiameterOfBinaryTree(TreeNode root)
+        public int DiameterOfBinaryTree_approach1(TreeNode root)
         {
             travel(root);
             return max;
@@ -92,5 +92,26 @@ namespace leetcode.Problems
         }
         #endregion
 
+        #region 01/07/2025
+        int max_2025_01_07 = 0;
+        public int DiameterOfBinaryTree_2025_01_07(TreeNode root)
+        {
+            helper_2024_01_07(root);
+
+            return max_2025_01_07;
+          
+        }
+
+        public int helper_2024_01_07(TreeNode root)
+        {
+            if (root == null) return 0;
+
+            int left = helper_2024_01_07(root.left);
+            int right = helper_2024_01_07(root.right);
+
+            max_2025_01_07 = Math.Max(left + right, max_2025_01_07);
+            return Math.Max(left, right) + 1;
+        }
+        #endregion
     }
 }

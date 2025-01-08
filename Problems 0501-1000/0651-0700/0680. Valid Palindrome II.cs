@@ -6,6 +6,7 @@ namespace leetcode.Problems
 {
     class _0680
     {
+        #region Solution
         public bool ValidPalindrome(string s)
         {
             int left = 0;
@@ -14,7 +15,7 @@ namespace leetcode.Problems
             bool deleted = false;
             while (left < right)
             {
-                if(s[left] == s[right])
+                if (s[left] == s[right])
                 {
                     left++;
                     right--;
@@ -25,9 +26,10 @@ namespace leetcode.Problems
                     break;
                 }
             }
-            if (deleted) {
+            if (deleted)
+            {
                 int newLeft = left;
-                int newRight = right-1;
+                int newRight = right - 1;
                 bool newRes1 = true;
                 while (newLeft < newRight)
                 {
@@ -65,21 +67,24 @@ namespace leetcode.Problems
             return res;
         }
 
+        #endregion
+
+        #region 2021/12/30
         //--------------12-30-2021---------------
         int deleted = 1;
         public bool ValidPalindrome_R2(string s)
         {
             int l = 0;
-            int r = s.Length-1;
+            int r = s.Length - 1;
             while (l < r)
             {
-                if(s[l] != s[r])
+                if (s[l] != s[r])
                 {
                     if (deleted == 0) return false;
                     deleted = 0;
-    
-                    
-                    var temp = r - l + 1<=s.Length ? ValidPalindrome_R2(s.Substring(l + 1, r - l)) : true;
+
+
+                    var temp = r - l + 1 <= s.Length ? ValidPalindrome_R2(s.Substring(l + 1, r - l)) : true;
                     var temp2 = ValidPalindrome_R2(s.Substring(l, r - l));
                     return temp || temp2;
                 }
@@ -88,6 +93,29 @@ namespace leetcode.Problems
             }
             return true;
         }
+
+        #endregion
+
+        #region 2025/01/07
+        public bool ValidPalindrome(string s)
+        {
+            return helper_20250107(0, s.Length - 1, false,s);
+        }
+        public bool helper_20250107(int l, int r,bool isDeleted,string s)
+        {
+            if (l >= r) return true;
+            if (s[l] == s[r])
+            {
+                return helper_20250107(l+1,r-1,isDeleted,s);
+            }
+            else
+            {
+                if(isDeleted) return false;
+                return helper_20250107(l + 1, r, true, s) || helper_20250107(l, r - 1, true, s);
+            }
+        }
+
+        #endregion
 
     }
 }

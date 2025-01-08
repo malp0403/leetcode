@@ -104,7 +104,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 09/16/2024
-        public int Compress(char[] chars)
+        public int Compress_2024_09_16(char[] chars)
         {
             int index = 1;
             int insertIndex = 1;
@@ -137,6 +137,7 @@ namespace leetcode.Problems
 
 
             }
+            return 0;
 
         }
         #endregion

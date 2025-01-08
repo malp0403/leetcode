@@ -207,7 +207,7 @@ namespace leetcode.Problems
         //            dic.Add(key, toadd);
         //            add(toadd);
 
-               
+
         //    }
         //}
         //public void remove(Node_ remove)
@@ -226,66 +226,136 @@ namespace leetcode.Problems
         #endregion
 
         #region 03/27/2024
-        int capacity;
-        Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
-        Node_ head;
-        Node_ tail;
-        public _0146(int capacity)
-        {
-            this.capacity = capacity;
-            this.head = new Node_(-1, -1);
-            this.tail = new Node_(-1, -1);
-            this.head.next = tail;
-            tail.prev = head;
-        }
+        //int capacity;
+        //Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
+        //Node_ head;
+        //Node_ tail;
+        //public _0146(int capacity)
+        //{
+        //    this.capacity = capacity;
+        //    this.head = new Node_(-1, -1);
+        //    this.tail = new Node_(-1, -1);
+        //    this.head.next = tail;
+        //    tail.prev = head;
+        //}
 
-        public int Get(int key)
-        {
-            if (dic.ContainsKey(key))
-            {
-                Node_ n = dic[key];
-                remove(n);
-                add(n);
-                return dic[key].val;
-            }
-            return -1;
-        }
+        //public int Get(int key)
+        //{
+        //    if (dic.ContainsKey(key))
+        //    {
+        //        Node_ n = dic[key];
+        //        remove(n);
+        //        add(n);
+        //        return dic[key].val;
+        //    }
+        //    return -1;
+        //}
 
-        public void Put(int key, int value)
-        {
-           if(dic.ContainsKey(key)) {
+        //public void Put(int key, int value)
+        //{
+        //   if(dic.ContainsKey(key)) {
 
-                remove(dic[key]);
-                dic[key] = new Node_(key, value);
-                add(dic[key]);
-            }
-            else
-            {
-                if (dic.Count >= capacity)
-                {
-                    var temp = head.next;
-                    remove(temp);
-                    dic.Remove(temp.key);
-                }
-                Node_ toAdd = new Node_(key, value);
-                add(toAdd);
-                dic.Add(key, toAdd);
-            }
-        }
-        public void remove(Node_ remove)
-        {
-            remove.prev.next = remove.next;
-            remove.next.prev = remove.prev;
+        //        remove(dic[key]);
+        //        dic[key] = new Node_(key, value);
+        //        add(dic[key]);
+        //    }
+        //    else
+        //    {
+        //        if (dic.Count >= capacity)
+        //        {
+        //            var temp = head.next;
+        //            remove(temp);
+        //            dic.Remove(temp.key);
+        //        }
+        //        Node_ toAdd = new Node_(key, value);
+        //        add(toAdd);
+        //        dic.Add(key, toAdd);
+        //    }
+        //}
+        //public void remove(Node_ remove)
+        //{
+        //    remove.prev.next = remove.next;
+        //    remove.next.prev = remove.prev;
 
-        }
-        public void add(Node_ add)
-        {
-            Node_ _PrevEnd = this.tail.prev;
-            _PrevEnd.next = add;
-            add.prev = _PrevEnd;
-            add.next = tail;
-            tail.prev = add;
-        }
+        //}
+        //public void add(Node_ add)
+        //{
+        //    Node_ _PrevEnd = this.tail.prev;
+        //    _PrevEnd.next = add;
+        //    add.prev = _PrevEnd;
+        //    add.next = tail;
+        //    tail.prev = add;
+        //}
+        #endregion
+
+        #region 01/07/2025 implement extra add and remove Method 
+
+        //int cap = 0;
+        //Node_ head = new Node_(10001, 10001);
+        //Node_ tail = new Node_(-1, -1);
+        //Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
+
+        //public LRUCache(int capacity)
+
+        //{
+        //    cap = capacity;
+        //    head.next = tail;
+        //    tail.prev = head;
+        //}
+
+        //public int Get(int key)
+        //{
+        //    if (dic.ContainsKey(key))
+        //    {
+        //        var n = dic[key];
+        //        Remove(n);
+        //        Add(n);
+        //        return n.val;
+        //    }
+        //    return -1;
+        //}
+
+        //public void Put(int key, int value)
+        //{
+        //    if (dic.ContainsKey(key))
+        //    {
+        //        var n = dic[key];
+        //        n.val = value;
+        //        Remove(n);
+        //        Add(n);
+        //    }
+        //    else
+        //    {
+        //        var newNode = new Node_(key, value);
+
+        //        if (dic.Count >= cap)
+        //        {
+
+        //            var toRemove = head.next;
+        //            Remove(toRemove);
+        //            dic.Remove(toRemove.key);
+
+        //        }
+        //        dic.Add(key, newNode);
+        //        Add(newNode);
+        //    }
+        //}
+
+        //public void Add(Node_ add)
+        //{
+        //    Node_ prevEnd = tail.prev;
+
+        //    prevEnd.next = add;
+        //    add.prev = head;
+        //    tail.prev = add;
+        //    add.next = tail;
+        //}
+
+        //public void Remove(Node_ remove)
+        //{
+        //    remove.next.prev = remove.prev;
+        //    remove.prev.next = remove.next;
+        //}
         #endregion
 
     }
@@ -298,7 +368,7 @@ public class Node_
     public Node_ next;
     public Node_ prev;
 
-    public Node_(int key,int val)
+    public Node_(int key, int val)
     {
         this.key = key;
         this.val = val;
