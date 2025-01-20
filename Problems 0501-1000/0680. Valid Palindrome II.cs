@@ -7,11 +7,7 @@ namespace leetcode.Problems
     class _0680
     {
         #region Solution
-<<<<<<< HEAD:Problems 0501-1000/0651-0700/0680. Valid Palindrome II.cs
-        public bool ValidPalindrome(string s)
-=======
         public bool ValidPalindrome_S(string s)
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0501-1000/0680. Valid Palindrome II.cs
         {
             int left = 0;
             int right = s.Length - 1;
@@ -73,11 +69,8 @@ namespace leetcode.Problems
 
         #endregion
 
-<<<<<<< HEAD:Problems 0501-1000/0651-0700/0680. Valid Palindrome II.cs
         #region 2021/12/30
-=======
-        #region MyRegion
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0501-1000/0680. Valid Palindrome II.cs
+
         //--------------12-30-2021---------------
         int deleted = 1;
         public bool ValidPalindrome_R2(string s)
@@ -105,7 +98,7 @@ namespace leetcode.Problems
 
         #region 10/01/2024
         int delete_2024_10_01 = 1;
-        public bool ValidPalindrome(string s)
+        public bool ValidPalindrome_20241001(string s)
         {
             int left = 0;
             int right = s.Length - 1;
@@ -158,24 +151,6 @@ namespace leetcode.Problems
         }
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
 
         #region 2025/01/07
         public bool ValidPalindrome(string s)

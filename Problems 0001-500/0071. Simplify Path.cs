@@ -118,7 +118,6 @@ namespace leetcode.Problems
         }
         #endregion
 
-<<<<<<< HEAD:Problems 0001-500/0051-100/0071. Simplify Path.cs
         #region 01/07/2025 split into array then triage
         public string SimplifyPath_2024_01_07(string path)
         {
@@ -145,7 +144,7 @@ namespace leetcode.Problems
             return ans;
         }
         #endregion
-=======
+
         #region 10/06/2024  Using Stack; watch out for "." and empty scenario
         public string SimplifyPath_2024_10_06(string path)
         {
@@ -182,6 +181,5 @@ namespace leetcode.Problems
         #endregion
 
 
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0071. Simplify Path.cs
     }
 }

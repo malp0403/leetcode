@@ -253,7 +253,6 @@ namespace leetcode.Problems
             }
         }
         #endregion
-<<<<<<< HEAD:Problems 0001-500/0051-100/0088. Merge Sorted Array.cs
 
         #region 01/07/2025
         public void Merge_20250107(int[] nums1, int m, int[] nums2, int n)
@@ -262,31 +261,33 @@ namespace leetcode.Problems
 
             int l1 = m - 1;
             int l2 = n - 1;
-            while(l1 >=0 || l2 >= 0)
+            while (l1 >= 0 || l2 >= 0)
             {
-                if(l1 < 0)
+                if (l1 < 0)
                 {
                     nums1[index--] = nums2[l2--];
-                    
-                }else if (l2 < 0)
+
+                }
+                else if (l2 < 0)
                 {
                     nums1[index--] = nums1[l1--];
-                 
-                }else if (nums1[l1] > nums2[l2])
+
+                }
+                else if (nums1[l1] > nums2[l2])
                 {
                     nums1[index--] = nums1[l1--];
-                
+
                 }
                 else
                 {
                     nums1[index--] = nums2[l2--];
-                    
+
                 }
 
 
             }
-=======
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0088. Merge Sorted Array.cs
+        }
+        #endregion
 
         #region 10/06/2024
         public void Merge_2024_10_06(int[] nums1, int m, int[] nums2, int n)
@@ -327,8 +328,6 @@ namespace leetcode.Problems
         }
         #endregion
 
-<<<<<<< HEAD:Problems 0001-500/0051-100/0088. Merge Sorted Array.cs
-=======
 
 
 
@@ -356,6 +355,5 @@ namespace leetcode.Problems
 
 
 
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0088. Merge Sorted Array.cs
     }
 }

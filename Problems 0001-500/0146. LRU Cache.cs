@@ -238,20 +238,7 @@ namespace leetcode.Problems
         #endregion
 
         #region 03/27/2024
-<<<<<<< HEAD:Problems 0001-500/0101-150/0146. LRU Cache.cs
-        //int capacity;
-        //Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
-        //Node_ head;
-        //Node_ tail;
-        //public _0146(int capacity)
-        //{
-        //    this.capacity = capacity;
-        //    this.head = new Node_(-1, -1);
-        //    this.tail = new Node_(-1, -1);
-        //    this.head.next = tail;
-        //    tail.prev = head;
-        //}
-=======
+
         /*
         int capacity;
         Dictionary<int, Node_> dic = new Dictionary<int, Node_>();
@@ -265,7 +252,6 @@ namespace leetcode.Problems
             this.head.next = tail;
             tail.prev = head;
         }
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0146. LRU Cache.cs
 
         //public int Get(int key)
         //{
@@ -279,16 +265,11 @@ namespace leetcode.Problems
         //    return -1;
         //}
 
-<<<<<<< HEAD:Problems 0001-500/0101-150/0146. LRU Cache.cs
-        //public void Put(int key, int value)
-        //{
-        //   if(dic.ContainsKey(key)) {
-=======
+
         public void Put(int key, int value)
         {
             if (dic.ContainsKey(key))
             {
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0146. LRU Cache.cs
 
         //        remove(dic[key]);
         //        dic[key] = new Node_(key, value);
@@ -404,7 +385,6 @@ namespace leetcode.Problems
         }
 
         */
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0146. LRU Cache.cs
         #endregion
 
         #region 10/06/2024 double linked node

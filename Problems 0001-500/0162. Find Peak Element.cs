@@ -136,7 +136,6 @@ namespace leetcode.Problems
             return l;
         }
         #endregion
-<<<<<<< HEAD:Problems 0001-500/0151-0200/0162. Find Peak Element.cs
 
         #region 01/07/2025 Approach 3: Iterative Binary Search
         public int FindPeakElement_20250107(int[] nums)
@@ -163,6 +162,5 @@ namespace leetcode.Problems
             #endregion
 
         }
-=======
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0162. Find Peak Element.cs
+
     }

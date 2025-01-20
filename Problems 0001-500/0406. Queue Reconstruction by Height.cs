@@ -7,15 +7,12 @@ namespace leetcode.Problems
     class _0406
     {
 
-<<<<<<< HEAD:Problems 0001-500/0401-0450/0406. Queue Reconstruction by Height.cs
         #region Approach 1: Greedy
-        public int[][] ReconstructQueue(int[][] people)
-=======
+        #endregion
 
         #region Approach 1: Greedy
         public int[][] ReconstructQueue(int[][] people)
 
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0406. Queue Reconstruction by Height.cs
         {
             Array.Sort(people, CompareStrings);
 
@@ -58,11 +55,7 @@ namespace leetcode.Problems
             return ans.ToArray();
         }
         #endregion
-<<<<<<< HEAD:Problems 0001-500/0401-0450/0406. Queue Reconstruction by Height.cs
 
-
-=======
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0406. Queue Reconstruction by Height.cs
 
         #region 09/05/2024 sort by height in desceding then sort count by assceding order
         public int[][] ReconstructQueue_2024_09_05(int[][] people)
@@ -81,10 +74,7 @@ namespace leetcode.Problems
             return output.ToArray();
         }
         #endregion
-<<<<<<< HEAD:Problems 0001-500/0401-0450/0406. Queue Reconstruction by Height.cs
-=======
 
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0406. Queue Reconstruction by Height.cs
     }
 
 }

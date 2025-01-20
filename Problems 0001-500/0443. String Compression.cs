@@ -160,15 +160,13 @@ namespace leetcode.Problems
 
 
             }
-<<<<<<< HEAD:Problems 0001-500/0401-0450/0443. String Compression.cs
-            return 0;
-=======
+           
+
             char[] answer = new char[insertIndex];
             for (int i = 0; i < answer.Length; i++)
             {
                 answer[i] = chars[i];
             }
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0001-500/0443. String Compression.cs
 
             chars = answer;
 

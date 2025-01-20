@@ -92,7 +92,6 @@ namespace leetcode.Problems
         }
         #endregion
 
-<<<<<<< HEAD:Problems 0501-1000/0501-0550/0543. Diameter of Binary Tree.cs
         #region 01/07/2025
         int max_2025_01_07 = 0;
         public int DiameterOfBinaryTree_2025_01_07(TreeNode root)
@@ -114,7 +113,7 @@ namespace leetcode.Problems
             return Math.Max(left, right) + 1;
         }
         #endregion
-=======
+
         #region 10/06/2024
         int max_2024_10_06 = 0;
         public int DiameterOfBinaryTree_2024_10_06(TreeNode root)
@@ -150,6 +149,5 @@ namespace leetcode.Problems
 
 
 
->>>>>>> 6d99fc316f77012030d9e02012c6eab5cae03c3c:Problems 0501-1000/0543. Diameter of Binary Tree.cs
     }
 }
